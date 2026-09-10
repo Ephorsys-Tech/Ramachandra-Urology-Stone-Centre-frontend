@@ -260,7 +260,7 @@ const DoctorDetails = () => {
 
       const messagePayload = {
         name: name.trim(),
-        email: email?.trim() || "no-email@usthihospital.com",
+        email: email?.trim() || "contact@ramachandraurology.com",
         phone: phone.trim(),
         subject: `Appointment with Dr. ${doctor.name}`,
         message: `Appointment booked for ${selectedDate} at ${selectedSlot}`
@@ -286,9 +286,9 @@ const DoctorDetails = () => {
   const displayedBio = shouldTruncate && !isBioExpanded ? `${bioText.slice(0, 400)}...` : bioText;
 
   return (
-    <div className="min-h-screen bg-background font-sans pb-20">
-      {/* Top Banner (Wave and Info) */}
-      <div className="bg-gradient-to-br from-primary to-[#005031] relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-emerald-500/10">
+    <div className="min-h-screen bg-[#f8fafc] font-sans pb-20">
+      {/* Top Banner (Unified Emerald Medical Aesthetic) */}
+      <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-emerald-500/20">
         {/* Background wave pattern */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -440,14 +440,14 @@ const DoctorDetails = () => {
                 {/* Hospital selection */}
                 <div className="space-y-2">
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">Hospital</label>
-                  <div className="flex items-center gap-2.5 p-3.5 bg-emerald-50/40 border border-emerald-100 rounded-xl text-emerald-950 font-semibold text-sm">
+                  <div className="flex items-center gap-2.5 p-3.5 bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 rounded-xl text-[#012442] font-semibold text-sm">
                     <input
                       type="radio"
                       checked
                       readOnly
-                      className="w-4 h-4 accent-emerald-600 cursor-pointer"
+                      className="w-4 h-4 accent-[#0FA8D6] cursor-pointer"
                     />
-                    <span>Usthi Hospitals, Bhubaneswar</span>
+                    <span>Ramachandra Urology & Stone Centre, Sambalpur</span>
                   </div>
                 </div>
 

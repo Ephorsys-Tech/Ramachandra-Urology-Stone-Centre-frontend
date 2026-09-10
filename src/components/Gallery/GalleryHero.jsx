@@ -1,35 +1,34 @@
-import { motion } from "framer-motion";
+import PageHero from "../common/PageHero";
+import { Award, Building2, Sparkles, ShieldCheck } from "lucide-react";
 
 const GalleryHero = () => {
   return (
-    <div className="w-full bg-background mb-12">
-      {/* ── TOP HERO IMAGE BANNER ── */}
-      <div 
-        className="w-full h-[220px] md:h-[320px]  bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=2000&q=80')` }}
-      />
-
-      {/* ── HEADER BOX ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <motion.div 
-          className="border-2 border-[#e2e8f0] rounded-2xl p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] bg-white max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#0b5c9e] tracking-tight font-sans">
-            Photo Gallery
-          </h1>
-          <p className="text-sm md:text-base font-black text-slate-800 mt-2 font-sans tracking-wide">
-            A Glimpse into Our State-of-the-Art Hospital
-          </p>
-          <div className="w-16 h-0.5 bg-[#07a7a5] mx-auto my-3" />
-          <p className="text-xs md:text-sm text-slate-650 leading-relaxed font-sans max-w-3xl mx-auto">
-            Take a visual tour of our world-class infrastructure, modern medical equipment, comfortable patient care spaces, and dedicated healthcare professionals in action.
-          </p>
-        </motion.div>
+    <PageHero
+      badge="Hospital Infrastructure & Campus"
+      breadcrumb="Gallery"
+      title="A Visual Tour of Our"
+      highlightTitle="Modern Hospital"
+      subtitle="Take a look inside Ramachandra Urology & Stone Centre in Sambalpur — from our sterile modular operation suites and advanced Thulium laser units to comfortable patient recovery rooms."
+      image="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80"
+      imageAlt="Hospital Infrastructure & Campus"
+      imageTag="Modern OT & Infrastructure"
+      theme="blue"
+    >
+      <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold text-slate-700">
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <Building2 size={14} className="text-[#0FA8D6]" />
+          <span>Sambalpur Main Campus</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <ShieldCheck size={14} className="text-[#0FA8D6]" />
+          <span>NABH Standard Modular OTs</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <Sparkles size={14} className="text-[#024363]" />
+          <span>Advanced Thulium Laser Center</span>
+        </div>
       </div>
-    </div>
+    </PageHero>
   );
 };
 

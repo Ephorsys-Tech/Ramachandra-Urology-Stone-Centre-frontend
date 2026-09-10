@@ -1,35 +1,34 @@
-import { motion } from "framer-motion";
+import PageHero from "../common/PageHero";
+import { BookOpen, Sparkles, ShieldCheck } from "lucide-react";
 
 const BlogHero = () => {
   return (
-    <div className="w-full bg-background mb-12">
-      {/* ── TOP HERO IMAGE BANNER ── */}
-      <div
-        className="w-full h-[220px] md:h-[440px] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg')` }}
-      />
-
-      {/* ── HEADER BOX ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <motion.div
-          className="border-2 border-[#e2e8f0] rounded-2xl p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] bg-white max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#0b5c9e] tracking-tight font-sans">
-            Health Insights & Medical News
-          </h1>
-          <p className="text-sm md:text-base font-black text-slate-800 mt-2 font-sans tracking-wide">
-            Stay Informed with Tips from Our Experts
-          </p>
-          <div className="w-16 h-0.5 bg-[#07a7a5] mx-auto my-3" />
-          <p className="text-xs md:text-sm text-slate-650 leading-relaxed font-sans max-w-3xl mx-auto">
-            Welcome to the Usthi Hospital Blog. Discover helpful health tips, learn about advanced medical procedures, read inspirational patient recovery stories, and stay up to date with the latest medical news and developments published by our qualified doctors and specialists.
-          </p>
-        </motion.div>
+    <PageHero
+      badge="Health Library & Clinical Insights"
+      breadcrumb="Blog & Articles"
+      title="Urological Knowledge &"
+      highlightTitle="Health Guides"
+      subtitle="Discover essential kidney stone prevention tips, minimally invasive laser surgery breakthroughs, prostate wellness guides, and recovery advice curated by our specialist surgeons in Sambalpur."
+      image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80"
+      imageAlt="Urology Health Library and Medical Insights"
+      imageTag="Physician-Verified Guides"
+      theme="blue"
+    >
+      <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold text-slate-700">
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <BookOpen size={14} className="text-[#0FA8D6]" />
+          <span>Kidney & Laser Surgery Guides</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <Sparkles size={14} className="text-[#0FA8D6]" />
+          <span>Proven Prevention Tips</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <ShieldCheck size={14} className="text-[#024363]" />
+          <span>Reviewed by Specialists</span>
+        </div>
       </div>
-    </div>
+    </PageHero>
   );
 };
 

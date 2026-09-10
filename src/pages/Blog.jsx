@@ -3,7 +3,7 @@ import BlogList from "../components/Blog/BlogList";
 
 const Blog = () => {
   return (
-    <main className="bg-background min-h-screen pb-24">
+    <main className="bg-slate-50/50 min-h-screen pb-20">
       <BlogHero />
       <BlogList />
     </main>

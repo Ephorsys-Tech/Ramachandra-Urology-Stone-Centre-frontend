@@ -1,38 +1,32 @@
-import { motion } from "framer-motion";
+import PageHero from "../common/PageHero";
+import { Phone, MapPin } from "lucide-react";
 
 const ContactHero = () => {
   return (
-    <div className="w-full bg-background mb-12">
-      {/* ── TOP HERO IMAGE BANNER ── */}
-      <div
-        className="w-full h-[220px] md:h-[440px] bg-cover bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://res.cloudinary.com/drqb4p2a2/image/upload/v1783405863/Screenshot_2026-07-07_115820_gxl6qz.png')`,
-          backgroundPosition: 'center 55%'
-        }}
-      />
-
-      {/* ── HEADER BOX ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <motion.div
-          className="border-2 border-[#e2e8f0] rounded-2xl p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] bg-white max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <PageHero
+      badge="24/7 Patient Support & Appointments"
+      breadcrumb="Contact Us"
+      title="Get in Touch &"
+      highlightTitle="Visit Our Hospital"
+      subtitle="We are conveniently situated at VSS Marg / Farm Road in Sambalpur, Odisha. Contact our care team for 24/7 emergency care, specialist OPD consultations, or cashless insurance inquiries."
+      image="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1000&q=80"
+      imageAlt="Hospital Reception and Patient Support"
+      imageTag="24/7 Trauma & OPD Open"
+    >
+      <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold text-slate-700">
+        <a
+          href="tel:9090963722"
+          className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl font-bold transition-colors no-underline shadow-xs"
         >
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#0b5c9e] tracking-tight font-sans">
-            Contact Us
-          </h1>
-          <p className="text-sm md:text-base font-black text-slate-800 mt-2 font-sans tracking-wide">
-            We're Here to Support You 24/7
-          </p>
-          <div className="w-16 h-0.5 bg-[#07a7a5] mx-auto my-3" />
-          <p className="text-xs md:text-sm text-slate-650 leading-relaxed font-sans max-w-3xl mx-auto">
-            Have a question, need assistance, or want to book an appointment? Get in touch with our hospital staff. Whether it's an emergency, general inquiry, or feedback, our team is ready to respond and support you or your loved ones with utmost care.
-          </p>
-        </motion.div>
+          <Phone size={14} />
+          <span>Emergency: +91 90909 63722</span>
+        </a>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-2 rounded-xl border border-slate-200/90 shadow-2xs">
+          <MapPin size={14} className="text-emerald-600" />
+          <span>Sambalpur, Odisha</span>
+        </div>
       </div>
-    </div>
+    </PageHero>
   );
 };
 

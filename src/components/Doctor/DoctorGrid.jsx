@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Star,
   Stethoscope,
@@ -14,18 +14,28 @@ import {
   Calendar,
   Headphones,
   Phone,
-  Filter
+  Filter,
+  CheckCircle2,
+  ShieldCheck,
+  Search,
+  LayoutGrid,
+  List,
+  ArrowRight,
+  Sparkles,
+  Award,
+  HeartPulse
 } from "lucide-react";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { fetchAllDoctorsPublic } from "../../redux/features/doctor/doctorThunk";
 import { fetchAllDepartments } from "../../redux/features/department/departmentThunk";
 import { openAppointmentModal } from "../../redux/features/patient/patientSlice";
 import { getDoctorSlug } from "../../Helper/slugify";
+import { getDepartmentIcon } from "../../Helper/departmentIcon";
 import { DoctorCardSkeleton } from "../common/Skeletons";
 
-const DoctorGrid = memo(() => {
+const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,194 +44,237 @@ const DoctorGrid = memo(() => {
   const queryDoc = searchParams.get("doctor") || "All";
 
   // Redux store data
-  const { doctors, loading } = useSelector((state) => state.doctor);
-  const { departments } = useSelector((state) => state.department);
+  const { doctors = [], loading = false } = useSelector((state) => state.doctor || {});
+  const { departments = [] } = useSelector((state) => state.department || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
-  // Form States
-  const [formCity, setFormCity] = useState("Bhubaneswar");
-  const [formHospital, setFormHospital] = useState("Usthi Hospital, Bhubaneswar");
-  const [formDept, setFormDept] = useState(queryDept);
-  const [formDocName, setFormDocName] = useState(queryDoc);
-  const [formConsult, setFormConsult] = useState("All");
-
-  // Active Filter state
-  const [activeFilters, setActiveFilters] = useState({
-    city: "Bhubaneswar",
-    hospital: "Usthi Hospital, Bhubaneswar",
-    department: queryDept,
-    doctorName: queryDoc,
-    consultation: "All",
-  });
-
-  useEffect(() => {
-    setFormDept(queryDept);
-    setFormDocName(queryDoc);
-    setActiveFilters((prev) => ({
-      ...prev,
-      department: queryDept,
-      doctorName: queryDoc,
-    }));
-  }, [queryDept, queryDoc]);
-
-  // Pagination State
+  // Filters and UI states
+  const [selectedDept, setSelectedDept] = useState(queryDept);
+  const [searchQuery, setSearchQuery] = useState(externalSearch || "");
+  const [viewMode, setViewMode] = useState("grid"); // 'grid' | 'list'
+  const [sortBy, setSortBy] = useState("default");
   const [currentPage, setCurrentPage] = useState(1);
-  const doctorsPerPage = 6;
+  const doctorsPerPage = viewMode === "grid" ? 6 : 5;
+
+  // Sync external search from Hero
+  useEffect(() => {
+    if (externalSearch !== undefined) {
+      setSearchQuery(externalSearch);
+    }
+  }, [externalSearch]);
+
+  const handleSearchChange = (val) => {
+    setSearchQuery(val);
+    if (setExternalSearch) setExternalSearch(val);
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
     dispatch(fetchAllDoctorsPublic());
     dispatch(fetchAllDepartments());
   }, [dispatch]);
 
-  // Handle filter submit
-  const handleFilterSubmit = (e) => {
-    e.preventDefault();
+  // Sync with URL params
+  useEffect(() => {
+    setSelectedDept(queryDept);
+  }, [queryDept]);
+
+  const handleSelectDepartment = (deptName) => {
+    setSelectedDept(deptName);
     const params = {};
-    if (formDept !== "All") params.specialty = formDept;
-    if (formDocName !== "All") params.doctor = formDocName;
+    if (deptName !== "All") params.specialty = deptName;
     setSearchParams(params);
-
-    setActiveFilters({
-      city: formCity,
-      hospital: formHospital,
-      department: formDept,
-      doctorName: formDocName,
-      consultation: formConsult,
-    });
     setCurrentPage(1);
   };
 
-  // Handle filter reset
   const handleReset = () => {
+    setSelectedDept("All");
+    setSearchQuery("");
+    if (setExternalSearch) setExternalSearch("");
     setSearchParams({});
-    setFormCity("Bhubaneswar");
-    setFormHospital("Usthi Hospital, Bhubaneswar");
-    setFormDept("All");
-    setFormDocName("All");
-    setFormConsult("All");
-    setActiveFilters({
-      city: "Bhubaneswar",
-      hospital: "Usthi Hospital, Bhubaneswar",
-      department: "All",
-      doctorName: "All",
-      consultation: "All",
-    });
+    setSortBy("default");
     setCurrentPage(1);
   };
 
-  // Doctor filtering logic
-  const filteredDoctors = (doctors || []).filter((doc) => {
-    const deptName = (doc.department?.name || doc.department || "").toLowerCase().trim();
-    const filterDept = (activeFilters.department || "All").toLowerCase().trim();
-    const matchesDept =
-      filterDept === "all" ||
-      deptName === filterDept ||
-      deptName.includes(filterDept) ||
-      filterDept.includes(deptName);
+  // Filter & Sort Logic
+  const filteredDoctors = useMemo(() => {
+    return (doctors || [])
+      .filter((doc) => {
+        // Department filter
+        const docDeptName = (doc.department?.name || doc.department || "").toLowerCase().trim();
+        const filterDept = selectedDept.toLowerCase().trim();
+        const matchesDept =
+          filterDept === "all" ||
+          docDeptName === filterDept ||
+          docDeptName.includes(filterDept) ||
+          filterDept.includes(docDeptName);
 
-    const docName = (doc.name || "").toLowerCase().trim();
-    const filterDoc = (activeFilters.doctorName || "All").toLowerCase().trim();
-    const matchesDocName =
-      filterDoc === "all" ||
-      docName === filterDoc ||
-      docName.includes(filterDoc) ||
-      filterDoc.includes(docName);
+        // Search Query (Doctor Name, Qualification, Specialty, Bio)
+        const q = searchQuery.toLowerCase().trim();
+        const docName = (doc.name || "").toLowerCase();
+        const docSpecialty = (doc.specialization || doc.specialty || doc.department?.name || "").toLowerCase();
+        const docQual = (doc.qualifications || "").toLowerCase();
 
-    return matchesDept && matchesDocName;
-  });
+        const matchesQuery =
+          !q ||
+          docName.includes(q) ||
+          docSpecialty.includes(q) ||
+          docQual.includes(q);
 
-  // Pagination math
-  const totalPages = Math.ceil(filteredDoctors.length / doctorsPerPage);
+        return matchesDept && matchesQuery;
+      })
+      .sort((a, b) => {
+        if (sortBy === "name-asc") {
+          return (a.name || "").localeCompare(b.name || "");
+        }
+        if (sortBy === "name-desc") {
+          return (b.name || "").localeCompare(a.name || "");
+        }
+        return 0;
+      });
+  }, [doctors, selectedDept, searchQuery, sortBy]);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredDoctors.length / doctorsPerPage) || 1;
   const indexOfLastDoctor = currentPage * doctorsPerPage;
   const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
   const currentDoctors = filteredDoctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 340, behavior: "smooth" });
+    const element = document.getElementById("doctors-directory-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
+  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const mainPhone = settings?.phone || "8065906200";
+
   return (
-    <div className="w-full bg-[#f4f7fb] py-10 px-4 sm:px-6 font-sans select-none min-h-screen">
+    <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8 font-sans select-none min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* ══════════════════════════════════════════════════════
-              LEFT COLUMN: FILTER SIDEBAR + NEED HELP CARD
-          ══════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-24">
-            {/* ── CARD 1: FILTER DOCTORS ── */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
-                <div className="flex items-center gap-2 text-[#0d2e5c] font-black text-lg">
-                  <SlidersHorizontal size={18} className="text-[#0052cc]" />
-                  <span>Filter Doctors</span>
-                </div>
+        
+        {/* ── 1. QUICK DEPARTMENT FILTER PILL TABS ── */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-3 px-1">
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles size={14} className="text-[#0FA8D6]" />
+              <span>Filter by Clinical Specialty</span>
+            </h3>
+            {selectedDept !== "All" && (
+              <button
+                onClick={() => handleSelectDepartment("All")}
+                className="text-xs font-bold text-[#024363] hover:text-[#0FA8D6] cursor-pointer bg-transparent border-none transition-colors"
+              >
+                Clear Specialty Filter
+              </button>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+            <button
+              onClick={() => handleSelectDepartment("All")}
+              className={`px-4 py-2 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all cursor-pointer border ${
+                selectedDept === "All"
+                  ? "bg-[#024363] text-white border-[#024363] shadow-sm shadow-[#024363]/20"
+                  : "bg-white text-slate-700 border-slate-200/90 hover:bg-[#0FA8D6]/5 hover:border-[#0FA8D6]/40 hover:text-[#024363]"
+              }`}
+            >
+              All Specialists ({doctors.length})
+            </button>
+
+            {departments.map((dept) => {
+              const deptDoctorCount = doctors.filter((d) => {
+                const docDept = (d.department?.name || d.department || "").toLowerCase().trim();
+                const currentDept = dept.name.toLowerCase().trim();
+                return docDept === currentDept || docDept.includes(currentDept);
+              }).length;
+
+              const isSelected = selectedDept.toLowerCase() === dept.name.toLowerCase();
+
+              return (
                 <button
-                  onClick={handleReset}
-                  className="text-xs font-bold text-[#0052cc] hover:text-[#008ba3] transition-colors cursor-pointer border-none bg-transparent hover:underline"
+                  key={dept._id || dept.name}
+                  onClick={() => handleSelectDepartment(dept.name)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all cursor-pointer border ${
+                    isSelected
+                      ? "bg-[#024363] text-white border-[#024363] shadow-sm shadow-[#024363]/20"
+                      : "bg-white text-slate-700 border-slate-200/90 hover:bg-[#0FA8D6]/5 hover:border-[#0FA8D6]/40 hover:text-[#024363]"
+                  }`}
                 >
-                  Reset
+                  <span>{dept.name}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                      isSelected ? "bg-[#012442] text-white" : "bg-slate-100 text-slate-500"
+                    }`}
+                  >
+                    {deptDoctorCount}
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── 2. MAIN LAYOUT: SIDEBAR + DOCTOR DIRECTORY ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* ══════════════════════════════════════════════════════
+              LEFT COLUMN: SEARCH, FILTERS & EMERGENCY CARD
+          ══════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-20">
+            
+            {/* Filter Control Card */}
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+                <div className="flex items-center gap-2 text-[#012442] font-extrabold text-base">
+                  <SlidersHorizontal size={18} className="text-[#0FA8D6]" />
+                  <span>Refine Search</span>
+                </div>
+                {(selectedDept !== "All" || searchQuery) && (
+                  <button
+                    onClick={handleReset}
+                    className="text-xs font-bold text-[#024363] hover:text-[#0FA8D6] transition-colors cursor-pointer border-none bg-transparent hover:underline"
+                  >
+                    Reset All
+                  </button>
+                )}
               </div>
 
-              <form onSubmit={handleFilterSubmit} className="space-y-4 text-left">
-                {/* City Field */}
+              <div className="space-y-4">
+                {/* Search by Name */}
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                    <MapPin size={14} className="text-[#0052cc]" />
-                    <span>City</span>
+                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Search size={14} className="text-[#0FA8D6]" />
+                    <span>Search Doctor Name</span>
                   </label>
                   <div className="relative">
-                    <select
-                      value={formCity}
-                      onChange={(e) => setFormCity(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50/90 border border-slate-200 rounded-2xl text-xs font-bold outline-none text-slate-700 cursor-pointer focus:border-[#0052cc] focus:bg-white transition-all appearance-none pr-9"
-                    >
-                      <option value="Bhubaneswar">Bhubaneswar</option>
-                      <option value="Cuttack">Cuttack (Coming Soon)</option>
-                    </select>
-                    <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      placeholder="e.g. Dr. Mishra, Urologist..."
+                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-[#012442] outline-none focus:border-[#0FA8D6] focus:bg-white transition-all"
+                    />
                   </div>
                 </div>
 
-                {/* Hospital Field */}
+                {/* Department Select */}
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                    <Building2 size={14} className="text-[#0052cc]" />
-                    <span>Hospital</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      value={formHospital}
-                      onChange={(e) => setFormHospital(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50/90 border border-slate-200 rounded-2xl text-xs font-bold outline-none text-slate-700 cursor-pointer focus:border-[#0052cc] focus:bg-white transition-all appearance-none pr-9"
-                    >
-                      <option value="Usthi Hospital, Bhubaneswar">
-                        Usthi Hospital, Bhubaneswar
-                      </option>
-                    </select>
-                    <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
-                </div>
-
-                {/* Department Field */}
-                <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                    <Stethoscope size={14} className="text-[#0052cc]" />
+                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <Stethoscope size={14} className="text-[#0FA8D6]" />
                     <span>Department</span>
                   </label>
                   <div className="relative">
                     <select
-                      value={formDept}
-                      onChange={(e) => {
-                        setFormDept(e.target.value);
-                        setFormDocName("All");
-                      }}
-                      className="w-full px-4 py-3 bg-slate-50/90 border border-slate-200 rounded-2xl text-xs font-bold outline-none text-slate-700 cursor-pointer focus:border-[#0052cc] focus:bg-white transition-all appearance-none pr-9"
+                      value={selectedDept}
+                      onChange={(e) => handleSelectDepartment(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-[#012442] outline-none focus:border-[#0FA8D6] focus:bg-white transition-all appearance-none cursor-pointer pr-9"
                     >
-                      <option value="All">Search Department (All)</option>
+                      <option value="All">All Departments ({doctors.length})</option>
                       {departments.map((dept) => (
-                        <option key={dept._id} value={dept.name}>
+                        <option key={dept._id || dept.name} value={dept.name}>
                           {dept.name}
                         </option>
                       ))}
@@ -230,257 +283,428 @@ const DoctorGrid = memo(() => {
                   </div>
                 </div>
 
-                {/* Consultation Type Field */}
+                {/* Hospital Branch Location (Sambalpur) */}
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
-                    <User size={14} className="text-[#0052cc]" />
-                    <span>Type of Consultation</span>
+                  <label className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+                    <MapPin size={14} className="text-[#0FA8D6]" />
+                    <span>Hospital Campus</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      value={formConsult}
-                      onChange={(e) => setFormConsult(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50/90 border border-slate-200 rounded-2xl text-xs font-bold outline-none text-slate-700 cursor-pointer focus:border-[#0052cc] focus:bg-white transition-all appearance-none pr-9"
-                    >
-                      <option value="All">Type Of Consultation</option>
-                      <option value="in-person">In-Person Consultation</option>
-                    </select>
-                    <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <div className="p-3 bg-[#0FA8D6]/10 border border-[#0FA8D6]/20 rounded-2xl flex items-center justify-between text-xs font-bold text-[#012442]">
+                    <div className="flex items-center gap-2">
+                      <Building2 size={15} className="text-[#0FA8D6]" />
+                      <span>Sambalpur Centre (Odisha)</span>
+                    </div>
+                    <span className="text-[10px] text-white bg-[#024363] px-2 py-0.5 rounded-full font-extrabold">
+                      Main Hub
+                    </span>
                   </div>
                 </div>
 
-                {/* Apply Filter Button */}
-                <button
-                  type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-[#008ba3] to-[#004b99] hover:opacity-95 active:scale-98 text-white font-black rounded-2xl transition-all shadow-md shadow-blue-600/15 cursor-pointer text-xs border-none mt-4 uppercase tracking-wider flex items-center justify-center gap-2"
-                >
-                  <Filter size={14} />
-                  <span>APPLY FILTER</span>
-                </button>
-              </form>
+                {/* Quick Results Counter */}
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold">
+                  <span>Matching Specialists:</span>
+                  <span className="font-extrabold text-[#012442] bg-[#0FA8D6]/15 px-2.5 py-0.5 rounded-full border border-[#0FA8D6]/30">
+                    {filteredDoctors.length} Doctors
+                  </span>
+                </div>
+              </div>
             </div>
 
-            {/* ── CARD 2: NEED HELP? ── */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-5 shadow-[0_4px_25px_rgba(0,0,0,0.03)] flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
-                <Headphones size={22} className="stroke-[2.2]" />
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-sm font-extrabold text-[#0d2e5c]">Need Help?</h4>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                  Our care team is here to assist you in finding the right doctor.
-                </p>
-                <a
-                  href={`tel:${settings?.emergencyPhone || "067468106585"}`}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-black text-[#004b99] hover:text-[#008ba3] pt-1 no-underline transition-colors"
-                >
-                  <Phone size={13} className="fill-[#004b99]" />
-                  <span>{settings?.emergencyPhone || "0674-68106585"}</span>
-                </a>
+            {/* ── CARD 2: NEED ASSISTANCE / APPOINTMENT HELPLINE ── */}
+            <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white border border-[#0FA8D6]/30 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0FA8D6]/10 rounded-full blur-2xl pointer-events-none" />
+              
+              <div className="relative z-10 space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/20 border border-[#0FA8D6]/40 flex items-center justify-center text-[#0FA8D6] shadow-inner">
+                  <Headphones size={22} className="stroke-[2.2]" />
+                </div>
+
+                <div>
+                  <h4 className="text-base font-extrabold text-white">
+                    Need Help Choosing a Doctor?
+                  </h4>
+                  <p className="text-xs text-slate-300 font-medium leading-relaxed mt-1">
+                    Speak directly with our clinical coordinators for doctor availability and OPD booking.
+                  </p>
+                </div>
+
+                <div className="space-y-2 pt-2">
+                  <a
+                    href={`tel:${emergencyPhone}`}
+                    className="flex items-center justify-between bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-4 py-3 rounded-2xl font-black text-xs no-underline transition-all shadow-md group"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Phone size={14} className="group-hover:rotate-12 transition-transform" />
+                      <span>24x7 Helpline: {emergencyPhone}</span>
+                    </div>
+                    <ArrowRight size={13} />
+                  </a>
+
+                  <button
+                    onClick={() => dispatch(openAppointmentModal())}
+                    className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded-2xl font-extrabold text-xs transition-colors border border-white/20 cursor-pointer"
+                  >
+                    <Calendar size={14} className="text-[#0FA8D6]" />
+                    <span>Book General Appointment</span>
+                  </button>
+                </div>
               </div>
             </div>
+
           </div>
 
           {/* ══════════════════════════════════════════════════════
-              RIGHT COLUMN: DOCTOR LIST HEADER & DOCTOR CARDS
+              RIGHT COLUMN: TOOLBAR & DOCTOR CARDS (GRID/LIST)
           ══════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 space-y-6 text-left">
-            {/* Header: All Doctors + Count */}
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black text-[#0d2e5c] tracking-tight">
-                All Doctors
-              </h2>
-              <div className="text-xs font-bold text-slate-500">
-                Showing {currentDoctors.length} of {filteredDoctors.length} Doctors
+          <div className="lg:col-span-8 space-y-6">
+            
+            {/* Header Controls Toolbar */}
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-black text-[#012442] tracking-tight">
+                  Medical Specialists & Surgeons
+                </h2>
+                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                  Showing {currentDoctors.length} of {filteredDoctors.length} certified medical doctors
+                </p>
+              </div>
+
+              {/* View Toggle & Sort Controls */}
+              <div className="flex items-center gap-2 self-end sm:self-center">
+                {/* Sort Dropdown */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-[#012442] outline-none focus:border-[#0FA8D6] transition-colors cursor-pointer"
+                >
+                  <option value="default">Sort: Default</option>
+                  <option value="name-asc">Name: A to Z</option>
+                  <option value="name-desc">Name: Z to A</option>
+                </select>
+
+                {/* View Switcher Buttons */}
+                <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80">
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${
+                      viewMode === "grid"
+                        ? "bg-white text-[#024363] shadow-xs font-bold"
+                        : "bg-transparent text-slate-500 hover:text-slate-900"
+                    }`}
+                    title="Grid View"
+                    aria-label="Grid View"
+                  >
+                    <LayoutGrid size={16} />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${
+                      viewMode === "list"
+                        ? "bg-white text-[#024363] shadow-xs font-bold"
+                        : "bg-transparent text-slate-500 hover:text-slate-900"
+                    }`}
+                    title="List View"
+                    aria-label="List View"
+                  >
+                    <List size={16} />
+                  </button>
+                </div>
               </div>
             </div>
 
+            {/* ── DOCTOR CARDS RENDERING ── */}
             {loading && doctors.length === 0 ? (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {Array.from({ length: 4 }).map((_, idx) => (
                   <DoctorCardSkeleton key={idx} />
                 ))}
               </div>
             ) : currentDoctors.length > 0 ? (
-              <div className="space-y-6">
-                {currentDoctors.map((doc, i) => {
-                  const docImage = doc.photo || doc.image;
-                  const docSpecialization =
-                    doc.specialization || doc.specialty || doc.department?.name || "Specialist";
-                  const hasValidImage =
-                    docImage && !docImage.includes("👨‍⚕️") && !docImage.includes("👩‍⚕️");
+              viewMode === "grid" ? (
+                /* ── GRID VIEW (2 COLUMNS) ── */
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {currentDoctors.map((doc, idx) => {
+                    const docImage = doc.photo || doc.image;
+                    const docSpecialization =
+                      doc.specialization || doc.specialty || doc.department?.name || "Super Specialist";
+                    const hasValidImage =
+                      docImage && !docImage.includes("👨‍⚕️") && !docImage.includes("👩‍⚕️");
+                    const doctorSlug = getDoctorSlug(doc.name);
 
-                  return (
-                    <motion.div
-                      key={doc._id || i}
-                      className="bg-white border border-slate-200/80 rounded-3xl overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.03)] flex flex-col md:flex-row group transition-all duration-300 hover:border-slate-300 hover:shadow-lg relative"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: i * 0.04 }}
-                    >
-                      {/* Left Frame (Doctor Photo Block) */}
-                      <div className="w-full md:w-[35%] lg:w-[32%] bg-[#004b99] relative flex flex-col justify-between overflow-hidden shrink-0">
-                        {/* Top Header Strip */}
-                        <div className="bg-[#004b99] text-white text-[10px] uppercase font-bold tracking-widest py-2 text-center w-full z-10 shrink-0 select-none">
-                          BHUBANESWAR • ODISHA
+                    return (
+                      <motion.div
+                        key={doc._id || idx}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.05 }}
+                        className="bg-white border border-slate-200/90 hover:border-[#0FA8D6]/80 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(15,168,214,0.14)] transition-all duration-300 flex flex-col justify-between group"
+                      >
+                        <div>
+                          {/* Image & Badges Banner */}
+                          <div className="relative aspect-[16/11] bg-gradient-to-b from-slate-100 to-slate-200 overflow-hidden flex items-center justify-center">
+                            {hasValidImage ? (
+                              <img
+                                src={docImage}
+                                alt={doc.name}
+                                loading="lazy"
+                                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 text-slate-400">
+                                <Stethoscope size={48} className="text-[#024363]/40 mb-1" />
+                                <span className="text-[11px] font-bold text-slate-400">Certified Specialist</span>
+                              </div>
+                            )}
+
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/70 via-transparent to-transparent opacity-80" />
+
+                            {/* Top Left: Verified Badge */}
+                            <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/30">
+                              <ShieldCheck size={13} className="text-[#0FA8D6]" />
+                              <span className="text-[10px] font-extrabold text-[#012442] tracking-wider uppercase">
+                                Verified
+                              </span>
+                            </div>
+
+                            {/* Top Right: OPD Status */}
+                            <div className="absolute top-3 right-3 bg-[#012442]/90 backdrop-blur-md text-[#0FA8D6] px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/40">
+                              <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0FA8D6] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0FA8D6]"></span>
+                              </span>
+                              <span className="text-[10px] font-extrabold tracking-wide uppercase text-white">
+                                Available OPD
+                              </span>
+                            </div>
+
+                            {/* Bottom Overlaid Speciality Tag */}
+                            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                              <span className="bg-[#024363]/90 backdrop-blur-md text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs truncate max-w-[80%] text-white border border-[#0FA8D6]/30">
+                                {docSpecialization}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Details Content */}
+                          <div className="p-5 space-y-3">
+                            <div>
+                              <h3 className="text-lg font-black text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
+                                {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
+                              </h3>
+                              <p className="text-xs font-bold text-[#024363] mt-0.5 line-clamp-1">
+                                Senior Consultant & Surgeon
+                              </p>
+                            </div>
+
+                            {/* Qualifications & Experience */}
+                            <div className="space-y-1.5 pt-1 text-xs text-slate-600">
+                              <div className="flex items-start gap-2">
+                                <GraduationCap size={15} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                                <span className="text-slate-700 font-medium line-clamp-1">
+                                  {doc.qualifications || "MBBS, MS, MCh (Urology)"}
+                                </span>
+                              </div>
+
+                              <div className="flex items-start gap-2">
+                                <Clock size={14} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                                <span className="text-slate-700 font-medium line-clamp-1">
+                                  {doc.timing || "Monday – Saturday: 10 AM – 6 PM"}
+                                </span>
+                              </div>
+
+                              <div className="flex items-start gap-2">
+                                <MapPin size={14} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                                <span className="text-slate-700 font-medium">
+                                  Ramachandra Centre, Sambalpur
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
-                        {/* Middle Photo Canvas */}
-                        <div className="flex-grow overflow-hidden relative flex items-center justify-center bg-slate-100 p-2 min-h-[220px]">
+                        {/* Card Actions Footer */}
+                        <div className="p-5 pt-0 mt-2 flex items-center gap-2 border-t border-slate-100 pt-4">
+                          <button
+                            onClick={() => dispatch(openAppointmentModal(doc.department?.name || "", doc.name))}
+                            className="flex-1 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] active:scale-98 text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
+                          >
+                            <Calendar size={13} />
+                            <span>Book Visit</span>
+                          </button>
+
+                          <button
+                            onClick={() => navigate(`/doctors/${doctorSlug}`)}
+                            className="px-3.5 py-2.5 bg-slate-50 hover:bg-[#0FA8D6]/10 text-slate-800 hover:text-[#024363] border border-slate-200 hover:border-[#0FA8D6]/40 font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center gap-1"
+                            title="View Doctor Profile"
+                          >
+                            <span>Profile</span>
+                            <ArrowRight size={13} />
+                          </button>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              ) : (
+                /* ── LIST VIEW (HORIZONTAL CARDS) ── */
+                <div className="space-y-4">
+                  {currentDoctors.map((doc, idx) => {
+                    const docImage = doc.photo || doc.image;
+                    const docSpecialization =
+                      doc.specialization || doc.specialty || doc.department?.name || "Specialist";
+                    const hasValidImage =
+                      docImage && !docImage.includes("👨‍⚕️") && !docImage.includes("👩‍⚕️");
+                    const doctorSlug = getDoctorSlug(doc.name);
+
+                    return (
+                      <motion.div
+                        key={doc._id || idx}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.04 }}
+                        className="bg-white border border-slate-200/90 hover:border-[#0FA8D6]/70 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all flex flex-col md:flex-row group"
+                      >
+                        {/* Left Portrait */}
+                        <div className="w-full md:w-56 bg-slate-100 relative shrink-0 aspect-[4/3] md:aspect-auto">
                           {hasValidImage ? (
                             <img
                               src={docImage}
                               alt={doc.name}
                               loading="lazy"
-                              decoding="async"
-                              className="w-full h-full max-h-[220px] object-cover object-top group-hover:scale-103 transition-transform duration-500 ease-out rounded-xl"
+                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
-                            <div className="w-full h-full min-h-[180px] bg-slate-100 flex items-center justify-center rounded-xl">
-                              <Stethoscope className="w-14 h-14 text-slate-400" />
+                            <div className="w-full h-full min-h-[160px] flex items-center justify-center text-slate-400">
+                              <Stethoscope size={42} className="text-[#024363]/40" />
                             </div>
                           )}
 
-                          {/* Available Badge */}
-                          <div className="absolute top-3.5 right-3.5 bg-white/95 backdrop-blur-md shadow-xs border border-emerald-500/20 px-2.5 py-1 rounded-full flex items-center gap-1">
-                            <Star className="w-3 h-3 fill-emerald-500 text-emerald-500" />
-                            <span className="text-emerald-700 text-[9px] font-extrabold tracking-wider uppercase">
-                              Available
-                            </span>
+                          <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-full flex items-center gap-1 text-[9px] font-extrabold text-[#024363] border border-[#0FA8D6]/40">
+                            <ShieldCheck size={11} className="text-[#0FA8D6]" />
+                            <span>VERIFIED</span>
                           </div>
                         </div>
 
-                        {/* Bottom Blue Trim */}
-                        <div className="h-2 bg-[#004b99] w-full shrink-0" />
-                      </div>
-
-                      {/* Right Frame (Doctor Details Block) */}
-                      <div className="w-full md:w-[65%] lg:w-[68%] p-6 sm:p-7 flex flex-col justify-between bg-white">
-                        <div className="space-y-2">
-                          {/* Doctor Name */}
-                          <h3 className="text-xl sm:text-2xl font-black text-[#004b99] font-sans tracking-tight uppercase leading-tight">
-                            {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
-                          </h3>
-
-                          {/* Designation Subtitle */}
-                          <p className="text-xs sm:text-sm font-black text-[#008ba3] uppercase tracking-wide">
-                            SENIOR CONSULTANT & HOD — {docSpecialization}
-                          </p>
-
-                          {/* Details Row: Qualification & Timings */}
-                          <div className="pt-2.5 space-y-2 text-xs">
-                            <div className="flex items-start gap-2 text-slate-600">
-                              <GraduationCap size={15} className="text-slate-800 shrink-0 mt-0.5" />
+                        {/* Right Details */}
+                        <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                          <div className="space-y-2">
+                            <div className="flex flex-wrap items-start justify-between gap-2">
                               <div>
-                                <span className="font-bold text-slate-900 uppercase">
-                                  QUALIFICATION :{" "}
-                                </span>
-                                <span className="font-semibold text-slate-700">
-                                  {doc.qualifications || "MBBS, MS (Obstetrics & Gynaecology)"}
-                                </span>
+                                <h3 className="text-xl font-black text-[#012442] group-hover:text-[#024363] transition-colors">
+                                  {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
+                                </h3>
+                                <p className="text-xs font-bold text-[#024363] mt-0.5">
+                                  Senior Consultant — {docSpecialization}
+                                </p>
                               </div>
+
+                              <span className="bg-[#0FA8D6]/10 text-[#024363] border border-[#0FA8D6]/30 text-[11px] font-bold px-3 py-1 rounded-full">
+                                OPD Available
+                              </span>
                             </div>
 
-                            <div className="flex items-start gap-2 text-slate-600">
-                              <Clock size={14} className="text-slate-800 shrink-0 mt-0.5" />
-                              <div>
-                                <span className="font-bold text-slate-900 uppercase">
-                                  TIMINGS :{" "}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+                              <div className="flex items-center gap-2 text-slate-600">
+                                <GraduationCap size={15} className="text-[#0FA8D6] shrink-0" />
+                                <span className="font-semibold text-slate-800 truncate">
+                                  {doc.qualifications || "MBBS, MS, MCh (Urology)"}
                                 </span>
-                                <span className="font-semibold text-slate-700">
-                                  {doc.timing || "MONDAY TO SATURDAY, 4 PM TO 6 PM"}
+                              </div>
+
+                              <div className="flex items-center gap-2 text-slate-600">
+                                <Clock size={14} className="text-[#0FA8D6] shrink-0" />
+                                <span className="font-semibold text-slate-800 truncate">
+                                  {doc.timing || "Mon – Sat: 10 AM – 6 PM"}
                                 </span>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* Bottom Action Row */}
-                        <div className="flex flex-wrap items-center gap-2.5 mt-6 pt-4 border-t border-slate-100">
-                          {/* Speciality Dropdown Pill */}
-                          <div className="relative">
-                            <select
-                              value={docSpecialization}
-                              disabled
-                              className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none select-none appearance-none pr-8 cursor-default"
+                          <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-slate-100">
+                            <button
+                              onClick={() => dispatch(openAppointmentModal(doc.department?.name || "", doc.name))}
+                              className="px-5 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center gap-1.5 uppercase tracking-wider"
                             >
-                              <option>{docSpecialization}</option>
-                            </select>
-                            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                              <Calendar size={14} />
+                              <span>Book Appointment</span>
+                            </button>
+
+                            <button
+                              onClick={() => navigate(`/doctors/${doctorSlug}`)}
+                              className="px-5 py-2.5 bg-white hover:bg-[#0FA8D6]/10 text-slate-800 hover:text-[#024363] border border-slate-200 hover:border-[#0FA8D6]/40 font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center gap-1.5"
+                            >
+                              <User size={14} className="text-[#0FA8D6]" />
+                              <span>View Profile</span>
+                            </button>
                           </div>
-
-                          {/* Book Appointment Button */}
-                          <button
-                            onClick={() =>
-                              dispatch(openAppointmentModal(doc.department?.name || ""))
-                            }
-                            className="px-5 py-2.5 bg-[#006e78] hover:bg-[#005a63] active:scale-95 text-white font-extrabold rounded-xl text-xs tracking-wider transition-all shadow-sm cursor-pointer border-none uppercase flex items-center gap-2"
-                          >
-                            <Calendar size={14} />
-                            <span>BOOK APPOINTMENT</span>
-                          </button>
-
-                          {/* View Profile Button */}
-                          <button
-                            onClick={() => navigate(`/doctors/${getDoctorSlug(doc.name)}`)}
-                            className="px-5 py-2.5 bg-white hover:bg-slate-50 active:scale-95 text-[#004b99] border border-[#004b99]/40 font-extrabold rounded-xl text-xs tracking-wider transition-all shadow-2xs cursor-pointer uppercase flex items-center gap-2"
-                          >
-                            <User size={14} />
-                            <span>VIEW PROFILE</span>
-                          </button>
                         </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-
-                {/* ── PAGINATION CONTROLS ── */}
-                {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-2 pt-6 border-t border-slate-200/80 mt-8">
-                    <button
-                      onClick={() => paginate(Math.max(currentPage - 1, 1))}
-                      disabled={currentPage === 1}
-                      className="p-2.5 rounded-xl border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-center"
-                      aria-label="Previous Page"
-                    >
-                      <ChevronLeft size={16} />
-                    </button>
-
-                    {Array.from({ length: totalPages }, (_, idx) => (
-                      <button
-                        key={idx + 1}
-                        onClick={() => paginate(idx + 1)}
-                        className={`w-9 h-9 font-bold text-xs rounded-xl transition-all cursor-pointer border ${
-                          currentPage === idx + 1
-                            ? "bg-[#004b99] text-white border-transparent shadow-sm"
-                            : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-                        }`}
-                      >
-                        {idx + 1}
-                      </button>
-                    ))}
-
-                    <button
-                      onClick={() => paginate(Math.min(currentPage + 1, totalPages))}
-                      disabled={currentPage === totalPages}
-                      className="p-2.5 rounded-xl border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-center"
-                      aria-label="Next Page"
-                    >
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                )}
-              </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              )
             ) : (
-              <div className="text-center py-20 bg-white border border-slate-200/80 rounded-3xl p-8">
-                <Stethoscope className="w-14 h-14 text-slate-350 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-slate-800 mb-1">No doctors found</h3>
-                <p className="text-slate-500 text-xs">
-                  Try selecting a different department or click Reset.
+              /* ── EMPTY SEARCH RESULT ── */
+              <div className="text-center py-16 bg-white border border-slate-200/90 rounded-3xl p-8 shadow-xs">
+                <div className="w-16 h-16 rounded-full bg-[#0FA8D6]/10 text-[#0FA8D6] flex items-center justify-center mx-auto mb-4 border border-[#0FA8D6]/20">
+                  <Stethoscope size={30} />
+                </div>
+                <h3 className="text-lg font-black text-[#012442] mb-1">
+                  No Matching Doctors Found
+                </h3>
+                <p className="text-slate-500 text-xs max-w-md mx-auto mb-5 leading-relaxed">
+                  We could not find any doctors matching &quot;{searchQuery || selectedDept}&quot;. Try selecting a different specialty or reset all filters.
                 </p>
+                <button
+                  onClick={handleReset}
+                  className="px-5 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-extrabold rounded-xl transition-all cursor-pointer border-none shadow-sm inline-flex items-center gap-2"
+                >
+                  <Filter size={13} />
+                  <span>Reset All Filters</span>
+                </button>
               </div>
             )}
+
+            {/* ── PAGINATION CONTROLS ── */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 pt-6 border-t border-slate-200 mt-8">
+                <button
+                  onClick={() => paginate(Math.max(currentPage - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="p-2.5 rounded-xl border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-center"
+                  aria-label="Previous Page"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+
+                {Array.from({ length: totalPages }, (_, idx) => (
+                  <button
+                    key={idx + 1}
+                    onClick={() => paginate(idx + 1)}
+                    className={`w-9 h-9 font-extrabold text-xs rounded-xl transition-all cursor-pointer border ${
+                      currentPage === idx + 1
+                        ? "bg-[#024363] text-white border-transparent shadow-sm"
+                        : "bg-white border-slate-200 text-slate-700 hover:bg-[#0FA8D6]/10 hover:text-[#024363]"
+                    }`}
+                  >
+                    {idx + 1}
+                  </button>
+                ))}
+
+                <button
+                  onClick={() => paginate(Math.min(currentPage + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="p-2.5 rounded-xl border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center justify-center"
+                  aria-label="Next Page"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
+
           </div>
+
         </div>
       </div>
     </div>

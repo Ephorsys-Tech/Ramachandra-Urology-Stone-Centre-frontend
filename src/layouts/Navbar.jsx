@@ -3,17 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ChevronDown,
+  Search,
+  Phone,
   Calendar,
   Building2,
-  Phone,
-  MapPin,
-  Ambulance,
-  ArrowRight,
-  ShieldCheck,
   Menu,
   X,
   Stethoscope,
-  Activity,
+  Globe,
+  Award,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
   HeartPulse
 } from "lucide-react";
 import { openAppointmentModal } from "../redux/features/patient/patientSlice";
@@ -22,25 +23,31 @@ import { fetchSettings } from "../redux/features/setting/settingThunk";
 import { motion, AnimatePresence } from "framer-motion";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 import { NavbarDropdownSkeleton } from "../components/common/Skeletons";
+import GlobalSearchModal from "../components/GlobalSearchModal";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const { departments } = useSelector((state) => state.department || { departments: [] });
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
+  // Navigation states
   const [isOpen, setIsOpen] = useState(false);
   const [departmentsOpen, setDepartmentsOpen] = useState(false);
   const [mobileDepartmentsOpen, setMobileDepartmentsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [languageOpen, setLanguageOpen] = useState(false);
 
   const location = useLocation();
   const deptRef = useRef(null);
+  const langRef = useRef(null);
 
   useEffect(() => {
     if (!departments || departments.length === 0) dispatch(fetchAllDepartments());
     dispatch(fetchSettings());
-  }, [dispatch, departments.length]);
+  }, [dispatch, departments?.length]);
 
+  // Original nav links
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
@@ -50,382 +57,590 @@ const Navbar = () => {
     { to: "/contact", label: "Contact Us" },
   ];
 
+  // Global keyboard shortcut for search (Ctrl+K or Cmd+K)
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Close menus on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (deptRef.current && !deptRef.current.contains(e.target)) setDepartmentsOpen(false);
+      if (deptRef.current && !deptRef.current.contains(e.target)) {
+        setDepartmentsOpen(false);
+      }
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setLanguageOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const [prevPath, setPrevPath] = useState(location.pathname);
-  if (location.pathname !== prevPath) {
-    setPrevPath(location.pathname);
+  // Reset dropdowns on route change
+  useEffect(() => {
     setIsOpen(false);
     setDepartmentsOpen(false);
     setMobileDepartmentsOpen(false);
-  }
+    setLanguageOpen(false);
+  }, [location.pathname]);
 
+  // Lock body scroll when mobile menu is active
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
   const emergencyNumber = settings?.emergencyPhone || "9090963722";
+  const directHotlineNumber = settings?.phone || "8065906200";
+
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "hi", label: "हिंदी (Hindi)" },
+    { code: "or", label: "ଓଡ଼ିଆ (Odia)" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 font-sans select-none transition-all duration-300">
-      {/* ── 1. ULTRA-MODERN TOP EMERGENCY & INFORMATION STRIP ── */}
-      <div className="bg-gradient-to-r from-slate-950 via-teal-950 to-slate-950 text-slate-200 hidden lg:block border-b border-teal-500/20 text-xs py-2 relative overflow-hidden">
-        {/* Ambient background glow */}
-        <div className="absolute top-0 left-1/4 w-96 h-full bg-emerald-500/10 blur-xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between relative z-10">
-          {/* Left Info: Map Location & Accreditation */}
-          <div className="flex items-center gap-4 text-slate-300">
-            <a
-              href="https://maps.google.com/?q=Ramachandra+Urology+and+Stone+Centre+Sambalpur"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-emerald-300 hover:text-white transition-colors no-underline font-medium"
+    <header className="sticky top-0 z-50 bg-white font-sans select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+      {/* ── TOP RIGHT INFORMATION & ACCREDITATION STRIP (Reference UI) ── */}
+      <div className="hidden lg:block bg-white border-b border-slate-100 py-1.5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-end gap-6 text-[12px]">
+          
+          {/* 1. Language Selector Dropdown */}
+          <div className="relative" ref={langRef}>
+            <button
+              onClick={() => setLanguageOpen(!languageOpen)}
+              className="flex items-center gap-1 text-slate-700 hover:text-[#0FA8D6] font-semibold cursor-pointer bg-transparent border-none py-1 transition-colors"
             >
-              <MapPin size={13} className="text-emerald-400 shrink-0" />
-              <span>Sambalpur, Odisha, India</span>
-            </a>
+              <Globe size={13} className="text-slate-500" />
+              <span>{selectedLanguage}</span>
+              <ChevronDown size={12} className={`text-slate-400 transition-transform ${languageOpen ? "rotate-180 text-[#0FA8D6]" : ""}`} />
+            </button>
 
-            <span className="text-slate-700">|</span>
+            <AnimatePresence>
+              {languageOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg py-1.5 w-36 z-50"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setSelectedLanguage(lang.label.split(" ")[0]);
+                        setLanguageOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-1.5 text-xs font-medium hover:bg-slate-50 flex items-center justify-between cursor-pointer border-none bg-transparent ${
+                        selectedLanguage === lang.label.split(" ")[0] ? "text-[#024363] font-bold bg-[#0FA8D6]/10" : "text-slate-700"
+                      }`}
+                    >
+                      <span>{lang.label}</span>
+                      {selectedLanguage === lang.label.split(" ")[0] && <CheckCircle2 size={12} className="text-[#0FA8D6]" />}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
-            <div className="flex items-center gap-1.5 text-slate-300 font-medium">
-              <ShieldCheck size={13} className="text-emerald-400 shrink-0" />
-              <span>NABH Accredited & ISO 9001 Certified</span>
+          <div className="h-4 w-px bg-slate-200" />
+
+          {/* 2. Accreditation Badges (Gold, Blue/Purple, Red NABH) */}
+          <div className="flex items-center gap-2.5">
+            {/* Badge 1: Gold Quality Healthcare Seal */}
+            <div
+              className="group relative flex items-center justify-center cursor-pointer"
+              title="NABH Gold Standard & Quality Patient Care"
+            >
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
+                <div className="w-full h-full rounded-full bg-gradient-to-tr from-amber-500 to-yellow-200 flex items-center justify-center border border-amber-600/40">
+                  <Award size={14} className="text-amber-950 stroke-[2.2]" />
+                </div>
+              </div>
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                Quality Care Certified
+              </div>
             </div>
 
-            <span className="text-slate-700">|</span>
+            {/* Badge 2: Purple/Blue ISO Excellence Rosette */}
+            <div
+              className="group relative flex items-center justify-center cursor-pointer"
+              title="ISO 9001:2015 Certified Medical Systems"
+            >
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-300 via-blue-400 to-indigo-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
+                <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-600 to-indigo-200 flex items-center justify-center border border-indigo-700/40">
+                  <ShieldCheck size={14} className="text-indigo-950 stroke-[2.2]" />
+                </div>
+              </div>
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                ISO 9001:2015 Certified
+              </div>
+            </div>
 
-            {/* Live ECG Wave pulse status indicator */}
-            <div className="flex items-center gap-2 text-emerald-400 font-bold bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-              <Activity size={13} className="animate-pulse text-emerald-400 shrink-0" />
-              <span className="text-[11px]">24x7 Trauma & Laser Urology OPD</span>
+            {/* Badge 3: Red/Teal NABH Hospital Emblem */}
+            <div
+              className="group relative flex items-center justify-center cursor-pointer"
+              title="NABH Accredited Healthcare Provider"
+            >
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-rose-400 via-red-500 to-teal-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center border border-rose-300">
+                  <span className="text-[8px] font-black text-rose-600 tracking-tighter">NABH</span>
+                </div>
+              </div>
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                NABH Accredited
+              </div>
             </div>
           </div>
 
-          {/* Right Info: 24x7 Emergency SOS Pill & Call Hotline */}
-          <div className="flex items-center gap-3">
-            {/* 24x7 Emergency SOS Button with Pulse Beacon */}
-            <a
-              href={`tel:${emergencyNumber}`}
-              className="flex items-center gap-2 bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white px-4 py-1 rounded-full font-extrabold transition-all shadow-[0_0_15px_rgba(225,29,72,0.4)] active:scale-95 no-underline cursor-pointer text-xs group"
-            >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-90"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-              </span>
-              <Ambulance size={14} className="shrink-0 group-hover:rotate-12 transition-transform" />
-              <span>24x7 SOS: {emergencyNumber}</span>
-            </a>
+          <div className="h-4 w-px bg-slate-200" />
 
-            <a
-              href={`tel:${emergencyNumber}`}
-              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors px-2 py-1 no-underline font-semibold"
-            >
-              <Phone size={13} className="text-emerald-400" />
-              <span>Direct Hotline</span>
-            </a>
-          </div>
+          {/* 3. 24/7 Appointment Helpline */}
+          <a
+            href={`tel:${emergencyNumber}`}
+            className="flex flex-col items-start leading-tight text-slate-700 hover:text-[#0FA8D6] no-underline transition-colors group"
+          >
+            <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+              24/7 APPOINTMENT HELPLINE
+            </span>
+            <span className="text-[13px] font-extrabold text-[#012442] group-hover:text-[#0FA8D6] tracking-tight transition-colors">
+              +91 {emergencyNumber.length === 10 ? `${emergencyNumber.slice(0, 5)} ${emergencyNumber.slice(5)}` : emergencyNumber}
+            </span>
+          </a>
+
+          <div className="h-4 w-px bg-slate-200" />
+
+          {/* 4. Direct Hotline / International */}
+          <a
+            href={`tel:${directHotlineNumber}`}
+            className="flex flex-col items-start leading-tight text-slate-700 hover:text-[#0FA8D6] no-underline transition-colors group"
+          >
+            <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+              INTERNATIONAL
+            </span>
+            <span className="text-[13px] font-extrabold text-[#012442] group-hover:text-[#0FA8D6] tracking-tight transition-colors">
+              +91 {directHotlineNumber.length === 10 ? `${directHotlineNumber.slice(0, 5)} ${directHotlineNumber.slice(5)}` : directHotlineNumber}
+            </span>
+          </a>
+
         </div>
       </div>
 
-      {/* ── 2. NEXT-LEVEL FLOATING GLASS ISLAND NAVBAR ── */}
-      <div className={`transition-all duration-300 ${scrolled ? "px-3 sm:px-6 pt-2" : "px-0"}`}>
-        <nav
-          className={`transition-all duration-300 ${scrolled
-            ? "max-w-7xl mx-auto bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-[0_20px_50px_rgba(0,135,90,0.12)] rounded-3xl py-2.5 px-4 sm:px-6"
-            : "bg-white border-b border-slate-100 shadow-xs py-3.5 px-4"
-            }`}
-        >
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      {/* ── MAIN LOGO & NAVIGATION MENU ROW ── */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+        <div className="flex items-center justify-between gap-4">
+          
+          {/* Brand Logo */}
+          <Link to="/" className="flex items-center no-underline shrink-0 py-0.5 group">
+            <img
+              src="/logo.png"
+              alt="Ramachandra Urology & Stone Centre"
+              className="h-11 sm:h-12 md:h-13 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+            />
+          </Link>
 
-            {/* ── BRAND LOGO (CLEAN /LOGO.PNG) ── */}
-            <Link to="/" className="flex items-center no-underline shrink-0 group py-1">
-              <img
-                src="/logo.png"
-                alt="Hospital Logo"
-                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 ${scrolled ? "h-11 sm:h-12" : "h-12 sm:h-14"
-                  }`}
-              />
+          {/* Main Desktop Navigation Items (Exact Original Data & Links) */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            
+            {/* 1. Home */}
+            <Link
+              to="/"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname === "/"
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              Home
             </Link>
 
-            {/* ── CENTER FLOATING PILL NAVIGATION DOCK ── */}
-            <div className="hidden xl:flex items-center bg-slate-100/90 backdrop-blur-md border border-slate-200/80 rounded-full px-2 py-1 shadow-inner">
-              <ul className="flex items-center gap-1 list-none m-0 p-0">
-                {navLinks.map(({ to, label }) => {
-                  const isActive = to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
-                  return (
-                    <li key={to} className="relative flex flex-col items-center">
-                      <Link
-                        to={to}
-                        className={`text-xs font-extrabold px-4 py-2 rounded-full no-underline transition-all relative z-10 ${isActive
-                          ? "text-emerald-900"
-                          : "text-slate-600 hover:text-slate-950 font-bold hover:bg-slate-200/60"
-                          }`}
-                      >
-                        {label}
-                      </Link>
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeNavIndicator"
-                          className="absolute inset-0 bg-white rounded-full shadow-md border border-emerald-200/60 z-0"
-                          transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                        />
-                      )}
-                    </li>
-                  );
-                })}
+            {/* 2. About Us */}
+            <Link
+              to="/about"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname.startsWith("/about")
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              About Us
+            </Link>
 
-                {/* Mega Dropdown: Departments */}
-                <li
-                  className="relative flex flex-col items-center z-20"
-                  ref={deptRef}
-                  onMouseEnter={() => setDepartmentsOpen(true)}
-                  onMouseLeave={() => setDepartmentsOpen(false)}
-                >
-                  <button
-                    className={`flex items-center gap-1.5 text-xs font-extrabold px-4 py-2 rounded-full cursor-pointer transition-all border-none bg-transparent ${departmentsOpen || location.pathname.startsWith("/departments")
-                      ? "text-emerald-900 bg-white shadow-md border border-emerald-200/60"
-                      : "text-slate-600 hover:text-slate-950 font-bold hover:bg-slate-200/60"
-                      }`}
+            {/* 3. Doctors */}
+            <Link
+              to="/doctors"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname.startsWith("/doctors")
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              Doctors
+            </Link>
+
+            {/* 4. Departments / Specialities Dropdown */}
+            <div
+              className="relative"
+              ref={deptRef}
+              onMouseEnter={() => setDepartmentsOpen(true)}
+              onMouseLeave={() => setDepartmentsOpen(false)}
+            >
+              <button
+                onClick={() => setDepartmentsOpen(!departmentsOpen)}
+                className={`flex items-center gap-1 text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors cursor-pointer border-none bg-transparent ${
+                  departmentsOpen || location.pathname.startsWith("/departments")
+                    ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                }`}
+              >
+                <span>Departments</span>
+                <ChevronDown
+                  size={13}
+                  className={`text-slate-500 transition-transform duration-200 ${
+                    departmentsOpen ? "rotate-180 text-[#0FA8D6]" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Mega Dropdown Menu */}
+              <AnimatePresence>
+                {departmentsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(1,36,66,0.15)] w-[680px] p-5 z-50"
                   >
-                    <span>Departments</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${departmentsOpen ? "rotate-180 text-emerald-700" : ""
-                        }`}
-                    />
-                  </button>
-
-                  {/* Mega Dropdown Menu */}
-                  <AnimatePresence>
-                    {departmentsOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 12, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 bg-white/98 backdrop-blur-2xl border border-emerald-100/90 rounded-3xl shadow-[0_25px_70px_rgba(0,135,90,0.18)] w-auto p-5 z-50 min-w-[640px]"
-                        onMouseEnter={() => setDepartmentsOpen(true)}
-                        onMouseLeave={() => setDepartmentsOpen(false)}
-                      >
-                        {/* Header Banner inside Dropdown */}
-                        <div className="flex items-center justify-between pb-3.5 border-b border-slate-100 mb-3.5 px-2">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                              <Stethoscope size={18} />
-                            </div>
-                            <div>
-                              <div className="text-xs font-black text-slate-900 uppercase tracking-wider">
-                                Clinical Specialities & Care Wings
-                              </div>
-                              <div className="text-[11px] text-slate-400 font-medium">
-                                Advanced laser surgery & stone management
-                              </div>
-                            </div>
-                          </div>
-                          <span className="text-[11px] font-extrabold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                            {departments?.length || 0} Specialities
-                          </span>
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3 px-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-lg bg-[#0FA8D6]/15 text-[#024363] flex items-center justify-center">
+                          <Stethoscope size={16} />
                         </div>
-
-                        {departments && departments.length > 0 ? (
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[380px] overflow-y-auto no-scrollbar p-1">
-                            {departments.map((dept) => (
-                              <Link
-                                key={dept._id || dept.name}
-                                to={`/departments/${dept.slug || dept._id}`}
-                                onClick={() => setDepartmentsOpen(false)}
-                                className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50/50 hover:bg-emerald-50/90 border border-slate-100 hover:border-emerald-300 transition-all group no-underline hover:-translate-y-0.5 shadow-2xs"
-                              >
-                                <div className="text-emerald-700 w-10 h-10 rounded-xl bg-white group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all shadow-xs border border-slate-200/80 mt-0.5">
-                                  {getDepartmentIcon(dept.name, { size: 18 })}
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="text-xs font-extrabold text-slate-850 group-hover:text-emerald-900 transition-colors truncate">
-                                    {dept.name}
-                                  </div>
-                                  <div className="text-[10px] text-slate-400 line-clamp-1 mt-0.5 font-medium">
-                                    {dept.description || "Expert medical care & OPD"}
-                                  </div>
-                                </div>
-                              </Link>
-                            ))}
+                        <div>
+                          <div className="text-xs font-extrabold text-[#012442] tracking-wide uppercase">
+                            Clinical Specialities & Care Wings
                           </div>
-                        ) : (
-                          <NavbarDropdownSkeleton />
-                        )}
-
-                        <div className="border-t border-slate-100 mt-4 pt-3 px-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 p-4 rounded-b-3xl">
-                          <div className="flex items-center gap-2 text-xs text-slate-600 font-semibold">
-                            <HeartPulse size={16} className="text-emerald-600 animate-pulse" />
-                            <span>Same-day clinical appointments available</span>
+                          <div className="text-[11px] text-slate-500">
+                            Advanced laser surgery & stone management
                           </div>
-                          <Link
-                            to="/departments"
-                            onClick={() => setDepartmentsOpen(false)}
-                            className="flex items-center gap-1.5 text-emerald-800 font-extrabold text-xs hover:text-emerald-900 no-underline bg-emerald-100/60 px-3 py-1.5 rounded-full hover:bg-emerald-200/60 transition-colors"
-                          >
-                            <span>Explore All Clinical Wings</span>
-                            <ArrowRight size={13} />
-                          </Link>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </li>
-              </ul>
-            </div>
-
-            {/* ── RIGHT CTA: BOOK APPOINTMENT SUPER-BUTTON ── */}
-            <div className="hidden lg:flex items-center gap-3">
-              <button
-                onClick={() => dispatch(openAppointmentModal())}
-                className="relative overflow-hidden flex items-center gap-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black pl-5 pr-2 py-2 rounded-full transition-all shadow-[0_6px_25px_rgba(0,135,90,0.35)] hover:shadow-[0_10px_35px_rgba(0,135,90,0.45)] active:scale-95 cursor-pointer border-none group"
-              >
-                {/* Shimmer sweep effect */}
-                <div className="absolute inset-0 w-1/2 bg-white/20 skew-x-12 animate-shimmer pointer-events-none" />
-
-                <div className="flex items-center gap-2 relative z-10">
-                  <Calendar size={16} className="group-hover:rotate-12 transition-transform" />
-                  <span className="tracking-wide">Book Appointment</span>
-                </div>
-                <div className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white/35 flex items-center justify-center transition-colors relative z-10">
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </button>
-            </div>
-
-            {/* ── MOBILE HAMBURGER MENU TOGGLE ── */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center border border-slate-200 cursor-pointer text-slate-800 transition-all shadow-2xs"
-                aria-label="Toggle navigation menu"
-              >
-                {isOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          </div>
-
-          {/* ── MOBILE SLIDEOUT DRAWER ── */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "calc(100vh - 70px)" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25 }}
-                className="lg:hidden fixed inset-0 top-[70px] bg-white/98 backdrop-blur-2xl z-50 flex flex-col overflow-hidden"
-              >
-                <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
-                  {/* Emergency Banner inside mobile menu */}
-                  <div className="bg-gradient-to-r from-red-600 to-rose-700 text-white rounded-2xl p-3.5 mb-4 flex items-center justify-between shadow-md">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                        <Ambulance size={18} />
                       </div>
-                      <div>
-                        <div className="text-xs font-black">24x7 Emergency SOS</div>
-                        <div className="text-[11px] text-red-100 font-bold">{emergencyNumber}</div>
-                      </div>
-                    </div>
-                    <a
-                      href={`tel:${emergencyNumber}`}
-                      className="bg-white text-red-700 text-xs font-black px-3.5 py-1.5 rounded-full no-underline shadow-xs"
-                    >
-                      Call Now
-                    </a>
-                  </div>
-
-                  {navLinks.map(({ to, label }) => {
-                    const isActive = to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
-                    return (
-                      <Link
-                        key={to}
-                        to={to}
-                        onClick={() => setIsOpen(false)}
-                        className={`flex items-center justify-between text-sm font-black px-4 py-3.5 rounded-2xl no-underline transition-all ${isActive
-                          ? "text-emerald-900 bg-emerald-50 border border-emerald-200"
-                          : "text-slate-700 hover:bg-slate-50"
-                          }`}
-                      >
-                        <span>{label}</span>
-                        <ArrowRight size={16} className={isActive ? "text-emerald-600" : "text-slate-400"} />
-                      </Link>
-                    );
-                  })}
-
-                  {/* Mobile Departments Collapsible */}
-                  <div className="pt-2 border-t border-slate-100 mt-3">
-                    <button
-                      onClick={() => setMobileDepartmentsOpen(!mobileDepartmentsOpen)}
-                      className="flex items-center justify-between w-full text-sm font-black px-4 py-3.5 rounded-2xl text-slate-700 hover:bg-slate-50 border-none bg-transparent cursor-pointer"
-                    >
-                      <span className="flex items-center gap-2.5">
-                        <Building2 size={18} className="text-emerald-600" />
-                        Departments
+                      <span className="text-[11px] font-bold text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-0.5 rounded-full border border-[#0FA8D6]/30">
+                        {departments?.length || 0} Specialities
                       </span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${mobileDepartmentsOpen ? "rotate-180 text-emerald-600" : ""
-                          }`}
-                      />
-                    </button>
+                    </div>
 
-                    {mobileDepartmentsOpen && (
-                      <div className="pl-4 mt-1 space-y-1.5 border-l-2 border-emerald-200 ml-4">
+                    {departments && departments.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
                         {departments.map((dept) => (
                           <Link
                             key={dept._id || dept.name}
                             to={`/departments/${dept.slug || dept._id}`}
-                            onClick={() => {
-                              setMobileDepartmentsOpen(false);
-                              setIsOpen(false);
-                            }}
-                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-emerald-50 text-slate-700 transition-all no-underline"
+                            onClick={() => setDepartmentsOpen(false)}
+                            className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
                           >
-                            <div className="text-emerald-600 w-6 h-6 flex items-center justify-center shrink-0">
+                            <div className="text-[#024363] w-8 h-8 rounded-lg bg-white group-hover:bg-[#024363] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs border border-slate-200/60 mt-0.5">
                               {getDepartmentIcon(dept.name, { size: 15 })}
                             </div>
-                            <span className="text-xs font-bold text-slate-800">{dept.name}</span>
+                            <div className="min-w-0">
+                              <div className="text-xs font-bold text-[#012442] group-hover:text-[#0FA8D6] transition-colors truncate">
+                                {dept.name}
+                              </div>
+                              <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
+                                {dept.description || "Expert medical care & OPD"}
+                              </div>
+                            </div>
                           </Link>
                         ))}
                       </div>
+                    ) : (
+                      <NavbarDropdownSkeleton />
                     )}
+
+                    <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
+                      <div className="flex items-center gap-1.5 text-[11px] text-slate-600 font-semibold">
+                        <HeartPulse size={14} className="text-[#0FA8D6] animate-pulse" />
+                        <span>Same-day clinical appointments available</span>
+                      </div>
+                      <Link
+                        to="/departments"
+                        onClick={() => setDepartmentsOpen(false)}
+                        className="flex items-center gap-1 text-[#024363] font-bold text-xs hover:text-[#0FA8D6] no-underline bg-[#0FA8D6]/15 hover:bg-[#0FA8D6]/25 px-3 py-1 rounded-full transition-colors"
+                      >
+                        <span>Explore All Clinical Wings</span>
+                        <ArrowRight size={12} />
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 5. Gallery */}
+            <Link
+              to="/gallery"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname.startsWith("/gallery")
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              Gallery
+            </Link>
+
+            {/* 6. Blog */}
+            <Link
+              to="/blog"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname.startsWith("/blog")
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              Blog
+            </Link>
+
+            {/* 7. Contact Us */}
+            <Link
+              to="/contact"
+              className={`text-[13.5px] xl:text-[14px] font-semibold px-3 py-2 rounded-md transition-colors no-underline ${
+                location.pathname.startsWith("/contact")
+                  ? "text-[#024363] font-bold border-b-2 border-[#0FA8D6] rounded-b-none"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+              }`}
+            >
+              Contact Us
+            </Link>
+
+            {/* 🔍 Search Icon Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="ml-1.5 p-2 rounded-full text-[#012442] hover:text-[#0FA8D6] hover:bg-slate-100 transition-all cursor-pointer border-none bg-transparent flex items-center justify-center"
+              aria-label="Search website"
+              title="Search (Ctrl + K)"
+            >
+              <Search size={18} className="stroke-[2.2]" />
+            </button>
+
+            {/* Book Appointment Button */}
+            <button
+              onClick={() => dispatch(openAppointmentModal())}
+              className="ml-2 flex items-center gap-1.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-bold px-4 py-2 rounded-full transition-all shadow-xs hover:shadow-md cursor-pointer border-none"
+            >
+              <Calendar size={13} />
+              <span>Book Appointment</span>
+            </button>
+          </nav>
+
+          {/* ── MOBILE ACTIONS (Search + Phone + Hamburger) ── */}
+          <div className="flex items-center gap-1.5 lg:hidden">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors border-none bg-transparent cursor-pointer"
+              aria-label="Search"
+            >
+              <Search size={19} />
+            </button>
+
+            <a
+              href={`tel:${emergencyNumber}`}
+              className="p-2 rounded-full text-[#024363] bg-[#0FA8D6]/15 hover:bg-[#0FA8D6]/25 transition-colors no-underline flex items-center justify-center"
+              aria-label="Call Helpline"
+            >
+              <Phone size={17} />
+            </a>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-[#012442] hover:bg-slate-100 transition-colors border-none bg-transparent cursor-pointer ml-1"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── MOBILE SLIDEOUT DRAWER ── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "calc(100vh - 65px)" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden fixed inset-0 top-[65px] bg-white z-50 flex flex-col overflow-hidden border-t border-slate-200"
+          >
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
+              
+              {/* Emergency Banner in Mobile Menu */}
+              <div className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] text-white rounded-2xl p-3.5 mb-3 shadow-md flex items-center justify-between border border-[#0FA8D6]/20">
+                <div>
+                  <div className="text-[10px] text-[#0FA8D6] font-bold uppercase tracking-wider">
+                    24/7 Emergency & Helpline
+                  </div>
+                  <div className="text-sm font-extrabold mt-0.5">
+                    +91 {emergencyNumber}
                   </div>
                 </div>
+                <a
+                  href={`tel:${emergencyNumber}`}
+                  className="bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] text-xs font-black px-3.5 py-1.5 rounded-full no-underline transition-colors flex items-center gap-1 shadow-xs"
+                >
+                  <Phone size={12} />
+                  <span>Call Now</span>
+                </a>
+              </div>
 
-                {/* Mobile Drawer Bottom Quick Action */}
-                <div className="border-t border-slate-100 bg-slate-50 p-4 space-y-2">
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      dispatch(openAppointmentModal());
-                    }}
-                    className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white text-sm font-black py-4 rounded-2xl shadow-lg border-none cursor-pointer tracking-wider uppercase"
-                  >
-                    <Calendar size={18} />
-                    <span>Book Appointment Now</span>
-                  </button>
+              {/* Accreditations Bar */}
+              <div className="flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2 text-xs text-slate-600 font-semibold mb-2">
+                <span>Accreditations:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    Quality Certified
+                  </span>
+                  <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    ISO 9001
+                  </span>
+                  <span className="text-[11px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                    NABH
+                  </span>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </nav>
-      </div>
+              </div>
+
+              {/* Mobile Original Links */}
+              {navLinks.map(({ to, label }) => {
+                const isActive = to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
+                return (
+                  <Link
+                    key={to}
+                    to={to}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center justify-between text-sm font-bold px-3.5 py-3 rounded-xl no-underline transition-all ${
+                      isActive
+                        ? "text-[#024363] bg-[#0FA8D6]/10 border border-[#0FA8D6]/30"
+                        : "text-[#012442] hover:bg-slate-50"
+                    }`}
+                  >
+                    <span>{label}</span>
+                    <ArrowRight size={15} className={isActive ? "text-[#0FA8D6]" : "text-slate-400"} />
+                  </Link>
+                );
+              })}
+
+              {/* Mobile Departments Collapsible */}
+              <div className="pt-1 border-t border-slate-100 mt-2">
+                <button
+                  onClick={() => setMobileDepartmentsOpen(!mobileDepartmentsOpen)}
+                  className="flex items-center justify-between w-full text-sm font-bold px-3.5 py-3 rounded-xl text-[#012442] hover:bg-slate-50 border-none bg-transparent cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <Building2 size={16} className="text-[#0FA8D6]" />
+                    Departments
+                  </span>
+                  <ChevronDown
+                    size={16}
+                    className={`text-slate-400 transition-transform ${mobileDepartmentsOpen ? "rotate-180 text-[#0FA8D6]" : ""}`}
+                  />
+                </button>
+
+                {mobileDepartmentsOpen && (
+                  <div className="pl-4 mt-1 space-y-1 border-l-2 border-[#0FA8D6] ml-3">
+                    {departments && departments.length > 0 ? (
+                      departments.map((dept) => (
+                        <Link
+                          key={dept._id || dept.name}
+                          to={`/departments/${dept.slug || dept._id}`}
+                          onClick={() => {
+                            setMobileDepartmentsOpen(false);
+                            setIsOpen(false);
+                          }}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
+                        >
+                          <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
+                            {getDepartmentIcon(dept.name, { size: 14 })}
+                          </div>
+                          <span className="truncate">{dept.name}</span>
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="text-xs text-slate-400 py-2">Loading departments...</div>
+                    )}
+                    <Link
+                      to="/departments"
+                      onClick={() => {
+                        setMobileDepartmentsOpen(false);
+                        setIsOpen(false);
+                      }}
+                      className="flex items-center gap-1 px-3 py-2 text-[#024363] hover:text-[#0FA8D6] text-xs font-bold no-underline"
+                    >
+                      <span>Explore All Departments →</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Language Switcher in Mobile Drawer */}
+              <div className="pt-3 border-t border-slate-200 mt-3 flex items-center justify-between px-2">
+                <span className="text-xs font-semibold text-slate-500">Language / भाषा:</span>
+                <div className="flex items-center gap-1.5">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => setSelectedLanguage(lang.label.split(" ")[0])}
+                      className={`text-xs px-2.5 py-1 rounded-md border cursor-pointer ${
+                        selectedLanguage === lang.label.split(" ")[0]
+                          ? "bg-[#024363] text-white border-[#024363] font-bold"
+                          : "bg-white text-slate-700 border-slate-200"
+                      }`}
+                    >
+                      {lang.label.split(" ")[0]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Mobile Bottom CTA */}
+            <div className="p-4 border-t border-slate-200 bg-slate-50">
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  dispatch(openAppointmentModal());
+                }}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-sm font-bold py-3.5 rounded-xl shadow-md border-none cursor-pointer tracking-wide uppercase transition-all"
+              >
+                <Calendar size={16} />
+                <span>Book Appointment</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── GLOBAL SEARCH MODAL ── */}
+      <GlobalSearchModal
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </header>
   );
 };
