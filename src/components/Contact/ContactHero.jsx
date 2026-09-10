@@ -1,3 +1,5 @@
+import PageHero from "../common/PageHero";
+import { Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Stethoscope, Users, ChevronRight, Clock } from "lucide-react";

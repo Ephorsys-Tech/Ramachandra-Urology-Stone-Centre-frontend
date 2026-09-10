@@ -1,35 +1,34 @@
-import { motion } from "framer-motion";
+import PageHero from "../common/PageHero";
+import { Stethoscope, ShieldCheck, Sparkles } from "lucide-react";
 
 const DepartmentHero = () => {
   return (
-    <div className="w-full bg-background mb-12">
-      {/* ── TOP HERO IMAGE BANNER ── */}
-      <div 
-        className="w-full h-[220px] md:h-[440px] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('https://res.cloudinary.com/drqb4p2a2/image/upload/q_auto/f_auto/v1780483508/close_up_of_medical_icons_or_a_signage_board_in_a_hospital_blelg8.png')` }}
-      />
-
-      {/* ── HEADER BOX ── */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <motion.div 
-          className="border-2 border-[#e2e8f0] rounded-2xl p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] bg-white max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#0b5c9e] tracking-tight font-sans">
-            Centers of Excellence
-          </h1>
-          <p className="text-sm md:text-base font-black text-slate-800 mt-2 font-sans tracking-wide">
-            Specialized Medical Departments at Usthi Hospital
-          </p>
-          <div className="w-16 h-0.5 bg-[#07a7a5] mx-auto my-3" />
-          <p className="text-xs md:text-sm text-slate-650 leading-relaxed font-sans max-w-3xl mx-auto">
-            Usthi Hospital houses dedicated, state-of-the-art departments equipped with modern technology and leading medical experts. We offer specialized diagnostics, advanced treatments, and customized patient recovery plans designed to ensure optimal care and healing across all major medical disciplines.
-          </p>
-        </motion.div>
+    <PageHero
+      badge="Clinical Specialties & Care Wings"
+      breadcrumb="Specialties"
+      title="Advanced Centers of"
+      highlightTitle="Clinical Excellence"
+      subtitle="Explore our specialized clinical divisions featuring Thulium Fiber Laser (TFL) stone surgery, RIRS, PCNL, advanced laparoscopic surgery, and comprehensive nephro-urology care in Sambalpur."
+      image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=80"
+      imageAlt="Laser Operation Theatre and Clinical Wings"
+      imageTag="Thulium Laser & HD Laparoscopy"
+      theme="blue"
+    >
+      <div className="flex flex-wrap items-center gap-2.5 pt-2 text-xs font-bold text-slate-700">
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <Stethoscope size={14} className="text-[#0FA8D6]" />
+          <span>Multi-Specialty OPD & Daycare</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <ShieldCheck size={14} className="text-[#0FA8D6]" />
+          <span>Ayushman Bharat & BSKY Cashless</span>
+        </div>
+        <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <Sparkles size={14} className="text-[#024363]" />
+          <span>Super-Specialist Surgeons</span>
+        </div>
       </div>
-    </div>
+    </PageHero>
   );
 };
 
