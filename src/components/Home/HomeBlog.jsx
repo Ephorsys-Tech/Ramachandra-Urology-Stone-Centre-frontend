@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Tag } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Tag, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBlogs } from "../../redux/features/blog/blogThunk";
 
 const categoryColorMap = {
-  Cardiology: "text-red-600 bg-red-50 border-red-100",
-  Pediatrics: "text-green-600 bg-green-50 border-green-100",
-  Endocrinology: "text-purple-600 bg-purple-50 border-purple-100",
-  Neurology: "text-yellow-700 bg-yellow-50 border-yellow-100",
-  Orthopedics: "text-amber-700 bg-amber-50 border-amber-100",
-  Ophthalmology: "text-cyan-600 bg-cyan-55 border-cyan-100",
-  General: "text-secondary bg-blue-50 border-blue-100",
+  Urology: "text-[#024363] bg-[#0FA8D6]/15 border-[#0FA8D6]/30",
+  "Kidney Stones": "text-cyan-700 bg-cyan-50 border-cyan-200",
+  "Laser Surgery": "text-indigo-700 bg-indigo-50 border-indigo-200",
+  Nephrology: "text-blue-700 bg-blue-50 border-blue-200",
+  "Prostate Care": "text-sky-700 bg-sky-50 border-sky-200",
+  General: "text-[#024363] bg-slate-100 border-slate-200",
 };
 
 const HomeBlog = memo(() => {
@@ -26,55 +25,53 @@ const HomeBlog = memo(() => {
   const displayPosts = blogs && blogs.length > 0 ? blogs.slice(0, 3) : [];
 
   if (displayPosts.length === 0) {
-    return null; // Don't render the section if there are no blogs in the DB
+    return null;
   }
 
   return (
-    <section className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-16 sm:py-24 bg-white font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
-          initial={{ opacity: 0, y: 30 }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           <div>
-            <span className="inline-block text-tertiary font-bold text-sm tracking-widest uppercase mb-4">
-              Health Insights
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-black text-xs uppercase tracking-wider mb-3 shadow-2xs">
+              <Sparkles size={12} className="text-[#0FA8D6]" />
+              Urological Health Insights
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-primary font-sans">
-              Latest{" "}
-              <span className="text-secondary">
-                Medical News
-              </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] tracking-tight">
+              Latest <span className="text-[#0FA8D6]">Clinical Articles</span>
             </h2>
           </div>
           <Link
             to="/blog"
-            className="flex items-center gap-2 text-secondary hover:text-primary font-semibold transition-colors group cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-[#024363] hover:text-[#0FA8D6] transition-colors group cursor-pointer no-underline"
           >
-            View All Articles
+            <span>View All Health Guides</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
         {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {displayPosts.map((post, i) => {
-            const catColor = categoryColorMap[post.category] || "text-secondary bg-blue-50 border-blue-100";
+            const catColor = categoryColorMap[post.category] || "text-[#024363] bg-[#0FA8D6]/15 border-[#0FA8D6]/30";
             return (
               <motion.article
                 key={post._id}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-secondary/40 hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.05)] transition-all duration-400 group"
-                initial={{ opacity: 0, y: 30 }}
+                className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden hover:border-[#0FA8D6]/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
               >
                 {/* Image */}
-                <div className="overflow-hidden h-52">
+                <div className="overflow-hidden h-52 relative">
                   <img
                     src={post.image}
                     alt={post.title}
@@ -82,41 +79,45 @@ const HomeBlog = memo(() => {
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute top-3 left-3">
+                    <span className={`inline-flex items-center gap-1 text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-2xs backdrop-blur-md ${catColor}`}>
+                      <Tag className="w-3 h-3" />
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  {/* Category badge */}
-                  <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border mb-4 ${catColor}`}>
-                    <Tag className="w-3 h-3" />
-                    {post.category}
-                  </span>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-[#012442] font-black text-base leading-snug mb-2.5 group-hover:text-[#0FA8D6] transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
 
-                  <h3 className="text-primary font-bold text-lg leading-snug mb-3 group-hover:text-secondary transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-5 line-clamp-2">
-                    {post.description}
-                  </p>
-
-                  {/* Meta */}
-                  <div className="flex items-center justify-between text-slate-500 text-xs mb-5">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" /> {post.date || (post.createdAt ? new Date(post.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "")}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" /> {post.readTime}
-                    </span>
+                    <p className="text-slate-600 text-xs leading-relaxed mb-4 line-clamp-2">
+                      {post.description}
+                    </p>
                   </div>
 
-                  <Link
-                    to={`/blog/${post._id}`}
-                    className="flex items-center gap-2 text-secondary hover:text-primary text-sm font-semibold hover:gap-3 transition-all group/link cursor-pointer"
-                  >
-                    Read Full Article
-                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                  <div>
+                    {/* Meta */}
+                    <div className="flex items-center justify-between text-slate-400 text-[11px] mb-4 pt-3 border-t border-slate-100">
+                      <span className="flex items-center gap-1 font-medium">
+                        <Calendar className="w-3 h-3 text-[#0FA8D6]" /> {post.date || (post.createdAt ? new Date(post.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "")}
+                      </span>
+                      <span className="flex items-center gap-1 font-medium">
+                        <Clock className="w-3 h-3 text-[#0FA8D6]" /> {post.readTime || "4 min read"}
+                      </span>
+                    </div>
+
+                    <Link
+                      to={`/blog/${post._id}`}
+                      className="flex items-center gap-1.5 text-[#024363] hover:text-[#0FA8D6] text-xs font-black transition-all group/link cursor-pointer no-underline"
+                    >
+                      <span>Read Full Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
               </motion.article>
             );
@@ -127,4 +128,5 @@ const HomeBlog = memo(() => {
   );
 });
 
+HomeBlog.displayName = "HomeBlog";
 export default HomeBlog;

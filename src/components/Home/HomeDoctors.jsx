@@ -2,7 +2,7 @@ import { useEffect, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, MapPin, Phone, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Share2, MapPin, Phone, ChevronLeft, ChevronRight, ArrowRight, Sparkles, Stethoscope } from 'lucide-react';
 import { openAppointmentModal } from '../../redux/features/patient/patientSlice';
 import { fetchHomePageDoctors } from '../../redux/features/doctor/doctorThunk';
 import toast from 'react-hot-toast';
@@ -14,6 +14,8 @@ const HomeDoctors = memo(() => {
   const navigate = useNavigate();
 
   const { doctors = [], homeDoctors = [], loading } = useSelector((state) => state.doctor || {});
+  const { settings } = useSelector((state) => state.setting || { settings: null });
+  const emergencyPhone = settings?.emergencyPhone || "9090963722";
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -69,48 +71,50 @@ const HomeDoctors = memo(() => {
   };
 
   return (
-    <section className="py-24 bg-background text-on-background relative overflow-hidden">
-      {/* Background soft gradients */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden font-sans">
+      {/* Background soft ambient glows */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#0FA8D6]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#024363]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-sans tracking-tight text-primary leading-tight">
-              <span className="font-light block">Care Led By Experts</span>
-              <span className="font-extrabold italic block mt-1">Driven By Compassion</span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+              <Sparkles size={12} className="text-[#0FA8D6]" />
+              Super-Specialist Clinical Faculty
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#012442] leading-tight">
+              Experienced <span className="text-[#0FA8D6]">Urologists & Specialists</span>
             </h2>
-          </div>
-          <div className="max-w-md lg:-ml-8">
-            <p className="text-on-surface-variant text-sm md:text-base leading-relaxed">
-              At Usthi Hospital, our world-class doctors combine deep expertise with compassion to deliver exceptional patient care and outcomes.
+            <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              Our surgical faculty brings decades of high-volume laser lithotripsy, laparoscopic, and kidney stone management expertise to Sambalpur.
             </p>
           </div>
+          
           <div className="flex items-center gap-4 shrink-0 mt-4 lg:mt-0">
             <button
               onClick={() => navigate('/doctors')}
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none"
+              className="bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none"
             >
-              View All <ArrowRight size={16} />
+              <span>View All Specialists</span> <ArrowRight size={15} />
             </button>
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrev}
                 disabled={displayDoctors.length === 0}
-                className="w-11 h-11 rounded-full border border-outline-variant/50 bg-white text-on-surface hover:bg-slate-50 shadow-sm flex items-center justify-center transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-[#0FA8D6]/40 shadow-xs flex items-center justify-center transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Previous Doctor"
               >
-                <ChevronLeft size={20} className="text-slate-650" />
+                <ChevronLeft size={18} />
               </button>
               <button
                 onClick={handleNext}
                 disabled={displayDoctors.length === 0}
-                className="w-11 h-11 rounded-full border border-outline-variant/50 bg-white text-on-surface hover:bg-slate-50 shadow-sm flex items-center justify-center transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-[#0FA8D6]/40 shadow-xs flex items-center justify-center transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Next Doctor"
               >
-                <ChevronRight size={20} className="text-slate-655" />
+                <ChevronRight size={18} />
               </button>
             </div>
           </div>
@@ -118,31 +122,31 @@ const HomeDoctors = memo(() => {
 
         {/* Carousel Grid */}
         {loading || displayDoctors.length === 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, idx) => (
               <HomeDoctorCardSkeleton key={idx} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout" initial={false}>
               {getVisibleDoctors().map((doc, idx) => {
                 const docImage = doc.photo || doc.image;
-                const docSpecialization = doc.specialization || doc.specialty || doc.department?.name || "Specialist";
+                const docSpecialization = doc.specialization || doc.specialty || doc.department?.name || "Urology Specialist";
                 const hasValidImage = docImage && !docImage.includes('👨‍⚕️') && !docImage.includes('👩‍⚕️');
 
                 return (
                   <motion.div
                     key={doc._id + "-" + idx}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 25 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
+                    exit={{ opacity: 0, x: -25 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
                     onClick={() => navigate(`/doctors/${getDoctorSlug(doc.name)}`)}
-                    className="bg-white border border-outline-variant/40 rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_12px_36px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-row h-[235px] w-full group relative cursor-pointer"
+                    className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl hover:border-[#0FA8D6]/40 transition-all duration-300 flex flex-row h-[240px] w-full group relative cursor-pointer"
                   >
                     {/* Left Column (w-[44%]): Image & Book Appointment */}
-                    <div className="w-[44%] flex flex-col h-full bg-surface-container-low shrink-0 relative overflow-hidden">
+                    <div className="w-[44%] flex flex-col h-full bg-slate-100 shrink-0 relative overflow-hidden">
                       <div className="flex-1 overflow-hidden relative">
                         {hasValidImage ? (
                           <img
@@ -150,24 +154,24 @@ const HomeDoctors = memo(() => {
                             alt={doc.name}
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                            className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
                             draggable={false}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-7xl select-none bg-surface-container">
+                          <div className="w-full h-full flex items-center justify-center text-5xl select-none bg-slate-200">
                             👨‍⚕️
                           </div>
                         )}
                       </div>
-                      {/* Yellow Button */}
+                      {/* Gradient Booking Button */}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           dispatch(openAppointmentModal());
                         }}
-                        className="w-full py-3 bg-[#eeb024] hover:bg-[#d89e1b] text-[#002e3b] font-extrabold text-[12px] tracking-wider flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
+                        className="w-full py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
                       >
-                        Book Appointment <span className="font-bold text-[14px]">&#8599;</span>
+                        Book Visit ↗
                       </button>
                     </div>
 
@@ -177,10 +181,10 @@ const HomeDoctors = memo(() => {
                         {/* Name, Specialty & Share */}
                         <div className="flex justify-between items-start gap-1">
                           <div className="min-w-0 flex-1">
-                            <h3 className="text-[15px] font-bold text-slate-800 truncate group-hover:text-primary transition-colors leading-snug">
+                            <h3 className="text-sm font-black text-[#012442] truncate group-hover:text-[#0FA8D6] transition-colors leading-snug">
                               {doc.name.startsWith("Dr") || doc.name.startsWith("Ms") ? doc.name : `Dr. ${doc.name}`}
                             </h3>
-                            <span className="text-[11px] text-slate-500 font-semibold block mt-0.5 tracking-wide">
+                            <span className="text-[10.5px] text-[#024363] font-bold block mt-0.5 tracking-wide truncate">
                               {docSpecialization}
                             </span>
                           </div>
@@ -192,29 +196,29 @@ const HomeDoctors = memo(() => {
                             className="p-1 hover:bg-slate-100 rounded-full transition-colors cursor-pointer border-none bg-transparent"
                             title="Share Profile"
                           >
-                            <Share2 className="w-3.5 h-3.5 text-slate-400 hover:text-primary transition-colors shrink-0" />
+                            <Share2 className="w-3.5 h-3.5 text-slate-400 hover:text-[#0FA8D6] transition-colors shrink-0" />
                           </button>
                         </div>
 
                         {/* Qualification/Degree */}
-                        <div className="mt-2.5 text-xs font-bold text-primary-container leading-snug line-clamp-3">
-                          {doc.experience ? `${doc.experience} Years Experience • ` : ""} {doc.degrees || doc.qualification || ""}
+                        <div className="mt-2 text-[11px] font-bold text-slate-600 leading-snug line-clamp-2">
+                          {doc.experience ? `${doc.experience} Yrs Exp • ` : ""} {doc.degrees || doc.qualification || "Senior Consultant"}
                         </div>
 
                         {/* Location Pin */}
-                        <div className="mt-3 flex items-start gap-1 text-[11px] text-slate-500">
-                          <MapPin className="w-3.5 h-3.5 text-secondary shrink-0 mt-0.5" />
-                          <span className="truncate leading-tight">Usthi Hospitals, Bhubaneswar</span>
+                        <div className="mt-2.5 flex items-center gap-1 text-[10.5px] text-slate-500">
+                          <MapPin className="w-3 h-3 text-[#0FA8D6] shrink-0" />
+                          <span className="truncate leading-tight">Budharaja, Sambalpur</span>
                         </div>
                       </div>
 
                       {/* Call Now Button */}
                       <a
-                        href="tel:+919090963722"
+                        href={`tel:${emergencyPhone}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="w-full py-2 bg-white border border-[#436182] hover:bg-[#436182]/5 text-[#436182] font-bold text-[12px] rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer no-underline shrink-0"
+                        className="w-full py-2 bg-slate-50 border border-slate-200 hover:bg-[#0FA8D6]/10 hover:border-[#0FA8D6]/40 text-[#012442] font-extrabold text-[11px] rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer no-underline shrink-0"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#436182]" /> Call Now
+                        <Phone className="w-3 h-3 text-[#0FA8D6]" /> Call OPD Desk
                       </a>
                     </div>
                   </motion.div>
@@ -228,4 +232,5 @@ const HomeDoctors = memo(() => {
   );
 });
 
+HomeDoctors.displayName = "HomeDoctors";
 export default HomeDoctors;

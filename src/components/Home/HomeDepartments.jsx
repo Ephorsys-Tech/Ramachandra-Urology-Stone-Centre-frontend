@@ -11,40 +11,40 @@ const getCardConfig = (index) => {
   switch (index) {
     case 0:
       return {
-        className: "md:col-span-2 bg-white text-primary border border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.03)]",
-        iconBg: "bg-slate-100",
-        iconColor: "text-primary",
+        className: "md:col-span-2 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
+        iconBg: "bg-[#0FA8D6]/15",
+        iconColor: "text-[#024363]",
         descColor: "text-slate-600",
         showTags: true,
       };
     case 1:
       return {
-        className: "md:col-span-1 bg-secondary text-white shadow-[0_8px_30px_rgba(37,99,235,0.25)]",
-        iconBg: "bg-white/10",
-        iconColor: "text-white",
-        descColor: "text-blue-100",
+        className: "md:col-span-1 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white shadow-md border border-[#0FA8D6]/30",
+        iconBg: "bg-[#0FA8D6]/20",
+        iconColor: "text-[#0FA8D6]",
+        descColor: "text-slate-200",
         showLink: true,
       };
     case 2:
       return {
-        className: "md:col-span-1 bg-white text-primary border border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.03)]",
-        iconBg: "bg-slate-100",
-        iconColor: "text-secondary",
+        className: "md:col-span-1 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
+        iconBg: "bg-[#0FA8D6]/15",
+        iconColor: "text-[#024363]",
         descColor: "text-slate-600",
       };
     case 3:
       return {
-        className: "md:col-span-1 bg-tertiary-container text-on-tertiary-container shadow-[0_8px_30px_rgba(5,150,105,0.1)] border border-tertiary/10",
-        iconBg: "bg-tertiary/10",
-        iconColor: "text-tertiary",
-        descColor: "text-on-tertiary-container/85",
+        className: "md:col-span-1 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
+        iconBg: "bg-[#0FA8D6]/15",
+        iconColor: "text-[#024363]",
+        descColor: "text-slate-600",
       };
     default:
       return {
-        className: "bg-white text-primary border border-slate-200",
-        iconBg: "bg-slate-100",
-        iconColor: "text-primary",
-        descColor: "text-slate-500",
+        className: "bg-white text-[#012442] border border-slate-200/90 hover:border-[#0FA8D6]/40",
+        iconBg: "bg-[#0FA8D6]/15",
+        iconColor: "text-[#024363]",
+        descColor: "text-slate-600",
       };
   }
 };
@@ -54,17 +54,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15
+      staggerChildren: 0.12
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.5, ease: "easeOut" }
   }
 };
 
@@ -79,32 +79,34 @@ const HomeDepartments = memo(() => {
     }
   }, [dispatch, departments.length]);
 
-  // We need exactly 4 dynamic departments for the bento layout
   const displayDepartments = departments.slice(0, 4);
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+    <section className="py-16 sm:py-24 bg-slate-50/60 relative overflow-hidden font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header section matching the design */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        {/* Header section */}
+        <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+            <LucideIcons.Sparkles size={12} className="text-[#0FA8D6]" />
+            Comprehensive Clinical Wings
+          </span>
           <motion.h2 
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-primary mb-6 font-sans tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] mb-4 tracking-tight"
           >
-            Our Medical <span className='text-secondary'>Specialties</span>
+            Specialized <span className="text-[#0FA8D6]">Clinical Departments</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-650 text-lg leading-relaxed"
+            className="text-slate-600 text-xs sm:text-sm sm:leading-relaxed"
           >
-            We provide comprehensive healthcare solutions through our highly specialized
-            departments equipped with state-of-the-art medical technology.
+            From high-power laser stone surgeries to advanced nephrology and pediatric urology, our specialized wings provide gold-standard healthcare in Sambalpur.
           </motion.p>
         </div>
 
@@ -131,36 +133,35 @@ const HomeDepartments = memo(() => {
                 key={dept._id || index}
                 variants={itemVariants}
                 onClick={() => navigate(`/departments/${dept.slug || dept._id}`)}
-                className={`rounded-3xl p-8 md:p-10 cursor-pointer transition-transform duration-300 hover:-translate-y-2 group relative overflow-hidden flex flex-col justify-between ${config.className}`}
+                className={`rounded-3xl p-7 md:p-8 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group relative overflow-hidden flex flex-col justify-between ${config.className}`}
               >
                 <div>
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${config.iconBg} ${config.iconColor} group-hover:scale-110 transition-transform duration-300 text-2xl`}>
-                    {getDepartmentIcon(dept.name, { size: 30 })}
+                  <div className={`w-13 h-13 rounded-2xl flex items-center justify-center mb-5 ${config.iconBg} ${config.iconColor} group-hover:scale-108 transition-transform duration-300 text-2xl`}>
+                    {getDepartmentIcon(dept.name, { size: 28 })}
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-4">{dept.name}</h3>
-                  <p className={`${config.descColor} text-[15px] leading-relaxed line-clamp-3 mb-6`}>
+                  <h3 className="text-xl font-black mb-3 group-hover:text-[#0FA8D6] transition-colors">{dept.name}</h3>
+                  <p className={`${config.descColor} text-xs leading-relaxed line-clamp-3 mb-6`}>
                     {dept.description}
                   </p>
                 </div>
 
                 {config.showTags && (
-                  <div className="flex gap-3 mt-auto">
-                    <span className="px-4 py-1.5 bg-slate-100 text-slate-650 text-xs font-semibold rounded-full">Counseling</span>
-                    <span className="px-4 py-1.5 bg-slate-100 text-slate-650 text-xs font-semibold rounded-full">Diagnostics</span>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    <span className="px-3 py-1 bg-slate-100 text-slate-700 text-[11px] font-bold rounded-full">Laser Surgery</span>
+                    <span className="px-3 py-1 bg-slate-100 text-slate-700 text-[11px] font-bold rounded-full">Daycare Procedures</span>
                   </div>
                 )}
 
                 {config.showLink && (
-                  <div className="mt-auto flex items-center text-sm font-bold text-white group-hover:opacity-80">
-                    Learn More <LucideIcons.ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <div className="mt-auto flex items-center text-xs font-black text-[#0FA8D6] group-hover:text-white transition-colors">
+                    Explore Department <LucideIcons.ArrowRight size={14} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 )}
                 
-                {/* Top-right subtle arrow for card 0 */}
                 {index === 0 && (
-                  <div className="absolute top-8 right-8 text-slate-400 group-hover:text-primary transition-colors">
-                    <LucideIcons.ArrowUpRight size={24} />
+                  <div className="absolute top-7 right-7 text-slate-400 group-hover:text-[#0FA8D6] transition-colors">
+                    <LucideIcons.ArrowUpRight size={22} />
                   </div>
                 )}
               </motion.div>
@@ -171,13 +172,13 @@ const HomeDepartments = memo(() => {
           <motion.div
             variants={itemVariants}
             onClick={() => navigate('/departments')}
-            className="md:col-span-1 bg-slate-100 border border-slate-200/80 rounded-3xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-slate-200 hover:shadow-inner group"
+            className="md:col-span-1 bg-white border border-slate-200/90 rounded-3xl p-7 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:border-[#0FA8D6]/60 hover:shadow-md group"
           >
-            <div className="w-12 h-12 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
-              <LucideIcons.LayoutGrid size={28} />
+            <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] mb-3 group-hover:scale-110 transition-transform">
+              <LucideIcons.LayoutGrid size={24} className="text-[#0FA8D6]" />
             </div>
-            <span className="text-primary font-bold text-center">
-              View All {departments.length > 0 ? departments.length : 24} Specialties
+            <span className="text-[#012442] font-black text-sm text-center group-hover:text-[#0FA8D6] transition-colors">
+              View All {departments.length > 0 ? departments.length : 12}+ Clinical Wings →
             </span>
           </motion.div>
 
@@ -188,4 +189,5 @@ const HomeDepartments = memo(() => {
   );
 });
 
+HomeDepartments.displayName = "HomeDepartments";
 export default HomeDepartments;
