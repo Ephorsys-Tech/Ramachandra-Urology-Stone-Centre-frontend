@@ -1,59 +1,56 @@
 import { memo } from "react";
 import { ZoomParallax } from "../ui/zoom-parallax";
+import { Sparkles } from "lucide-react";
 
 const images = [
- 
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555590/1I5A4502_1_wxjyz5.webp",
-    alt: "Professional medical photography of a diverse team of doctors",
+    alt: "Medical urology specialists at Sambalpur",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4479_1_tasiwo.webp",
-    alt: "Close up of a doctor's hands holding a digital tablet",
+    alt: "Advanced surgical planning and digital diagnostics",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/ChatGPT_Image_Jul_4_2026_12_14_12_PM_eskwjx.png",
-    alt: "Medical laboratory setting with a scientist looking through a microscope",
+    alt: "Clinical pathology and stone analysis lab",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/ChatGPT_Image_Jul_4_2026_12_16_38_PM_nslao3.png",
-    alt: "Friendly female doctor in a white coat smiling and talking",
+    alt: "Consultation and patient counseling",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4435_1_mbsm4v.webp",
-    alt: "Professional medical announcement banner of a modern clinic hall",
+    alt: "Modern clinic hall and patient reception",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4497_1_xbvypd.webp",
-    alt: "Comfortable and clean patient room in a modern hospital",
+    alt: "Hygienic patient rooms and daycare wards",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148587/WhatsApp_Image_2026-07-04_at_12.31.57_PM_kxun3d.jpg",
-    alt: "Modern hospital reception area with minimalist design",
+    alt: "Sambalpur campus reception area",
   },
   {
     src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555587/1I5A4332_1_cv9mgt.webp",
-    alt: "Pediatrician holding a stethoscope and smiling at a child patient",
+    alt: "Doctor consultation and diagnostic evaluation",
   },
-  // {
-  //   src: "https://res.cloudinary.com/drqb4p2a2/image/upload/q_auto/f_auto/v1780483503/detailed_shot_of_a_stethoscope_resting_on_a_clean_white_med_idsfzs.png",
-  //   alt: "Detailed shot of a stethoscope resting on a clean white medical surface",
-  // },
 ];
 
 const HomeGallery = memo(() => {
   return (
-    <section className="bg-background relative">
+    <section className="bg-white relative py-12 font-sans">
       {/* Intro Header Section */}
-      <div className="relative flex h-[40vh] flex-col items-center justify-center text-center px-4">
-        <span className="inline-block text-tertiary font-bold text-sm tracking-widest uppercase mb-3">
-          Our Facilities
+      <div className="relative flex flex-col items-center justify-center text-center px-4 max-w-3xl mx-auto mb-8">
+        <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-black text-xs uppercase tracking-wider mb-3 shadow-2xs">
+          <Sparkles size={12} className="text-[#0FA8D6]" />
+          Hospital Infrastructure
         </span>
-        <h2 className="text-4xl md:text-5xl font-black text-primary mb-4 font-sans">
-          A Glimpse Inside <span className="text-secondary">Usthi Hospital</span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] mb-3 tracking-tight">
+          A Glimpse Inside <span className="text-[#0FA8D6]">Our Sambalpur Campus</span>
         </h2>
-        <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
-          World-class infrastructure designed for patient comfort, safety, and cutting-edge medical care. Scroll down to explore our space.
+        <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+          Explore our sterile modular operation theatres, daycare recovery suites, high-power laser systems, and patient diagnostic facilities.
         </p>
       </div>
 
@@ -65,5 +62,6 @@ const HomeGallery = memo(() => {
   );
 });
 
+HomeGallery.displayName = "HomeGallery";
 export default HomeGallery;
 

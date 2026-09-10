@@ -1,14 +1,12 @@
 import ContactHero from "../components/Contact/ContactHero";
-// import ContactDetails from "../components/Contact/ContactDetails";
+import ContactSection from "../components/Contact/ContactSection";
 import ContactMap from "../components/Contact/ContactMap";
-import HomeContact from "../components/Home/HomeContact";
 
 const Contact = () => {
   return (
-    <main className="bg-background min-h-screen pb-24">
+    <main className="bg-slate-50/50 min-h-screen pb-16">
       <ContactHero />
-      <HomeContact />
-      {/* <ContactDetails /> */}
+      <ContactSection />
       <ContactMap />
     </main>
   );
