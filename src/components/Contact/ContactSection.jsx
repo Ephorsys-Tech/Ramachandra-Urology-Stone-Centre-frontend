@@ -24,10 +24,10 @@ const ContactSection = memo(() => {
   const { departments = [] } = useSelector((state) => state.department || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
-  const generalPhone = settings?.phone || "8065906200";
-  const emailAddress = settings?.email || "info@ramachandraurology.com";
-  const hospitalAddress = settings?.address || "At/PO: Budharaja, Near Overbridge, Sambalpur, Odisha 768004";
+  const emergencyPhone = settings?.emergencyPhone || "8895062072";
+  const generalPhone = settings?.phone || "9937566625";
+  const emailAddress = settings?.email || "ruasc.burla@gmail.com";
+  const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
   const [formData, setFormData] = useState({
     name: "",

@@ -29,10 +29,10 @@ const FloatingSidebar = memo(() => {
       <div className="group relative flex items-center">
         {/* Tooltip */}
         <div className="absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
-          Emergency Hotline (9090963722)
+          Emergency Helpline (+91 88950 62072)
         </div>
         <a
-          href="tel:9090963722"
+          href="tel:8895062072"
           className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#ba1a1a] hover:bg-[#d32f2f] text-white flex items-center justify-center transition-colors cursor-pointer border-none outline-none no-underline"
           aria-label="Emergency Call"
         >

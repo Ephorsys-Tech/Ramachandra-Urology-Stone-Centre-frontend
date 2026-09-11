@@ -164,8 +164,8 @@ const About = () => {
 
   const emergencyPhone = settings?.emergencyPhone || "9090963722";
   const generalPhone = settings?.phone || "8065906200";
-  const hospitalEmail = settings?.email || "contact@ramachandraurology.com";
-  const hospitalAddress = "VSS Marg / Farm Road, Sambalpur, Odisha, India 768001";
+  const hospitalEmail = settings?.email || "ruasc.burla@gmail.com";
+  const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
   // Hairline Metric Ledger Data
   const metrics = [
