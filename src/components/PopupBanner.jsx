@@ -81,7 +81,7 @@ export default function PopupBanner() {
                 Hospital Announcement
               </h3>
               <p className="text-slate-500 text-[13px] mb-6 leading-relaxed whitespace-pre-line">
-                {settings.popupBanner.description || "Welcome to Usthi Hospital."}
+                {settings.popupBanner.description || "Welcome to Ramachandra Urology & Stone Centre."}
               </p>
               <button 
                 onClick={() => {

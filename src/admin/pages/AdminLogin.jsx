@@ -138,8 +138,8 @@ const AdminLogin = () => {
               >
                 {/* Hospital Logo Header */}
                 <div className="flex items-center gap-2 mb-8 md:mb-12">
-                  <span className="text-[#3fc0b0] font-black text-3xl tracking-wide uppercase">USTHI</span>
-                  <span className="text-slate-700 font-bold text-3xl tracking-wide">Hospital</span>
+                  <span className="text-[#024363] font-black text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
+                  <span className="text-[#0FA8D6] font-bold text-2xl sm:text-3xl tracking-wide">Hospital</span>
                 </div>
 
                 {/* Login Form */}

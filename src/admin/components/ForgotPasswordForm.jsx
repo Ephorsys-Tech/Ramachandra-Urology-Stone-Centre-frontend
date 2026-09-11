@@ -99,8 +99,8 @@ const ForgotPasswordForm = ({ onBack, onSuccess }) => {
     <div className="w-full h-full p-8 sm:p-12 md:p-16 flex flex-col justify-center bg-white">
       {/* Logo Header (Consistent with Login Page) */}
       <div className="flex items-center gap-2 mb-6">
-        <span className="text-[#3fc0b0] font-black text-3xl tracking-wide uppercase">USTHI</span>
-        <span className="text-slate-700 font-bold text-3xl tracking-wide">Hospital</span>
+        <span className="text-[#024363] font-black text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
+        <span className="text-[#0FA8D6] font-bold text-2xl sm:text-3xl tracking-wide">Hospital</span>
       </div>
 
       <AnimatePresence mode="wait">
@@ -133,7 +133,7 @@ const ForgotPasswordForm = ({ onBack, onSuccess }) => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@usthi.com"
+                    placeholder="admin@ramachandrahospital.com"
                     className="w-full bg-[#f8fafc] border border-slate-200/80 focus:border-[#3fc0b0] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-slate-800 text-sm outline-none transition-all placeholder:text-slate-400 font-medium"
                     required
                   />

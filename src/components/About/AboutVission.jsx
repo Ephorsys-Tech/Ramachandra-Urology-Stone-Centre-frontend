@@ -18,7 +18,7 @@ export default function AboutVission() {
       </div>
       <h3 className="text-2xl md:text-3xl font-bold mb-4 font-sans tracking-tight">Our Vision</h3>
       <p className="text-blue-100 text-lg leading-relaxed relative z-10">
-        Our vision at Usthi Hospital is to be the leading healthcare provider recognized for clinical excellence, innovation, and unwavering commitment to the community. We strive to set new benchmarks in medical outcomes while fostering an environment of trust, empathy, and continuous learning.
+        Our vision at Ramachandra Urology & Stone Centre is to be the premier urological and kidney care centre recognized for clinical excellence, advanced laser surgical innovations, and unwavering commitment to the community.
       </p>
     </motion.div>
   );
