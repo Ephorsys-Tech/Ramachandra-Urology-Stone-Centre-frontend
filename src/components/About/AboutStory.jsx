@@ -42,7 +42,7 @@ const AboutStory = () => {
           </h2>
           <div className="space-y-4 sm:space-y-6 text-slate-650 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
             <p>
-              Founded in 1999, Usthi Hospital began with a simple mission: to make world-class healthcare accessible to everyone. What started as a small clinic has now grown into a multi-specialty tertiary care hospital.
+              Ramachandra Urology & Stone Centre was established with a dedicated mission: to bring world-class super-specialty urological care, advanced laser kidney stone management, and minimally invasive surgeries to Sambalpur and Western Odisha.
             </p>
             <p>
               We believe that true healing happens when advanced medical technology meets genuine human compassion. Our dedicated team of specialists works tirelessly to ensure every patient receives personalized care.

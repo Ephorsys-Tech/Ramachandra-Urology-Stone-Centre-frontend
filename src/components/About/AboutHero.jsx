@@ -77,10 +77,10 @@ const AboutHero = () => {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight drop-shadow-2xl font-sans mb-3 sm:mb-4">
-              About Usthi Hospital
+              About Ramachandra Urology
             </h1>
             <p className="text-xl sm:text-3xl font-extrabold text-emerald-300 tracking-wide drop-shadow-lg font-sans">
-              Caring for Life Since 2006
+              Centre for Advanced Kidney Care
             </p>
           </motion.div>
         </motion.div>
@@ -110,11 +110,11 @@ const AboutHero = () => {
                 <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 shadow-2xs">
                   <div className="w-2 h-5 bg-[#00875a] rounded-full" />
                   <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-wider uppercase">
-                    ESTABLISHED 2006
+                    NABH ACCREDITED SHCO
                   </span>
                   <span className="text-slate-300">|</span>
                   <span className="text-xs sm:text-sm font-semibold text-[#007a87]">
-                    20+ Years of Healthcare Excellence
+                    Super-Specialty Urology & Stone Centre
                   </span>
                 </div>
 
@@ -144,7 +144,7 @@ const AboutHero = () => {
                 {/* Primary Description Paragraph */}
                 <div className="relative pl-5 border-l-4 border-[#00875a]">
                   <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-sans font-normal">
-                    Usthi Hospital is a leading healthcare institution dedicated to providing comprehensive, high-quality medical services. Spanning over two decades, our legacy is built on a foundation of healing, compassionate patient care, and clinical excellence. We are equipped with state-of-the-art facilities and a team of outstanding healthcare professionals.
+                    Ramachandra Urology & Stone Centre is a leading super-specialty healthcare institution dedicated to providing comprehensive, high-quality urological, laparoscopic, and kidney care services. Our institution is equipped with advanced laser lithotripsy, modular surgical theatres, and an expert medical team led by AIIMS-trained specialists.
                   </p>
                 </div>
 

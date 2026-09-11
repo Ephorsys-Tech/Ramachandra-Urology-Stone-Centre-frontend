@@ -34,7 +34,7 @@ export default function AppointmentModal() {
   const { loading } = useSelector((state) => state.appointmentRequest || { loading: false });
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   const [formData, setFormData] = useState({
     name: "",

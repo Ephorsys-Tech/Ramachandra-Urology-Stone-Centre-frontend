@@ -15,7 +15,7 @@ const HomeDoctors = memo(() => {
 
   const { doctors = [], homeDoctors = [], loading } = useSelector((state) => state.doctor || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);

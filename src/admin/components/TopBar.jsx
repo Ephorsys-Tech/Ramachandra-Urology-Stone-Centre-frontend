@@ -151,7 +151,7 @@ const TopBar = ({ setSidebarOpen }) => {
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             className="text-[15px] font-semibold tracking-wider text-slate-800"
           >
-            USTHI HOSPITAL ADMIN
+            RAMACHANDRA ADMIN
           </motion.span>
         </div>
 
@@ -323,7 +323,7 @@ const TopBar = ({ setSidebarOpen }) => {
                     </div>
                     <div>
                       <p className="text-[13px] font-medium text-slate-800">{user?.name || "Admin User"}</p>
-                      <p className="text-[11px] text-slate-400 capitalize truncate w-32">{user?.email || "admin@usthi.com"}</p>
+                      <p className="text-[11px] text-slate-400 capitalize truncate w-32">{user?.email || "admin@ramachandrahospital.com"}</p>
                     </div>
                   </div>
 

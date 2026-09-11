@@ -55,30 +55,31 @@ const Footer = memo(() => {
   const inhouseServices = [
     { label: "Renal Stone (RIRS / PCNL / Laser)", to: "/departments" },
     { label: "Thulium Fiber LASER Lithotripsy", to: "/departments" },
+    { label: "Prostate Surgery (THUFLEP / Laser)", to: "/departments" },
     { label: "Urologic Cancer Surgery", to: "/departments" },
     { label: "Andrology & Male Infertility", to: "/departments" },
-    { label: "Prostate Surgery (THUFLEP / Laser)", to: "/departments" },
-    { label: "Uroflowmetry & Urodynamics", to: "/departments" },
-    { label: "Reconstructive Urology & Plastic", to: "/departments" },
-    { label: "Pathology, X-Ray, Ultrasound & Pharmacy", to: "/departments" },
+    { label: "Reconstructive Urology & Urethroplasty", to: "/departments" },
+    { label: "Laparoscopic & Endo-Lap Surgery", to: "/departments" },
+    { label: "Uro-Dynamics & Uroflowmetry", to: "/departments" },
+    { label: "In-House Pathology, USG, X-Ray & Pharmacy", to: "/departments" },
   ];
 
   const govtSchemes = [
     "Treatment under Ayushman Bharat (PM-JAY)",
     "Gopabandhu Jan Arogya Yojana (GJAY)",
-    "Cashless Mediclaim & TPA Facility",
-    "24/7 Laser Stone Emergency OPD",
+    "Cashless Mediclaim & Corporate TPA",
+    "24/7 Laser Stone Emergency & Colic Relief",
   ];
 
   return (
     <footer className="bg-[#eaf4f9] text-[#1e293b] font-sans select-none border-t border-[#0FA8D6]/20">
       
-      {/* ── 1. TOP HEADER ROW: LOGO ONLY (NO NAME) + BADGES + SOCIAL ICONS ── */}
+      {/* ── 1. TOP HEADER ROW: LOGO + ACCREDITATION BADGES + SOCIAL ICONS ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#0FA8D6]/20">
           
-          {/* Left: Brand Logo Only (No text name next to logo) */}
-          <div className="flex items-center">
+          {/* Left: Brand Logo */}
+          <div className="flex items-center gap-3">
             <Link
               to="/"
               className="inline-flex items-center p-2 rounded-2xl bg-white/90 backdrop-blur-xs border border-[#0FA8D6]/25 shadow-xs hover:shadow-md transition-all group"
@@ -90,13 +91,17 @@ const Footer = memo(() => {
                 className="h-12 sm:h-14 md:h-16 w-auto object-contain group-hover:scale-[1.02] transition-transform"
               />
             </Link>
+            <div className="hidden sm:block">
+              <span className="text-xs font-black text-[#012442] block tracking-tight">Reg No: 14/2024</span>
+              <span className="text-[11px] font-medium text-[#024363]">Sourav Vihar, Burla, Sambalpur</span>
+            </div>
           </div>
 
           {/* Center / Badges: NABH & Ayushman / GJAY badges */}
           <div className="flex flex-wrap items-center gap-2.5">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-xs font-bold text-[#012442]">
               <Award className="w-4 h-4 text-amber-500 shrink-0" />
-              <span>NABH Accredited</span>
+              <span>NABH Entry Level SHCO (PESHCO-0306-13433)</span>
             </div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-xs font-bold text-[#012442]">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -286,8 +291,8 @@ const Footer = memo(() => {
           <p className="m-0 text-xs text-[#012442] text-center sm:text-left">
             © {new Date().getFullYear()} {hospitalName}. All rights reserved.
           </p>
-          <p className="m-0 text-xs text-[#024363] hidden md:block text-center italic">
-            Centre for Advanced Kidney Care & Laparoscopic Surgeries
+          <p className="m-0 text-xs text-[#024363] hidden md:block text-center font-semibold">
+            Better Care • Healthier Lives &nbsp;|&nbsp; Flow Freely, Live Fully
           </p>
           <p className="flex items-center gap-1 m-0 text-xs text-[#024363]">
             Designed & Developed with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 mx-0.5" /> by{" "}

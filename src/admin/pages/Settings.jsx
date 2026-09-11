@@ -302,7 +302,7 @@ const Settings = () => {
                     name="hospitalName"
                     value={formData.hospitalName}
                     onChange={handleInputChange}
-                    placeholder="Usthi Hospital"
+                    placeholder="Ramachandra Urology & Stone Centre"
                     className="w-full pl-3 pr-4 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -398,7 +398,7 @@ const Settings = () => {
                     name="contactEmail"
                     value={formData.contactEmail}
                     onChange={handleInputChange}
-                    placeholder="info@usthihospital.com"
+                    placeholder="ruasc.burla@gmail.com"
                     className="w-full px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -439,7 +439,7 @@ const Settings = () => {
                     name="facebook"
                     value={formData.facebook}
                     onChange={handleInputChange}
-                    placeholder="https://facebook.com/usthihospital"
+                    placeholder="https://facebook.com/ramachandraurology"
                     className="flex-1 px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -453,7 +453,7 @@ const Settings = () => {
                     name="twitter"
                     value={formData.twitter}
                     onChange={handleInputChange}
-                    placeholder="https://twitter.com/usthihospital"
+                    placeholder="https://twitter.com/ramachandraurology"
                     className="flex-1 px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -467,7 +467,7 @@ const Settings = () => {
                     name="instagram"
                     value={formData.instagram}
                     onChange={handleInputChange}
-                    placeholder="https://instagram.com/usthihospital"
+                    placeholder="https://instagram.com/ramachandraurology"
                     className="flex-1 px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -481,7 +481,7 @@ const Settings = () => {
                     name="linkedin"
                     value={formData.linkedin}
                     onChange={handleInputChange}
-                    placeholder="https://linkedin.com/company/usthihospital"
+                    placeholder="https://linkedin.com/company/ramachandraurology"
                     className="flex-1 px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>
@@ -623,7 +623,7 @@ const Settings = () => {
                 <div className="space-y-1.5 text-center sm:text-left font-sans">
                   <h4 className="text-base font-bold text-slate-800">{admin?.name || "Administrator"}</h4>
                   <p className="text-xs text-slate-500 flex items-center justify-center sm:justify-start gap-1">
-                    <Mail size={12} /> {admin?.email || "admin@usthi.com"}
+                    <Mail size={12} /> {admin?.email || "admin@ramachandrahospital.com"}
                   </p>
                   <span className="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-700 font-bold text-[10px] rounded-full uppercase tracking-wider">
                     {admin?.role || "Admin"}
@@ -817,7 +817,7 @@ const Settings = () => {
         </div>
 
         <div className="pt-4 border-t border-slate-800 text-[10px] text-slate-500 flex items-center justify-between">
-          <span>Usthi Hospital Security Operations</span>
+          <span>Ramachandra Hospital Security Operations</span>
           <span>Last Updated: June 2026</span>
         </div>
       </div>

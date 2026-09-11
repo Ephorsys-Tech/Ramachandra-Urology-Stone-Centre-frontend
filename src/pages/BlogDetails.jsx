@@ -27,7 +27,7 @@ const BlogDetails = () => {
     (state) => state.blog || { selectedBlog: null, loading: false, error: null }
   );
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   useEffect(() => {
     dispatch(fetchBlogById(id));

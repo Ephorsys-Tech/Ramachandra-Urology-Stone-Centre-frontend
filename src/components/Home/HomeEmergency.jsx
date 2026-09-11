@@ -25,18 +25,18 @@ const stats = [
   {
     icon: ShieldCheck,
     value: "100%",
-    label: "Specialist On-Call",
+    label: "Ayushman / GJAY",
   },
   {
     icon: Phone,
-    value: "9090963722",
+    value: "9937566625",
     label: "Emergency Hotline",
   },
 ];
 
 const HomeEmergency = memo(() => {
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   return (
     <section className="relative py-16 lg:py-20 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] overflow-hidden font-sans border-y border-[#0FA8D6]/20">

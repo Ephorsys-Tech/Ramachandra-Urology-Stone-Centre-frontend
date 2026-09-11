@@ -162,17 +162,17 @@ const About = () => {
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const { settings } = useSelector((state) => state.setting || {});
 
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
-  const generalPhone = settings?.phone || "8065906200";
+  const emergencyPhone = settings?.emergencyPhone || "+91 99375 66625";
+  const generalPhone = settings?.phone || "+91 88950 62072";
   const hospitalEmail = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
   // Hairline Metric Ledger Data
   const metrics = [
-    { value: "NABH", label: "ACCREDITED HOSPITAL", note: "National Quality & Safety Protocol" },
-    { value: "AIIMS", label: "NEW DELHI LEADERSHIP", note: "M.Ch Urology Clinical Faculty" },
-    { value: "TFL", label: "THULIUM FIBER LASER", note: "Ultra-Precise Dust-Free Stone Care" },
-    { value: "100%", label: "CASHLESS GOVT. SCHEMES", note: "BSKY & PM-JAY Empanelled" },
+    { value: "NABH", label: "ENTRY LEVEL SHCO", note: "PESHCO-0306-13433 (2025–2028)" },
+    { value: "AIIMS", label: "NEW DELHI LEADERSHIP", note: "Dr. Sanjay Kumar Mahapatra (M.Ch)" },
+    { value: "TFL", label: "THULIUM FIBER LASER", note: "Dust-Free Laser Lithotripsy & THUFLEP" },
+    { value: "100%", label: "CASHLESS GOVT. SCHEMES", note: "Ayushman Bharat & GJAY Empanelled" },
   ];
 
   // Editorial Narrative Chapters Data with Official Content
@@ -252,7 +252,7 @@ const About = () => {
           desc: "Cashless hospitalization and surgical care for eligible beneficiaries under the central government health scheme."
         },
         {
-          title: "Biju Swasthya Kalyan Yojana (BSKY / GJAY)",
+          title: "Gopabandhu Jan Arogya Yojana (GJAY)",
           desc: "Full coverage for advanced urological procedures, laser stone surgeries, and inpatient care under Odisha government health schemes."
         }
       ],

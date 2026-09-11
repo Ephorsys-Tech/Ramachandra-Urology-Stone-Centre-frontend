@@ -161,50 +161,47 @@ const Navbar = () => {
 
           <div className="h-4 w-px bg-slate-200" />
 
-          {/* 2. Accreditation Badges (Gold, Blue/Purple, Red NABH) */}
-          <div className="flex items-center gap-2.5">
-            {/* Badge 1: Gold Quality Healthcare Seal */}
+          {/* 2. Accreditation Badges (NABH SHCO, Ayushman/GJAY, Thulium Fiber Laser) */}
+          <div className="flex items-center gap-2">
+            {/* Badge 1: NABH SHCO Accreditation */}
             <div
               className="group relative flex items-center justify-center cursor-pointer"
-              title="NABH Gold Standard & Quality Patient Care"
+              title="NABH Entry Level SHCO Accredited (PESHCO-0306-13433)"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
-                <div className="w-full h-full rounded-full bg-gradient-to-tr from-amber-500 to-yellow-200 flex items-center justify-center border border-amber-600/40">
-                  <Award size={14} className="text-amber-950 stroke-[2.2]" />
-                </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-900 shadow-2xs transition-transform group-hover:scale-105">
+                <Award size={13} className="text-amber-600 shrink-0" />
+                <span className="text-[10px] font-black tracking-tight">NABH SHCO</span>
               </div>
-              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
-                Quality Care Certified
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                NABH Entry Level SHCO (Valid 2025–2028)
               </div>
             </div>
 
-            {/* Badge 2: Purple/Blue ISO Excellence Rosette */}
+            {/* Badge 2: Ayushman Bharat / GJAY */}
             <div
               className="group relative flex items-center justify-center cursor-pointer"
-              title="ISO 9001:2015 Certified Medical Systems"
+              title="Ayushman Bharat (PM-JAY) & GJAY Cashless"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-300 via-blue-400 to-indigo-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
-                <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-600 to-indigo-200 flex items-center justify-center border border-indigo-700/40">
-                  <ShieldCheck size={14} className="text-indigo-950 stroke-[2.2]" />
-                </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-900 shadow-2xs transition-transform group-hover:scale-105">
+                <ShieldCheck size={13} className="text-emerald-600 shrink-0" />
+                <span className="text-[10px] font-black tracking-tight">Ayushman / GJAY</span>
               </div>
-              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
-                ISO 9001:2015 Certified
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                100% Cashless Govt. Healthcare
               </div>
             </div>
 
-            {/* Badge 3: Red/Teal NABH Hospital Emblem */}
+            {/* Badge 3: Thulium Fiber Laser */}
             <div
               className="group relative flex items-center justify-center cursor-pointer"
-              title="NABH Accredited Healthcare Provider"
+              title="Thulium Fiber Laser Lithotripsy & Endo-Lap Surgery"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-rose-400 via-red-500 to-teal-600 p-[1.5px] shadow-xs transition-transform group-hover:scale-110">
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center border border-rose-300">
-                  <span className="text-[8px] font-black text-rose-600 tracking-tighter">NABH</span>
-                </div>
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-cyan-50 border border-[#0FA8D6]/40 text-[#024363] shadow-2xs transition-transform group-hover:scale-105">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0FA8D6] animate-pulse shrink-0" />
+                <span className="text-[10px] font-black tracking-tight">Thulium LASER</span>
               </div>
-              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
-                NABH Accredited
+              <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                Advanced Laser Kidney Stone & Prostate Care
               </div>
             </div>
           </div>
@@ -516,15 +513,15 @@ const Navbar = () => {
               {/* Accreditations Bar */}
               <div className="flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2 text-xs text-slate-600 font-semibold mb-2">
                 <span>Accreditations:</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                    Quality Certified
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-extrabold text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+                    NABH SHCO
                   </span>
-                  <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                    ISO 9001
+                  <span className="text-[10px] font-extrabold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
+                    Ayushman / GJAY
                   </span>
-                  <span className="text-[11px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                    NABH
+                  <span className="text-[10px] font-extrabold text-cyan-900 bg-cyan-100 px-2 py-0.5 rounded border border-cyan-300">
+                    Thulium Laser
                   </span>
                 </div>
               </div>

@@ -4,27 +4,27 @@ import { Award, ShieldCheck, CheckCircle2, Sparkles, Building2, CreditCard } fro
 const AccreditationPartners = () => {
   const schemes = [
     {
+      title: "NABH Entry Level SHCO Accreditation",
+      category: "Certificate: PESHCO-0306-13433",
+      desc: "National Accreditation Board for Hospitals & Healthcare Providers certified (Valid 30 June 2025 – 29 June 2028) for Urology, Diagnostics, Pathology & Pharmacy.",
+      badge: "NABH Accredited",
+    },
+    {
       title: "Ayushman Bharat (PM-JAY)",
       category: "Central Govt. Scheme",
-      desc: "100% cashless inpatient admission, specialized stone lithotripsy, and surgical procedures for all eligible Golden Card holders.",
+      desc: "100% cashless inpatient admission, specialized laser stone lithotripsy, and surgical procedures for all eligible Golden Card holders.",
       badge: "Cashless Empanelled",
     },
     {
-      title: "Biju Swasthya Kalyan Yojana (BSKY / GJAY)",
+      title: "Gopabandhu Jan Arogya Yojana (GJAY)",
       category: "Odisha State Scheme",
-      desc: "Comprehensive cashless coverage for advanced urology surgeries, laser stone removal, ICU stays, and post-operative medications.",
+      desc: "Comprehensive cashless coverage for advanced urology surgeries, Thulium laser stone removal, modular OT procedures, and inpatient care.",
       badge: "State Govt. Empanelled",
     },
     {
-      title: "NABH Accredited Standards",
-      category: "Quality Benchmark",
-      desc: "Certified for compliance with stringent national healthcare and patient safety protocols across clinical and diagnostic services.",
-      badge: "Quality Certified",
-    },
-    {
-      title: "Private TPA & Cashless Insurance",
+      title: "Private TPA & Cashless Mediclaim",
       category: "All Major Insurers",
-      desc: "Hassle-free pre-authorization with Star Health, HDFC ERGO, ICICI Lombard, MediAssist, Vidal Health, FHPL, and more.",
+      desc: "Hassle-free pre-authorization with Star Health, HDFC ERGO, ICICI Lombard, MediAssist, Vidal Health, FHPL, and corporate TPAs.",
       badge: "24x7 TPA Desk",
     },
   ];

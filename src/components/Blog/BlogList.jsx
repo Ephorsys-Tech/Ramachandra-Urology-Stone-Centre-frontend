@@ -47,7 +47,7 @@ const BlogList = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [page, setPage] = useState(1);
 
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   // Fetch blogs when filter changes
   useEffect(() => {

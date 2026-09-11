@@ -18,7 +18,7 @@ export default function AboutMisson() {
       </div>
       <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-sans tracking-tight">Our Mission</h3>
       <p className="text-slate-600 text-lg leading-relaxed relative z-10">
-        At Usthi Hospital, our mission is to deliver comprehensive, high-quality, and affordable healthcare services to our community. We are dedicated to improving the health and well-being of our patients by blending advanced medical technology with compassionate, patient-centered care.
+        At Ramachandra Urology & Stone Centre, our mission is to deliver comprehensive, high-quality, and affordable super-specialty urological and healthcare services to our community. We are dedicated to improving the health and well-being of our patients by blending advanced medical technology with compassionate, patient-centered care.
       </p>
     </motion.div>
   );

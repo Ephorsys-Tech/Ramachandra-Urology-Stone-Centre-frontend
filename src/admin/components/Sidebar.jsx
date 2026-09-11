@@ -81,12 +81,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="flex items-center gap-2">
             <img 
               src={settings?.logo || "/logo.png"} 
-              alt="USTHI Logo" 
+              alt="Hospital Logo" 
               className="w-14 h-14 rounded-lg object-cover bg-white/70 p-1"
             />
             <div>
-              <p className="text-md font-extrabold tracking-tight leading-tight">USTHI ADMIN</p>
-              <p className="text-[10px] text-slate-400">Hospital Portal</p>
+              <p className="text-md font-extrabold tracking-tight leading-tight">RAMACHANDRA</p>
+              <p className="text-[10px] text-slate-400">Admin Portal</p>
             </div>
           </div>
 

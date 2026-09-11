@@ -54,7 +54,7 @@ function BgHero({
                 text-[9px] sm:text-[10px]
               "
             >
-              Usthi Hospital Healthcare
+              Ramachandra Urology & Stone Centre
             </span>
           </div>
 

@@ -15,7 +15,7 @@ const testimonials = [
     name: "Ariyan Mohanty",
     role: "PCNL Surgery Patient",
     rating: 5,
-    text: "The doctors and clinical staff at Ramachandra Urology & Stone Centre are extremely knowledgeable. My father had a large staghorn stone treated with Mini-PCNL. The cashless claim under BSKY was approved in minutes with zero out-of-pocket hassle."
+    text: "The doctors and clinical staff at Ramachandra Urology & Stone Centre are extremely knowledgeable. My father had a large staghorn stone treated with Mini-PCNL. The cashless claim under Ayushman / GJAY was approved in minutes with zero out-of-pocket hassle."
   },
   {
     id: 3,
