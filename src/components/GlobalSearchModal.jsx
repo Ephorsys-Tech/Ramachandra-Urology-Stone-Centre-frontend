@@ -198,7 +198,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
     } else if (action === "departments") {
       navigate("/departments");
     } else if (action === "emergency") {
-      window.location.href = "tel:9090963722";
+      window.location.href = "tel:8895062072";
     }
   };
 
@@ -441,7 +441,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                             24/7 Emergency Line
                           </h4>
                           <p className="text-[11px] text-slate-500 mt-0.5">
-                            Call 9090963722 instantly
+                            Call +91 88950 62072 instantly
                           </p>
                         </div>
                         <ChevronRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-0.5 group-hover:text-rose-600 transition-all" />

@@ -103,8 +103,9 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const emergencyNumber = settings?.emergencyPhone || "9090963722";
-  const directHotlineNumber = settings?.phone || "8065906200";
+  const primaryNumber = "+91 88950 62072";
+  const emergencyNumber = "+91 99375 66625";
+  const alternateNumbers = ["+91 76538 99199", "0663-4075199"];
 
   const languages = [
     { code: "en", label: "English" },
@@ -212,29 +213,29 @@ const Navbar = () => {
 
           {/* 3. 24/7 Appointment Helpline */}
           <a
-            href={`tel:${emergencyNumber}`}
+            href={`tel:${primaryNumber.replace(/\s+/g, "")}`}
             className="flex flex-col items-start leading-tight text-slate-700 hover:text-[#0FA8D6] no-underline transition-colors group"
           >
             <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
               24/7 APPOINTMENT HELPLINE
             </span>
             <span className="text-[13px] font-extrabold text-[#012442] group-hover:text-[#0FA8D6] tracking-tight transition-colors">
-              +91 {emergencyNumber.length === 10 ? `${emergencyNumber.slice(0, 5)} ${emergencyNumber.slice(5)}` : emergencyNumber}
+              {primaryNumber}
             </span>
           </a>
 
           <div className="h-4 w-px bg-slate-200" />
 
-          {/* 4. Direct Hotline / International */}
+          {/* 4. Emergency / OPD Hotline */}
           <a
-            href={`tel:${directHotlineNumber}`}
+            href={`tel:${emergencyNumber.replace(/\s+/g, "")}`}
             className="flex flex-col items-start leading-tight text-slate-700 hover:text-[#0FA8D6] no-underline transition-colors group"
           >
             <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
-              INTERNATIONAL
+              EMERGENCY & OPD
             </span>
             <span className="text-[13px] font-extrabold text-[#012442] group-hover:text-[#0FA8D6] tracking-tight transition-colors">
-              +91 {directHotlineNumber.length === 10 ? `${directHotlineNumber.slice(0, 5)} ${directHotlineNumber.slice(5)}` : directHotlineNumber}
+              {emergencyNumber}
             </span>
           </a>
 
@@ -494,14 +495,17 @@ const Navbar = () => {
               <div className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] text-white rounded-2xl p-3.5 mb-3 shadow-md flex items-center justify-between border border-[#0FA8D6]/20">
                 <div>
                   <div className="text-[10px] text-[#0FA8D6] font-bold uppercase tracking-wider">
-                    24/7 Emergency & Helpline
+                    24/7 Helpline & OPD
                   </div>
                   <div className="text-sm font-extrabold mt-0.5">
-                    +91 {emergencyNumber}
+                    {primaryNumber}
+                  </div>
+                  <div className="text-[11px] text-slate-300 font-medium">
+                    Emergency: {emergencyNumber}
                   </div>
                 </div>
                 <a
-                  href={`tel:${emergencyNumber}`}
+                  href={`tel:${primaryNumber.replace(/\s+/g, "")}`}
                   className="bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] text-xs font-black px-3.5 py-1.5 rounded-full no-underline transition-colors flex items-center gap-1 shadow-xs"
                 >
                   <Phone size={12} />

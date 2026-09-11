@@ -28,8 +28,8 @@ const stats = [
     icon: ShieldCheck,
     value: "100%",
     unit: "Cashless",
-    title: "Ayushman & BSKY",
-    subtitle: "Approved for all major govt & private TPAs",
+    title: "Ayushman & GJAY",
+    subtitle: "Approved for all major govt schemes & private TPAs",
   },
 ];
 

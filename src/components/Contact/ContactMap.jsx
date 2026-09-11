@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 
 const ContactMap = () => {
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const hospitalAddress = settings?.address || "At/PO: Budharaja, Near Overbridge, Sambalpur, Odisha 768004";
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
+  const emergencyPhone = settings?.emergencyPhone || "8895062072";
 
-  // Google Maps directions search query for Sambalpur
-  const googleMapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Ramachandra Urology & Stone Centre Sambalpur Odisha")}`;
+  // Google Maps directions search query for Ramachandra Urology, Sambalpur
+  const googleMapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Ramachandra Urology and Stone Centre Sourav Vihar Burla Sambalpur Odisha")}`;
 
   return (
     <section className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 mt-4 mb-8">
-      <motion.div 
+      <motion.div
         className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-md bg-white"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ const ContactMap = () => {
                 Hospital Campus Location & Directions
               </h3>
               <p className="text-[11px] text-cyan-200/80">
-                Easy approach from Budharaja Bridge, Sambalpur, Odisha
+                Sourav Vihar, Burla, Sambalpur - 768017, Odisha
               </p>
             </div>
           </div>
@@ -49,13 +49,13 @@ const ContactMap = () => {
 
         {/* Map Iframe Container */}
         <div className="relative h-[380px] sm:h-[440px] w-full bg-slate-100">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118844.7554904278!2d83.90382348564034!3d21.46736294713702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a21167f04bb0f77%3A0xa1984628d022b79a!2sSambalpur%2C%20Odisha!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118844.7554904278!2d83.90382348564034!3d21.46736294713702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a21167f04bb0f77%3A0xa1984628d022b79a!2sSambalpur%2C%20Odisha!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Ramachandra Urology & Stone Centre Location Sambalpur"
             className="w-full h-full filter contrast-105"

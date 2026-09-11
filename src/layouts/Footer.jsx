@@ -5,19 +5,20 @@ import {
   MapPin,
   Heart,
   ArrowRight,
-  ExternalLink,
   Clock,
   Award,
-  ChevronRight,
   ShieldCheck,
   Calendar,
-  Ambulance,
   Activity,
   Sparkles,
   Stethoscope,
   CheckCircle2,
+  FileText,
+  Microscope,
+  Pill,
+  Zap,
 } from "lucide-react";
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,91 +37,79 @@ const Footer = memo(() => {
   }, [dispatch, departments?.length]);
 
   const hospitalName = "Ramachandra Urology & Stone Centre";
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
-  const generalPhone = settings?.phone || "8065906200";
-  const hospitalEmail = settings?.email || "contact@ramachandraurology.com";
-  const hospitalAddress = "VSS Marg / Farm Road, Sambalpur, Odisha, India 768001";
+  const primaryPhone = "+91 88950 62072";
+  const altPhones = ["+91 99375 66625", "+91 76538 99199", "0663-4075199"];
+  const hospitalEmail = "ruasc.burla@gmail.com";
+  const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
   const quickLinks = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About us" },
-    { to: "/doctors", label: "Find a Doctor" },
-    { to: "/departments", label: "Clinical Centers" },
-    { to: "/gallery", label: "Infrastructure & Gallery" },
-    { to: "/blog", label: "Health Library & Blog" },
-    { to: "/contact", label: "Contact Us" },
+    { to: "/about", label: "About Us & Leadership" },
+    { to: "/doctors", label: "Our Doctors & Specialists" },
+    { to: "/departments", label: "Clinical Specialties" },
+    { to: "/gallery", label: "Hospital Infrastructure" },
+    { to: "/blog", label: "Health Library & Insights" },
+    { to: "/contact", label: "Contact & Location" },
   ];
 
-  const additionalLinks = [
-    { to: "/contact", label: "Cashless Insurance & TPA" },
-    { to: "/contact", label: "24/7 Laser Stone OPD" },
-    { to: "/contact", label: "Patient Admission Guide" },
-    { to: "/contact", label: "Visiting Hours & Guidelines" },
-    { to: "/contact", label: "Ayushman Bharat (PM-JAY)" },
-    { to: "/contact", label: "Biju Swasthya Kalyan (BSKY)" },
-    { to: "/contact", label: "FAQs & Patient Support" },
+  const inhouseServices = [
+    { label: "Renal Stone (RIRS / PCNL / Laser)", to: "/departments" },
+    { label: "Thulium Fiber LASER Lithotripsy", to: "/departments" },
+    { label: "Urologic Cancer Surgery", to: "/departments" },
+    { label: "Andrology & Male Infertility", to: "/departments" },
+    { label: "Prostate Surgery (THUFLEP / Laser)", to: "/departments" },
+    { label: "Uroflowmetry & Urodynamics", to: "/departments" },
+    { label: "Reconstructive Urology & Plastic", to: "/departments" },
+    { label: "Pathology, X-Ray, Ultrasound & Pharmacy", to: "/departments" },
   ];
 
-  // Dynamic specialties / centers from backend departments
-  const displaySpecialtiesCol1 = (departments && departments.length > 0)
-    ? departments.slice(0, 4).map((dept) => ({
-        to: `/departments/${dept.slug || dept._id}`,
-        label: dept.name,
-      }))
-    : [
-        { to: "/departments", label: "Advanced Laser Urology" },
-        { to: "/departments", label: "Kidney Stone & RIRS / PCNL" },
-        { to: "/departments", label: "Nephrology & Renal Care" },
-        { to: "/departments", label: "Laparoscopic Keyhole Surgery" },
-      ];
-
-  const displaySpecialtiesCol2 = (departments && departments.length > 4)
-    ? departments.slice(4, 8).map((dept) => ({
-        to: `/departments/${dept.slug || dept._id}`,
-        label: dept.name,
-      }))
-    : [
-        { to: "/departments", label: "Uro-Oncology & Prostate Care" },
-        { to: "/departments", label: "Andrology & Men's Health" },
-        { to: "/departments", label: "24/7 Emergency & ICU Trauma" },
-        { to: "/departments", label: "In-House Lab & Diagnostics" },
-      ];
+  const govtSchemes = [
+    "Treatment under Ayushman Bharat (PM-JAY)",
+    "Gopabandhu Jan Arogya Yojana (GJAY)",
+    "Cashless Mediclaim & TPA Facility",
+    "24/7 Laser Stone Emergency OPD",
+  ];
 
   return (
     <footer className="bg-[#eaf4f9] text-[#1e293b] font-sans select-none border-t border-[#0FA8D6]/20">
       
-      {/* ── 1. ANKURA-STYLE TOP HEADER ROW: LOGO + REGISTERED ADDRESS + CIRCULAR SOCIAL ICONS ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#0FA8D6]/20">
+      {/* ── 1. TOP HEADER ROW: LOGO ONLY (NO NAME) + BADGES + SOCIAL ICONS ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#0FA8D6]/20">
           
-          {/* Left: Logo & Registered Address */}
-          <div className="flex items-start sm:items-center gap-4">
-            <Link to="/" className="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center shadow-sm shrink-0 border border-[#0FA8D6]/30 group">
+          {/* Left: Brand Logo Only (No text name next to logo) */}
+          <div className="flex items-center">
+            <Link
+              to="/"
+              className="inline-flex items-center p-2 rounded-2xl bg-white/90 backdrop-blur-xs border border-[#0FA8D6]/25 shadow-xs hover:shadow-md transition-all group"
+              aria-label={hospitalName}
+            >
               <img
                 src="/logo.png"
-                alt="Ramachandra Hospital Logo"
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                alt={hospitalName}
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain group-hover:scale-[1.02] transition-transform"
               />
             </Link>
+          </div>
 
-            <div className="space-y-0.5">
-              <div className="flex items-center gap-2">
-                <span className="text-base sm:text-lg font-black text-[#012442] tracking-tight">
-                  {hospitalName}
-                </span>
-                <span className="text-[10px] bg-[#024363] text-white px-2 py-0.5 rounded-full font-extrabold uppercase tracking-widest hidden sm:inline-block">
-                  Sambalpur
-                </span>
-              </div>
-              <div className="text-xs text-[#024363] font-medium leading-relaxed max-w-xl">
-                <span className="font-bold text-[#012442]">Registered Address: </span>
-                {hospitalAddress}
-              </div>
+          {/* Center / Badges: NABH & Ayushman / GJAY badges */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-xs font-bold text-[#012442]">
+              <Award className="w-4 h-4 text-amber-500 shrink-0" />
+              <span>NABH Accredited</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-xs font-bold text-[#012442]">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Ayushman Bharat / GJAY</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-xs font-bold text-[#012442]">
+              <Zap className="w-4 h-4 text-[#0FA8D6] shrink-0" />
+              <span>Thulium Fiber Laser</span>
             </div>
           </div>
 
           {/* Right: Circular White Social Icons */}
-          <div className="flex items-center gap-2.5 self-start lg:self-center">
+          <div className="flex items-center gap-2 self-start md:self-center">
             {[
               { icon: FaXTwitter, href: "https://twitter.com", label: "X (Twitter)" },
               { icon: FaFacebook, href: "https://facebook.com", label: "Facebook" },
@@ -134,7 +123,7 @@ const Footer = memo(() => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-10 h-10 rounded-full bg-white text-[#012442] hover:bg-[#0FA8D6] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 border border-[#0FA8D6]/20"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#012442] hover:bg-[#0FA8D6] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 border border-[#0FA8D6]/20"
               >
                 <Icon className="w-4 h-4" />
               </a>
@@ -144,16 +133,16 @@ const Footer = memo(() => {
         </div>
       </div>
 
-      {/* ── 2. ANKURA-STYLE MULTI-COLUMN CONTENT SECTION ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
+      {/* ── 2. MULTI-COLUMN CONTENT SECTION ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8">
           
           {/* ── COLUMN 1: QUICK LINKS (lg:col-span-3) ── */}
-          <div className="lg:col-span-3 space-y-3.5">
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
               Quick Links
             </h4>
-            <ul className="space-y-2.5 m-0 p-0 list-none text-xs sm:text-sm">
+            <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
               {quickLinks.map((item, idx) => (
                 <li key={idx}>
                   <Link
@@ -167,59 +156,13 @@ const Footer = memo(() => {
             </ul>
           </div>
 
-          {/* ── COLUMN 2: CENTERS & SPECIALTIES (lg:col-span-4) ── */}
-          <div className="lg:col-span-4 space-y-3.5">
+          {/* ── COLUMN 2: OUR SPECIALTIES & INHOUSE SERVICES (lg:col-span-3) ── */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
-              Clinical Centers & Wings
+              Key Specialties & Tech
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Sub-column A */}
-              <div className="space-y-2.5 text-xs sm:text-sm">
-                <span className="text-xs font-black text-[#024363] block font-sans uppercase tracking-wide">
-                  Surgical Wings
-                </span>
-                <ul className="space-y-2 m-0 p-0 list-none">
-                  {displaySpecialtiesCol1.map((dept, idx) => (
-                    <li key={`col1-${idx}`}>
-                      <Link
-                        to={dept.to}
-                        className="text-[#334155] hover:text-[#0FA8D6] transition-colors no-underline font-medium block leading-normal truncate"
-                      >
-                        {dept.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Sub-column B */}
-              <div className="space-y-2.5 text-xs sm:text-sm">
-                <span className="text-xs font-black text-[#024363] block font-sans uppercase tracking-wide">
-                  Care & Support
-                </span>
-                <ul className="space-y-2 m-0 p-0 list-none">
-                  {displaySpecialtiesCol2.map((dept, idx) => (
-                    <li key={`col2-${idx}`}>
-                      <Link
-                        to={dept.to}
-                        className="text-[#334155] hover:text-[#0FA8D6] transition-colors no-underline font-medium block leading-normal truncate"
-                      >
-                        {dept.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* ── COLUMN 3: ADDITIONAL LINKS (lg:col-span-2) ── */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
-              Additional Links
-            </h4>
-            <ul className="space-y-2.5 m-0 p-0 list-none text-xs sm:text-sm">
-              {additionalLinks.map((item, idx) => (
+            <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
+              {inhouseServices.map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={item.to}
@@ -232,29 +175,58 @@ const Footer = memo(() => {
             </ul>
           </div>
 
-          {/* ── COLUMN 4: 24/7 HELPLINE, ACCREDITATIONS & APPOINTMENTS (lg:col-span-3) ── */}
-          <div className="lg:col-span-3 space-y-4">
+          {/* ── COLUMN 3: GOVT. SCHEMES & IN-HOUSE LABS (lg:col-span-3) ── */}
+          <div className="lg:col-span-3 space-y-3.5">
             <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
-              Accreditations & Help
+              Schemes & Facilities
+            </h4>
+            <ul className="space-y-2.5 m-0 p-0 list-none text-xs sm:text-sm">
+              {govtSchemes.map((scheme, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-[#334155] font-medium text-xs leading-snug">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#0FA8D6] shrink-0 mt-0.5" />
+                  <span>{scheme}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* In-house tags pill list */}
+            <div className="pt-2">
+              <span className="text-[11px] font-bold text-[#024363] uppercase tracking-wider block mb-1.5">
+                In-House Diagnostics:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {["Pathology", "Digital X-Ray", "Ultrasound", "Pharmacy", "Uro-Dynamics"].map((tag, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-semibold bg-white text-[#012442] px-2 py-0.5 rounded-md border border-[#0FA8D6]/20 shadow-2xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── COLUMN 4: CONTACT & EMERGENCY HELPLINE (lg:col-span-3) ── */}
+          <div className="lg:col-span-3 space-y-3.5">
+            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
+              Contact & Helplines
             </h4>
 
-            {/* Accreditation Badges */}
-            <div className="flex flex-wrap gap-2">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[11px] font-bold text-[#012442]">
-                <Award size={14} className="text-amber-500 shrink-0" />
-                <span>NABH Accredited</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[11px] font-bold text-[#012442]">
-                <ShieldCheck size={14} className="text-emerald-600 shrink-0" />
-                <span>ISO 9001:2015</span>
+            {/* Location Address */}
+            <div className="flex items-start gap-2.5 text-xs text-[#024363]">
+              <MapPin className="w-4 h-4 text-[#0FA8D6] shrink-0 mt-0.5" />
+              <div className="leading-snug font-medium">
+                <span className="font-bold text-[#012442] block">Hospital Address:</span>
+                {hospitalAddress}
               </div>
             </div>
 
-            {/* Helpline Call Card */}
-            <div className="bg-white rounded-2xl p-3.5 border border-[#0FA8D6]/30 shadow-xs space-y-2">
+            {/* Phone Numbers Card */}
+            <div className="bg-white rounded-2xl p-3 border border-[#0FA8D6]/30 shadow-xs space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#024363]">
-                  24x7 Emergency SOS
+                  Primary Helpline
                 </span>
                 <span className="flex h-2 w-2 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -262,14 +234,36 @@ const Footer = memo(() => {
                 </span>
               </div>
               <a
-                href={`tel:${emergencyPhone}`}
+                href={`tel:${primaryPhone.replace(/\s+/g, "")}`}
                 className="text-base font-black text-[#012442] hover:text-[#0FA8D6] transition-colors no-underline block"
               >
-                +91 {emergencyPhone}
+                {primaryPhone}
               </a>
-              <div className="text-[11px] text-slate-500 font-medium">
-                OPD Helpline: +91 {generalPhone}
+              <div className="text-[11px] text-slate-600 font-medium space-y-0.5 pt-0.5 border-t border-slate-100">
+                <div className="font-semibold text-[#024363]">Other Helplines:</div>
+                <div className="flex flex-wrap gap-x-2 gap-y-1">
+                  {altPhones.map((ph, idx) => (
+                    <a
+                      key={idx}
+                      href={`tel:${ph.replace(/\s+/g, "")}`}
+                      className="text-slate-600 hover:text-[#0FA8D6] transition-colors"
+                    >
+                      {ph}
+                    </a>
+                  ))}
+                </div>
               </div>
+            </div>
+
+            {/* Email Contact */}
+            <div className="flex items-center gap-2 text-xs text-[#024363] font-medium">
+              <Mail className="w-4 h-4 text-[#0FA8D6] shrink-0" />
+              <a
+                href={`mailto:${hospitalEmail}`}
+                className="text-[#024363] hover:text-[#0FA8D6] transition-colors break-all"
+              >
+                {hospitalEmail}
+              </a>
             </div>
 
             {/* Book Appointment CTA Button */}
@@ -277,9 +271,9 @@ const Footer = memo(() => {
               onClick={() => dispatch(openAppointmentModal())}
               className="w-full py-2.5 px-4 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
             >
-              <Calendar size={13} />
+              <Calendar className="w-3.5 h-3.5" />
               <span>Book Appointment</span>
-              <ArrowRight size={12} />
+              <ArrowRight className="w-3 h-3" />
             </button>
           </div>
 
@@ -289,12 +283,20 @@ const Footer = memo(() => {
       {/* ── 3. BOTTOM COPYRIGHT & CREDITS BAR ── */}
       <div className="py-4 px-4 sm:px-6 lg:px-8 bg-[#d8ecf5] border-t border-[#0FA8D6]/20 text-xs text-[#024363]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 font-medium">
-          <p className="m-0 text-xs text-[#012442]">
+          <p className="m-0 text-xs text-[#012442] text-center sm:text-left">
             © {new Date().getFullYear()} {hospitalName}. All rights reserved.
+          </p>
+          <p className="m-0 text-xs text-[#024363] hidden md:block text-center italic">
+            Centre for Advanced Kidney Care & Laparoscopic Surgeries
           </p>
           <p className="flex items-center gap-1 m-0 text-xs text-[#024363]">
             Designed & Developed with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 mx-0.5" /> by{" "}
-            <a href="https://ephorsys.com/" target="_blank" rel="noopener noreferrer" className="text-[#024363] hover:text-[#0FA8D6] hover:underline font-bold">
+            <a
+              href="https://ephorsys.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#024363] hover:text-[#0FA8D6] hover:underline font-bold"
+            >
               Ephorsys Tech
             </a>
           </p>

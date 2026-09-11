@@ -140,24 +140,16 @@ const HomeContact = memo(() => {
                   <h4 className="text-primary font-bold text-lg mb-1">Call Us 24/7</h4>
                   
                   <div>
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Helpline & Emergency</span>
-                    <a href="tel:+919090963722" className="text-slate-700 font-bold hover:text-secondary transition-colors inline-block mr-3">+91 9090963722</a>
-                    <a href="tel:9090963722" className="text-error font-extrabold hover:text-red-700 transition-colors inline-block">Emergency: 9090963722</a>
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Primary Appointment Helpline</span>
+                    <a href="tel:+918895062072" className="text-slate-700 font-bold hover:text-secondary transition-colors inline-block mr-3">+91 88950 62072</a>
                   </div>
 
                   <div className="pt-1">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Helpdesk / Reception</span>
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Emergency & OPD Helplines</span>
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      <a href="tel:06742556223" className="text-slate-700 hover:text-secondary font-medium transition-colors">0674-2556223</a>
-                      <a href="tel:06743583753" className="text-slate-700 hover:text-secondary font-medium transition-colors">0674-3583753</a>
-                    </div>
-                  </div>
-
-                  <div className="pt-1">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Appointments & Inquiries</span>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      <a href="tel:06742550312" className="text-slate-700 hover:text-secondary font-medium transition-colors">0674-2550312</a>
-                      <a href="tel:06742556267" className="text-slate-700 hover:text-secondary font-medium transition-colors">0674-2556267</a>
+                      <a href="tel:+919937566625" className="text-slate-700 hover:text-secondary font-medium transition-colors">+91 99375 66625</a>
+                      <a href="tel:+917653899199" className="text-slate-700 hover:text-secondary font-medium transition-colors">+91 76538 99199</a>
+                      <a href="tel:06634075199" className="text-slate-700 hover:text-secondary font-medium transition-colors">0663-4075199</a>
                     </div>
                   </div>
                 </div>
@@ -169,8 +161,7 @@ const HomeContact = memo(() => {
                 </div>
                 <div>
                   <h4 className="text-primary font-bold text-lg mb-1">Email Us</h4>
-                  <a href="mailto:info@usthihospital.com" className="text-slate-600 block hover:text-secondary transition-colors">info@usthihospital.com</a>
-                  <a href="mailto:support@usthihospital.com" className="text-slate-600 block hover:text-secondary transition-colors mt-1">support@usthihospital.com</a>
+                  <a href="mailto:ruasc.burla@gmail.com" className="text-slate-600 block hover:text-secondary transition-colors font-medium">ruasc.burla@gmail.com</a>
                 </div>
               </div>
 
@@ -180,8 +171,8 @@ const HomeContact = memo(() => {
                 </div>
                 <div>
                   <h4 className="text-primary font-bold text-lg mb-1">Our Location</h4>
-                  <p className="text-slate-600 leading-relaxed">
-                    N4, Plot No:-N4-1/1, N4, Block N4, IRC Village, Nayapalli, Bhubaneswar, Odisha 751015
+                  <p className="text-slate-600 leading-relaxed font-medium">
+                    Sourav Vihar, Burla, Sambalpur - 768017, Odisha
                   </p>
                 </div>
               </div>
