@@ -19,7 +19,7 @@ const videoReviews = [
     rating: 5,
     videoUrl: "https://res.cloudinary.com/drqb4p2a2/video/upload/v1783343759/WhatsApp_Video_2026-07-06_at_6.34.35_PM_mwnxbr.mp4",
     poster: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783343756/WhatsApp_Image_2026-07-06_at_6.37.20_PM_poff0j.jpg",
-    quote: "Daycare stone surgeries and seamless Ayushman/BSKY cashless support make this hospital the top urology choice in Sambalpur.",
+    quote: "Daycare stone surgeries and seamless Ayushman / GJAY cashless support make this hospital the top urology choice in Sambalpur.",
   },
   {
     id: 3,

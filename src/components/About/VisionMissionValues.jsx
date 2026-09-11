@@ -4,26 +4,26 @@ import { Award, ShieldCheck, HeartPulse, Stethoscope, Sparkles, Target, Eye, Com
 const VisionMissionValues = () => {
   const pillars = [
     {
-      title: "Clinical Excellence",
-      desc: "Practicing evidence-based medicine, strict protocol adherence, and precision minimally invasive surgical interventions.",
+      title: "QUALITY — Excellence in Every Step",
+      desc: "Practicing evidence-based medicine, strict NABH protocol adherence, and precision Thulium Fiber Laser surgical interventions.",
       icon: Award,
       num: "01",
     },
     {
-      title: "Patient Safety First",
-      desc: "Uncompromising hygiene standards, Class 10,000 modular OT cleanrooms, and rigorous patient identification & safety measures.",
+      title: "SAFETY — Your Safety is Our Priority",
+      desc: "Uncompromising infection control, HEPA-filtered modular OT cleanrooms, and stringent clinical safety protocols.",
       icon: ShieldCheck,
       num: "02",
     },
     {
-      title: "Ethical Transparency",
-      desc: "Honest clinical counseling, transparent cost structures, zero unnecessary interventions, and 100% cashless scheme support.",
+      title: "TRUST — Built on Trust, Driven by Care",
+      desc: "Ethical counseling, transparent treatment pathways, zero unnecessary procedures, and 100% cashless scheme support (Ayushman / GJAY).",
       icon: HeartPulse,
       num: "03",
     },
     {
-      title: "Compassionate Care",
-      desc: "Treating every individual with empathy, dignity, and dedicated post-operative care for a smooth recovery journey.",
+      title: "WE CARE — Compassion in Everything",
+      desc: "Treating every patient with dignity, empathy, and patient-centric dedication throughout OPD, daycare, and post-discharge recovery.",
       icon: Stethoscope,
       num: "04",
     },

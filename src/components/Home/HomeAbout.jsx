@@ -5,19 +5,19 @@ import { CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Award } from "lucide-r
 const features = [
   {
     title: "Super-Specialist Urologists",
-    desc: "Decades of surgical mastery in laser & stone care",
+    desc: "Led by Dr. Sanjay Kumar Mahapatra (M.Ch AIIMS New Delhi)",
   },
   {
-    title: "Laser OT & Daycare Center",
-    desc: "Stitchless stone removal with same-day recovery",
+    title: "Thulium Fiber Laser OT",
+    desc: "Stitchless stone removal with same-day daycare recovery",
   },
   {
     title: "24/7 Renal Colic Triage",
-    desc: "Immediate relief for acute kidney stone pain",
+    desc: "Immediate relief for acute kidney stone pain & DJ stenting",
   },
   {
     title: "100% Cashless Empanelment",
-    desc: "Ayushman Bharat, BSKY & private health TPAs",
+    desc: "Treatment under Ayushman Bharat (PM-JAY) & GJAY",
   },
 ];
 
@@ -41,8 +41,8 @@ const HomeAbout = memo(() => {
               <div className="w-8 h-8 rounded-full bg-[#0FA8D6]/20 mx-auto flex items-center justify-center mb-1 text-[#0FA8D6]">
                 <Award size={18} />
               </div>
-              <p className="text-3xl sm:text-4xl font-black mb-0.5 text-white">25<span className="text-[#0FA8D6]">+</span></p>
-              <p className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-cyan-200">Years of<br />Urology Excellence</p>
+              <p className="text-3xl sm:text-4xl font-black mb-0.5 text-white">NABH</p>
+              <p className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-cyan-200">Accredited SHCO<br />Reg No. 14/2024</p>
             </div>
           </div>
 
@@ -51,19 +51,19 @@ const HomeAbout = memo(() => {
             <div className="mb-6">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
                 <Sparkles size={12} className="text-[#0FA8D6]" />
-                Western Odisha's Pioneer Urology Wing
+                Centre for Advanced Kidney Care & Laparoscopic Surgeries
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#012442] leading-[1.18] tracking-tight">
-                Dedicated to Advanced <br />
-                <span className="text-[#0FA8D6]">Kidney Stone & Urology Care</span>
+                Better Care, Healthier Lives <br />
+                <span className="text-[#0FA8D6]">Flow Freely, Live Fully</span>
               </h2>
             </div>
 
             <p className="text-slate-600 leading-relaxed mb-4 text-xs sm:text-sm">
-              Ramachandra Urology & Stone Centre is Sambalpur’s premier specialized medical institution offering comprehensive endourology, laser lithotripsy (RIRS/PCNL), prostate surgeries, and nephrology services under one trusted roof.
+              Ramachandra Urology & Stone Centre (Reg No. 14/2024) is Burla and Sambalpur’s premier specialized center offering comprehensive endourology, Thulium Fiber Laser lithotripsy (RIRS/PCNL), laser prostatectomy (THUFLEP), reconstructive urology, and laparoscopic surgeries under the surgical leadership of Dr. Sanjay Kumar Mahapatra [M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)].
             </p>
             <p className="text-slate-600 leading-relaxed mb-8 text-xs sm:text-sm">
-              We eliminate traditional surgical incisions through cutting-edge fiber lasers and flexible digital endoscopes, ensuring quicker healing, minimal pain, and rapid discharge.
+              We eliminate painful open surgical incisions through cutting-edge fiber lasers and modular operation theatres, ensuring faster recovery, minimal pain, and same-day daycare discharge with complete in-house diagnostics and pharmacy.
             </p>
 
             {/* Feature Cards Grid */}

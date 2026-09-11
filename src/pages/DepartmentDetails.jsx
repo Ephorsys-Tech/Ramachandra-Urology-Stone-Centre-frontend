@@ -25,7 +25,7 @@ const DepartmentDetails = () => {
 
   const { departments, departmentDoctors, loading } = useSelector((state) => state.department || { departments: [], departmentDoctors: [], loading: false });
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   useEffect(() => {
     if (!departments || departments.length === 0) {

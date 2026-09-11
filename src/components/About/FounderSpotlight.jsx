@@ -115,7 +115,7 @@ const FounderSpotlight = () => {
                   "Pioneered Thulium Laser (TFL) in Western Odisha",
                   "Expert in RIRS, Mini-PCNL & Laser Lithotripsy",
                   "Advanced Laparoscopic Uro-Oncology & Reconstruction",
-                  "100% Cashless PM-JAY & BSKY Surgical Access"
+                  "100% Cashless PM-JAY & GJAY Treatment Access"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 text-slate-200 font-medium">
                     <CheckCircle2 size={15} className="text-[#0FA8D6] shrink-0" />

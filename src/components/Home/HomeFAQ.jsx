@@ -4,28 +4,28 @@ import { ChevronDown, ChevronUp, Sparkles, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
-    q: "What are the advantages of Laser RIRS for kidney stone removal?",
-    a: "RIRS (Retrograde Intrarenal Surgery) is completely incision-free. A flexible digital ureteroscope is passed through natural urinary passages, and high-energy laser fibers pulverize stones into dust. Patients experience minimal discomfort and are usually discharged within 24 hours.",
+    q: "What are the advantages of Thulium Fiber LASER for kidney stone removal?",
+    a: "Thulium Fiber LASER (TFL) provides ultra-fine precision for RIRS (Retrograde Intrarenal Surgery), pulverizing kidney, ureteric, and bladder stones into fine dust with zero surgical cuts, negligible bleeding, and same-day daycare discharge.",
   },
   {
-    q: "How do I book an OPD consultation with a senior urologist?",
-    a: "You can book appointments 24/7 directly via our website booking button, call our reception helpline at +91 9090963722 / +91 8065906200, or walk into our Budharaja, Sambalpur OPD desk (08:00 AM - 08:00 PM).",
+    q: "What are the signs of Enlarged Prostate (BPH) and how is THUFLEP better?",
+    a: "Common BPH symptoms include frequent urination, weak urine stream, nocturia (night-time urination), urgency, and feeling of incomplete emptying. THUFLEP (Thulium Fiber Laser Enucleation of Prostate) removes obstructive tissue with minimal blood loss and rapid recovery.",
   },
   {
-    q: "Are Ayushman Bharat (PM-JAY) and BSKY / Gopabandhu cards accepted?",
-    a: "Yes. Ramachandra Urology & Stone Centre is fully empaneled with Ayushman Bharat (PM-JAY), Odisha BSKY / Gopabandhu Swasthya Bima, and all major corporate insurance TPAs for 100% cashless hospitalization.",
+    q: "How do I book an appointment with Dr. Sanjay Kumar Mahapatra?",
+    a: "You can book an appointment 24/7 directly through our website, call our Burla helpline at +91 88950 62072 / +91 99375 66625 / +91 76538 99199 / 0663-4075199, or visit our Sourav Vihar, Burla, Sambalpur clinic.",
   },
   {
-    q: "What should I do in case of severe, acute kidney stone pain (Renal Colic)?",
-    a: "Immediately visit our 24/7 Casualty and Emergency Unit in Budharaja, Sambalpur or call +91 9090963722. Our medical team provides immediate intravenous analgesia, emergency ultrasonography, and urgent DJ stenting/laser intervention if needed.",
+    q: "Are Ayushman Bharat (PM-JAY) and GJAY schemes accepted?",
+    a: "Yes. Ramachandra Urology & Stone Centre is fully empaneled under Ayushman Bharat (PM-JAY), Gopabandhu Jan Arogya Yojana (GJAY), and private health insurance TPAs for 100% cashless hospitalization.",
   },
   {
-    q: "Is daycare discharge possible after laser prostate or stone surgery?",
-    a: "Yes. Over 90% of our minimally invasive laser stone (RIRS/URS) and select prostate procedures qualify for daycare or 24-hour discharge protocols, allowing quick return to work and routine life.",
+    q: "What emergency support is available for acute renal colic / stone pain?",
+    a: "Our emergency triage unit in Sourav Vihar, Burla, Sambalpur operates 24/7 with immediate pain management, emergency ultrasound (USG), DJ stenting, and rapid laser stone clearance. Emergency hotline: +91 99375 66625.",
   },
   {
-    q: "How can I prevent recurrent kidney stones?",
-    a: "Our urology department offers metabolic stone evaluation and chemical stone analysis to identify dietary triggers. Drinking 2.5 to 3 liters of water daily, moderating sodium intake, and following personalized dietary guidance significantly reduces recurrence.",
+    q: "What in-house diagnostic facilities are available?",
+    a: "We have comprehensive NABH-certified in-house facilities including automated Pathology (Clinical Bio-Chemistry, Clinical Pathology, Haematology), Digital X-Ray, Ultrasound, Uroflowmetry, Urodynamic Studies, and Pharmacy.",
   },
 ];
 

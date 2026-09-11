@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { openAppointmentModal } from "../../redux/features/patient/patientSlice";
 
 const insurancePartners = [
-  { name: "Ayushman Bharat (PM-JAY)", type: "Govt Scheme", badge: "100% Cashless" },
-  { name: "BSKY / Gopabandhu Swasthya Bima", type: "Odisha Govt", badge: "Direct Empaneled" },
+  { name: "Ayushman Bharat (PM-JAY)", type: "Central Govt Scheme", badge: "100% Cashless" },
+  { name: "Gopabandhu Jan Arogya Yojana (GJAY)", type: "Odisha Govt Scheme", badge: "Direct Empaneled" },
   { name: "Star Health & Allied Insurance", type: "Private TPA", badge: "Instant Approval" },
   { name: "HDFC ERGO Health Insurance", type: "Private TPA", badge: "Cashless Desk" },
   { name: "ICICI Lombard General Insurance", type: "Private TPA", badge: "Zero Hassle" },
@@ -15,7 +15,7 @@ const insurancePartners = [
 const HomeInsurance = memo(() => {
   const dispatch = useDispatch();
   const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9090963722";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   return (
     <section className="py-16 sm:py-20 bg-slate-50/70 relative overflow-hidden font-sans">

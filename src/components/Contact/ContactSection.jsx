@@ -23,9 +23,9 @@ const ContactSection = memo(() => {
   const dispatch = useDispatch();
   const { departments = [] } = useSelector((state) => state.department || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
-
-  const emergencyPhone = settings?.emergencyPhone || "8895062072";
-  const generalPhone = settings?.phone || "9937566625";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
+  const generalPhone = settings?.phone || "8895062072";
+  const altPhones = ["7653899199", "0663-4075199"];
   const emailAddress = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
@@ -152,30 +152,38 @@ const ContactSection = memo(() => {
                 </div>
               </div>
 
-              <div className="space-y-2.5 pt-2 border-t border-white/10 relative z-10 text-xs sm:text-sm">
+              <div className="space-y-2 pt-2 border-t border-white/10 relative z-10 text-xs sm:text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-300">Emergency & Ambulance:</span>
-                  <a
-                    href={`tel:${emergencyPhone}`}
-                    className="font-extrabold text-[#0FA8D6] hover:text-white transition-colors no-underline"
-                  >
-                    +91 {emergencyPhone}
-                  </a>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-300">Reception & Helpline:</span>
+                  <span className="text-slate-300">Priority Helpline:</span>
                   <a
                     href={`tel:${generalPhone}`}
-                    className="font-extrabold text-white hover:text-[#0FA8D6] transition-colors no-underline"
+                    className="font-extrabold text-[#0FA8D6] hover:text-white transition-colors no-underline"
                   >
                     +91 {generalPhone}
                   </a>
                 </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300">24/7 Emergency:</span>
+                  <a
+                    href={`tel:${emergencyPhone}`}
+                    className="font-extrabold text-white hover:text-[#0FA8D6] transition-colors no-underline"
+                  >
+                    +91 {emergencyPhone}
+                  </a>
+                </div>
+                <div className="flex items-center justify-between text-xs text-slate-300">
+                  <span>Other Phone Lines:</span>
+                  <div className="flex gap-2 font-bold text-slate-200">
+                    <a href="tel:7653899199" className="hover:text-[#0FA8D6] transition-colors">+91 7653899199</a>
+                    <span>•</span>
+                    <a href="tel:06634075199" className="hover:text-[#0FA8D6] transition-colors">0663-4075199</a>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-cyan-200">
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-cyan-200">
                 <ShieldCheck size={14} className="text-[#0FA8D6]" />
-                <span>24/7 Emergency Casualty & Daycare Admission</span>
+                <span>NABH SHCO Certified • Ayushman & GJAY Cashless</span>
               </div>
             </div>
 

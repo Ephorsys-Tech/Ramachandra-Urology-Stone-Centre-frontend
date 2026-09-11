@@ -17,7 +17,7 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: "100% Cashless Govt & TPA Schemes",
-    description: "Empaneled with Ayushman Bharat (PM-JAY), BSKY, Gopabandhu, and all major corporate insurance networks with zero-hassle desk approval.",
+    description: "Empaneled with Ayushman Bharat (PM-JAY), Gopabandhu Jan Arogya Yojana (GJAY), and all major corporate insurance TPAs with zero-hassle desk approval.",
   },
   {
     icon: HeartHandshake,
