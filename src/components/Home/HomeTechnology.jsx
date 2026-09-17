@@ -39,7 +39,7 @@ const HomeTechnology = memo(() => {
   const dispatch = useDispatch();
 
   return (
-    <section className="py-16 sm:py-20 bg-slate-50/70 relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-24 bg-slate-50/70 relative overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Section */}
@@ -52,14 +52,14 @@ const HomeTechnology = memo(() => {
             <h2 className="text-3xl sm:text-4xl font-black text-[#012442] tracking-tight">
               Advanced <span className="text-[#0FA8D6]">Laser & Stone</span> Technologies
             </h2>
-            <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
               We leverage the latest global advances in endourology and laser technology to deliver stitchless, painless, and daycare surgical outcomes in Sambalpur.
             </p>
           </div>
 
           <button
             onClick={() => dispatch(openAppointmentModal())}
-            className="self-start md:self-auto inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs sm:text-sm font-extrabold shadow-md hover:shadow-lg transition-all cursor-pointer border-none"
+            className="self-start md:self-auto inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs sm:text-sm font-extrabold shadow-md hover:shadow-lg transition-all cursor-pointer border-none uppercase tracking-wider"
           >
             <span>Consult a Laser Specialist</span>
             <ArrowRight size={15} />

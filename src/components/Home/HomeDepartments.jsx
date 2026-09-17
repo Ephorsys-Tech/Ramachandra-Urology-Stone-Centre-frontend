@@ -71,7 +71,7 @@ const itemVariants = {
 const HomeDepartments = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { departments } = useSelector((state) => state.department);
+  const { departments = [] } = useSelector((state) => state.department || {});
 
   useEffect(() => {
     if (departments.length === 0) {

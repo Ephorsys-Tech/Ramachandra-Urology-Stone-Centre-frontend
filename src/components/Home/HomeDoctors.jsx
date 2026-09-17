@@ -2,7 +2,7 @@ import { useEffect, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, MapPin, Phone, ChevronLeft, ChevronRight, ArrowRight, Sparkles, Stethoscope } from 'lucide-react';
+import { Share2, MapPin, Phone, ChevronLeft, ChevronRight, ArrowRight, Sparkles, Stethoscope, ShieldCheck, Calendar } from 'lucide-react';
 import { openAppointmentModal } from '../../redux/features/patient/patientSlice';
 import { fetchHomePageDoctors } from '../../redux/features/doctor/doctorThunk';
 import toast from 'react-hot-toast';
@@ -13,7 +13,7 @@ const HomeDoctors = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { doctors = [], homeDoctors = [], loading } = useSelector((state) => state.doctor || {});
+  const { doctors = [], homeDoctors = [], loading = false } = useSelector((state) => state.doctor || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
@@ -95,7 +95,7 @@ const HomeDoctors = memo(() => {
           <div className="flex items-center gap-4 shrink-0 mt-4 lg:mt-0">
             <button
               onClick={() => navigate('/doctors')}
-              className="bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none"
+              className="bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none uppercase tracking-wider"
             >
               <span>View All Specialists</span> <ArrowRight size={15} />
             </button>
@@ -158,8 +158,9 @@ const HomeDoctors = memo(() => {
                             draggable={false}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-5xl select-none bg-slate-200">
-                            👨‍⚕️
+                          <div className="w-full h-full flex flex-col items-center justify-center select-none bg-slate-100 text-slate-400">
+                            <Stethoscope size={36} className="text-[#024363]/40 mb-1" />
+                            <span className="text-[10px] font-bold text-slate-400">Specialist</span>
                           </div>
                         )}
                       </div>
@@ -167,7 +168,7 @@ const HomeDoctors = memo(() => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          dispatch(openAppointmentModal());
+                          dispatch(openAppointmentModal(doc.department?.name || "", doc.name));
                         }}
                         className="w-full py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
                       >
@@ -208,7 +209,7 @@ const HomeDoctors = memo(() => {
                         {/* Location Pin */}
                         <div className="mt-2.5 flex items-center gap-1 text-[10.5px] text-slate-500">
                           <MapPin className="w-3 h-3 text-[#0FA8D6] shrink-0" />
-                          <span className="truncate leading-tight">Budharaja, Sambalpur</span>
+                          <span className="truncate leading-tight">Sourav Vihar, Burla</span>
                         </div>
                       </div>
 

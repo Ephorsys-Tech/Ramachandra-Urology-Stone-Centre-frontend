@@ -1,17 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown, Landmark, Activity, UserRound, Check, Sparkles } from "lucide-react";
+import { Search, ChevronDown, Landmark, Activity, UserRound, Check, Sparkles, MapPin, Stethoscope } from "lucide-react";
 import { fetchAllDepartments } from "../../redux/features/department/departmentThunk";
 import { fetchAllDoctorsPublic } from "../../redux/features/doctor/doctorThunk";
 
-export default function QuickSearch() {
+const QuickSearch = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { departments } = useSelector((state) => state.department);
-  const { doctors } = useSelector((state) => state.doctor);
+  const { departments = [] } = useSelector((state) => state.department || {});
+  const { doctors = [] } = useSelector((state) => state.doctor || {});
 
   const [selectedHospital, setSelectedHospital] = useState("Ramachandra Urology & Stone Centre");
   const [selectedSpecialty, setSelectedSpecialty] = useState("All");
@@ -72,18 +72,21 @@ export default function QuickSearch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/doctors?specialty=${encodeURIComponent(selectedSpecialty)}&doctor=${encodeURIComponent(selectedDoctor)}`);
+    const params = new URLSearchParams();
+    if (selectedSpecialty !== "All") params.set("specialty", selectedSpecialty);
+    if (selectedDoctor !== "All") params.set("doctor", selectedDoctor);
+    navigate(`/doctors?${params.toString()}`);
   };
 
   return (
-    <section className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] py-6 md:py-8 lg:py-10 px-3 sm:px-4 md:px-6 relative overflow-hidden font-sans border-y border-[#0FA8D6]/20">
+    <section className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] py-6 sm:py-8 lg:py-10 px-3 sm:px-4 md:px-6 relative overflow-hidden font-sans border-y border-[#0FA8D6]/20">
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-24 bg-[#0FA8D6]/10 blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl lg:rounded-full shadow-xl p-2.5 sm:p-3 lg:p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center justify-between border border-slate-200/90 gap-2 sm:gap-3 lg:gap-0 w-full overflow-visible"
+          className="bg-white rounded-2xl lg:rounded-full shadow-2xl p-2.5 sm:p-3 lg:p-2.5 flex flex-col lg:flex-row items-stretch lg:items-center justify-between border border-slate-200/90 gap-2 sm:gap-3 lg:gap-0 w-full overflow-visible"
         >
           {/* Select Hospital */}
           <div
@@ -97,14 +100,18 @@ export default function QuickSearch() {
               isHospitalOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
             }`}
           >
-            <Landmark className="w-5 h-5 text-[#0FA8D6] shrink-0 transition-transform group-hover:scale-110 duration-200" />
+            <div className="w-9 h-9 rounded-xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] shrink-0">
+              <Landmark className="w-4.5 h-4.5 text-[#0FA8D6]" />
+            </div>
             <div className="flex-1 min-w-0 text-left">
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
+              <label className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
                 Hospital Centre
               </label>
               <div className="flex items-center justify-between gap-1">
-                <span className="font-sans font-bold text-[#012442] text-xs sm:text-sm leading-tight truncate">
-                  {selectedHospital === "Ramachandra Urology & Stone Centre" ? "Ramachandra Urology & Stone Centre, Sambalpur" : selectedHospital}
+                <span className="font-sans font-extrabold text-[#012442] text-xs sm:text-sm leading-tight truncate">
+                  {selectedHospital === "Ramachandra Urology & Stone Centre"
+                    ? "Ramachandra Urology, Sambalpur"
+                    : selectedHospital}
                 </span>
                 <ChevronDown
                   className={`w-4 h-4 text-slate-400 transition-all duration-250 shrink-0 ml-1 sm:ml-2 ${
@@ -132,11 +139,15 @@ export default function QuickSearch() {
                       setIsHospitalOpen(false);
                     }}
                     className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                      selectedHospital === "Ramachandra Urology & Stone Centre" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
+                      selectedHospital === "Ramachandra Urology & Stone Centre"
+                        ? "text-[#024363] bg-[#0FA8D6]/10"
+                        : "text-slate-700"
                     }`}
                   >
                     <span className="truncate">Ramachandra Urology & Stone Centre, Sambalpur</span>
-                    {selectedHospital === "Ramachandra Urology & Stone Centre" && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
+                    {selectedHospital === "Ramachandra Urology & Stone Centre" && (
+                      <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />
+                    )}
                   </button>
                 </motion.div>
               )}
@@ -158,14 +169,16 @@ export default function QuickSearch() {
               isSpecialtyOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
             }`}
           >
-            <Activity className="w-5 h-5 text-[#0FA8D6] shrink-0 transition-transform group-hover:scale-110 duration-200" />
+            <div className="w-9 h-9 rounded-xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] shrink-0">
+              <Activity className="w-4.5 h-4.5 text-[#0FA8D6]" />
+            </div>
             <div className="flex-1 min-w-0 text-left">
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
+              <label className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
                 Speciality / Care Wing
               </label>
               <div className="flex items-center justify-between gap-1">
-                <span className="font-sans font-bold text-[#012442] text-xs sm:text-sm leading-tight truncate">
-                  {selectedSpecialty === "All" ? "Select Speciality" : selectedSpecialty}
+                <span className="font-sans font-extrabold text-[#012442] text-xs sm:text-sm leading-tight truncate">
+                  {selectedSpecialty === "All" ? "All Specialties" : selectedSpecialty}
                 </span>
                 <ChevronDown
                   className={`w-4 h-4 text-slate-400 transition-all duration-250 shrink-0 ml-1 sm:ml-2 ${
@@ -203,7 +216,7 @@ export default function QuickSearch() {
                     </button>
                     {(departments || []).map((dept) => (
                       <button
-                        key={dept._id}
+                        key={dept._id || dept.name}
                         type="button"
                         onClick={() => {
                           setSelectedSpecialty(dept.name);
@@ -239,14 +252,16 @@ export default function QuickSearch() {
               isDoctorOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
             }`}
           >
-            <UserRound className="w-5 h-5 text-[#0FA8D6] shrink-0 transition-transform group-hover:scale-110 duration-200" />
+            <div className="w-9 h-9 rounded-xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] shrink-0">
+              <UserRound className="w-4.5 h-4.5 text-[#0FA8D6]" />
+            </div>
             <div className="flex-1 min-w-0 text-left">
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
+              <label className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5 cursor-pointer">
                 Specialist Doctor
               </label>
               <div className="flex items-center justify-between gap-1">
-                <span className="font-sans font-bold text-[#012442] text-xs sm:text-sm leading-tight truncate">
-                  {selectedDoctor === "All" ? "Select Doctor" : `Dr. ${selectedDoctor}`}
+                <span className="font-sans font-extrabold text-[#012442] text-xs sm:text-sm leading-tight truncate">
+                  {selectedDoctor === "All" ? "All Doctors" : `Dr. ${selectedDoctor}`}
                 </span>
                 <ChevronDown
                   className={`w-4 h-4 text-slate-400 transition-all duration-250 shrink-0 ml-1 sm:ml-2 ${
@@ -278,12 +293,12 @@ export default function QuickSearch() {
                         selectedDoctor === "All" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
                       }`}
                     >
-                      <span>All Doctors</span>
+                      <span>All Doctors ({doctors.length})</span>
                       {selectedDoctor === "All" && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
                     </button>
                     {filteredDoctorsList.map((doc) => (
                       <button
-                        key={doc._id}
+                        key={doc._id || doc.name}
                         type="button"
                         onClick={() => {
                           setSelectedDoctor(doc.name);
@@ -293,7 +308,7 @@ export default function QuickSearch() {
                           selectedDoctor === doc.name ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
                         }`}
                       >
-                        <span className="truncate">Dr. {doc.name}</span>
+                        <span className="truncate">{doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}</span>
                         {selectedDoctor === doc.name && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
                       </button>
                     ))}
@@ -307,7 +322,7 @@ export default function QuickSearch() {
           <div className="lg:pl-2 shrink-0">
             <button
               type="submit"
-              className="w-full lg:w-auto bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold rounded-xl lg:rounded-full px-6 sm:px-8 py-3 lg:py-3.5 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md hover:shadow-lg transition-all active:scale-95 text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap"
+              className="w-full lg:w-auto bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-black rounded-xl lg:rounded-full px-6 sm:px-8 py-3 lg:py-3.5 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md hover:shadow-lg transition-all active:scale-95 text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap"
             >
               <Search className="w-4 h-4 text-white shrink-0" />
               <span>Search Specialist</span>
@@ -317,5 +332,7 @@ export default function QuickSearch() {
       </div>
     </section>
   );
-}
+});
 
+QuickSearch.displayName = "QuickSearch";
+export default QuickSearch;
