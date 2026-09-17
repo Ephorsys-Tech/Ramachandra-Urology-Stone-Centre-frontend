@@ -18,7 +18,7 @@ const FloatingSidebar = memo(() => {
         </div>
         <button
           onClick={() => dispatch(openAppointmentModal())}
-          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#004649] hover:bg-[#005e63] text-white flex items-center justify-center transition-colors cursor-pointer border-none rounded-tl-xl md:rounded-tl-2xl outline-none"
+          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#024363] hover:bg-[#012442] text-white flex items-center justify-center transition-colors cursor-pointer border-none rounded-tl-xl md:rounded-tl-2xl outline-none shadow-md"
           aria-label="Book Appointment"
         >
           <Calendar className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 stroke-[2.5]" />
@@ -29,14 +29,14 @@ const FloatingSidebar = memo(() => {
       <div className="group relative flex items-center">
         {/* Tooltip */}
         <div className="absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
-          Emergency Helpline (+91 88950 62072)
+          Emergency Hotline (+91 99375 66625)
         </div>
         <a
-          href="tel:8895062072"
-          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#ba1a1a] hover:bg-[#d32f2f] text-white flex items-center justify-center transition-colors cursor-pointer border-none outline-none no-underline"
+          href="tel:9937566625"
+          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#dc2626] hover:bg-[#b91c1c] text-white flex items-center justify-center transition-colors cursor-pointer border-none outline-none no-underline shadow-md"
           aria-label="Emergency Call"
         >
-          <Asterisk className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 stroke-[3]" />
+          <Asterisk className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 stroke-[3] animate-spin" style={{ animationDuration: '6s' }} />
         </a>
       </div>
 
@@ -48,7 +48,7 @@ const FloatingSidebar = memo(() => {
         </div>
         <button
           onClick={() => navigate("/contact")}
-          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#10b981] hover:bg-[#059669] text-white flex items-center justify-center transition-colors cursor-pointer border-none rounded-bl-xl md:rounded-bl-2xl outline-none"
+          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#0FA8D6] hover:bg-[#00b4ea] text-white flex items-center justify-center transition-colors cursor-pointer border-none rounded-bl-xl md:rounded-bl-2xl outline-none shadow-md"
           aria-label="Contact Us"
         >
           <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 stroke-[2.5]" />

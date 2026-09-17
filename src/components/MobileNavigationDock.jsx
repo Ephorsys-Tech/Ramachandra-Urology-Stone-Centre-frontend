@@ -72,10 +72,10 @@ const MobileNavigationDock = memo(() => {
                 aria-label="Book Appointment"
               >
                 {/* Elevated Center Orb */}
-                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#007a87] to-[#005031] shadow-[0_8px_22px_rgba(0,122,135,0.4)] flex items-center justify-center text-white border-3 border-white transition-transform duration-200">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#0FA8D6] to-[#024363] shadow-[0_8px_22px_rgba(15,168,214,0.4)] flex items-center justify-center text-white border-3 border-white transition-transform duration-200">
                   <Icon size={24} className="stroke-[2.3]" />
                 </div>
-                <span className="text-[11px] font-extrabold text-[#007a87] mt-1 tracking-tight">
+                <span className="text-[11px] font-extrabold text-[#024363] mt-1 tracking-tight">
                   {item.label}
                 </span>
               </motion.button>
@@ -94,13 +94,13 @@ const MobileNavigationDock = memo(() => {
                   size={21}
                   className={`transition-all duration-200 ${
                     item.isActive
-                      ? "text-emerald-700 stroke-[2.5]"
+                      ? "text-[#024363] stroke-[2.5]"
                       : "text-slate-500 group-hover:text-slate-800 stroke-[1.9]"
                   }`}
                 />
                 <span
                   className={`text-[11px] font-bold tracking-tight transition-colors duration-200 ${
-                    item.isActive ? "text-emerald-700" : "text-slate-500"
+                    item.isActive ? "text-[#024363]" : "text-slate-500"
                   }`}
                 >
                   {item.label}

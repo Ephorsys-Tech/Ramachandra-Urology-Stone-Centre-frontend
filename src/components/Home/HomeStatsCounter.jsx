@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Award, Users, CheckCircle2, ShieldCheck, HeartPulse, Activity } from "lucide-react";
+import { Award, CheckCircle2, ShieldCheck, HeartPulse, Sparkles } from "lucide-react";
 
 const stats = [
   {
@@ -29,14 +29,14 @@ const stats = [
     value: "100%",
     unit: "Cashless",
     title: "Ayushman & GJAY",
-    subtitle: "Approved for all major govt schemes & private TPAs",
+    subtitle: "Approved for all major govt schemes & TPAs",
   },
 ];
 
 const HomeStatsCounter = memo(() => {
   return (
-    <section className="relative -mt-4 mb-8 z-20 max-w-7xl mx-auto px-4 font-sans">
-      <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-[#0FA8D6]/30 relative overflow-hidden text-white">
+    <section className="relative -mt-4 mb-8 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-[#0FA8D6]/30 relative overflow-hidden text-white">
         
         {/* Ambient glow effects */}
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0FA8D6]/20 rounded-full blur-3xl pointer-events-none" />
@@ -52,10 +52,10 @@ const HomeStatsCounter = memo(() => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`flex flex-col ${idx > 0 ? "pt-6 sm:pt-0 sm:pl-6 lg:pl-8" : ""}`}
+                className={`flex flex-col group ${idx > 0 ? "pt-6 sm:pt-0 sm:pl-6 lg:pl-8" : ""}`}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-11 h-11 rounded-2xl bg-[#0FA8D6]/20 border border-[#0FA8D6]/40 text-[#0FA8D6] flex items-center justify-center shadow-xs">
+                  <div className="w-11 h-11 rounded-2xl bg-[#0FA8D6]/20 border border-[#0FA8D6]/40 text-[#0FA8D6] flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
                     <Icon size={22} />
                   </div>
                   <span className="text-[11px] font-black uppercase tracking-wider text-cyan-300">
@@ -64,7 +64,7 @@ const HomeStatsCounter = memo(() => {
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-1">
-                  <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                  <span className="text-3xl sm:text-4xl font-black text-white tracking-tight group-hover:text-[#0FA8D6] transition-colors">
                     {stat.value}
                   </span>
                 </div>
