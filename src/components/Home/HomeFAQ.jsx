@@ -45,11 +45,11 @@ const HomeFAQ = memo(() => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-black text-xs uppercase tracking-wider mb-3 shadow-2xs">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
             <Sparkles size={12} className="text-[#0FA8D6]" />
             Patient Help & Clarity
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
             Frequently Asked <span className="text-[#0FA8D6]">Questions</span>
           </h2>
           <p className="text-slate-600 max-w-xl mx-auto text-xs sm:text-sm mt-2 leading-relaxed">
@@ -76,7 +76,7 @@ const HomeFAQ = memo(() => {
                 onClick={() => toggle(i)}
                 className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer border-none bg-transparent"
               >
-                <span className={`font-black text-xs sm:text-sm transition-colors ${openIndex === i ? "text-[#024363]" : "text-[#012442]"}`}>
+                <span className={`font-medium text-xs sm:text-sm transition-colors ${openIndex === i ? "text-[#024363]" : "text-[#012442]"}`}>
                   {faq.q}
                 </span>
                 <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${

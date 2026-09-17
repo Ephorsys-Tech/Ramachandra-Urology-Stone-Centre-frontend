@@ -63,11 +63,11 @@ const HomeTestimonials = memo(() => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
             <Sparkles size={12} className="text-[#0FA8D6]" />
             Real Patient Recoveries
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] mb-3 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] mb-3 tracking-tight">
             Trusted by Thousands Across <span className="text-[#0FA8D6]">Western Odisha</span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm leading-relaxed">
@@ -113,7 +113,7 @@ const HomeTestimonials = memo(() => {
                   <UserRound className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className={`font-black text-xs sm:text-sm truncate ${i === 1 ? "text-white" : "text-[#012442]"}`}>{t.name}</p>
+                  <p className={`font-medium text-xs sm:text-sm truncate ${i === 1 ? "text-white" : "text-[#012442]"}`}>{t.name}</p>
                   <p className={`text-[11px] truncate ${i === 1 ? "text-cyan-300 font-medium" : "text-slate-500 font-medium"}`}>{t.role}</p>
                 </div>
               </div>

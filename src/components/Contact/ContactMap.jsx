@@ -65,7 +65,7 @@ const ContactMap = () => {
           <div className="hidden sm:block absolute bottom-6 left-6 max-w-sm bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 shadow-xl text-slate-800">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10.5px] font-black uppercase tracking-wider text-[#024363]">
+              <span className="text-[10.5px] font-medium uppercase tracking-wider text-[#024363]">
                 Open Today & 24/7 Casualty
               </span>
             </div>
@@ -79,7 +79,7 @@ const ContactMap = () => {
               <span className="text-[11px] text-slate-500">Helpline:</span>
               <a
                 href={`tel:${emergencyPhone}`}
-                className="font-black text-[#0FA8D6] hover:text-[#024363] transition-colors no-underline flex items-center gap-1"
+                className="font-medium text-[#0FA8D6] hover:text-[#024363] transition-colors no-underline flex items-center gap-1"
               >
                 <Phone size={11} />
                 +91 {emergencyPhone}

@@ -99,7 +99,7 @@ const AdminLogin = () => {
           {/* Text Content */}
           <div className="z-10 mt-4 md:mt-10">
             <h1 className="text-5xl md:text-6xl font-extrabold text-[#1e293b] tracking-tight mb-4">
-              HELLO <span className="text-[#3fc0b0] font-black">!</span>
+              HELLO <span className="text-[#3fc0b0] font-medium">!</span>
             </h1>
             <p className="text-slate-500 font-semibold text-base leading-relaxed max-w-[220px]">
               Please entre your details to continue
@@ -138,7 +138,7 @@ const AdminLogin = () => {
               >
                 {/* Hospital Logo Header */}
                 <div className="flex items-center gap-2 mb-8 md:mb-12">
-                  <span className="text-[#024363] font-black text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
+                  <span className="text-[#024363] font-medium text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
                   <span className="text-[#0FA8D6] font-bold text-2xl sm:text-3xl tracking-wide">Hospital</span>
                 </div>
 

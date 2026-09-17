@@ -142,7 +142,7 @@ const BlogList = () => {
             {/* Left Column: Featured Details */}
             <div className="lg:col-span-7 space-y-4">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-[#0FA8D6] text-[#012442] shadow-xs">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider px-3 py-1 rounded-full bg-[#0FA8D6] text-[#012442] shadow-xs">
                   <Sparkles size={12} />
                   Featured Medical Insight
                 </span>
@@ -203,7 +203,7 @@ const BlogList = () => {
               <div className="pt-2">
                 <Link
                   to={`/blog/${featuredPost._id}`}
-                  className="inline-flex items-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-black text-xs px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg no-underline tracking-wide uppercase"
+                  className="inline-flex items-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg no-underline tracking-wide uppercase"
                 >
                   <span>Read Full Medical Guide</span>
                   <ArrowRight size={14} />
@@ -471,7 +471,7 @@ const BlogList = () => {
             <div className="space-y-2.5">
               <a
                 href={`tel:${emergencyPhone}`}
-                className="w-full flex items-center justify-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-black text-xs py-2.5 rounded-xl no-underline transition-colors shadow-xs"
+                className="w-full flex items-center justify-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs py-2.5 rounded-xl no-underline transition-colors shadow-xs"
               >
                 <Phone size={13} />
                 <span>Call Helpline: +91 {emergencyPhone}</span>

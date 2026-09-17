@@ -92,7 +92,7 @@ const Footer = memo(() => {
               />
             </Link>
             <div className="hidden sm:block">
-              <span className="text-xs font-black text-[#012442] block tracking-tight">Reg No: 14/2024</span>
+              <span className="text-xs font-medium text-[#012442] block tracking-tight">Reg No: 14/2024</span>
               <span className="text-[11px] font-medium text-[#024363]">Sourav Vihar, Burla, Sambalpur</span>
             </div>
           </div>
@@ -144,7 +144,7 @@ const Footer = memo(() => {
           
           {/* ── COLUMN 1: QUICK LINKS (lg:col-span-3) ── */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
+            <h4 className="text-sm font-medium text-[#012442] tracking-wider uppercase m-0 pb-1">
               Quick Links
             </h4>
             <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
@@ -163,7 +163,7 @@ const Footer = memo(() => {
 
           {/* ── COLUMN 2: OUR SPECIALTIES & INHOUSE SERVICES (lg:col-span-3) ── */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
+            <h4 className="text-sm font-medium text-[#012442] tracking-wider uppercase m-0 pb-1">
               Key Specialties & Tech
             </h4>
             <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
@@ -182,7 +182,7 @@ const Footer = memo(() => {
 
           {/* ── COLUMN 3: GOVT. SCHEMES & IN-HOUSE LABS (lg:col-span-3) ── */}
           <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
+            <h4 className="text-sm font-medium text-[#012442] tracking-wider uppercase m-0 pb-1">
               Schemes & Facilities
             </h4>
             <ul className="space-y-2.5 m-0 p-0 list-none text-xs sm:text-sm">
@@ -214,7 +214,7 @@ const Footer = memo(() => {
 
           {/* ── COLUMN 4: CONTACT & EMERGENCY HELPLINE (lg:col-span-3) ── */}
           <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-sm font-black text-[#012442] tracking-wider uppercase m-0 pb-1">
+            <h4 className="text-sm font-medium text-[#012442] tracking-wider uppercase m-0 pb-1">
               Contact & Helplines
             </h4>
 
@@ -240,7 +240,7 @@ const Footer = memo(() => {
               </div>
               <a
                 href={`tel:${primaryPhone.replace(/\s+/g, "")}`}
-                className="text-base font-black text-[#012442] hover:text-[#0FA8D6] transition-colors no-underline block"
+                className="text-base font-medium text-[#012442] hover:text-[#0FA8D6] transition-colors no-underline block"
               >
                 {primaryPhone}
               </a>

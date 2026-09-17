@@ -50,11 +50,11 @@ const LeadershipTeam = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-14">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
               <Sparkles size={14} className="text-[#0FA8D6]" />
               <span>CLINICAL & SURGICAL FACULTY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#012442] tracking-tight leading-tight m-0">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
               Our Medical Leadership Team
             </h2>
             <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed max-w-2xl">
@@ -120,7 +120,7 @@ const LeadershipTeam = () => {
                 {/* Details Content */}
                 <div className="p-6 space-y-3">
                   <div>
-                    <h3 className="text-xl font-black text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
+                    <h3 className="text-xl font-medium text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
                       {doc.name}
                     </h3>
                     <p className="text-xs font-bold text-[#024363] mt-0.5">

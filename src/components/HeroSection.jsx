@@ -117,18 +117,17 @@ const HeroSection = memo(() => {
               className="text-left space-y-2.5 sm:space-y-3"
             >
               {/* Main Headline Lines with Crisp Shadow */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-black text-white leading-[1.16] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-medium text-white leading-[1.16] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 {active.headlineLine1}
                 <span className="block mt-0.5 sm:mt-1 text-white">
                   {active.headlineLine2}
                 </span>
               </h1>
 
-              {/* Clean Horizontal Underline Divider */}
-              <div className="w-full max-w-lg h-[2px] bg-[#0FA8D6] my-2.5 sm:my-3 rounded-full shadow-[0_0_10px_rgba(15,168,214,0.6)]" />
+ 
 
               {/* Highlight Tagline ("Now in Sambalpur!") */}
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-cyan-300 tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
+              <div className="text-xl sm:text-2xl md:text-3xl font-medium text-cyan-300 tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
                 {active.tagline}
               </div>
 
@@ -143,7 +142,7 @@ const HeroSection = memo(() => {
           <div className="flex flex-wrap items-center gap-3 pt-4 sm:pt-5">
             <button
               onClick={() => dispatch(openAppointmentModal())}
-              className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white text-xs sm:text-sm font-black shadow-lg hover:shadow-[#0FA8D6]/30 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer uppercase tracking-wider border border-white/20"
+              className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white text-xs sm:text-sm font-medium  cursor-pointer uppercase tracking-wider border border-white/20"
             >
               <Calendar size={15} />
               <span>Book Appointment</span>
@@ -158,25 +157,11 @@ const HeroSection = memo(() => {
               <span>Call: {primaryPhone}</span>
             </a>
 
-          
+
           </div>
         </div>
 
-        {/* ── BOTTOM CENTER: PAGINATION DOTS ── */}
-        <div className="relative z-20 flex items-center justify-center gap-2.5 pt-3 sm:pt-4">
-          {heroSlides.map((slide, index) => (
-            <button
-              key={slide.id}
-              onClick={() => setCurrentSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`transition-all duration-300 rounded-full cursor-pointer border ${
-                currentSlide === index
-                  ? "w-7 sm:w-8 h-2.5 bg-[#0FA8D6] border-[#0FA8D6] shadow-[0_0_8px_rgba(15,168,214,0.8)]"
-                  : "w-2.5 h-2.5 bg-white/20 border-white/50 hover:border-white hover:bg-white/40"
-              }`}
-            />
-          ))}
-        </div>
+
 
         {/* Subtle Next / Prev Carousel Arrows on Sides */}
         <button

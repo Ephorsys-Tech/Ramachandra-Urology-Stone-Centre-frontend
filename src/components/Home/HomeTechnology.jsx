@@ -45,11 +45,11 @@ const HomeTechnology = memo(() => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
               <Zap size={13} className="text-[#0FA8D6]" />
               State-of-the-Art Clinical Infrastructure
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#012442] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-medium text-[#012442] tracking-tight">
               Advanced <span className="text-[#0FA8D6]">Laser & Stone</span> Technologies
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
@@ -82,7 +82,7 @@ const HomeTechnology = memo(() => {
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10.5px] font-black uppercase tracking-wider text-[#0FA8D6] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-full">
+                  <span className="text-[10.5px] font-medium uppercase tracking-wider text-[#0FA8D6] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-full">
                     {tech.category}
                   </span>
                   <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
@@ -90,7 +90,7 @@ const HomeTechnology = memo(() => {
                   </span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-black text-[#012442] mb-2.5 group-hover:text-[#024363] transition-colors leading-snug">
+                <h3 className="text-base sm:text-lg font-medium text-[#012442] mb-2.5 group-hover:text-[#024363] transition-colors leading-snug">
                   {tech.title}
                 </h3>
 

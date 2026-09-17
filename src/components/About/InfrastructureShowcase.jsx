@@ -43,11 +43,11 @@ const InfrastructureShowcase = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
             <Sparkles size={14} className="text-[#0FA8D6]" />
             <span>STATE-OF-THE-ART SURGICAL TECHNOLOGY</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#012442] tracking-tight leading-tight m-0">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
             Advanced Medical Infrastructure
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed">
@@ -92,7 +92,7 @@ const InfrastructureShowcase = () => {
 
                   {/* Card Content */}
                   <div className="p-6 sm:p-8 space-y-4">
-                    <h3 className="text-xl sm:text-2xl font-black text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight leading-snug m-0">
+                    <h3 className="text-xl sm:text-2xl font-medium text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight leading-snug m-0">
                       {fac.title}
                     </h3>
                     

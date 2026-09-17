@@ -52,7 +52,7 @@ const VisionMissionValues = () => {
               OUR GUIDING VISION
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight leading-snug m-0">
+            <h3 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-snug m-0">
               Transforming Western Odisha into a Healthcare Beacon
             </h3>
 
@@ -77,7 +77,7 @@ const VisionMissionValues = () => {
               OUR CLINICAL MISSION
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight leading-snug m-0">
+            <h3 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-snug m-0">
               Precision Laser Surgery with Human Compassion
             </h3>
 
@@ -94,7 +94,7 @@ const VisionMissionValues = () => {
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0FA8D6] block mb-2">
               FOUNDATIONAL ETHOS
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#012442] tracking-tight m-0">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-[#012442] tracking-tight m-0">
               Our Core Principles of Practice
             </h2>
           </div>
@@ -121,7 +121,7 @@ const VisionMissionValues = () => {
                       </div>
                     </div>
 
-                    <h4 className="text-lg font-black text-[#012442] group-hover:text-[#024363] transition-colors m-0">
+                    <h4 className="text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors m-0">
                       {item.title}
                     </h4>
 

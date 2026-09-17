@@ -123,7 +123,7 @@ const HomeContact = memo(() => {
             <span className="inline-block text-tertiary font-bold text-sm tracking-widest uppercase mb-4">
               Get In Touch
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 font-sans">
+            <h2 className="text-4xl md:text-5xl font-medium text-primary mb-6 font-sans">
               Contact <span className="text-secondary">Us</span>
             </h2>
             <p className="text-slate-600 mb-10 text-lg leading-relaxed">

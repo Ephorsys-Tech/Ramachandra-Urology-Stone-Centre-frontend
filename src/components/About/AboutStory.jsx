@@ -22,7 +22,7 @@ const AboutStory = () => {
           </div>
           {/* Experience Box */}
           <div className="absolute bottom-4 right-4 sm:-bottom-8 sm:-right-8 bg-gradient-to-br from-secondary to-blue-600 p-4 sm:p-8 rounded-xl sm:rounded-2xl border border-blue-400/30 shadow-[0_10px_30px_rgba(37,99,235,0.25)]">
-            <p className="text-3xl sm:text-5xl font-black text-white mb-0 sm:mb-1">25<span className="text-blue-200">+</span></p>
+            <p className="text-3xl sm:text-5xl font-medium text-white mb-0 sm:mb-1">25<span className="text-blue-200">+</span></p>
             <p className="text-white font-medium text-xs sm:text-base">Years of Trust</p>
           </div>
         </motion.div>

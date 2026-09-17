@@ -163,7 +163,7 @@ const BlogDetails = () => {
             </div>
             <button
               onClick={() => dispatch(openAppointmentModal())}
-              className="shrink-0 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-black text-xs px-5 py-3 rounded-full no-underline transition-colors shadow-xs uppercase tracking-wide cursor-pointer border-none"
+              className="shrink-0 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs px-5 py-3 rounded-full no-underline transition-colors shadow-xs uppercase tracking-wide cursor-pointer border-none"
             >
               Consult Specialist
             </button>

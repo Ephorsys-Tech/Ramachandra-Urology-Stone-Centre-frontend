@@ -122,11 +122,11 @@ const ContactSection = memo(() => {
             
             {/* Header pill */}
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-2 shadow-2xs">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-2 shadow-2xs">
                 <Sparkles size={12} className="text-[#0FA8D6]" />
                 Direct Communication Hub
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
                 Get in Touch with <span className="text-[#0FA8D6]">Our Team</span>
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
@@ -146,7 +146,7 @@ const ContactSection = memo(() => {
                   <span className="text-[10.5px] font-extrabold text-[#0FA8D6] uppercase tracking-wider block">
                     Immediate Care
                   </span>
-                  <h4 className="text-base sm:text-lg font-black text-white">
+                  <h4 className="text-base sm:text-lg font-medium text-white">
                     24/7 Stone & Urology Helpline
                   </h4>
                 </div>
@@ -248,7 +248,7 @@ const ContactSection = memo(() => {
                   <MessageSquare size={20} className="text-[#0FA8D6]" />
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-[#012442] tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
                     Send Us a <span className="text-[#0FA8D6]">Message</span>
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
@@ -358,7 +358,7 @@ const ContactSection = memo(() => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-black py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-98 disabled:opacity-60 cursor-pointer uppercase tracking-wider text-xs sm:text-sm border-none"
+                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-98 disabled:opacity-60 cursor-pointer uppercase tracking-wider text-xs sm:text-sm border-none"
                 >
                   <Send size={15} />
                   <span>{isSubmitting ? "Sending Inquiry..." : "Submit Inquiry to Sambalpur Desk"}</span>

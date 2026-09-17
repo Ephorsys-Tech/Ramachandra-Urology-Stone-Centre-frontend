@@ -41,7 +41,7 @@ const HomeAbout = memo(() => {
               <div className="w-9 h-9 rounded-full bg-[#0FA8D6]/20 mx-auto flex items-center justify-center mb-1.5 text-[#0FA8D6]">
                 <Award size={20} />
               </div>
-              <p className="text-3xl sm:text-4xl font-black mb-0.5 text-white">NABH</p>
+              <p className="text-3xl sm:text-4xl font-medium mb-0.5 text-white">NABH</p>
               <p className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-cyan-200">
                 Accredited SHCO<br />Reg No. 14/2024
               </p>
@@ -51,11 +51,11 @@ const HomeAbout = memo(() => {
           {/* Text Section (Right Side) */}
           <div className="w-full lg:w-[50%]">
             <div className="mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
                 <Sparkles size={12} className="text-[#0FA8D6]" />
                 Centre for Advanced Kidney Care & Laparoscopic Surgeries
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#012442] leading-[1.18] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium text-[#012442] leading-[1.18] tracking-tight">
                 Better Care, Healthier Lives <br />
                 <span className="text-[#0FA8D6]">Flow Freely, Live Fully</span>
               </h2>

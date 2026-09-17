@@ -163,7 +163,7 @@ export default function AppointmentModal() {
                   <CalendarCheck size={12} className="text-[#0FA8D6]" />
                   <span>Ramachandra Urology & Stone Centre</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-[#012442] tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
                   Book Clinical <span className="text-[#0FA8D6]">Appointment</span>
                 </h3>
                 <p className="text-xs sm:text-[13px] text-slate-500 mt-0.5 leading-snug">
@@ -370,7 +370,7 @@ export default function AppointmentModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white rounded-full text-xs font-black shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer border-none disabled:opacity-70 uppercase tracking-wide flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white rounded-full text-xs font-medium shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer border-none disabled:opacity-70 uppercase tracking-wide flex items-center justify-center gap-2"
                 >
                   <Calendar size={13} />
                   <span>{loading ? "Submitting..." : "Confirm & Book Slot"}</span>

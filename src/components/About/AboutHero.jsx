@@ -76,7 +76,7 @@ const AboutHero = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight drop-shadow-2xl font-sans mb-3 sm:mb-4">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-medium text-white tracking-tight drop-shadow-2xl font-sans mb-3 sm:mb-4">
               About Ramachandra Urology
             </h1>
             <p className="text-xl sm:text-3xl font-extrabold text-emerald-300 tracking-wide drop-shadow-lg font-sans">
