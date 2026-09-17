@@ -35,12 +35,12 @@ const HomeWhyChooseUs = memo(() => {
           
           {/* Left info column */}
           <div className="lg:col-span-5 space-y-6">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider shadow-2xs">
               <Sparkles size={13} className="text-[#0FA8D6]" />
               The Sambalpur Advantage
             </span>
 
-            <h2 className="text-3xl sm:text-4xl font-black text-[#012442] tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-medium text-[#012442] tracking-tight leading-tight">
               Why Patients Trust <br />
               <span className="text-[#0FA8D6]">Ramachandra Urology</span>
             </h2>
@@ -86,7 +86,7 @@ const HomeWhyChooseUs = memo(() => {
                     <Icon size={20} className="text-[#0FA8D6]" />
                   </div>
 
-                  <h3 className="text-base font-black text-[#012442] mb-2 group-hover:text-[#024363] transition-colors">
+                  <h3 className="text-base font-medium text-[#012442] mb-2 group-hover:text-[#024363] transition-colors">
                     {reason.title}
                   </h3>
 

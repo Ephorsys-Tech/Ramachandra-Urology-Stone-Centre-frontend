@@ -62,7 +62,7 @@ const HomeVideoReviews = memo(() => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-black text-xs uppercase tracking-wider mb-3 shadow-2xs"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs"
           >
             <Sparkles size={12} className="text-[#0FA8D6]" />
             <span>Doctor & Patient Experiences</span>
@@ -72,7 +72,7 @@ const HomeVideoReviews = memo(() => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight"
           >
             Real Stories, <span className="text-[#0FA8D6]">Verified Outcomes</span>
           </motion.h2>
@@ -142,12 +142,12 @@ const HomeVideoReviews = memo(() => {
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-black text-[#012442]">{review.name}</h4>
+                    <h4 className="text-sm font-medium text-[#012442]">{review.name}</h4>
                     <p className="text-[11px] text-[#0FA8D6] font-bold">{review.role}</p>
                   </div>
                   <button
                     onClick={() => setActiveVideo(review)}
-                    className="text-xs font-black text-[#024363] hover:text-[#0FA8D6] flex items-center gap-1 border-none bg-transparent cursor-pointer"
+                    className="text-xs font-medium text-[#024363] hover:text-[#0FA8D6] flex items-center gap-1 border-none bg-transparent cursor-pointer"
                   >
                     <span>Watch</span> ↗
                   </button>
@@ -191,7 +191,7 @@ const HomeVideoReviews = memo(() => {
 
               <div className="p-4 sm:p-5 bg-slate-900 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-black text-white">{activeVideo.name}</h4>
+                  <h4 className="text-sm font-medium text-white">{activeVideo.name}</h4>
                   <p className="text-xs text-[#0FA8D6] font-bold">{activeVideo.role}</p>
                 </div>
                 <div className="flex gap-1">

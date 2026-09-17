@@ -99,7 +99,7 @@ const ForgotPasswordForm = ({ onBack, onSuccess }) => {
     <div className="w-full h-full p-8 sm:p-12 md:p-16 flex flex-col justify-center bg-white">
       {/* Logo Header (Consistent with Login Page) */}
       <div className="flex items-center gap-2 mb-6">
-        <span className="text-[#024363] font-black text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
+        <span className="text-[#024363] font-medium text-2xl sm:text-3xl tracking-wide uppercase">RAMACHANDRA</span>
         <span className="text-[#0FA8D6] font-bold text-2xl sm:text-3xl tracking-wide">Hospital</span>
       </div>
 

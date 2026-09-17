@@ -40,11 +40,11 @@ const HomeBlog = memo(() => {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-black text-xs uppercase tracking-wider mb-3 shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
               <Sparkles size={12} className="text-[#0FA8D6]" />
               Urological Health Insights
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
               Latest <span className="text-[#0FA8D6]">Clinical Articles</span>
             </h2>
           </div>
@@ -80,7 +80,7 @@ const HomeBlog = memo(() => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className={`inline-flex items-center gap-1 text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full border shadow-2xs backdrop-blur-md ${catColor}`}>
+                    <span className={`inline-flex items-center gap-1 text-[10.5px] font-medium uppercase tracking-wider px-3 py-1 rounded-full border shadow-2xs backdrop-blur-md ${catColor}`}>
                       <Tag className="w-3 h-3" />
                       {post.category}
                     </span>
@@ -90,7 +90,7 @@ const HomeBlog = memo(() => {
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-[#012442] font-black text-base leading-snug mb-2.5 group-hover:text-[#0FA8D6] transition-colors line-clamp-2">
+                    <h3 className="text-[#012442] font-medium text-base leading-snug mb-2.5 group-hover:text-[#0FA8D6] transition-colors line-clamp-2">
                       {post.title}
                     </h3>
 
@@ -112,7 +112,7 @@ const HomeBlog = memo(() => {
 
                     <Link
                       to={`/blog/${post._id}`}
-                      className="flex items-center gap-1.5 text-[#024363] hover:text-[#0FA8D6] text-xs font-black transition-all group/link cursor-pointer no-underline"
+                      className="flex items-center gap-1.5 text-[#024363] hover:text-[#0FA8D6] text-xs font-medium transition-all group/link cursor-pointer no-underline"
                     >
                       <span>Read Full Guide</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />

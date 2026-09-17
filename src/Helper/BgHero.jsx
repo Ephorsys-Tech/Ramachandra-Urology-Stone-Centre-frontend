@@ -61,7 +61,7 @@ function BgHero({
           {/* Heading */}
           <h1
             className="
-              font-black text-white leading-tight tracking-tight
+              font-medium text-white leading-tight tracking-tight
               text-3xl
               sm:text-4xl
               md:text-5xl

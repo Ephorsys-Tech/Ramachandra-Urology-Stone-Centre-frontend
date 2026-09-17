@@ -158,7 +158,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
         {/* ── 1. QUICK DEPARTMENT FILTER PILL TABS ── */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3 px-1">
-            <h3 className="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles size={14} className="text-[#0FA8D6]" />
               <span>Filter by Clinical Specialty</span>
             </h3>
@@ -331,7 +331,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                 <div className="space-y-2 pt-2">
                   <a
                     href={`tel:${emergencyPhone}`}
-                    className="flex items-center justify-between bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-4 py-3 rounded-2xl font-black text-xs no-underline transition-all shadow-md group"
+                    className="flex items-center justify-between bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-4 py-3 rounded-2xl font-medium text-xs no-underline transition-all shadow-md group"
                   >
                     <div className="flex items-center gap-2">
                       <Phone size={14} className="group-hover:rotate-12 transition-transform" />
@@ -361,7 +361,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
             {/* Header Controls Toolbar */}
             <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
               <div>
-                <h2 className="text-xl sm:text-2xl font-black text-[#012442] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
                   Medical Specialists & Surgeons
                 </h2>
                 <p className="text-xs text-slate-500 font-medium mt-0.5">
@@ -489,7 +489,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                           {/* Details Content */}
                           <div className="p-5 space-y-3">
                             <div>
-                              <h3 className="text-lg font-black text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
+                              <h3 className="text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
                                 {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
                               </h3>
                               <p className="text-xs font-bold text-[#024363] mt-0.5 line-clamp-1">
@@ -591,7 +591,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                           <div className="space-y-2">
                             <div className="flex flex-wrap items-start justify-between gap-2">
                               <div>
-                                <h3 className="text-xl font-black text-[#012442] group-hover:text-[#024363] transition-colors">
+                                <h3 className="text-xl font-medium text-[#012442] group-hover:text-[#024363] transition-colors">
                                   {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
                                 </h3>
                                 <p className="text-xs font-bold text-[#024363] mt-0.5">
@@ -650,7 +650,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                 <div className="w-16 h-16 rounded-full bg-[#0FA8D6]/10 text-[#0FA8D6] flex items-center justify-center mx-auto mb-4 border border-[#0FA8D6]/20">
                   <Stethoscope size={30} />
                 </div>
-                <h3 className="text-lg font-black text-[#012442] mb-1">
+                <h3 className="text-lg font-medium text-[#012442] mb-1">
                   No Matching Doctors Found
                 </h3>
                 <p className="text-slate-500 text-xs max-w-md mx-auto mb-5 leading-relaxed">

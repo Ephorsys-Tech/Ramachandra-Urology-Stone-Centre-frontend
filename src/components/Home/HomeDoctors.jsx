@@ -80,11 +80,11 @@ const HomeDoctors = memo(() => {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
               <Sparkles size={12} className="text-[#0FA8D6]" />
               Super-Specialist Clinical Faculty
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#012442] leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#012442] leading-tight">
               Experienced <span className="text-[#0FA8D6]">Urologists & Specialists</span>
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
@@ -182,7 +182,7 @@ const HomeDoctors = memo(() => {
                         {/* Name, Specialty & Share */}
                         <div className="flex justify-between items-start gap-1">
                           <div className="min-w-0 flex-1">
-                            <h3 className="text-sm font-black text-[#012442] truncate group-hover:text-[#0FA8D6] transition-colors leading-snug">
+                            <h3 className="text-sm font-medium text-[#012442] truncate group-hover:text-[#0FA8D6] transition-colors leading-snug">
                               {doc.name.startsWith("Dr") || doc.name.startsWith("Ms") ? doc.name : `Dr. ${doc.name}`}
                             </h3>
                             <span className="text-[10.5px] text-[#024363] font-bold block mt-0.5 tracking-wide truncate">

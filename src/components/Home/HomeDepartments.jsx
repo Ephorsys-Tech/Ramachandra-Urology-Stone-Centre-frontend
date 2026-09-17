@@ -87,7 +87,7 @@ const HomeDepartments = memo(() => {
         
         {/* Header section */}
         <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3 shadow-2xs">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
             <LucideIcons.Sparkles size={12} className="text-[#0FA8D6]" />
             Comprehensive Clinical Wings
           </span>
@@ -95,7 +95,7 @@ const HomeDepartments = memo(() => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#012442] mb-4 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] mb-4 tracking-tight"
           >
             Specialized <span className="text-[#0FA8D6]">Clinical Departments</span>
           </motion.h2>
@@ -140,7 +140,7 @@ const HomeDepartments = memo(() => {
                     {getDepartmentIcon(dept.name, { size: 28 })}
                   </div>
                   
-                  <h3 className="text-xl font-black mb-3 group-hover:text-[#0FA8D6] transition-colors">{dept.name}</h3>
+                  <h3 className="text-xl font-medium mb-3 group-hover:text-[#0FA8D6] transition-colors">{dept.name}</h3>
                   <p className={`${config.descColor} text-xs leading-relaxed line-clamp-3 mb-6`}>
                     {dept.description}
                   </p>
@@ -154,7 +154,7 @@ const HomeDepartments = memo(() => {
                 )}
 
                 {config.showLink && (
-                  <div className="mt-auto flex items-center text-xs font-black text-[#0FA8D6] group-hover:text-white transition-colors">
+                  <div className="mt-auto flex items-center text-xs font-medium text-[#0FA8D6] group-hover:text-white transition-colors">
                     Explore Department <LucideIcons.ArrowRight size={14} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 )}
@@ -177,7 +177,7 @@ const HomeDepartments = memo(() => {
             <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] mb-3 group-hover:scale-110 transition-transform">
               <LucideIcons.LayoutGrid size={24} className="text-[#0FA8D6]" />
             </div>
-            <span className="text-[#012442] font-black text-sm text-center group-hover:text-[#0FA8D6] transition-colors">
+            <span className="text-[#012442] font-medium text-sm text-center group-hover:text-[#0FA8D6] transition-colors">
               View All {departments.length > 0 ? departments.length : 12}+ Clinical Wings →
             </span>
           </motion.div>

@@ -365,7 +365,7 @@ const GalleryGrid = memo(() => {
                       setActiveLightboxIndex(null);
                       dispatch(openAppointmentModal());
                     }}
-                    className="flex items-center gap-1.5 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-black text-xs px-5 py-2.5 rounded-full no-underline transition-colors shadow-xs uppercase tracking-wide cursor-pointer border-none"
+                    className="flex items-center gap-1.5 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs px-5 py-2.5 rounded-full no-underline transition-colors shadow-xs uppercase tracking-wide cursor-pointer border-none"
                   >
                     <Calendar size={13} />
                     <span>Book Hospital Visit</span>

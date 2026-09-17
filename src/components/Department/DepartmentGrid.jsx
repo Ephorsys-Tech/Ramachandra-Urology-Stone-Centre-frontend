@@ -104,7 +104,7 @@ const DepartmentGrid = () => {
                   </div>
 
                   {/* Department Title */}
-                  <h3 className="text-xl font-black text-[#012442] mb-2.5 tracking-tight group-hover:text-[#0FA8D6] transition-colors">
+                  <h3 className="text-xl font-medium text-[#012442] mb-2.5 tracking-tight group-hover:text-[#0FA8D6] transition-colors">
                     {dept.name}
                   </h3>
 
@@ -195,7 +195,7 @@ const DepartmentGrid = () => {
         <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
           <button
             onClick={() => dispatch(openAppointmentModal())}
-            className="inline-flex items-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-black text-xs px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer border-none uppercase tracking-wide"
+            className="inline-flex items-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer border-none uppercase tracking-wide"
           >
             <Calendar size={14} />
             <span>Book Clinical Visit</span>

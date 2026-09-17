@@ -25,7 +25,7 @@ const AboutStats = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <p className="text-4xl md:text-5xl font-black text-white mb-2">{stat.value}</p>
+              <p className="text-4xl md:text-5xl font-medium text-white mb-2">{stat.value}</p>
               <p className="text-emerald-400 font-semibold tracking-wider uppercase text-sm">{stat.label}</p>
             </motion.div>
           ))}

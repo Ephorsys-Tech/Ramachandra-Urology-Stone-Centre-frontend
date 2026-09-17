@@ -97,7 +97,7 @@ const DepartmentDetails = () => {
                 Certified Care Wing
               </span>
 
-              <h2 className="text-2xl sm:text-3xl font-black text-[#012442] mb-3 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] mb-3 tracking-tight">
                 {department.name}
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed">
@@ -126,7 +126,7 @@ const DepartmentDetails = () => {
 
               <button
                 onClick={() => dispatch(openAppointmentModal())}
-                className="w-full text-center bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-black py-3.5 px-6 text-xs rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-none cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full text-center bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-3.5 px-6 text-xs rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-none cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Calendar size={14} />
                 <span>Book OPD Consultation</span>
@@ -192,11 +192,11 @@ const DepartmentDetails = () => {
         {((departmentDoctors && departmentDoctors.length > 0) || (department.doctors && department.doctors.length > 0)) && (
           <div className="mb-14">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-[11px] font-black uppercase tracking-wider mb-2 shadow-2xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-[11px] font-medium uppercase tracking-wider mb-2 shadow-2xs">
                 <Users size={12} className="text-[#0FA8D6]" />
                 Specialist Medical Faculty
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight mb-1">
+              <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-1">
                 Consult With <span className="text-[#0FA8D6]">{department.name}</span> Specialists
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
@@ -241,7 +241,7 @@ const DepartmentDetails = () => {
                     </div>
 
                     {/* Doctor Name & Specialty */}
-                    <h3 className="text-base sm:text-lg font-black text-[#012442] tracking-tight mb-1">
+                    <h3 className="text-base sm:text-lg font-medium text-[#012442] tracking-tight mb-1">
                       {docName.startsWith("Dr.") ? docName : `Dr. ${docName}`}
                     </h3>
                     <p className="text-xs font-bold text-[#0FA8D6] uppercase tracking-wider mb-4">

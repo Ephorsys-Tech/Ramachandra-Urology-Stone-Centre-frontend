@@ -56,7 +56,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
       </div>
 
       {/* Chapter Title */}
-      <h3 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight mb-4 font-sans leading-snug">
+      <h3 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-4 font-sans leading-snug">
         {chapter.title}
       </h3>
 
@@ -70,7 +70,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs font-semibold">
-            <span className="bg-white/95 text-[#012442] px-3.5 py-1.5 rounded-xl font-black shadow-xs flex items-center gap-1.5 border border-[#0FA8D6]/30">
+            <span className="bg-white/95 text-[#012442] px-3.5 py-1.5 rounded-xl font-medium shadow-xs flex items-center gap-1.5 border border-[#0FA8D6]/30">
               <ShieldCheck size={14} className="text-[#0FA8D6]" />
               <span>{chapter.badge}</span>
             </span>
@@ -106,7 +106,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h4 className="text-base sm:text-lg font-black text-[#012442] group-hover:text-[#024363] transition-colors leading-snug">
+                    <h4 className="text-base sm:text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors leading-snug">
                       {leader.name}
                     </h4>
                     <ArrowUpRight className="w-4 h-4 text-[#0FA8D6] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
@@ -136,7 +136,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
             <div key={i} className="p-4 rounded-2xl bg-white border border-[#0FA8D6]/20 shadow-xs flex items-start gap-3 hover:border-[#0FA8D6]/50 transition-colors">
               <CheckCircle2 className="w-4 h-4 text-[#0FA8D6] shrink-0 mt-0.5" />
               <div>
-                <h5 className="text-xs font-black text-[#012442] uppercase tracking-wider font-mono mb-1">{b.title}</h5>
+                <h5 className="text-xs font-medium text-[#012442] uppercase tracking-wider font-mono mb-1">{b.title}</h5>
                 <p className="text-xs text-slate-600 leading-relaxed font-sans m-0">{b.desc}</p>
               </div>
             </div>
@@ -299,7 +299,7 @@ const About = () => {
                   METRIC N° 0{idx + 1}
                 </span>
                 <div>
-                  <div className="font-mono text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter text-[#012442] mb-1">
+                  <div className="font-mono text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#012442] mb-1">
                     {m.value}
                   </div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#024363] mb-1">
@@ -327,7 +327,7 @@ const About = () => {
                 <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0FA8D6] font-mono block mb-1">
                   Institutional Profile
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight leading-tight m-0">
+                <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-tight m-0">
                   Ramachandra Urology & Stone Centre
                 </h2>
               </div>
@@ -430,7 +430,7 @@ const About = () => {
               <span className="font-mono text-xs uppercase tracking-widest text-[#0FA8D6] font-extrabold block">
                 VISIT OUR SAMBALPUR HOSPITAL
               </span>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight m-0 leading-tight">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight m-0 leading-tight">
                 Ramachandra Urology & Stone Centre
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed m-0 font-medium">
@@ -453,7 +453,7 @@ const About = () => {
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
               <button
                 onClick={() => dispatch(openAppointmentModal())}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 text-[#012442] font-black text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer border-none"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 text-[#012442] font-medium text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer border-none"
               >
                 <Calendar size={14} />
                 <span>BOOK AN APPOINTMENT</span>

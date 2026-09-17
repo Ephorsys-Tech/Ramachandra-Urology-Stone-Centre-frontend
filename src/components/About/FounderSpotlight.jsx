@@ -12,11 +12,11 @@ const FounderSpotlight = () => {
         
         {/* Section Header Pill */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-black uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
             <Sparkles size={14} className="text-[#0FA8D6]" />
             <span>FOUNDER & SURGICAL DIRECTOR SPOTLIGHT</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#012442] tracking-tight leading-tight m-0">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
             Visionary Leadership in Super-Specialty Urology
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed">
@@ -58,7 +58,7 @@ const FounderSpotlight = () => {
                       <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0FA8D6] block">
                         Super Specialist
                       </span>
-                      <span className="text-sm font-black text-[#012442] block">
+                      <span className="text-sm font-medium text-[#012442] block">
                         AIIMS, New Delhi Alumnus
                       </span>
                     </div>
@@ -70,7 +70,7 @@ const FounderSpotlight = () => {
               </div>
 
               {/* Quick Stat Pill */}
-              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] text-[#012442] px-3.5 py-1.5 rounded-full font-black text-xs shadow-md border border-white/40 flex items-center gap-1.5">
+              <div className="absolute -top-3 -right-3 bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] text-[#012442] px-3.5 py-1.5 rounded-full font-medium text-xs shadow-md border border-white/40 flex items-center gap-1.5">
                 <Award size={14} />
                 <span>15,000+ Surgeries</span>
               </div>
@@ -90,7 +90,7 @@ const FounderSpotlight = () => {
                   <Stethoscope size={13} />
                   <span>FOUNDER & CHIEF MEDICAL DIRECTOR</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight m-0 pt-1">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-tight m-0 pt-1">
                   Dr. Sanjay Kumar Mahapatra
                 </h3>
                 <p className="text-xs sm:text-sm font-mono text-[#0FA8D6] font-bold">
@@ -128,7 +128,7 @@ const FounderSpotlight = () => {
               <div className="flex flex-wrap gap-3 pt-3">
                 <button
                   onClick={() => dispatch(openAppointmentModal("Urology", "Dr. Sanjay Kumar Mahapatra"))}
-                  className="px-6 py-3 bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 active:scale-95 text-[#012442] font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer border-none flex items-center gap-2"
+                  className="px-6 py-3 bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 active:scale-95 text-[#012442] font-medium text-xs uppercase tracking-wider rounded-xl transition-all shadow-md cursor-pointer border-none flex items-center gap-2"
                 >
                   <Calendar size={14} />
                   <span>Consult Dr. Mahapatra</span>

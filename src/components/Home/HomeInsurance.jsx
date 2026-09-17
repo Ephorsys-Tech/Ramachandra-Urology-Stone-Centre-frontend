@@ -26,11 +26,11 @@ const HomeInsurance = memo(() => {
           
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-8 pb-8 border-b border-slate-100">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-black uppercase tracking-wider mb-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-medium uppercase tracking-wider mb-2">
                 <ShieldCheck size={13} className="text-emerald-600" />
                 Hassle-Free Cashless Hospitalization
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#012442] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
                 Empaneled with Major <span className="text-[#0FA8D6]">Govt Schemes & TPAs</span>
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
@@ -41,14 +41,14 @@ const HomeInsurance = memo(() => {
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`tel:${emergencyPhone}`}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#012442] hover:bg-[#024363] text-white text-xs font-black transition-all shadow-xs no-underline"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#012442] hover:bg-[#024363] text-white text-xs font-medium transition-all shadow-xs no-underline"
               >
                 <Phone size={14} className="text-[#0FA8D6]" />
                 <span>TPA Desk: +91 {emergencyPhone}</span>
               </a>
               <button
                 onClick={() => dispatch(openAppointmentModal())}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-black transition-all shadow-xs cursor-pointer border-none"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-medium transition-all shadow-xs cursor-pointer border-none"
               >
                 <span>Verify Insurance</span>
               </button>

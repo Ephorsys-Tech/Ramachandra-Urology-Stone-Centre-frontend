@@ -68,7 +68,7 @@ const HomeEmergency = memo(() => {
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-tight tracking-tight">
               Severe Renal Colic or Acute Pain?{" "}
               <span className="block text-[#0FA8D6] mt-1">
                 We Are Ready 24/7.
@@ -83,7 +83,7 @@ const HomeEmergency = memo(() => {
             <div className="flex flex-wrap gap-4 mt-8">
               <a
                 href={`tel:${emergencyPhone}`}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-7 py-3.5 rounded-xl font-black transition-all shadow-lg hover:shadow-[#0FA8D6]/30 hover:scale-102 active:scale-98 cursor-pointer no-underline text-xs sm:text-sm uppercase tracking-wider"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-7 py-3.5 rounded-xl font-medium transition-all shadow-lg hover:shadow-[#0FA8D6]/30 hover:scale-102 active:scale-98 cursor-pointer no-underline text-xs sm:text-sm uppercase tracking-wider"
               >
                 <Phone size={16} />
                 <span>Call Hotline: +91 {emergencyPhone}</span>
@@ -113,7 +113,7 @@ const HomeEmergency = memo(() => {
                     <Icon className="w-5 h-5 text-[#0FA8D6]" />
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  <h3 className="text-2xl sm:text-3xl font-medium text-white">
                     {value}
                   </h3>
 

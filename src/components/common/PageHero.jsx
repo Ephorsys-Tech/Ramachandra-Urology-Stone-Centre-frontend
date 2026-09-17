@@ -90,7 +90,7 @@ const PageHero = ({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.06 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.12]"
+              className="text-3xl sm:text-4xl md:text-5xl font-medium text-slate-900 tracking-tight leading-[1.12]"
             >
               {title}{" "}
               {highlightTitle && (
@@ -157,7 +157,7 @@ const PageHero = ({
                 {/* Floating Info Tag Badge */}
                 {imageTag && (
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                    <div className="bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 text-xs font-black px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
+                    <div className="bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 text-xs font-medium px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
                       <ShieldCheck size={14} className={isBlue ? "text-[#0FA8D6]" : "text-emerald-600"} />
                       <span>{imageTag}</span>
                     </div>
