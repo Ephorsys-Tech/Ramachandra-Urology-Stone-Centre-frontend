@@ -47,7 +47,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
       className="relative pb-14 sm:pb-16 border-b border-slate-200 last:border-0 last:pb-0 transition-all duration-500"
     >
       {/* Micro-Header Strip */}
-      <div className="flex items-center justify-between mb-3 font-mono text-xs text-slate-400 uppercase tracking-widest">
+      <div className="flex items-center justify-between mb-3  text-xs text-slate-400 uppercase tracking-widest">
         <span className="flex items-center gap-2 text-[#024363] font-bold">
           <span className="w-2 h-2 rounded-full bg-[#0FA8D6]" />
           CHAPTER {chapter.id}
@@ -56,7 +56,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
       </div>
 
       {/* Chapter Title */}
-      <h3 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-4 font-sans leading-snug">
+      <h3 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-4  leading-snug">
         {chapter.title}
       </h3>
 
@@ -74,7 +74,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
               <ShieldCheck size={14} className="text-[#0FA8D6]" />
               <span>{chapter.badge}</span>
             </span>
-            <span className="text-slate-200 font-sans text-xs bg-[#012442]/80 px-3 py-1.5 rounded-xl backdrop-blur-md">
+            <span className="text-slate-200  text-xs bg-[#012442]/80 px-3 py-1.5 rounded-xl backdrop-blur-md">
               Sambalpur, Western Odisha
             </span>
           </div>
@@ -82,7 +82,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
       )}
 
       {/* Primary Narrative Paragraph */}
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 ">
         {chapter.body}
       </p>
 
@@ -111,7 +111,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
                     </h4>
                     <ArrowUpRight className="w-4 h-4 text-[#0FA8D6] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                   </div>
-                  <p className="text-xs font-mono text-[#024363] font-bold mt-0.5">
+                  <p className="text-xs  text-[#024363] font-bold mt-0.5">
                     {leader.qualifications}
                   </p>
                   <p className="text-xs text-slate-500 font-medium mt-0.5">
@@ -120,7 +120,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs px-3 py-1.5 rounded-xl bg-slate-100 group-hover:bg-[#024363] text-slate-700 group-hover:text-white font-bold transition-colors duration-300">
+                <span className=" text-xs px-3 py-1.5 rounded-xl bg-slate-100 group-hover:bg-[#024363] text-slate-700 group-hover:text-white font-bold transition-colors duration-300">
                   {leader.specialty}
                 </span>
               </div>
@@ -136,8 +136,8 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
             <div key={i} className="p-4 rounded-2xl bg-white border border-[#0FA8D6]/20 shadow-xs flex items-start gap-3 hover:border-[#0FA8D6]/50 transition-colors">
               <CheckCircle2 className="w-4 h-4 text-[#0FA8D6] shrink-0 mt-0.5" />
               <div>
-                <h5 className="text-xs font-medium text-[#012442] uppercase tracking-wider font-mono mb-1">{b.title}</h5>
-                <p className="text-xs text-slate-600 leading-relaxed font-sans m-0">{b.desc}</p>
+                <h5 className="text-xs font-medium text-[#012442] uppercase tracking-wider  mb-1">{b.title}</h5>
+                <p className="text-xs text-slate-600 leading-relaxed  m-0">{b.desc}</p>
               </div>
             </div>
           ))}
@@ -261,7 +261,7 @@ const About = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans selection:bg-[#0FA8D6] selection:text-white">
+    <main className="min-h-screen bg-[#f8fafc] text-slate-800  selection:bg-[#0FA8D6] selection:text-white">
       
       {/* ── 1. UNIFIED PAGE HERO (BLUE THEME) ── */}
       <PageHero
@@ -282,7 +282,7 @@ const About = () => {
             { title: "TFL Laser Center", desc: "Dust-Free Lithotripsy" }
           ].map((spec, idx) => (
             <div key={idx} className="p-2.5 rounded-2xl bg-white border border-[#0FA8D6]/30 shadow-2xs">
-              <p className="text-xs font-bold text-[#024363] uppercase font-mono m-0">{spec.title}</p>
+              <p className="text-xs font-bold text-[#024363] uppercase  m-0">{spec.title}</p>
               <p className="text-[11px] text-slate-500 font-medium m-0 mt-0.5">{spec.desc}</p>
             </div>
           ))}
@@ -295,17 +295,17 @@ const About = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-200">
             {metrics.map((m, idx) => (
               <div key={idx} className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
-                <span className="font-mono text-[11px] text-[#0FA8D6] uppercase tracking-widest block mb-3 font-bold">
+                <span className=" text-[11px] text-[#0FA8D6] uppercase tracking-widest block mb-3 font-bold">
                   METRIC N° 0{idx + 1}
                 </span>
                 <div>
-                  <div className="font-mono text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#012442] mb-1">
+                  <div className=" text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#012442] mb-1">
                     {m.value}
                   </div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#024363] mb-1">
                     {m.label}
                   </div>
-                  <div className="text-xs font-mono text-slate-400">
+                  <div className="text-xs  text-slate-400">
                     {m.note}
                   </div>
                 </div>
@@ -324,7 +324,7 @@ const About = () => {
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#0FA8D6]/30 shadow-md space-y-6">
               
               <div>
-                <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0FA8D6] font-mono block mb-1">
+                <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0FA8D6]  block mb-1">
                   Institutional Profile
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-tight m-0">
@@ -334,7 +334,7 @@ const About = () => {
 
               {/* Active Milestone Progress Bar */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2.5">
-                <div className="flex items-center justify-between font-mono text-xs text-slate-500">
+                <div className="flex items-center justify-between  text-xs text-slate-500">
                   <span>ACTIVE CHAPTER</span>
                   <span className="text-[#024363] font-bold">
                     0{activeChapterIndex + 1} / 0{chapters.length}
@@ -342,7 +342,7 @@ const About = () => {
                 </div>
                 <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-[#0FA8D6] to-[#024363] transition-all duration-500 ease-out"
+                    className="h-full bg-[#00B4EA] transition-all duration-500 ease-out"
                     style={{ width: `${((activeChapterIndex + 1) / chapters.length) * 100}%` }}
                   />
                 </div>
@@ -353,7 +353,7 @@ const About = () => {
 
               {/* Contact & Location Brief */}
               <div className="space-y-3 pt-2 border-t border-slate-100">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#024363] font-mono m-0">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#024363]  m-0">
                   SAMBALPUR CAMPUS LOCATION
                 </h4>
                 <div className="space-y-2 text-xs text-slate-700 font-medium">
@@ -376,7 +376,7 @@ const About = () => {
               <div className="pt-2">
                 <button
                   onClick={() => dispatch(openAppointmentModal())}
-                  className="w-full py-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
+                  className="w-full py-3 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
                 >
                   <Calendar size={14} />
                   <span>Book Hospital Visit</span>
@@ -427,7 +427,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
             <div className="lg:col-span-8 space-y-4">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0FA8D6] font-extrabold block">
+              <span className=" text-xs uppercase tracking-widest text-[#0FA8D6] font-extrabold block">
                 VISIT OUR SAMBALPUR HOSPITAL
               </span>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight m-0 leading-tight">
@@ -437,7 +437,7 @@ const About = () => {
                 {hospitalAddress}
               </p>
               
-              <div className="flex flex-wrap gap-2.5 text-xs font-mono text-white pt-2">
+              <div className="flex flex-wrap gap-2.5 text-xs  text-white pt-2">
                 <span className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20">
                   📞 24x7 SOS: +91 {emergencyPhone}
                 </span>

@@ -620,7 +620,7 @@ const Settings = () => {
                 <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 border border-blue-200 flex items-center justify-center font-bold text-2xl uppercase">
                   {admin?.name?.charAt(0) || "A"}
                 </div>
-                <div className="space-y-1.5 text-center sm:text-left font-sans">
+                <div className="space-y-1.5 text-center sm:text-left ">
                   <h4 className="text-base font-bold text-slate-800">{admin?.name || "Administrator"}</h4>
                   <p className="text-xs text-slate-500 flex items-center justify-center sm:justify-start gap-1">
                     <Mail size={12} /> {admin?.email || "admin@ramachandrahospital.com"}
@@ -662,7 +662,7 @@ const Settings = () => {
                         value={otp}
                         onChange={(e) => setOtp(e.target.value)}
                         placeholder="Enter 6-digit OTP code"
-                        className="w-full px-3 py-2 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition font-mono tracking-widest text-center"
+                        className="w-full px-3 py-2 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition  tracking-widest text-center"
                       />
                     </div>
 

@@ -79,7 +79,7 @@ const QuickSearch = memo(() => {
   };
 
   return (
-    <section className="bg- py-6 sm:py-8 px-4 sm:px-6 lg:px-8 relative font-sans border-b border-slate-200/70">
+    <section className="bg- py-6 sm:py-8 px-4 sm:px-6 lg:px-8 relative  border-b border-slate-200/70">
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <form
           onSubmit={handleSubmit}
@@ -308,7 +308,7 @@ const QuickSearch = memo(() => {
           <div className="lg:pl-2 shrink-0">
             <button
               type="submit"
-              className="w-full lg:w-auto bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white font-black rounded-xl lg:rounded-full px-7 py-3 lg:py-3.5 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap"
+              className="w-full lg:w-auto bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white font-medium rounded-xl lg:rounded-full px-7 py-3 lg:py-3.5 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap"
             >
               <Search className="w-4 h-4 text-white shrink-0" />
               <span>Search Specialist</span>

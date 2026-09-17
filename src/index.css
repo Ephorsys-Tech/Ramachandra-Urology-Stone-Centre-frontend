@@ -63,7 +63,7 @@
   --color-on-success-container: #065f46;
 
   /* Typography overrides */
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display-lg: "Manrope", sans-serif;
   
   --text-display-lg: 48px;

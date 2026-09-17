@@ -166,7 +166,7 @@ const GalleryGrid = memo(() => {
               onClick={() => setActiveCategory(category)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer border ${
                 isSelected
-                  ? "bg-gradient-to-r from-[#0FA8D6] to-[#024363] text-white border-transparent shadow-md shadow-[#0FA8D6]/20 scale-105"
+                  ? "bg-[#00B4EA] text-white border-transparent shadow-md shadow-[#0FA8D6]/20 scale-105"
                   : "bg-white text-slate-700 border-slate-200 hover:border-[#0FA8D6]/40 hover:text-[#024363] hover:bg-slate-50"
               }`}
             >

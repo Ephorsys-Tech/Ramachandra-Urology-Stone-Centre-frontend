@@ -35,7 +35,7 @@ const HomeFAQ = memo(() => {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="py-16 sm:py-24 bg-slate-50/70 font-sans">
+    <section className="py-16 sm:py-24 bg-slate-50/70 ">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -50,7 +50,7 @@ const HomeFAQ = memo(() => {
             Patient Help & Clarity
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
-            Frequently Asked <span className="text-[#0FA8D6]">Questions</span>
+            Frequently Asked Questions
           </h2>
           <p className="text-slate-600 max-w-xl mx-auto text-xs sm:text-sm mt-2 leading-relaxed">
             Have questions regarding stone treatments, laser surgery, or cashless admissions? Find clear answers below.
@@ -62,11 +62,10 @@ const HomeFAQ = memo(() => {
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              className={`rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 border ${
-                openIndex === i
-                  ? "border-[#0FA8D6]/50 bg-white shadow-md"
-                  : "border-slate-200/90 bg-white hover:border-slate-300 shadow-xs"
-              }`}
+              className={`rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 border ${openIndex === i
+                ? "border-[#0FA8D6]/50 bg-white shadow-md"
+                : "border-slate-200/90 bg-white hover:border-slate-300 shadow-xs"
+                }`}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -79,9 +78,8 @@ const HomeFAQ = memo(() => {
                 <span className={`font-medium text-xs sm:text-sm transition-colors ${openIndex === i ? "text-[#024363]" : "text-[#012442]"}`}>
                   {faq.q}
                 </span>
-                <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
-                  openIndex === i ? "bg-[#0FA8D6] text-white" : "bg-slate-100 text-slate-500"
-                }`}>
+                <span className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${openIndex === i ? "bg-[#0FA8D6] text-white" : "bg-slate-100 text-slate-500"
+                  }`}>
                   {openIndex === i ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </span>
               </button>
@@ -102,7 +100,7 @@ const HomeFAQ = memo(() => {
           ))}
         </div>
       </div>
-    </section>
+    </section >
   );
 });
 

@@ -79,7 +79,7 @@ const HeroSection = memo(() => {
 
   return (
     <section
-      className="w-full font-sans select-none overflow-hidden"
+      className="w-full  select-none overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

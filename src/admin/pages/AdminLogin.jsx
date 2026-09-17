@@ -77,7 +77,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#dfebff] to-[#bdcfff] p-4 sm:p-6 md:p-8 font-sans">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#dfebff] to-[#bdcfff] p-4 sm:p-6 md:p-8 ">
       {/* Main Container Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

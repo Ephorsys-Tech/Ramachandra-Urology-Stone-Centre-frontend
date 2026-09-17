@@ -20,16 +20,16 @@ const ContactMap = () => {
         transition={{ duration: 0.5 }}
       >
         {/* Map Header Strip */}
-        <div className="bg-[#012442] px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-white/10">
+        <div className="bg-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-white/10">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-[#0FA8D6]/20 border border-[#0FA8D6]/40 flex items-center justify-center text-[#0FA8D6]">
               <MapPin size={18} />
             </div>
             <div>
-              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+              <h3 className="text-sm sm:text-base font-bold text-black/90 tracking-tight">
                 Hospital Campus Location & Directions
               </h3>
-              <p className="text-[11px] text-cyan-200/80">
+              <p className="text-[11px] text-slate-900">
                 Sourav Vihar, Burla, Sambalpur - 768017, Odisha
               </p>
             </div>
@@ -39,7 +39,7 @@ const ContactMap = () => {
             href={googleMapsDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-bold shadow-xs hover:shadow-md transition-all no-underline"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-bold shadow-xs hover:shadow-md transition-all no-underline"
           >
             <Navigation size={13} />
             <span>Open in Google Maps</span>

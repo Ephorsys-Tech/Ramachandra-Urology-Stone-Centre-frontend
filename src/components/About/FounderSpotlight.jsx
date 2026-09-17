@@ -7,7 +7,7 @@ const FounderSpotlight = () => {
   const dispatch = useDispatch();
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80 font-sans select-none">
+    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80  select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header Pill */}
@@ -86,14 +86,14 @@ const FounderSpotlight = () => {
             >
               
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#0FA8D6] text-xs font-mono font-bold tracking-wider uppercase border border-white/20">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#0FA8D6] text-xs  font-bold tracking-wider uppercase border border-white/20">
                   <Stethoscope size={13} />
                   <span>FOUNDER & CHIEF MEDICAL DIRECTOR</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-tight m-0 pt-1">
                   Dr. Sanjay Kumar Mahapatra
                 </h3>
-                <p className="text-xs sm:text-sm font-mono text-[#0FA8D6] font-bold">
+                <p className="text-xs sm:text-sm  text-[#0FA8D6] font-bold">
                   M.S. (Surgery), M.Ch (Urology, AIIMS, New Delhi)
                 </p>
                 <p className="text-xs text-slate-300 font-medium">

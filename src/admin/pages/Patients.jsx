@@ -806,7 +806,7 @@ const Patients = () => {
                       <td className="px-6 py-4 font-semibold text-slate-400">#{patient._id?.substring(patient._id.length - 4).toUpperCase()}</td>
                       <td className="px-6 py-4 font-semibold text-slate-805 group-hover:text-blue-600 transition-colors">{patient.name}</td>
                       <td className="px-6 py-4 font-medium">{patient.age} Yrs / {patient.gender}</td>
-                      <td className="px-6 py-4 text-slate-500 font-mono text-xs">{patient.phone}</td>
+                      <td className="px-6 py-4 text-slate-500  text-xs">{patient.phone}</td>
                       <td className="px-6 py-4 text-xs">
                         <div className="font-semibold text-slate-850">
                           {patient.doctor?.name ? `Dr. ${patient.doctor.name}` : "Unassigned"}
@@ -876,7 +876,7 @@ const Patients = () => {
                         <div>{patient.name}</div>
                         <div className="text-xs text-slate-500 font-medium">{patient.age} Yrs / {patient.gender}</div>
                       </td>
-                      <td className="px-6 py-4 text-slate-500 font-mono text-xs">{patient.phone}</td>
+                      <td className="px-6 py-4 text-slate-500  text-xs">{patient.phone}</td>
                       <td className="px-6 py-4 font-semibold text-blue-600">
                         <div className="flex items-center gap-1.5">
                           <Clock size={14} className="text-blue-500" />
@@ -960,13 +960,13 @@ const Patients = () => {
                       onClick={() => openRequestViewModal(req)}
                       className="hover:bg-slate-50/80 active:bg-slate-100/50 transition-all cursor-pointer border-l-2 border-l-transparent hover:border-l-blue-600 group"
                     >
-                      <td className="px-6 py-4 text-slate-500 font-mono text-xs">{new Date(req.createdAt).toLocaleDateString()}</td>
+                      <td className="px-6 py-4 text-slate-500  text-xs">{new Date(req.createdAt).toLocaleDateString()}</td>
                       <td className="px-6 py-4">
                         <div className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">{req.name}</div>
                         <div className="text-xs text-slate-500 font-medium">{req.age} Yrs / {req.gender}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-slate-800 font-mono text-xs">{req.phone}</div>
+                        <div className="text-slate-800  text-xs">{req.phone}</div>
                         {req.email && <div className="text-xs text-slate-500">{req.email}</div>}
                       </td>
                       <td className="px-6 py-4">
@@ -1352,7 +1352,7 @@ const Patients = () => {
                   <div>
                     <h3 className="text-xl font-bold text-slate-800">{viewingPatient.name}</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs font-mono text-slate-450 bg-slate-105 border border-slate-200/50 px-2 py-0.5 rounded font-semibold">ID: #{viewingPatient._id?.substring(viewingPatient._id.length - 4).toUpperCase()}</span>
+                      <span className="text-xs  text-slate-450 bg-slate-105 border border-slate-200/50 px-2 py-0.5 rounded font-semibold">ID: #{viewingPatient._id?.substring(viewingPatient._id.length - 4).toUpperCase()}</span>
                       <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${getStatusBadge(viewingPatient.status)}`}>
                         {viewingPatient.status}
                       </span>
@@ -1376,7 +1376,7 @@ const Patients = () => {
                   </div>
                   <div className="space-y-1">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Contact Phone</span>
-                    <p className="text-sm font-semibold text-slate-750 font-mono">{viewingPatient.phone}</p>
+                    <p className="text-sm font-semibold text-slate-750 ">{viewingPatient.phone}</p>
                   </div>
                   <div className="space-y-1 sm:col-span-2">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Email Address</span>
@@ -1474,7 +1474,7 @@ const Patients = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Contact Phone</span>
-                    <p className="font-semibold text-slate-805 font-mono">{viewingRequest.phone}</p>
+                    <p className="font-semibold text-slate-805 ">{viewingRequest.phone}</p>
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Email Address</span>

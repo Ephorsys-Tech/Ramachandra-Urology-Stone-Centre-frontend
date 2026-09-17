@@ -53,7 +53,7 @@ const HomeVideoReviews = memo(() => {
   }, [activeVideo]);
 
   return (
-    <section className="py-16 sm:py-24 bg-slate-50/70 relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-24 bg-slate-50/70 relative overflow-hidden ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -74,7 +74,7 @@ const HomeVideoReviews = memo(() => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight"
           >
-            Real Stories, <span className="text-[#0FA8D6]">Verified Outcomes</span>
+            Real Stories, Verified Outcomes
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -204,7 +204,7 @@ const HomeVideoReviews = memo(() => {
           </div>
         )}
       </AnimatePresence>
-    </section>
+    </section >
   );
 });
 

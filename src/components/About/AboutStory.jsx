@@ -37,7 +37,7 @@ const AboutStory = () => {
           <span className="inline-block text-secondary font-bold text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4">
             Our Story
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4 sm:mb-6 leading-tight font-sans tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4 sm:mb-6 leading-tight  tracking-tight">
             A Journey of Compassion and Healing Since 1999
           </h2>
           <div className="space-y-4 sm:space-y-6 text-slate-650 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">

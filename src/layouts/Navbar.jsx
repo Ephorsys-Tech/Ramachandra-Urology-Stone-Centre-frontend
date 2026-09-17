@@ -82,7 +82,7 @@ const Navbar = () => {
   const emergencyNumber = "+91 99375 66625";
 
   return (
-    <header className="sticky top-0 z-50 bg-white font-sans select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+    <header className="sticky top-0 z-50 bg-white  select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
       {/* ── TOP RIGHT INFORMATION & ACCREDITATION STRIP (SLEEK & TIGHT) ── */}
       <div className="hidden lg:block bg-slate-50/70 border-b border-slate-100 py-1 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex items-center justify-end gap-5 text-[11.5px]">
@@ -166,15 +166,18 @@ const Navbar = () => {
       </div>
 
       {/* ── MAIN PROMINENT NAVBAR ROW ── */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-3.5">
-        <div className="flex items-center justify-between gap-4 min-h-[58px]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
+        <div className="flex items-center justify-between gap-4 min-h-[68px] sm:min-h-[76px] lg:min-h-[84px]">
           
-          {/* Big Brand Logo - Perfectly Vertically Centered on Left Side */}
-          <Link to="/" className="flex items-center self-center no-underline shrink-0 group">
+          {/* Big Brand Logo - Fully Visible, Prominent & High-Definition */}
+          <Link
+            to="/"
+            className="flex items-center self-center no-underline shrink-0 relative w-[230px] sm:w-[280px] md:w-[340px] lg:w-[380px] xl:w-[420px] h-15 sm:h-17 md:h-18 z-10"
+          >
             <img
               src="/logo.png"
               alt="Ramachandra Urology & Stone Centre"
-              className="h-12 sm:h-14 md:h-16 lg:h-[72px] w-auto max-w-[280px] sm:max-w-[340px] md:max-w-[420px] object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-38 sm:h-46 md:h-52 lg:h-58 xl:h-64 w-auto max-w-none absolute left-0 top-1/2 -translate-y-1/2 object-contain pointer-events-auto"
             />
           </Link>
 
@@ -515,7 +518,7 @@ const Navbar = () => {
                   setIsOpen(false);
                   dispatch(openAppointmentModal());
                 }}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-sm font-medium py-3.5 rounded-xl shadow-md border-none cursor-pointer tracking-wide uppercase transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white text-sm font-medium py-3.5 rounded-xl shadow-md border-none cursor-pointer tracking-wide uppercase transition-all"
               >
                 <Calendar size={16} />
                 <span>Book Appointment</span>

@@ -39,7 +39,7 @@ const HomeEmergency = memo(() => {
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   return (
-    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] overflow-hidden font-sans border-y border-[#0FA8D6]/20">
+    <section className="relative py-16 lg:py-20 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] overflow-hidden  border-y border-[#0FA8D6]/20">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/4 w-[450px] h-[450px] bg-[#0FA8D6]/15 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#024363]/40 rounded-full blur-3xl pointer-events-none" />
@@ -83,7 +83,7 @@ const HomeEmergency = memo(() => {
             <div className="flex flex-wrap gap-4 mt-8">
               <a
                 href={`tel:${emergencyPhone}`}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-7 py-3.5 rounded-xl font-medium transition-all shadow-lg hover:shadow-[#0FA8D6]/30 hover:scale-102 active:scale-98 cursor-pointer no-underline text-xs sm:text-sm uppercase tracking-wider"
+                className="inline-flex items-center gap-3 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white px-7 py-3.5 rounded-xl font-medium transition-all shadow-lg hover:shadow-[#0FA8D6]/30 hover:scale-102 active:scale-98 cursor-pointer no-underline text-xs sm:text-sm uppercase tracking-wider"
               >
                 <Phone size={16} />
                 <span>Call Hotline: +91 {emergencyPhone}</span>

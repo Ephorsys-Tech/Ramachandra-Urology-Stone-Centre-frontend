@@ -39,7 +39,7 @@ const images = [
 
 const HomeGallery = memo(() => {
   return (
-    <section className="bg-white relative py-12 font-sans">
+    <section className="bg-white relative py-12 ">
       {/* Intro Header Section */}
       <div className="relative flex flex-col items-center justify-center text-center px-4 max-w-3xl mx-auto mb-8">
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
@@ -47,7 +47,7 @@ const HomeGallery = memo(() => {
           Hospital Infrastructure
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] mb-3 tracking-tight">
-          A Glimpse Inside <span className="text-[#0FA8D6]">Our Sambalpur Campus</span>
+          A Glimpse Inside Our Sambalpur Campus
         </h2>
         <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
           Explore our sterile modular operation theatres, daycare recovery suites, high-power laser systems, and patient diagnostic facilities.
@@ -58,7 +58,7 @@ const HomeGallery = memo(() => {
       <div className="w-full relative overflow-visible">
         <ZoomParallax images={images} />
       </div>
-    </section>
+    </section >
   );
 });
 

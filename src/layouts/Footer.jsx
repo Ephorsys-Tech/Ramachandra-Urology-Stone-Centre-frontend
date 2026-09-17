@@ -72,7 +72,7 @@ const Footer = memo(() => {
   ];
 
   return (
-    <footer className="bg-[#eaf4f9] text-[#1e293b] font-sans select-none border-t border-[#0FA8D6]/20">
+    <footer className="bg-[#eaf4f9] text-[#1e293b]  select-none border-t border-[#0FA8D6]/20">
       
       {/* ── 1. TOP HEADER ROW: LOGO + ACCREDITATION BADGES + SOCIAL ICONS ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
@@ -274,7 +274,7 @@ const Footer = memo(() => {
             {/* Book Appointment CTA Button */}
             <button
               onClick={() => dispatch(openAppointmentModal())}
-              className="w-full py-2.5 px-4 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
+              className="w-full py-2.5 px-4 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book Appointment</span>
