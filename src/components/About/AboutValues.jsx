@@ -15,7 +15,7 @@ const AboutValues = () => {
         <span className="inline-block text-secondary font-bold text-sm tracking-widest uppercase mb-4">
           Core Principles
         </span>
-        <h2 className="text-3xl md:text-4xl font-bold text-primary font-sans tracking-tight">Our <span className="text-secondary">Values</span></h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-primary  tracking-tight">Our <span className="text-secondary">Values</span></h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {values.map((val, i) => (

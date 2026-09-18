@@ -44,7 +44,7 @@ const LeadershipTeam = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80 font-sans select-none">
+    <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80  select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -157,7 +157,7 @@ const LeadershipTeam = () => {
               <div className="p-6 pt-0">
                 <button
                   onClick={() => dispatch(openAppointmentModal("Urology", doc.name))}
-                  className="w-full py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
+                  className="w-full py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
                 >
                   <Calendar size={13} />
                   <span>Book Consultation</span>

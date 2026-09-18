@@ -18,12 +18,12 @@ const HomeInsurance = memo(() => {
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   return (
-    <section className="py-16 sm:py-20 bg-slate-50/70 relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-20 bg-slate-50/70 relative overflow-hidden ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Banner container */}
         <div className="bg-white rounded-3xl border border-slate-200/90 p-8 sm:p-10 shadow-xs">
-          
+
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-8 pb-8 border-b border-slate-100">
             <div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-medium uppercase tracking-wider mb-2">
@@ -31,7 +31,7 @@ const HomeInsurance = memo(() => {
                 Hassle-Free Cashless Hospitalization
               </span>
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
-                Empaneled with Major <span className="text-[#0FA8D6]">Govt Schemes & TPAs</span>
+                Empaneled with Major Govt Schemes & TPAs
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
                 Avail cashless treatment for kidney stone surgery, prostate procedures, and emergency admissions with dedicated on-desk claim assistance.
@@ -48,7 +48,7 @@ const HomeInsurance = memo(() => {
               </a>
               <button
                 onClick={() => dispatch(openAppointmentModal())}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-medium transition-all shadow-xs cursor-pointer border-none"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-medium transition-all shadow-xs cursor-pointer border-none"
               >
                 <span>Verify Insurance</span>
               </button>
@@ -82,7 +82,7 @@ const HomeInsurance = memo(() => {
         </div>
 
       </div>
-    </section>
+    </section >
   );
 });
 

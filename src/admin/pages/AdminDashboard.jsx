@@ -475,7 +475,7 @@ const AdminDashboard = () => {
                       <div>{patient.name}</div>
                       <div className="text-[10px] text-slate-400 font-medium">{patient.age} Yrs / {patient.gender}</div>
                     </td>
-                    <td className="px-5 py-3 text-slate-500 font-mono">{patient.phone}</td>
+                    <td className="px-5 py-3 text-slate-500 ">{patient.phone}</td>
                     <td className="px-5 py-3 font-semibold text-blue-600">
                       <div className="flex items-center gap-1 mt-1">
                         <Clock size={12} className="text-blue-500" />

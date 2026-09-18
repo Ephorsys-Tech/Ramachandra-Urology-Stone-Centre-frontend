@@ -112,14 +112,14 @@ const ContactSection = memo(() => {
   };
 
   return (
-    <section className="py-12 sm:py-16 font-sans">
+    <section className="py-12 sm:py-16 ">
       <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
+
           {/* ── LEFT COLUMN: CONTACT DETAILS & 24/7 HELPLINES ── */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Header pill */}
             <div>
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-2 shadow-2xs">
@@ -127,7 +127,7 @@ const ContactSection = memo(() => {
                 Direct Communication Hub
               </span>
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
-                Get in Touch with <span className="text-[#0FA8D6]">Our Team</span>
+                Get in Touch with Our Team
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                 Whether you need priority stone surgery counseling, OPD doctor schedules, or urgent helpline assistance in Sambalpur, we are here to support you.
@@ -137,7 +137,7 @@ const ContactSection = memo(() => {
             {/* Card 1: 24/7 Emergency & Stone Helpline (High-Contrast Navy Card) */}
             <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white rounded-3xl p-6 sm:p-7 shadow-lg border border-[#0FA8D6]/25 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#0FA8D6]/15 rounded-full blur-2xl pointer-events-none" />
-              
+
               <div className="flex items-start gap-4 mb-4 relative z-10">
                 <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/20 border border-[#0FA8D6]/40 text-[#0FA8D6] flex items-center justify-center shrink-0 shadow-xs">
                   <Phone size={22} />
@@ -239,9 +239,9 @@ const ContactSection = memo(() => {
           {/* ── RIGHT COLUMN: INTERACTIVE INQUIRY FORM ── */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 md:p-10 shadow-xs relative overflow-hidden">
-              
+
               {/* Subtle top ambient bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0FA8D6] to-[#024363]" />
+             
 
               <div className="flex items-center gap-3 mb-6 sm:mb-8">
                 <div className="w-11 h-11 rounded-2xl bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 flex items-center justify-center text-[#024363] shadow-xs">
@@ -249,7 +249,7 @@ const ContactSection = memo(() => {
                 </div>
                 <div>
                   <h3 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
-                    Send Us a <span className="text-[#0FA8D6]">Message</span>
+                    Send Us a Message
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Our patient relations coordinators in Sambalpur typically respond within a few hours.
@@ -358,7 +358,7 @@ const ContactSection = memo(() => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-98 disabled:opacity-60 cursor-pointer uppercase tracking-wider text-xs sm:text-sm border-none"
+                  className="w-full flex items-center justify-center gap-2 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-98 disabled:opacity-60 cursor-pointer uppercase tracking-wider text-xs sm:text-sm border-none"
                 >
                   <Send size={15} />
                   <span>{isSubmitting ? "Sending Inquiry..." : "Submit Inquiry to Sambalpur Desk"}</span>
@@ -370,8 +370,8 @@ const ContactSection = memo(() => {
 
         </div>
 
-      </div>
-    </section>
+      </div >
+    </section >
   );
 });
 

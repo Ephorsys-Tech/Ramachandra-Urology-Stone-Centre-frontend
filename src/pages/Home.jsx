@@ -6,11 +6,15 @@ import PopupBanner from "../components/PopupBanner";
 
 const HomeAbout = lazy(() => import("../components/Home/HomeAbout"));
 const HomeTechnology = lazy(() => import("../components/Home/HomeTechnology"));
+const HomeProstateBPH = lazy(() => import("../components/Home/HomeProstateBPH"));
 const HomeDepartments = lazy(() => import("../components/Home/HomeDepartments"));
 const HomeDoctors = lazy(() => import("../components/Home/HomeDoctors"));
+const HomeDiagnosticsStrip = lazy(() => import("../components/Home/HomeDiagnosticsStrip"));
+const NABHAccreditationSection = lazy(() => import("../components/Home/NABHAccreditationSection"));
+const HomeInsurance = lazy(() => import("../components/Home/HomeInsurance"));
+const HomeCareValues = lazy(() => import("../components/Home/HomeCareValues"));
 const HomeEmergency = lazy(() => import("../components/Home/HomeEmergency"));
 const HomeWhyChooseUs = lazy(() => import("../components/Home/HomeWhyChooseUs"));
-const HomeInsurance = lazy(() => import("../components/Home/HomeInsurance"));
 const HomeTestimonials = lazy(() => import("../components/Home/HomeTestimonials"));
 const HomeVideoReviews = lazy(() => import("../components/Home/HomeVideoReviews"));
 const HomeGallery = lazy(() => import("../components/Home/HomeGallery"));
@@ -35,11 +39,15 @@ const Home = () => {
       >
         <HomeAbout />
         <HomeTechnology />
+        <HomeProstateBPH />
         <HomeDepartments />
         <HomeDoctors />
+        <HomeDiagnosticsStrip />
+        <NABHAccreditationSection />
+        <HomeInsurance />
+        <HomeCareValues />
         <HomeEmergency />
         <HomeWhyChooseUs />
-        <HomeInsurance />
         <HomeTestimonials />
         <HomeVideoReviews />
         <HomeGallery />

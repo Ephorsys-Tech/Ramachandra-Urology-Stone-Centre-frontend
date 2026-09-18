@@ -1,102 +1,192 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Award, UserCheck, Stethoscope } from "lucide-react";
+import {
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  Award,
+  Stethoscope,
+  Building2,
+  Phone,
+  Zap,
+  Clock,
+  HeartPulse,
+} from "lucide-react";
 
-const features = [
+const keyPillars = [
   {
-    title: "Super-Specialist Urologists",
-    desc: "Led by Dr. Sanjay Kumar Mahapatra (M.Ch AIIMS New Delhi)",
+    title: "AIIMS-Trained Surgical Faculty",
+    desc: "Led by Dr. Sanjay Kumar Mahapatra [M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)].",
+    icon: Stethoscope,
+    color: "text-[#0FA8D6]",
+    bg: "bg-[#0FA8D6]/10",
   },
   {
-    title: "Thulium Fiber Laser OT",
-    desc: "Stitchless stone removal with same-day daycare recovery",
+    title: "Thulium Fiber Laser & Modular OT",
+    desc: "Stitchless stone dusting (RIRS/PCNL) and THUFLEP with HEPA-filtered cleanroom safety.",
+    icon: Zap,
+    color: "text-purple-600",
+    bg: "bg-purple-50",
   },
   {
-    title: "24/7 Renal Colic Triage",
-    desc: "Immediate relief for acute kidney stone pain & DJ stenting",
+    title: "100% Cashless Ayushman & GJAY",
+    desc: "Direct cashless hospitalization under PM-JAY and Gopabandhu Jan Arogya Yojana.",
+    icon: ShieldCheck,
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
   },
   {
-    title: "100% Cashless Empanelment",
-    desc: "Treatment under Ayushman Bharat (PM-JAY) & GJAY",
+    title: "24/7 Acute Renal Emergency",
+    desc: "Immediate relief for severe kidney stone pain, ureteric colic, and DJ stenting.",
+    icon: Clock,
+    color: "text-rose-600",
+    bg: "bg-rose-50",
   },
 ];
 
 const HomeAbout = memo(() => {
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden  border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
 
-          {/* Left Image Section */}
-          <div className="w-full lg:w-[46%] relative h-[340px] sm:h-[420px] lg:h-[480px]">
-            <img
-              src="https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg"
-              alt="Ramachandra Urology & Stone Centre Sambalpur"
-              className="w-full h-full object-cover rounded-3xl lg:rounded-[36px] shadow-2xl border border-slate-200/90"
-            />
-            <div className="absolute inset-0 bg-[#012442]/10 mix-blend-multiply rounded-3xl lg:rounded-[36px]" />
+        {/* ── TOP SECTION HEADER ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 lg:mb-16">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
+              <Sparkles size={12} className="text-[#0FA8D6]" />
+              Ramachandra Urology & Stone Centre • Reg No: 14/2024
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-medium text-[#012442] tracking-tight leading-[1.2]">
+              Advanced Kidney Care & <br className="hidden sm:inline" />
+              Laser Urological Surgeries
+            </h2>
+          </div>
+          <div className="max-w-md text-left lg:text-right">
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed m-0 font-normal">
+              Located in Sourav Vihar, Burla, Sambalpur — providing world-class endourology, laser lithotripsy, and laparoscopic interventions right here in Western Odisha.
+            </p>
+          </div>
+        </div>
 
-            {/* Floating Experience Badge */}
-            <div className="absolute -bottom-5 -right-4 sm:-bottom-6 sm:-right-6 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white p-5 sm:p-7 rounded-3xl shadow-2xl border border-[#0FA8D6]/30 z-10 min-w-[160px] sm:min-w-[190px] text-center">
-              <div className="w-9 h-9 rounded-full bg-[#0FA8D6]/20 mx-auto flex items-center justify-center mb-1.5 text-[#0FA8D6]">
-                <Award size={20} />
+        {/* ── MAIN CONTENT GRID ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+          {/* Left Column: Interactive Visual Stack (5 cols) */}
+          <div className="lg:col-span-5 relative">
+
+            {/* Main Visual Container */}
+            <div className="relative rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80"
+                alt="Ramachandra Urology & Stone Centre Campus"
+                className="w-full h-[380px] sm:h-[440px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/85 via-[#012442]/20 to-transparent" />
+
+              {/* In-Image Caption Overlay */}
+              <div className="absolute bottom-5 left-5 right-5 text-white">
+                <span className="text-[11px] font-medium text-cyan-200 uppercase tracking-wider block">
+                  Sourav Vihar, Burla, Sambalpur
+                </span>
+                <h3 className="text-lg font-medium text-white tracking-tight mt-0.5 m-0">
+                  Centre of Excellence in Endourology
+                </h3>
               </div>
-              <p className="text-3xl sm:text-4xl font-medium mb-0.5 text-white">NABH</p>
-              <p className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-cyan-200">
-                Accredited SHCO<br />Reg No. 14/2024
-              </p>
             </div>
+
+            {/* Floating Top Accreditation Badge */}
+            <div className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 bg-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-slate-200 flex items-center gap-3">
+              <div className="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                <Award size={22} />
+              </div>
+              <div>
+                <span className="text-[10.5px] font-bold text-slate-400 uppercase tracking-wider block">
+                  NABH Accredited
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-[#012442] block">
+                  Entry Level SHCO
+                </span>
+              </div>
+            </div>
+
+            {/* Floating Bottom Quick Stat */}
+            <div className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-5 bg-[#012442] text-white rounded-2xl p-3.5 sm:p-4 shadow-xl border border-[#0FA8D6]/30 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#0FA8D6]/20 text-[#0FA8D6] flex items-center justify-center shrink-0">
+                <ShieldCheck size={20} />
+              </div>
+              <div>
+                <span className="text-[10px] text-cyan-200 uppercase tracking-wider block">
+                  100% Cashless
+                </span>
+                <span className="text-xs sm:text-sm font-medium text-white block">
+                  Ayushman & GJAY
+                </span>
+              </div>
+            </div>
+
           </div>
 
-          {/* Text Section (Right Side) */}
-          <div className="w-full lg:w-[50%]">
-            <div className="mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
-                <Sparkles size={12} className="text-[#0FA8D6]" />
-                Centre for Advanced Kidney Care & Laparoscopic Surgeries
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium text-[#012442] leading-[1.18] tracking-tight">
-                Better Care, Healthier Lives <br />
-                <span className="text-[#0FA8D6]">Flow Freely, Live Fully</span>
-              </h2>
-            </div>
+          {/* Right Column: Key Pillars & Actions (7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
 
-            <p className="text-slate-600 leading-relaxed mb-4 text-xs sm:text-sm">
-              Ramachandra Urology & Stone Centre (Reg No. 14/2024) is Burla and Sambalpur’s premier specialized center offering comprehensive endourology, Thulium Fiber Laser lithotripsy (RIRS/PCNL), laser prostatectomy (THUFLEP), reconstructive urology, and laparoscopic surgeries under the surgical leadership of Dr. Sanjay Kumar Mahapatra [M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)].
-            </p>
-            <p className="text-slate-600 leading-relaxed mb-8 text-xs sm:text-sm">
-              We eliminate painful open surgical incisions through cutting-edge fiber lasers and modular operation theatres, ensuring faster recovery, minimal pain, and same-day daycare discharge with complete in-house diagnostics and pharmacy.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed m-0 font-normal">
+              Ramachandra Urology & Stone Centre brings modern, stitchless, and precision-guided surgical care to patients suffering from complex kidney stones, enlarged prostate (BPH), and urological conditions. Led by AIIMS New Delhi trained faculty, our centre eliminates the need for long travel to metros by providing advanced surgical science right here at home.
             </p>
 
-            {/* Feature Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-8">
-              {features.map((item) => (
-                <div key={item.title} className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 hover:bg-[#0FA8D6]/5 border border-slate-200/80 hover:border-[#0FA8D6]/40 transition-all">
-                  <div className="w-9 h-9 rounded-xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#0FA8D6] shrink-0">
-                    <CheckCircle2 size={18} />
+            {/* 4 Clean Feature Cards in 2x2 Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              {keyPillars.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#0FA8D6]/40 hover:shadow-sm transition-all duration-300 flex items-start gap-3"
+                  >
+                    <div className={`w-10 h-10 rounded-xl ${item.bg} ${item.color} flex items-center justify-center shrink-0`}>
+                      <Icon size={19} />
+                    </div>
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-medium text-[#012442] leading-snug m-0">
+                        {item.title}
+                      </h4>
+                      <p className="text-[11.5px] text-slate-500 mt-1 leading-relaxed m-0">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-sm text-[#012442]">{item.title}</h4>
-                    <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-7 py-3.5 rounded-2xl font-extrabold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer no-underline text-xs sm:text-sm uppercase tracking-wider"
-            >
-              <span>Explore Our Full Story</span>
-              <ArrowRight size={15} />
-            </Link>
+            {/* Action Bar */}
+            <div className="pt-4 flex flex-wrap items-center gap-4">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer no-underline uppercase tracking-wider"
+              >
+                <span>Read Full Story & Mission</span>
+                <ArrowRight size={14} />
+              </Link>
+
+              <a
+                href="tel:9937566625"
+                className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 hover:border-[#0FA8D6]/40 text-[#012442] px-5 py-3 rounded-2xl text-xs sm:text-sm font-medium transition-colors no-underline"
+              >
+                <Phone size={14} className="text-[#0FA8D6]" />
+                <span>OPD Desk: 9937566625</span>
+              </a>
+            </div>
+
           </div>
 
         </div>
+
       </div>
-    </section>
+    </section >
   );
 });
 
 HomeAbout.displayName = "HomeAbout";
 export default HomeAbout;
+

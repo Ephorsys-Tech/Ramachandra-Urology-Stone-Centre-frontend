@@ -37,7 +37,7 @@ const DepartmentGrid = () => {
   });
 
   return (
-    <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-10 font-sans">
+    <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-10 ">
       
       {/* ── SEARCH & SUMMARY BAR ── */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-8 border-b border-slate-200/80">
@@ -91,7 +91,7 @@ const DepartmentGrid = () => {
                   transition={{ duration: 0.4, delay: i * 0.04 }}
                 >
                   {/* Subtle top ambient bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0FA8D6] to-[#024363] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#00B4EA] opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Header: Department Icon + Specialization Badge */}
                   <div className="flex items-start justify-between gap-4 mb-5">
@@ -137,7 +137,7 @@ const DepartmentGrid = () => {
                   <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5">
                     <Link
                       to={`/departments/${dept.slug || dept._id}`}
-                      className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-bold text-xs py-3 rounded-xl transition-all shadow-xs hover:shadow-md no-underline tracking-wide uppercase"
+                      className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-bold text-xs py-3 rounded-xl transition-all shadow-xs hover:shadow-md no-underline tracking-wide uppercase"
                     >
                       <span>Explore Wing</span>
                       <ArrowRight size={13} />

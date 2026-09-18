@@ -28,11 +28,11 @@ const reasons = [
 
 const HomeWhyChooseUs = memo(() => {
   return (
-    <section className="py-16 sm:py-20 bg-white relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-20 bg-white relative overflow-hidden ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
+
           {/* Left info column */}
           <div className="lg:col-span-5 space-y-6">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider shadow-2xs">
@@ -42,7 +42,7 @@ const HomeWhyChooseUs = memo(() => {
 
             <h2 className="text-3xl sm:text-4xl font-medium text-[#012442] tracking-tight leading-tight">
               Why Patients Trust <br />
-              <span className="text-[#0FA8D6]">Ramachandra Urology</span>
+              Ramachandra Urology
             </h2>
 
             <p className="text-sm text-slate-600 leading-relaxed">
@@ -101,7 +101,7 @@ const HomeWhyChooseUs = memo(() => {
         </div>
 
       </div>
-    </section>
+    </section >
   );
 });
 

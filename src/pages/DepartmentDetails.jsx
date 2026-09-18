@@ -55,7 +55,7 @@ const DepartmentDetails = () => {
   if (!department) {
     return (
       <main className="bg-slate-50/50 min-h-screen pb-24 text-[#012442] flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-extrabold mb-3 font-sans">Department Not Found</h1>
+        <h1 className="text-3xl font-extrabold mb-3 ">Department Not Found</h1>
         <p className="text-slate-500 text-sm mb-6">The clinical specialty wing you requested is currently unavailable.</p>
         <Link
           to="/departments"
@@ -68,7 +68,7 @@ const DepartmentDetails = () => {
   }
 
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-24 font-sans">
+    <main className="bg-slate-50/50 min-h-screen pb-24 ">
       <PageHero
         breadcrumb={`Specialties / ${department.name}`}
         badge="Clinical Specialty Wing"
@@ -81,11 +81,11 @@ const DepartmentDetails = () => {
       />
 
       <section className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14">
-        
+
         {/* Main Specialty Info Card */}
         <div className="bg-white rounded-3xl shadow-xs p-6 sm:p-8 lg:p-10 mb-10 border border-slate-200/90">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            
+
             {/* Left Wing Overview Column */}
             <div className="lg:w-1/3">
               <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#0FA8D6]/15 to-[#024363]/10 border border-[#0FA8D6]/30 text-[#024363] flex items-center justify-center mb-5 shadow-xs">
@@ -126,7 +126,7 @@ const DepartmentDetails = () => {
 
               <button
                 onClick={() => dispatch(openAppointmentModal())}
-                className="w-full text-center bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-3.5 px-6 text-xs rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-none cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full text-center bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-3.5 px-6 text-xs rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-none cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Calendar size={14} />
                 <span>Book OPD Consultation</span>
@@ -197,100 +197,100 @@ const DepartmentDetails = () => {
                 Specialist Medical Faculty
               </div>
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-1">
-                Consult With <span className="text-[#0FA8D6]">{department.name}</span> Specialists
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
-                Senior consultant doctors and surgeons dedicated to exceptional clinical outcomes.
-              </p>
-            </div>
+                Consult With {department.name}</span> Specialists
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
+              Senior consultant doctors and surgeons dedicated to exceptional clinical outcomes.
+            </p>
+          </div>
 
             {/* Doctors Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(departmentDoctors && departmentDoctors.length > 0 ? departmentDoctors : department.doctors).map((doctor, idx) => {
-                const docImage = doctor.photo || doctor.image;
-                const docSpecialty = doctor.specialization || doctor.specialty || department.name;
-                const docName = doctor.name;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(departmentDoctors && departmentDoctors.length > 0 ? departmentDoctors : department.doctors).map((doctor, idx) => {
+            const docImage = doctor.photo || doctor.image;
+            const docSpecialty = doctor.specialization || doctor.specialty || department.name;
+            const docName = doctor.name;
 
-                if (!docName) return null;
+            if (!docName) return null;
 
-                return (
-                  <div
-                    key={doctor._id || idx}
-                    className="relative bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#0FA8D6]/40 transition-all duration-300 flex flex-col items-center text-center overflow-hidden group"
-                  >
-                    {/* Top Accent Icon Badge */}
-                    <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#0FA8D6]/10 text-[#024363] border border-[#0FA8D6]/20 flex items-center justify-center z-10 shadow-2xs">
-                      <Stethoscope size={15} className="text-[#0FA8D6]" />
-                    </div>
+            return (
+              <div
+                key={doctor._id || idx}
+                className="relative bg-white rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#0FA8D6]/40 transition-all duration-300 flex flex-col items-center text-center overflow-hidden group"
+              >
+                {/* Top Accent Icon Badge */}
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#0FA8D6]/10 text-[#024363] border border-[#0FA8D6]/20 flex items-center justify-center z-10 shadow-2xs">
+                  <Stethoscope size={15} className="text-[#0FA8D6]" />
+                </div>
 
-                    {/* Circular Avatar Image */}
-                    <div className="relative z-10 mb-3">
-                      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-3 border-white shadow-md bg-slate-50 mx-auto">
-                        {docImage && !docImage.includes("👨‍⚕️") && !docImage.includes("👩‍⚕️") ? (
-                          <img
-                            src={docImage}
-                            alt={docName}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-[#0FA8D6]/10 text-[#024363]">
-                            <Stethoscope size={32} />
-                          </div>
-                        )}
+                {/* Circular Avatar Image */}
+                <div className="relative z-10 mb-3">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-3 border-white shadow-md bg-slate-50 mx-auto">
+                    {docImage && !docImage.includes("👨‍⚕️") && !docImage.includes("👩‍⚕️") ? (
+                      <img
+                        src={docImage}
+                        alt={docName}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-[#0FA8D6]/10 text-[#024363]">
+                        <Stethoscope size={32} />
                       </div>
-                    </div>
-
-                    {/* Doctor Name & Specialty */}
-                    <h3 className="text-base sm:text-lg font-medium text-[#012442] tracking-tight mb-1">
-                      {docName.startsWith("Dr.") ? docName : `Dr. ${docName}`}
-                    </h3>
-                    <p className="text-xs font-bold text-[#0FA8D6] uppercase tracking-wider mb-4">
-                      {docSpecialty}
-                    </p>
-
-                    {/* Experience Box */}
-                    <div className="w-full bg-slate-50 border border-slate-200/80 rounded-xl p-3 flex items-center gap-3 text-left mb-5">
-                      <div className="w-8 h-8 rounded-full bg-white text-[#024363] border border-slate-200 flex items-center justify-center shrink-0 shadow-2xs">
-                        <Award size={15} className="text-[#0FA8D6]" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="text-xs font-extrabold text-[#012442] leading-tight">
-                          {doctor.experience || 10}+ Years Experience
-                        </div>
-                        <p className="text-[11px] text-slate-500 line-clamp-1 leading-snug mt-0.5">
-                          {doctor.qualifications || "Senior Consultant Surgeon"}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* View Profile Action Button */}
-                    <div className="mt-auto w-full">
-                      <Link
-                        to={`/doctors/${getDoctorSlug(docName)}`}
-                        className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-bold rounded-full shadow-xs hover:shadow-md transition-all no-underline uppercase tracking-wide group/btn"
-                      >
-                        <span>View Specialist Profile</span>
-                        <ArrowRight size={13} className="transition-transform group-hover/btn:translate-x-1" />
-                      </Link>
-                    </div>
+                    )}
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                </div>
+
+                {/* Doctor Name & Specialty */}
+                <h3 className="text-base sm:text-lg font-medium text-[#012442] tracking-tight mb-1">
+                  {docName.startsWith("Dr.") ? docName : `Dr. ${docName}`}
+                </h3>
+                <p className="text-xs font-bold text-[#0FA8D6] uppercase tracking-wider mb-4">
+                  {docSpecialty}
+                </p>
+
+                {/* Experience Box */}
+                <div className="w-full bg-slate-50 border border-slate-200/80 rounded-xl p-3 flex items-center gap-3 text-left mb-5">
+                  <div className="w-8 h-8 rounded-full bg-white text-[#024363] border border-slate-200 flex items-center justify-center shrink-0 shadow-2xs">
+                    <Award size={15} className="text-[#0FA8D6]" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-extrabold text-[#012442] leading-tight">
+                      {doctor.experience || 10}+ Years Experience
+                    </div>
+                    <p className="text-[11px] text-slate-500 line-clamp-1 leading-snug mt-0.5">
+                      {doctor.qualifications || "Senior Consultant Surgeon"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* View Profile Action Button */}
+                <div className="mt-auto w-full">
+                  <Link
+                    to={`/doctors/${getDoctorSlug(docName)}`}
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-bold rounded-full shadow-xs hover:shadow-md transition-all no-underline uppercase tracking-wide group/btn"
+                  >
+                    <span>View Specialist Profile</span>
+                    <ArrowRight size={13} className="transition-transform group-hover/btn:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
         )}
 
-        {/* Back Link */}
-        <div className="mt-8 flex justify-center">
-          <Link
-            to="/departments"
-            className="text-slate-600 hover:text-[#0FA8D6] flex items-center gap-2 font-bold text-xs uppercase tracking-wider transition-colors no-underline bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft size={14} /> Back to All Clinical Wings
-          </Link>
-        </div>
-      </section>
-    </main>
+      {/* Back Link */}
+      <div className="mt-8 flex justify-center">
+        <Link
+          to="/departments"
+          className="text-slate-600 hover:text-[#0FA8D6] flex items-center gap-2 font-bold text-xs uppercase tracking-wider transition-colors no-underline bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-2xs"
+        >
+          <ArrowLeft size={14} /> Back to All Clinical Wings
+        </Link>
+      </div>
+    </section>
+    </main >
   );
 };
 

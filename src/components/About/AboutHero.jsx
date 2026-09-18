@@ -76,10 +76,10 @@ const AboutHero = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-medium text-white tracking-tight drop-shadow-2xl font-sans mb-3 sm:mb-4">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-medium text-white tracking-tight drop-shadow-2xl  mb-3 sm:mb-4">
               About Ramachandra Urology
             </h1>
-            <p className="text-xl sm:text-3xl font-extrabold text-emerald-300 tracking-wide drop-shadow-lg font-sans">
+            <p className="text-xl sm:text-3xl font-extrabold text-emerald-300 tracking-wide drop-shadow-lg ">
               Centre for Advanced Kidney Care
             </p>
           </motion.div>
@@ -143,7 +143,7 @@ const AboutHero = () => {
 
                 {/* Primary Description Paragraph */}
                 <div className="relative pl-5 border-l-4 border-[#00875a]">
-                  <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-sans font-normal">
+                  <p className="text-slate-700 text-base sm:text-lg leading-relaxed  font-normal">
                     Ramachandra Urology & Stone Centre is a leading super-specialty healthcare institution dedicated to providing comprehensive, high-quality urological, laparoscopic, and kidney care services. Our institution is equipped with advanced laser lithotripsy, modular surgical theatres, and an expert medical team led by AIIMS-trained specialists.
                   </p>
                 </div>

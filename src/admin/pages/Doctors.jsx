@@ -305,7 +305,7 @@ const Doctors = () => {
                     <td className="px-6 py-4">
                       <div className="flex flex-col text-xs font-medium">
                         <span className="text-slate-700">{doc.email}</span>
-                        <span className="text-slate-400 font-mono mt-0.5">{doc.phone}</span>
+                        <span className="text-slate-400  mt-0.5">{doc.phone}</span>
                       </div>
                     </td>
                     <td className="px-6 py-4 font-medium text-slate-700">{doc.experience ? `${doc.experience} Yrs` : "N/A"}</td>
@@ -544,7 +544,7 @@ const Doctors = () => {
                   </div>
                   <div className="space-y-1">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Contact Phone</span>
-                    <p className="text-sm font-semibold text-slate-705 font-mono">{viewingDoctor.phone}</p>
+                    <p className="text-sm font-semibold text-slate-705 ">{viewingDoctor.phone}</p>
                   </div>
                   <div className="space-y-1">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Email Address</span>

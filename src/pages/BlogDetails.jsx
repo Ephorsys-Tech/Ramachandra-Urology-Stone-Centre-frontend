@@ -60,7 +60,7 @@ const BlogDetails = () => {
   }
 
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-24 text-slate-900 font-sans">
+    <main className="bg-slate-50/50 min-h-screen pb-24 text-slate-900 ">
       <PageHero
         breadcrumb={`Blog / ${selectedBlog.category || "Article"}`}
         badge={selectedBlog.category || "Urology Insight"}

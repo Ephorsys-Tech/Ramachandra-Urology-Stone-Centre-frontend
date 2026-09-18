@@ -39,12 +39,42 @@ const HomeDoctors = memo(() => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const fallbackDoctors = [
+    {
+      _id: "dr-sanjay-mahapatra",
+      name: "Dr. Sanjay Kumar Mahapatra",
+      degrees: "M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)",
+      specialization: "Consultant Senior Urologist, Andrologist & Endo-Lap Surgeon",
+      department: { name: "Urology & Kidney Care" },
+      image: "",
+      /* TODO: confirm with client — registration number and years of experience */
+    },
+    {
+      _id: "dr-sovan-hota",
+      name: "Dr. Sovan Hota",
+      degrees: "M.S., M.Ch. (Urology)",
+      specialization: "Consultant Urologist",
+      department: { name: "Urology & Endourology" },
+      image: "",
+      /* TODO: confirm with client — full degrees and registration number */
+    },
+    {
+      _id: "dr-kiran-negi",
+      name: "Dr. Kiran Negi",
+      degrees: "M.S., D.N.B. / M.Ch. (Urology)",
+      specialization: "Urologist",
+      department: { name: "Urology" },
+      image: "",
+      /* TODO: confirm with client — full qualifications and registration number */
+    },
+  ];
+
   const displayDoctors =
     homeDoctors && homeDoctors.length > 0
       ? homeDoctors
       : doctors && doctors.length > 0
-      ? doctors
-      : [];
+        ? doctors
+        : fallbackDoctors;
 
   const handlePrev = () => {
     if (displayDoctors.length === 0) return;
@@ -71,7 +101,7 @@ const HomeDoctors = memo(() => {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden ">
       {/* Background soft ambient glows */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#0FA8D6]/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#024363]/5 rounded-full blur-[100px] pointer-events-none" />
@@ -85,17 +115,17 @@ const HomeDoctors = memo(() => {
               Super-Specialist Clinical Faculty
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#012442] leading-tight">
-              Experienced <span className="text-[#0FA8D6]">Urologists & Specialists</span>
+              Experienced Urologists & Specialists
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
               Our surgical faculty brings decades of high-volume laser lithotripsy, laparoscopic, and kidney stone management expertise to Sambalpur.
             </p>
           </div>
-          
+
           <div className="flex items-center gap-4 shrink-0 mt-4 lg:mt-0">
             <button
               onClick={() => navigate('/doctors')}
-              className="bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none uppercase tracking-wider"
+              className="bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-extrabold transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer border-none uppercase tracking-wider"
             >
               <span>View All Specialists</span> <ArrowRight size={15} />
             </button>
@@ -170,7 +200,7 @@ const HomeDoctors = memo(() => {
                           e.stopPropagation();
                           dispatch(openAppointmentModal(doc.department?.name || "", doc.name));
                         }}
-                        className="w-full py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
+                        className="w-full py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
                       >
                         Book Visit ↗
                       </button>
@@ -229,7 +259,7 @@ const HomeDoctors = memo(() => {
           </div>
         )}
       </div>
-    </section>
+    </section >
   );
 });
 

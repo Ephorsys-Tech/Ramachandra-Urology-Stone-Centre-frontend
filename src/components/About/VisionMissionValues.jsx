@@ -30,7 +30,7 @@ const VisionMissionValues = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80 font-sans select-none">
+    <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80  select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ── 1. VISION & MISSION DUAL CARDS ── */}
@@ -48,7 +48,7 @@ const VisionMissionValues = () => {
               <Eye size={24} className="text-[#0FA8D6]" />
             </div>
 
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0FA8D6] block">
+            <span className="text-xs  font-bold uppercase tracking-widest text-[#0FA8D6] block">
               OUR GUIDING VISION
             </span>
 
@@ -73,7 +73,7 @@ const VisionMissionValues = () => {
               <Target size={24} className="text-[#0FA8D6]" />
             </div>
 
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0FA8D6] block">
+            <span className="text-xs  font-bold uppercase tracking-widest text-[#0FA8D6] block">
               OUR CLINICAL MISSION
             </span>
 
@@ -91,7 +91,7 @@ const VisionMissionValues = () => {
         {/* ── 2. FOUR FOUNDATIONAL CORE PILLARS ── */}
         <div>
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#0FA8D6] block mb-2">
+            <span className="text-xs  font-bold uppercase tracking-widest text-[#0FA8D6] block mb-2">
               FOUNDATIONAL ETHOS
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-[#012442] tracking-tight m-0">
@@ -113,7 +113,7 @@ const VisionMissionValues = () => {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-extrabold text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-lg border border-[#0FA8D6]/30">
+                      <span className=" text-xs font-extrabold text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-lg border border-[#0FA8D6]/30">
                         {item.num}
                       </span>
                       <div className="w-10 h-10 rounded-xl bg-slate-50 text-[#024363] group-hover:bg-[#024363] group-hover:text-white transition-colors duration-300 flex items-center justify-center border border-slate-200">
@@ -130,7 +130,7 @@ const VisionMissionValues = () => {
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-slate-400 uppercase">
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[10px]  font-bold text-slate-400 uppercase">
                     <span>Verified Ethos</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0FA8D6]" />
                   </div>

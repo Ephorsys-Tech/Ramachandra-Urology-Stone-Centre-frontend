@@ -152,7 +152,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
   const mainPhone = settings?.phone || "+91 88950 62072";
 
   return (
-    <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8 font-sans select-none min-h-screen">
+    <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8  select-none min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* ── 1. QUICK DEPARTMENT FILTER PILL TABS ── */}
@@ -331,7 +331,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                 <div className="space-y-2 pt-2">
                   <a
                     href={`tel:${emergencyPhone}`}
-                    className="flex items-center justify-between bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white px-4 py-3 rounded-2xl font-medium text-xs no-underline transition-all shadow-md group"
+                    className="flex items-center justify-between bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white px-4 py-3 rounded-2xl font-medium text-xs no-underline transition-all shadow-md group"
                   >
                     <div className="flex items-center gap-2">
                       <Phone size={14} className="group-hover:rotate-12 transition-transform" />
@@ -527,7 +527,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                         <div className="p-5 pt-0 mt-2 flex items-center gap-2 border-t border-slate-100 pt-4">
                           <button
                             onClick={() => dispatch(openAppointmentModal(doc.department?.name || "", doc.name))}
-                            className="flex-1 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] active:scale-98 text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
+                            className="flex-1 py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] active:scale-98 text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
                           >
                             <Calendar size={13} />
                             <span>Book Visit</span>
@@ -624,7 +624,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                           <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-slate-100">
                             <button
                               onClick={() => dispatch(openAppointmentModal(doc.department?.name || "", doc.name))}
-                              className="px-5 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center gap-1.5 uppercase tracking-wider"
+                              className="px-5 py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center gap-1.5 uppercase tracking-wider"
                             >
                               <Calendar size={14} />
                               <span>Book Appointment</span>
@@ -658,7 +658,7 @@ const DoctorGrid = memo(({ externalSearch = "", setExternalSearch }) => {
                 </p>
                 <button
                   onClick={handleReset}
-                  className="px-5 py-2.5 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-extrabold rounded-xl transition-all cursor-pointer border-none shadow-sm inline-flex items-center gap-2"
+                  className="px-5 py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white text-xs font-extrabold rounded-xl transition-all cursor-pointer border-none shadow-sm inline-flex items-center gap-2"
                 >
                   <Filter size={13} />
                   <span>Reset All Filters</span>

@@ -8,7 +8,7 @@ const InfrastructureShowcase = () => {
       tag: "Advanced Laser Lithotripsy",
       desc: "Next-generation ultra-precise laser technology for dust-free vaporization of kidney, ureteric, and bladder stones, as well as bloodless ThuFLEP prostate enucleation.",
       features: ["Dust-free stone fragmentation", "Minimal bleeding & tissue trauma", "Day-care discharge capability"],
-      image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
       icon: Zap,
     },
     {
@@ -38,7 +38,7 @@ const InfrastructureShowcase = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80 font-sans select-none">
+    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80  select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

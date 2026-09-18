@@ -286,7 +286,7 @@ const DoctorDetails = () => {
   const displayedBio = shouldTruncate && !isBioExpanded ? `${bioText.slice(0, 400)}...` : bioText;
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] font-sans pb-20">
+    <div className="min-h-screen bg-[#f8fafc]  pb-20">
       {/* Top Banner (Unified Emerald Medical Aesthetic) */}
       <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-emerald-500/20">
         {/* Background wave pattern */}
@@ -374,7 +374,7 @@ const DoctorDetails = () => {
           <div className="lg:col-span-8 space-y-8 text-left">
             {/* About Card */}
             <div className="bg-white rounded-2xl border border-slate-200/60 p-8 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
-              <h2 className="text-2xl font-bold text-slate-800 mb-5 font-sans flex items-center gap-2">
+              <h2 className="text-2xl font-bold text-slate-800 mb-5  flex items-center gap-2">
                 About <span className="italic font-extrabold text-primary">Dr. {doctor.name.replace(/^Dr\.?\s+/i, "")}</span>
               </h2>
               <div className="text-slate-600 leading-relaxed text-[15px] space-y-4">
@@ -405,7 +405,7 @@ const DoctorDetails = () => {
 
             {/* Areas of Expertise */}
             <div className="bg-white rounded-2xl border border-slate-200/60 p-8 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
-              <h2 className="text-xl font-bold text-slate-800 mb-6 font-sans">Areas of Expertise</h2>
+              <h2 className="text-xl font-bold text-slate-800 mb-6 ">Areas of Expertise</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   "Advanced Patient Diagnostics",

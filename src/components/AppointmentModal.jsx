@@ -67,15 +67,15 @@ export default function AppointmentModal() {
         ...prev,
         ...(isAppointmentModalOpen !== prevIsOpen
           ? {
-              name: "",
-              age: "",
-              gender: "Male",
-              phone: "",
-              email: "",
-              date: new Date().toISOString().split("T")[0],
-              timeSlot: TIME_SLOTS[0],
-              message: "",
-            }
+            name: "",
+            age: "",
+            gender: "Male",
+            phone: "",
+            email: "",
+            date: new Date().toISOString().split("T")[0],
+            timeSlot: TIME_SLOTS[0],
+            message: "",
+          }
           : {}),
         department: preselectedDepartment || prev.department || (departments.length > 0 ? departments[0].name : ""),
       }));
@@ -150,7 +150,7 @@ export default function AppointmentModal() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 20 }}
             transition={{ type: "spring", duration: 0.45, bounce: 0.12 }}
-            className="relative w-full max-w-sm sm:max-w-lg md:max-w-xl bg-white rounded-3xl border border-slate-200/90 shadow-[0_25px_60px_rgba(1,36,66,0.25)] overflow-hidden z-10 p-5 sm:p-7 md:p-8 font-sans"
+            className="relative w-full max-w-sm sm:max-w-lg md:max-w-xl bg-white rounded-3xl border border-slate-200/90 shadow-[0_25px_60px_rgba(1,36,66,0.25)] overflow-hidden z-10 p-5 sm:p-7 md:p-8 "
           >
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#0FA8D6]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -164,7 +164,7 @@ export default function AppointmentModal() {
                   <span>Ramachandra Urology & Stone Centre</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
-                  Book Clinical <span className="text-[#0FA8D6]">Appointment</span>
+                  Book Clinical Appointment
                 </h3>
                 <p className="text-xs sm:text-[13px] text-slate-500 mt-0.5 leading-snug">
                   Fill in your details below and our Sambalpur care coordinators will confirm your OPD slot.
@@ -182,7 +182,7 @@ export default function AppointmentModal() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3.5 max-h-[66vh] overflow-y-auto pr-1 relative z-10 scrollbar-thin">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                
+
                 {/* Full Name */}
                 <div className="space-y-1 sm:col-span-2">
                   <label className="text-[11px] font-bold text-[#012442] uppercase tracking-wider block">
@@ -370,7 +370,7 @@ export default function AppointmentModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-[#0FA8D6] to-[#024363] hover:from-[#00b4ea] hover:to-[#013550] text-white rounded-full text-xs font-medium shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer border-none disabled:opacity-70 uppercase tracking-wide flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-3 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white rounded-full text-xs font-medium shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer border-none disabled:opacity-70 uppercase tracking-wide flex items-center justify-center gap-2"
                 >
                   <Calendar size={13} />
                   <span>{loading ? "Submitting..." : "Confirm & Book Slot"}</span>
@@ -378,9 +378,10 @@ export default function AppointmentModal() {
               </div>
             </form>
           </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
+        </div >
+      )
+      }
+    </AnimatePresence >
   );
 }
 

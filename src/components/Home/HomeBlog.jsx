@@ -29,7 +29,7 @@ const HomeBlog = memo(() => {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-white font-sans">
+    <section className="py-16 sm:py-24 bg-white ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -45,7 +45,6 @@ const HomeBlog = memo(() => {
               Urological Health Insights
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
-              Latest <span className="text-[#0FA8D6]">Clinical Articles</span>
             </h2>
           </div>
           <Link
@@ -123,8 +122,8 @@ const HomeBlog = memo(() => {
             );
           })}
         </div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 });
 

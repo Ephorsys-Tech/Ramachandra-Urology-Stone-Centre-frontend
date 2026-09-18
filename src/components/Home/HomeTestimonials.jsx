@@ -53,7 +53,7 @@ const HomeTestimonials = memo(() => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden font-sans">
+    <section className="py-16 sm:py-24 bg-white relative overflow-hidden ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -68,7 +68,7 @@ const HomeTestimonials = memo(() => {
             Real Patient Recoveries
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] mb-3 tracking-tight">
-            Trusted by Thousands Across <span className="text-[#0FA8D6]">Western Odisha</span>
+            Trusted by Thousands Across Western Odisha
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm leading-relaxed">
             Read first-hand accounts from patients who regained health through our specialized laser lithotripsy and daycare urology care.
@@ -80,11 +80,10 @@ const HomeTestimonials = memo(() => {
           {visible.map((t, i) => (
             <motion.div
               key={t.id}
-              className={`relative p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between ${
-                i === 1
-                  ? "bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white border border-[#0FA8D6]/40 shadow-xl lg:-translate-y-2"
-                  : "bg-slate-50/80 border border-slate-200/90 text-slate-800 shadow-xs hover:border-[#0FA8D6]/40"
-              }`}
+              className={`relative p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between ${i === 1
+                ? "bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white border border-[#0FA8D6]/40 shadow-xl lg:-translate-y-2"
+                : "bg-slate-50/80 border border-slate-200/90 text-slate-800 shadow-xs hover:border-[#0FA8D6]/40"
+                }`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: i * 0.08 }}
@@ -105,11 +104,10 @@ const HomeTestimonials = memo(() => {
               </div>
 
               <div className="flex items-center gap-3 pt-4 border-t border-slate-200/50">
-                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${
-                  i === 1
-                    ? "border border-[#0FA8D6]/40 bg-[#0FA8D6]/20 text-[#0FA8D6]"
-                    : "border border-slate-200 bg-white text-[#024363]"
-                }`}>
+                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${i === 1
+                  ? "border border-[#0FA8D6]/40 bg-[#0FA8D6]/20 text-[#0FA8D6]"
+                  : "border border-slate-200 bg-white text-[#024363]"
+                  }`}>
                   <UserRound className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -134,9 +132,8 @@ const HomeTestimonials = memo(() => {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer border-none ${
-                  i === current ? "w-7 bg-[#0FA8D6]" : "w-2 bg-slate-300"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer border-none ${i === current ? "w-7 bg-[#0FA8D6]" : "w-2 bg-slate-300"
+                  }`}
               />
             ))}
           </div>
@@ -148,7 +145,7 @@ const HomeTestimonials = memo(() => {
           </button>
         </div>
       </div>
-    </section>
+    </section >
   );
 });
 

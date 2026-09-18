@@ -40,7 +40,7 @@ const AboutFacilities = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12 sm:mb-16">
           <span className="inline-block text-secondary font-bold text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4">Why Choose Us</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 font-sans tracking-tight">World-Class Healthcare <span className="text-secondary">Facilities</span></h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4  tracking-tight">World-Class Healthcare <span className="text-secondary">Facilities</span></h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">We combine cutting-edge technology with compassionate care to provide the best possible outcomes for our patients.</p>
         </div>
 
