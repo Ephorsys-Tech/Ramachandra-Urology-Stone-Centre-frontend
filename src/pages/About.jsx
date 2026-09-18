@@ -238,7 +238,7 @@ const About = () => {
           desc: "Round-the-clock emergency urological care, acute stone colic relief, and dedicated ICU monitoring."
         }
       ],
-      image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80",
       badge: "Thulium Fiber Laser & Modular OT"
     },
     {

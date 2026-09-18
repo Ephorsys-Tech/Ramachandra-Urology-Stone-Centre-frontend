@@ -4,36 +4,36 @@ import { Sparkles } from "lucide-react";
 
 const images = [
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555590/1I5A4502_1_wxjyz5.webp",
-    alt: "Medical urology specialists at Sambalpur",
+    src: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=80",
+    alt: "Doctor consulting with a patient in a hospital",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4479_1_tasiwo.webp",
-    alt: "Advanced surgical planning and digital diagnostics",
+    src: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=80",
+    alt: "Medical doctor working in a hospital",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/ChatGPT_Image_Jul_4_2026_12_14_12_PM_eskwjx.png",
-    alt: "Clinical pathology and stone analysis lab",
+    src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80",
+    alt: "Modern hospital interior",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/ChatGPT_Image_Jul_4_2026_12_16_38_PM_nslao3.png",
-    alt: "Consultation and patient counseling",
+    src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80",
+    alt: "Medical team working together",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4435_1_mbsm4v.webp",
-    alt: "Modern clinic hall and patient reception",
+    src: "https://images.unsplash.com/photo-1516841273335-e39b37888115?auto=format&fit=crop&w=1200&q=80",
+    alt: "Doctor examining a patient",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4497_1_xbvypd.webp",
-    alt: "Hygienic patient rooms and daycare wards",
+    src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+    alt: "Hospital corridor and healthcare facility",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148587/WhatsApp_Image_2026-07-04_at_12.31.57_PM_kxun3d.jpg",
-    alt: "Sambalpur campus reception area",
+    src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+    alt: "Modern hospital building and healthcare facility",
   },
   {
-    src: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555587/1I5A4332_1_cv9mgt.webp",
-    alt: "Doctor consultation and diagnostic evaluation",
+    src: "https://images.unsplash.com/photo-1666887360938-9b4e2f2e8e6e?auto=format&fit=crop&w=1200&q=80",
+    alt: "Urology doctor consultation",
   },
 ];
 

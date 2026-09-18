@@ -46,7 +46,7 @@ const HomeDoctors = memo(() => {
       degrees: "M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)",
       specialization: "Consultant Senior Urologist, Andrologist & Endo-Lap Surgeon",
       department: { name: "Urology & Kidney Care" },
-      image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg",
+      image: "",
       /* TODO: confirm with client — registration number and years of experience */
     },
     {
