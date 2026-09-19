@@ -58,19 +58,25 @@ export const DepartmentCardSkeleton = () => (
 );
 
 export const BlogCardSkeleton = () => (
-  <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden flex flex-col md:flex-row animate-pulse">
-    <div className="w-full md:w-2/5 h-56 md:h-auto bg-slate-200 shrink-0" />
-    <div className="w-full md:w-3/5 p-7 flex flex-col justify-center space-y-4">
-      <div className="flex gap-4">
-        <div className="h-3 bg-slate-200 rounded w-24" />
-        <div className="h-3 bg-slate-200 rounded w-24" />
+  <div className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden flex flex-col animate-pulse shadow-xs">
+    <div className="w-full aspect-[16/10] bg-slate-200 shrink-0" />
+    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+      <div>
+        <div className="flex gap-3 mb-3">
+          <div className="h-3.5 bg-slate-200 rounded-full w-20" />
+          <div className="h-3.5 bg-slate-200 rounded-full w-16" />
+        </div>
+        <div className="h-5 bg-slate-200 rounded-md w-4/5 mb-2" />
+        <div className="h-5 bg-slate-200 rounded-md w-3/5 mb-4" />
+        <div className="space-y-2">
+          <div className="h-3 bg-slate-100 rounded w-full" />
+          <div className="h-3 bg-slate-100 rounded w-5/6" />
+        </div>
       </div>
-      <div className="h-6 bg-slate-200 rounded-md w-5/6" />
-      <div className="space-y-2">
-        <div className="h-3.5 bg-slate-100 rounded w-full" />
-        <div className="h-3.5 bg-slate-100 rounded w-4/5" />
+      <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <div className="h-4 bg-slate-200 rounded-full w-24" />
+        <div className="h-4 bg-slate-200 rounded-full w-20" />
       </div>
-      <div className="h-4 bg-slate-200 rounded w-28 mt-4" />
     </div>
   </div>
 );
