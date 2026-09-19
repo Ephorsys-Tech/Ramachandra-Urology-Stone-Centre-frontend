@@ -197,8 +197,8 @@ const DepartmentDetails = () => {
                 Specialist Medical Faculty
               </div>
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight mb-1">
-                Consult With {department.name}</span> Specialists
-            </h2>
+                Consult With {department.name} Specialists
+              </h2>
             <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
               Senior consultant doctors and surgeons dedicated to exceptional clinical outcomes.
             </p>

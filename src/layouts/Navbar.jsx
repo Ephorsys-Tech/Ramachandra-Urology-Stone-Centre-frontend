@@ -182,12 +182,12 @@ const Navbar = () => {
           </Link>
 
           {/* Main Desktop Navigation Items */}
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 self-center">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 self-center">
             
             {/* 1. Home */}
             <Link
               to="/"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname === "/"
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -196,10 +196,12 @@ const Navbar = () => {
               Home
             </Link>
 
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
+
             {/* 2. About Us */}
             <Link
               to="/about"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname.startsWith("/about")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -208,10 +210,12 @@ const Navbar = () => {
               About Us
             </Link>
 
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
+
             {/* 3. Doctors */}
             <Link
               to="/doctors"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname.startsWith("/doctors")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -219,6 +223,8 @@ const Navbar = () => {
             >
               Doctors
             </Link>
+
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
 
             {/* 4. Departments / Specialities Dropdown */}
             <div
@@ -229,7 +235,7 @@ const Navbar = () => {
             >
               <button
                 onClick={() => setDepartmentsOpen(!departmentsOpen)}
-                className={`flex items-center gap-1 text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors cursor-pointer border-none bg-transparent ${
+                className={`flex items-center gap-1 text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors cursor-pointer border-none bg-transparent ${
                   departmentsOpen || location.pathname.startsWith("/departments")
                     ? "text-[#0FA8D6]"
                     : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -319,10 +325,12 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
+
             {/* 5. Gallery */}
             <Link
               to="/gallery"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname.startsWith("/gallery")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -331,10 +339,12 @@ const Navbar = () => {
               Gallery
             </Link>
 
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
+
             {/* 6. Blog */}
             <Link
               to="/blog"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname.startsWith("/blog")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
@@ -343,10 +353,12 @@ const Navbar = () => {
               Blog
             </Link>
 
+            <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
+
             {/* 7. Contact Us */}
             <Link
               to="/contact"
-              className={`text-[14px] xl:text-[14.5px] font-medium px-3.5 py-2 rounded-lg transition-colors no-underline ${
+              className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
                 location.pathname.startsWith("/contact")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
