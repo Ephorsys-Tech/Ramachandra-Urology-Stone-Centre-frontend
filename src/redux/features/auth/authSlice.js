@@ -94,13 +94,13 @@ const authSlice = createSlice({
         state.isCheckingAuth = true;
       })
       .addCase(checkAuthSession.fulfilled, (state, action) => {
-        const token = action.payload?.data?.accessToken || null;
+        const token = action.payload?.data?.accessToken || state.accessToken || null;
         state.isCheckingAuth = false;
         state.admin = action.payload?.data;
         state.accessToken = token;
-        state.isAuthenticated = !!token;
+        state.isAuthenticated = true;
         state.error = null;
-        setAuthToken(token);
+        if (token) setAuthToken(token);
       })
       .addCase(checkAuthSession.rejected, (state) => {
         state.isCheckingAuth = false;

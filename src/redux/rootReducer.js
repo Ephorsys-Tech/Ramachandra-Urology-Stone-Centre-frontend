@@ -9,6 +9,8 @@ import galleryReducer from "./features/gallery/gallerySlice";
 import messageReducer from "./features/message/messageSlice";
 import blogReducer from "./features/blog/blogSlice";
 import settingReducer from "./features/setting/settingSlice";
+import featureReducer from "./features/feature/featureSlice";
+import diseaseReducer from "./features/disease/diseaseSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   message: messageReducer,
   blog: blogReducer,
   setting: settingReducer,
+  feature: featureReducer,
+  disease: diseaseReducer,
 });
 
 export default rootReducer;
