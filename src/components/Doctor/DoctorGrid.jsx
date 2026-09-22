@@ -33,7 +33,7 @@ const DoctorGrid = memo(() => {
   const [viewMode, setViewMode] = useState("grid");
   const [sortBy, setSortBy] = useState("default");
   const [currentPage, setCurrentPage] = useState(1);
-  const doctorsPerPage = viewMode === "grid" ? 6 : 5;
+  const doctorsPerPage = viewMode === "grid" ? 8 : 5;
 
   useEffect(() => {
     dispatch(fetchAllDoctorsPublic());
@@ -125,7 +125,7 @@ const DoctorGrid = memo(() => {
         ) : currentDoctors.length > 0 ? (
           viewMode === "grid" ? (
             /* GRID VIEW */
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {currentDoctors.map((doc, idx) => {
                 const docImage = doc.photo || doc.image;
                 const docSpecialization =
@@ -144,7 +144,7 @@ const DoctorGrid = memo(() => {
                   >
                     <div>
                       {/* Image Banner */}
-                      <div className="relative aspect-[16/11] bg-gradient-to-b from-slate-100 to-slate-200 overflow-hidden flex items-center justify-center">
+                      <div className="relative aspect-square bg-gradient-to-b from-slate-100 to-slate-200 overflow-hidden flex items-center justify-center">
                         {hasValidImage ? (
                           <img
                             src={docImage}
@@ -154,59 +154,50 @@ const DoctorGrid = memo(() => {
                           />
                         ) : (
                           <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 text-slate-400">
-                            <Stethoscope size={48} className="text-[#024363]/40 mb-1" />
-                            <span className="text-[11px] font-bold text-slate-400">Certified Specialist</span>
+                            <Stethoscope size={36} className="text-[#024363]/40 mb-1" />
+                            <span className="text-[10px] font-bold text-slate-400">Certified Specialist</span>
                           </div>
                         )}
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/70 via-transparent to-transparent opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/60 via-transparent to-transparent opacity-80" />
 
-                        <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/30">
-                          <ShieldCheck size={13} className="text-[#0FA8D6]" />
-                          <span className="text-[10px] font-extrabold text-[#012442] tracking-wider uppercase">Verified</span>
-                        </div>
+                   
 
-                        <div className="absolute top-3 right-3 bg-[#012442]/90 backdrop-blur-md text-[#0FA8D6] px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/40">
-                          <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0FA8D6] opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0FA8D6]"></span>
-                          </span>
-                          <span className="text-[10px] font-extrabold tracking-wide uppercase text-white">Available OPD</span>
-                        </div>
+             
 
-                        <div className="absolute bottom-3 left-3 right-3">
-                          <span className="bg-[#024363]/90 backdrop-blur-md text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs truncate max-w-[80%] text-white border border-[#0FA8D6]/30 inline-block">
+                        <div className="absolute bottom-2 left-2 right-2">
+                          <span className="bg-[#024363]/90 backdrop-blur-md text-[10px] font-bold px-2.5 py-0.5 rounded-lg shadow-xs truncate max-w-[80%] text-white border border-[#0FA8D6]/30 inline-block">
                             {docSpecialization}
                           </span>
                         </div>
                       </div>
 
                       {/* Details */}
-                      <div className="p-5 space-y-3">
+                      <div className="p-3.5 space-y-2">
                         <div>
-                          <h3 className="text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
+                          <h3 className="text-sm font-semibold text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight line-clamp-1">
                             {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
                           </h3>
-                          <p className="text-xs font-bold text-[#024363] mt-0.5 line-clamp-1">
+                          <p className="text-[11px] font-bold text-[#024363] mt-0.5 line-clamp-1">
                             Senior Consultant &amp; Surgeon
                           </p>
                         </div>
 
-                        <div className="space-y-1.5 pt-1 text-xs text-slate-600">
-                          <div className="flex items-start gap-2">
-                            <GraduationCap size={15} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                        <div className="space-y-1 text-[11px] text-slate-600">
+                          <div className="flex items-start gap-1.5">
+                            <GraduationCap size={12} className="text-[#0FA8D6] shrink-0 mt-0.5" />
                             <span className="text-slate-700 font-medium line-clamp-1">
                               {doc.qualifications || "MBBS, MS, MCh (Urology)"}
                             </span>
                           </div>
-                          <div className="flex items-start gap-2">
-                            <Clock size={14} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-1.5">
+                            <Clock size={12} className="text-[#0FA8D6] shrink-0 mt-0.5" />
                             <span className="text-slate-700 font-medium line-clamp-1">
-                              {doc.timing || "Monday – Saturday: 10 AM – 6 PM"}
+                              {doc.timing || "Mon – Sat: 10 AM – 6 PM"}
                             </span>
                           </div>
-                          <div className="flex items-start gap-2">
-                            <MapPin size={14} className="text-[#0FA8D6] shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-1.5">
+                            <MapPin size={12} className="text-[#0FA8D6] shrink-0 mt-0.5" />
                             <span className="text-slate-700 font-medium">Ramachandra Centre, Sambalpur</span>
                           </div>
                         </div>
@@ -214,20 +205,20 @@ const DoctorGrid = memo(() => {
                     </div>
 
                     {/* Footer Actions */}
-                    <div className="p-5 pt-0 mt-2 flex items-center gap-2 border-t border-slate-100 pt-4">
+                    <div className="px-3.5 pb-3.5 pt-0 flex items-center gap-2 border-t border-slate-100 pt-3">
                       <button
                         onClick={() => dispatch(openAppointmentModal(doc.department?.name || "", doc.name))}
-                        className="flex-1 py-2.5 bg-[#00B4EA] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-1.5 uppercase tracking-wider hover:bg-[#0FA8D6]"
+                        className="flex-1 py-2 bg-[#00B4EA] text-white font-extrabold text-[11px] rounded-lg shadow-xs transition-all cursor-pointer border-none flex items-center justify-center gap-1.5 uppercase tracking-wider hover:bg-[#0FA8D6]"
                       >
-                        <Calendar size={13} />
+                        <Calendar size={11} />
                         <span>Book Visit</span>
                       </button>
                       <button
                         onClick={() => navigate(`/doctors/${doctorSlug}`)}
-                        className="px-3.5 py-2.5 bg-slate-50 hover:bg-[#0FA8D6]/10 text-slate-800 hover:text-[#024363] border border-slate-200 hover:border-[#0FA8D6]/40 font-bold text-xs rounded-xl transition-all cursor-pointer flex items-center gap-1"
+                        className="px-3 py-2 bg-slate-50 hover:bg-[#0FA8D6]/10 text-slate-800 hover:text-[#024363] border border-slate-200 hover:border-[#0FA8D6]/40 font-bold text-[11px] rounded-lg transition-all cursor-pointer flex items-center gap-1"
                       >
                         <span>Profile</span>
-                        <ArrowRight size={13} />
+                        <ArrowRight size={11} />
                       </button>
                     </div>
                   </motion.div>
