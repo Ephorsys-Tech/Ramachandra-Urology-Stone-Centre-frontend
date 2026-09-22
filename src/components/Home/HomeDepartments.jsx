@@ -42,40 +42,7 @@ const itemVariants = {
   }
 };
 
-const fallbackDepartments = [
-  {
-    _id: "urology-kidney-care",
-    slug: "urology-kidney-care",
-    name: "Urology & Kidney Care",
-    description: "Advanced stone removal, laser lithotripsy, and comprehensive renal care for all age groups.",
-    tags: ["Laser Lithotripsy", "Stone Removal", "Renal Care"],
-    opdTime: "Daily 9:00 AM - 7:00 PM",
-  },
-  {
-    _id: "laser-surgery-endourology",
-    slug: "laser-surgery-endourology",
-    name: "Laser Surgery & Endourology",
-    description: "Minimally invasive Thulium fiber laser procedures for stones and enlarged prostate (BPH) with same-day discharge.",
-    tags: ["Thulium Laser", "BPH Enucleation", "Daycare Surgery"],
-    opdTime: "Daily 9:00 AM - 6:00 PM",
-  },
-  {
-    _id: "laparoscopic-urology",
-    slug: "laparoscopic-urology",
-    name: "Laparoscopic Urology",
-    description: "Precision keyhole surgery for reconstructive urology, pyeloplasty, and kidney interventions.",
-    tags: ["3D HD Keyhole", "Pyeloplasty", "Minimal Scarring"],
-    opdTime: "Mon - Sat 10:00 AM - 5:00 PM",
-  },
-  {
-    _id: "andrology-male-health",
-    slug: "andrology-male-health",
-    name: "Andrology & Men's Health",
-    description: "Specialized clinical clinic for male fertility, microsurgery, hormonal health, and wellness.",
-    tags: ["Male Infertility", "Microsurgery", "Confidential Care"],
-    opdTime: "Mon - Sat 11:00 AM - 6:00 PM",
-  },
-];
+
 
 const subSpecialtyPills = [
   { name: "Pediatric Urology", slug: "pediatric-urology" },

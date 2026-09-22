@@ -381,8 +381,8 @@ const ContactSection = memo(() => {
 
         </div>
 
-      </div >
-    </section >
+      </div>
+    </section>
   );
 });
 

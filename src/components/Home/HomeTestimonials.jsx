@@ -145,7 +145,7 @@ const HomeTestimonials = memo(() => {
           </button>
         </div>
       </div>
-    </section >
+    </section>
   );
 });
 

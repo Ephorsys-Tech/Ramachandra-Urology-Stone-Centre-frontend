@@ -181,7 +181,7 @@ const HomeProstateBPH = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 
