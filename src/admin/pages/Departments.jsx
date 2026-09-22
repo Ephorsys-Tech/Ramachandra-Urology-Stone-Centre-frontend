@@ -101,18 +101,51 @@ const Departments = () => {
     }
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setFormData({ ...formData, image: reader.result });
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleIconUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setFormData({ ...formData, icon: reader.result });
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const isValidObjectId = (id) => typeof id === "string" && /^[0-9a-fA-F]{24}$/.test(id);
+
   const preparePayload = () => {
+    const rawFeatures = Array.isArray(formData.features)
+      ? formData.features
+      : formData.features
+      ? formData.features.split(",").map((f) => f.trim()).filter(Boolean)
+      : [];
+
+    const rawDiseases = Array.isArray(formData.diseases)
+      ? formData.diseases
+      : formData.diseases
+      ? formData.diseases.split(",").map((d) => (d.name || d).toString().trim()).filter(Boolean)
+      : [];
+
     return {
       name: formData.name.trim(),
-      ...(formData.slug ? { slug: formData.slug.trim() } : {}),
       description: formData.description.trim(),
       content: formData.content.trim(),
-      features: Array.isArray(formData.features) ? formData.features : [],
-      diseases: Array.isArray(formData.diseases) ? formData.diseases : [],
-      doctors: Array.isArray(formData.doctors) ? formData.doctors : [],
+      image: formData.image,
+      icon: formData.icon,
+      color: formData.color || "#007bff",
+      features: rawFeatures.filter(isValidObjectId),
+      diseases: rawDiseases.filter(isValidObjectId),
       emergencyAvailable: Boolean(formData.emergencyAvailable),
       opdTime: formData.opdTime || "",
-      published: Boolean(formData.published),
+      published: formData.published !== undefined ? Boolean(formData.published) : true,
       category: formData.category || "General",
       showInHomePage: Boolean(formData.showInHomePage),
       showInServicesPage: Boolean(formData.showInServicesPage),
