@@ -63,13 +63,9 @@ const fallbackDepartments = [
 
 const Navbar = () => {
   const dispatch = useDispatch();
-<<<<<<< HEAD
 
   // ── CHANGED: use features from state.feature instead of departments ──
   const { features } = useSelector((state) => state.feature || { features: [] });
-=======
-  const { departments = [], loading } = useSelector((state) => state.department || { departments: [] });
->>>>>>> 1696443a385fdccdfa0e5a4ce2a8b501cc1bf165
 
   // Navigation states
   const [isOpen, setIsOpen] = useState(false);
@@ -81,18 +77,9 @@ const Navbar = () => {
 
   // ── CHANGED: fetch features (fixed thunk), keep settings fetch ──
   useEffect(() => {
-<<<<<<< HEAD
     if (!features || features.length === 0) dispatch(fetchAllFeatures());
     dispatch(fetchSettings());
   }, [dispatch, features?.length]);
-=======
-    dispatch(fetchAllDepartments());
-    dispatch(fetchSettings());
-  }, [dispatch]);
-
-  const displayDepartments =
-    departments && departments.length > 0 ? departments : fallbackDepartments;
->>>>>>> 1696443a385fdccdfa0e5a4ce2a8b501cc1bf165
 
   // Original nav links
   const navLinks = [
@@ -332,7 +319,6 @@ const Navbar = () => {
                       </div>
                       {/* CHANGED: count from features */}
                       <span className="text-[11px] font-medium text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-0.5 rounded-full border border-[#0FA8D6]/30">
-<<<<<<< HEAD
                         {features?.length || 0} Specialities
                       </span>
                     </div>
@@ -357,9 +343,26 @@ const Navbar = () => {
                               <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
                                 {feature.description || "Expert medical care & OPD"}
                               </div>
-=======
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8 text-sm text-slate-400">
+                        No specialities found
+                      </div>
+                    )}
+
+                    <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
+                      <Link
+                        to="/urology-services"
+                        onClick={() => setDepartmentsOpen(false)}
+                        className="text-xs font-medium text-[#024363] hover:text-[#0FA8D6] flex items-center gap-1.5 no-underline"
+                      >
+                        <span>Explore all specialities</span>
+                        <ArrowRight size={13} />
                         {displayDepartments.length} Specialities
-                      </span>
+                      </Link>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
@@ -379,7 +382,6 @@ const Navbar = () => {
                             </div>
                             <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
                               {dept.description || "Expert medical care & OPD"}
->>>>>>> 1696443a385fdccdfa0e5a4ce2a8b501cc1bf165
                             </div>
                           </div>
                         </Link>
@@ -567,7 +569,6 @@ const Navbar = () => {
 
                 {mobileDepartmentsOpen && (
                   <div className="pl-4 mt-1 space-y-1 border-l-2 border-[#0FA8D6] ml-3">
-<<<<<<< HEAD
                     {/* CHANGED: map over features with direct slug link /:slug */}
                     {features && features.length > 0 ? (
                       features.map((feature) => (
@@ -589,24 +590,6 @@ const Navbar = () => {
                     ) : (
                       <div className="text-xs text-slate-400 py-2">Loading services...</div>
                     )}
-=======
-                    {displayDepartments.map((dept) => (
-                      <Link
-                        key={dept._id || dept.name}
-                        to={`/urology-services/${dept.slug || dept._id}`}
-                        onClick={() => {
-                          setMobileDepartmentsOpen(false);
-                          setIsOpen(false);
-                        }}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
-                      >
-                        <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
-                          {getDepartmentIcon(dept.name, { size: 14 })}
-                        </div>
-                        <span className="truncate">{dept.name}</span>
-                      </Link>
-                    ))}
->>>>>>> 1696443a385fdccdfa0e5a4ce2a8b501cc1bf165
                     <Link
                       to="/urology-services"
                       onClick={() => {
