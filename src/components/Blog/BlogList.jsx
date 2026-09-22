@@ -14,7 +14,7 @@ import {
   Sparkles,
   X
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { fetchBlogs } from "../../redux/features/blog/blogThunk";
 import { BlogCardSkeleton } from "../common/Skeletons";
 
@@ -26,8 +26,12 @@ const categoryOptions = [
   "Men's Health",
   "Cardiology",
   "Pediatrics",
+  "Endocrinology",
+  "Neurology",
   "Orthopedics",
-  "General Wellness"
+  "Ophthalmology",
+  "General Wellness",
+  "General",
 ];
 
 // Color palette mapping for category badges
@@ -38,21 +42,35 @@ const categoryBadgeColors = {
   "Men's Health": "bg-blue-50 text-blue-800 border-blue-200",
   Cardiology: "bg-rose-50 text-rose-800 border-rose-200",
   Pediatrics: "bg-emerald-50 text-emerald-800 border-emerald-200",
+  Endocrinology: "bg-indigo-50 text-indigo-800 border-indigo-200",
+  Neurology: "bg-purple-50 text-purple-800 border-purple-200",
   Orthopedics: "bg-amber-50 text-amber-800 border-amber-200",
-  "General Wellness": "bg-teal-50 text-teal-800 border-teal-200"
+  Ophthalmology: "bg-sky-50 text-sky-800 border-sky-200",
+  "General Wellness": "bg-teal-50 text-teal-800 border-teal-200",
+  General: "bg-slate-100 text-slate-700 border-slate-200",
 };
 
 const BlogList = () => {
   const dispatch = useDispatch();
   const listRef = useRef(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlCategory = searchParams.get("category");
   
   const { blogs = [], loading, currentPage = 1, totalPages = 1, total = 0, categoryCounts = {} } = useSelector(
     (state) => state.blog || { blogs: [], loading: false, currentPage: 1, totalPages: 1, total: 0, categoryCounts: {} }
   );
 
   const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(urlCategory || "All");
   const [page, setPage] = useState(1);
+
+  // Sync category if URL parameter changes
+  useEffect(() => {
+    if (urlCategory) {
+      setSelectedCategory(urlCategory);
+      setPage(1);
+    }
+  }, [urlCategory]);
 
   // Fetch blogs on criteria change
   useEffect(() => {
@@ -69,6 +87,11 @@ const BlogList = () => {
   const handleCategoryChange = (cat) => {
     setSelectedCategory(cat);
     setPage(1);
+    if (cat === "All") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category: cat });
+    }
   };
 
   const handleSearchChange = (e) => {
@@ -86,75 +109,18 @@ const BlogList = () => {
   return (
     <section ref={listRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       
-      {/* ── FILTER & SEARCH TOOLBAR ── */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-10 pb-6 border-b border-slate-200/80">
-        
-        {/* Category Pills Slider */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          {categoryOptions.map((cat) => {
-            const isSelected = selectedCategory === cat;
-            const count = categoryCounts[cat] || (cat === "All" ? total || blogs.length : 0);
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 shrink-0 cursor-pointer flex items-center gap-1.5 border ${
-                  isSelected
-                    ? "bg-[#024363] text-white border-[#024363] shadow-md shadow-[#024363]/15"
-                    : "bg-white text-slate-600 border-slate-200 hover:border-[#0FA8D6]/50 hover:text-[#024363] hover:bg-slate-50/80"
-                }`}
-              >
-                <span>{cat}</span>
-                {count > 0 && (
-                  <span
-                    className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
-                      isSelected ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search Input Box */}
-        <div className="relative w-full lg:w-80 shrink-0">
-          <input
-            type="text"
-            placeholder="Search health guides & articles..."
-            value={search}
-            onChange={handleSearchChange}
-            className="w-full bg-white border border-slate-200 text-[#012442] rounded-full pl-10 pr-9 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#0FA8D6] focus:ring-2 focus:ring-[#0FA8D6]/15 transition-all placeholder:text-slate-400 shadow-2xs"
-          />
-          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-          {search && (
-            <button
-              onClick={() => setSearch("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 border-none bg-transparent cursor-pointer p-0.5 transition-colors"
-            >
-              <X size={14} />
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* ── SECTION HEADER & ARTICLE COUNT ── */}
-      <div className="flex items-center justify-between mb-8">
+      {/* ── SECTION HEADER & SEARCH ── */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200/80">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0FA8D6] uppercase tracking-wider mb-1">
             <Sparkles size={13} />
             <span>Physician-Reviewed Library</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#012442] tracking-tight">
-            {selectedCategory === "All" ? "Latest Health Guides & Clinical Articles" : `${selectedCategory} Articles`}
+            Latest Health Guides & Clinical Articles
           </h2>
         </div>
-        
-        <span className="hidden sm:inline-flex text-xs font-bold text-slate-600 bg-white px-3.5 py-1.5 rounded-full border border-slate-200 shadow-2xs">
-          Showing {blogs.length} {blogs.length === 1 ? "article" : "articles"}
-        </span>
+
       </div>
 
       {/* ── BLOG CARDS GRID ── */}

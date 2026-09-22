@@ -45,6 +45,7 @@ const HomeBlog = memo(() => {
               Urological Health Insights
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
+              Expert Advice & Urology Care Guides
             </h2>
           </div>
           <Link
