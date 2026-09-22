@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, ChevronDown, Landmark, Activity, UserRound, Check } from "lucide-react";
 import { fetchAllDepartments } from "../../redux/features/department/departmentThunk";
 import { fetchAllDoctorsPublic } from "../../redux/features/doctor/doctorThunk";
+import { getDoctorSlug } from "../../Helper/slugify";
 
 const QuickSearch = memo(() => {
   const dispatch = useDispatch();
@@ -121,10 +122,18 @@ const QuickSearch = memo(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // If a specific doctor is selected → go directly to their profile
+    if (selectedDoctor !== "All") {
+      const doc = (doctors || []).find((d) => d.name === selectedDoctor);
+      if (doc) {
+        navigate(`/doctors/${getDoctorSlug(doc.name)}`);
+        return;
+      }
+    }
+    // Otherwise filter by specialty on the doctors listing page
     const params = new URLSearchParams();
     if (selectedSpecialty !== "All") params.set("specialty", selectedSpecialty);
-    if (selectedDoctor !== "All") params.set("doctor", selectedDoctor);
-    navigate(`/doctors?${params.toString()}`);
+    navigate(`/doctors${params.toString() ? `?${params.toString()}` : ""}`);
   };
 
   return (
