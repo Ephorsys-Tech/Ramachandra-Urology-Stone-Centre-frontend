@@ -46,7 +46,7 @@ const HomeFAQ = memo(() => {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
-            <Sparkles size={12} className="text-[#0FA8D6]" />
+            
             Patient Help & Clarity
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
