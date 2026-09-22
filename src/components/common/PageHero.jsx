@@ -80,7 +80,7 @@ const PageHero = ({
                     : "border-emerald-200 text-emerald-800"
                 }`}
               >
-                <Sparkles size={13} className={isBlue ? "text-[#0FA8D6]" : "text-emerald-600"} />
+                {/* <Sparkles size={13} className={isBlue ? "text-[#0FA8D6]" : "text-emerald-600"} /> */}
                 <span>{badge}</span>
               </motion.div>
             )}
@@ -116,17 +116,7 @@ const PageHero = ({
               </motion.p>
             )}
 
-            {/* Custom Interactive Elements (Search, Buttons, etc.) */}
-            {children && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.18 }}
-                className="pt-2"
-              >
-                {children}
-              </motion.div>
-            )}
+
           </div>
 
           {/* Right Column: Clean 3D Elevated Image Frame */}
@@ -154,22 +144,7 @@ const PageHero = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60" />
                 </div>
 
-                {/* Floating Info Tag Badge */}
-                {imageTag && (
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                    <div className="bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 text-xs font-medium px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
-                      <ShieldCheck size={14} className={isBlue ? "text-[#0FA8D6]" : "text-emerald-600"} />
-                      <span>{imageTag}</span>
-                    </div>
 
-                    <div className={`text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 ${
-                      isBlue ? "bg-[#024363]" : "bg-emerald-700"
-                    }`}>
-                      <MapPin size={11} />
-                      <span>Sambalpur Hub</span>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Decorative Subtle Shadow Glow */}
