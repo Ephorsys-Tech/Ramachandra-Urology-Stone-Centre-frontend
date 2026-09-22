@@ -32,14 +32,17 @@ const PublicRoutes = (
     <Route path="our-doctors" element={<Navigate to="/doctors" replace />} />
     <Route path="doctors.php" element={<Navigate to="/doctors" replace />} />
     
-    {/* Department Routes & Legacy Aliases */}
-    <Route path="departments" element={<Department />} />
-    <Route path="departments/:slug" element={<DepartmentDetails />} />
-    <Route path="department" element={<Navigate to="/departments" replace />} />
-    <Route path="our-departments" element={<Navigate to="/departments" replace />} />
-    <Route path="services" element={<Navigate to="/departments" replace />} />
-    <Route path="services.php" element={<Navigate to="/departments" replace />} />
-    <Route path="departments.php" element={<Navigate to="/departments" replace />} />
+    {/* Urology Services Routes & Legacy Aliases */}
+    <Route path="urology-services" element={<Department />} />
+    <Route path="urology-services/:slug" element={<DepartmentDetails />} />
+    {/* Redirect old /departments URLs to new /urology-services */}
+    <Route path="departments" element={<Navigate to="/urology-services" replace />} />
+    <Route path="departments/:slug" element={<Navigate to="/urology-services" replace />} />
+    <Route path="department" element={<Navigate to="/urology-services" replace />} />
+    <Route path="our-departments" element={<Navigate to="/urology-services" replace />} />
+    <Route path="services" element={<Navigate to="/urology-services" replace />} />
+    <Route path="services.php" element={<Navigate to="/urology-services" replace />} />
+    <Route path="departments.php" element={<Navigate to="/urology-services" replace />} />
     
     {/* Contact Routes & Legacy Aliases */}
     <Route path="contact" element={<Contact />} />

@@ -86,7 +86,7 @@ export default function PopupBanner() {
               <button 
                 onClick={() => {
                   handleClose();
-                  navigate('/departments');
+                  navigate('/urology-services');
                 }}
                 className="w-full py-3 bg-secondary hover:bg-secondary/90 text-white rounded-xl font-bold text-sm transition-colors shadow-md cursor-pointer border-none"
               >

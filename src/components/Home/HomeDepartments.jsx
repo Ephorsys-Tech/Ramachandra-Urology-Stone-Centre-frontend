@@ -132,7 +132,7 @@ const HomeDepartments = memo(() => {
                 <motion.div
                   key={dept._id || index}
                   variants={itemVariants}
-                  onClick={() => navigate(`/departments/${dept.slug || dept._id}`)}
+                  onClick={() => navigate(`/urology-services/${dept.slug || dept._id}`)}
                   className={`rounded-3xl p-7 md:p-8 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group relative overflow-hidden flex flex-col justify-between ${config.className}`}
                 >
                   <div>
@@ -171,7 +171,7 @@ const HomeDepartments = memo(() => {
             {/* View All Card - 5th slot */}
             <motion.div
               variants={itemVariants}
-              onClick={() => navigate('/departments')}
+              onClick={() => navigate('/urology-services')}
               className="md:col-span-1 bg-white border border-slate-200/90 rounded-3xl p-7 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:border-[#0FA8D6]/60 hover:shadow-md group"
             >
               <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] mb-3 group-hover:scale-110 transition-transform">
