@@ -165,18 +165,6 @@ const ServiceDetails = () => {
               <p className="text-sm text-slate-650 leading-relaxed font-normal">
                 {description}
               </p>
-
-              <div className="pt-2 flex flex-wrap gap-2">
-                <span className="text-xs font-semibold px-3 py-1 bg-slate-100 text-slate-700 rounded-full border border-slate-200">
-                  {departmentName}
-                </span>
-                <span className="text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-                  Advanced Laser Procedure
-                </span>
-                <span className="text-xs font-semibold px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100">
-                  Same-Day Discharge Available
-                </span>
-              </div>
             </div>
 
             {/* SERVICES LIST OFFERED UNDER THIS FEATURE */}
@@ -220,9 +208,9 @@ const ServiceDetails = () => {
                         </button>
                       </div>
 
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      {/* <p className="text-xs text-slate-600 leading-relaxed">
                         {srv.description}
-                      </p>
+                      </p> */}
 
                       {/* Clinical Parameters Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
