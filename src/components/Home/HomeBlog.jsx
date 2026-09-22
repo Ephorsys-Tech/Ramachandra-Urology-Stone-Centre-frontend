@@ -29,7 +29,7 @@ const HomeBlog = memo(() => {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section className="py-10 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -41,10 +41,10 @@ const HomeBlog = memo(() => {
         >
           <div>
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
-              
+
               Urological Health Insights
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-medium text-[#012442] tracking-tight">
               Expert Advice & Urology Care Guides
             </h2>
           </div>

@@ -46,15 +46,15 @@ const LeadershipTeam = () => {
   return (
     <section className="py-16 sm:py-24 bg-[#f8fafc] border-b border-slate-200/80  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
-           
+
               <span>CLINICAL & SURGICAL FACULTY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
+            <h2 className="text-2xl sm:text-4xl lg:text-4xl font-medium text-[#012442] tracking-tight leading-tight m-0">
               Our Medical Leadership Team
             </h2>
             <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed max-w-2xl">
@@ -80,11 +80,10 @@ const LeadershipTeam = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className={`bg-white rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-xl ${
-                doc.featured 
-                  ? "border-[#0FA8D6] ring-2 ring-[#0FA8D6]/20" 
-                  : "border-slate-200/90 hover:border-[#0FA8D6]/80"
-              }`}
+              className={`bg-white rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-xl ${doc.featured
+                ? "border-[#0FA8D6] ring-2 ring-[#0FA8D6]/20"
+                : "border-slate-200/90 hover:border-[#0FA8D6]/80"
+                }`}
             >
               <div>
                 {/* Doctor Photo Banner */}

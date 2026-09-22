@@ -40,11 +40,11 @@ const InfrastructureShowcase = () => {
   return (
     <section className="py- sm:py- bg-white border-b border-slate-200/80  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
- 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
+
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-medium text-[#012442] tracking-tight leading-tight m-0">
             Advanced Medical Infrastructure
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed">
@@ -82,7 +82,7 @@ const InfrastructureShowcase = () => {
                     <h3 className="text-xl sm:text-2xl font-medium text-[#012442] group-hover:text-[#024363] transition-colors tracking-tight leading-snug m-0">
                       {fac.title}
                     </h3>
-                    
+
                     <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium m-0">
                       {fac.desc}
                     </p>

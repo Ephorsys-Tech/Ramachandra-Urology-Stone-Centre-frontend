@@ -47,7 +47,7 @@ const HomeFAQ = memo(() => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Balanced Grid: 1 col on mobile, 12 cols on tablet & desktop */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-12 items-start">
-          
+
           {/* Left Column: Image & Quick Info Card (5 cols on tablet/PC) */}
           <motion.div
             className="w-full md:col-span-5 lg:col-span-5 md:sticky md:top-24"
@@ -67,7 +67,7 @@ const HomeFAQ = memo(() => {
                   e.currentTarget.src = "/contact-doctor.jpg";
                 }}
               />
-              
+
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/90 via-[#012442]/20 to-transparent pointer-events-none" />
               {/* Floating Bottom Card */}
@@ -103,10 +103,10 @@ const HomeFAQ = memo(() => {
             {/* Header / Badge */}
             <div className="mb-6 sm:mb-7 text-left">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] font-semibold text-xs uppercase tracking-wider mb-2.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#0FA8D6]" />
+
                 FAQ's
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-[#012442] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#012442] tracking-tight">
                 Looking for answers?
               </h2>
               <p className="text-xs sm:text-sm md:text-sm lg:text-base text-slate-600 mt-2 leading-relaxed">
@@ -126,16 +126,14 @@ const HomeFAQ = memo(() => {
                   >
                     <div className="flex items-center justify-between gap-4">
                       <h3
-                        className={`text-sm sm:text-base md:text-[15px] lg:text-base font-medium transition-colors duration-300 leading-snug ${
-                          isOpen ? "text-[#024363] font-semibold" : "text-[#012442] hover:text-[#0FA8D6]"
-                        }`}
+                        className={`text-sm sm:text-base md:text-[15px] lg:text-base font-medium transition-colors duration-300 leading-snug ${isOpen ? "text-[#024363] font-semibold" : "text-[#012442] hover:text-[#0FA8D6]"
+                          }`}
                       >
                         {faq.question}
                       </h3>
                       <span
-                        className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isOpen ? "bg-[#0FA8D6] text-white" : "bg-slate-100 text-slate-600"
-                        }`}
+                        className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-[#0FA8D6] text-white" : "bg-slate-100 text-slate-600"
+                          }`}
                       >
                         <svg
                           width="16"
@@ -143,9 +141,8 @@ const HomeFAQ = memo(() => {
                           viewBox="0 0 18 18"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className={`w-4 h-4 transition-transform duration-500 ease-in-out ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
+                          className={`w-4 h-4 transition-transform duration-500 ease-in-out ${isOpen ? "rotate-180" : ""
+                            }`}
                         >
                           <path
                             d="m4.5 7.2 3.793 3.793a1 1 0 0 0 1.414 0L13.5 7.2"
@@ -159,11 +156,10 @@ const HomeFAQ = memo(() => {
                     </div>
 
                     <div
-                      className={`text-xs sm:text-sm text-slate-600 leading-relaxed transition-all duration-500 ease-in-out overflow-hidden ${
-                        isOpen
-                          ? "opacity-100 max-h-[350px] translate-y-0 pt-3"
-                          : "opacity-0 max-h-0 -translate-y-1.5"
-                      }`}
+                      className={`text-xs sm:text-sm text-slate-600 leading-relaxed transition-all duration-500 ease-in-out overflow-hidden ${isOpen
+                        ? "opacity-100 max-h-[350px] translate-y-0 pt-3"
+                        : "opacity-0 max-h-0 -translate-y-1.5"
+                        }`}
                     >
                       <p>{faq.answer}</p>
                     </div>

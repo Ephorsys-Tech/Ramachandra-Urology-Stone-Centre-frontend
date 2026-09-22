@@ -25,9 +25,9 @@ import {
 import toast from 'react-hot-toast';
 
 const TABS = [
-  { id: 'about',          label: 'About',                       shortLabel: 'About' },
-  { id: 'expertise',      label: 'Field Of Expertise',          shortLabel: 'Expertise' },
-  { id: 'research',       label: 'Research & Publications',     shortLabel: 'Research' },
+  { id: 'about', label: 'About', shortLabel: 'About' },
+  { id: 'expertise', label: 'Field Of Expertise', shortLabel: 'Expertise' },
+  { id: 'research', label: 'Research & Publications', shortLabel: 'Research' },
   { id: 'certifications', label: 'Certification & Memberships', shortLabel: 'Certify' },
 ];
 
@@ -234,11 +234,10 @@ const DoctorDetails = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`w-full py-3.5 text-[10px] xs:text-[11px] sm:text-sm font-bold transition-all cursor-pointer border-none text-center leading-tight px-1.5 ${
-                  activeTab === tab.id
+                className={`w-full py-3.5 text-[10px] xs:text-[11px] sm:text-sm font-bold transition-all cursor-pointer border-none text-center leading-tight px-1.5 ${activeTab === tab.id
                     ? 'text-white bg-[#00B4EA] shadow-xs'
                     : 'text-slate-600 bg-transparent hover:text-[#00B4EA] hover:bg-slate-100/60'
-                }`}
+                  }`}
               >
                 <span className="sm:hidden block">{tab.shortLabel}</span>
                 <span className="hidden sm:block">{tab.label}</span>
@@ -278,7 +277,7 @@ const DoctorDetails = () => {
                   <div className="mt-6 pt-2 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 w-full">
                     {[
                       { icon: Award, label: 'Experience', value: `${doctor.experience || '10'}+ Years` },
-                     
+
                       { icon: MapPin, label: 'Location', value: 'Burla, Sambalpur' },
                     ].map(({ icon: Icon, label, value }) => (
                       <div key={label} className="flex items-center gap-3 bg-slate-50 hover:bg-sky-50/40 rounded-xl p-3.5 border border-slate-200/70 hover:border-sky-200 transition-all shadow-2xs">

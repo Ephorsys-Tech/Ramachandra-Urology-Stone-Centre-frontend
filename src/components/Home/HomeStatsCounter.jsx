@@ -85,13 +85,13 @@ const HomeStatsCounter = memo(() => {
   const infiniteStats = [...hospitalStats, ...hospitalStats, ...hospitalStats];
 
   return (
-    <section className="bg-white py-12 sm:py-16   overflow-hidden border-b border-slate-100">
+    <section className="bg-white py-10  overflow-hidden border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── HEADER TITLE & SUBTITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-[#012442] mb-2.5">
-            Ramachandra At A Glance
+            A Legacy of Exceptional Care
           </h2>
           <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto m-0 font-normal">
             Specialised healthcare for urology and kidney care, delivered through advanced laser technology and multidisciplinary clinical teams.
