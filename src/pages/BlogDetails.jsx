@@ -83,33 +83,33 @@ const BlogDetails = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
           <div className="max-w-3xl">
             {/* Health Blog Category Pill */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100/70 text-blue-700 border border-blue-200/80 font-bold text-xs mb-4 shadow-2xs">
-              <HeartPulse size={13} className="text-blue-600" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30 font-medium text-xs mb-4 shadow-2xs">
+              <HeartPulse size={13} className="text-[#0FA8D6]" />
               <span>{selectedBlog.category || "Health Blog"}</span>
             </div>
 
             {/* Main Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#012442] tracking-tight leading-[1.18] mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight leading-[1.18] mb-4">
               {selectedBlog.title}
             </h1>
 
             {/* Subtitle / Excerpt */}
             {selectedBlog.description && (
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
                 {selectedBlog.description}
               </p>
             )}
 
             {/* Meta Row: Date, Read Time, Author */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-slate-600 pt-2 border-t border-blue-100/80">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-600 pt-3 border-t border-[#0FA8D6]/20">
               <div className="flex items-center gap-1.5 font-medium">
-                <Calendar size={15} className="text-blue-600 shrink-0" />
+                <Calendar size={14} className="text-[#0FA8D6] shrink-0" />
                 <span>
                   {selectedBlog.date ||
                     (selectedBlog.createdAt
                       ? new Date(selectedBlog.createdAt).toLocaleDateString("en-US", {
                           year: "numeric",
-                          month: "long",
+                          month: "short",
                           day: "numeric",
                         })
                       : "Recent")}
@@ -117,12 +117,12 @@ const BlogDetails = () => {
               </div>
 
               <div className="flex items-center gap-1.5 font-medium">
-                <Clock size={15} className="text-blue-600 shrink-0" />
+                <Clock size={14} className="text-[#0FA8D6] shrink-0" />
                 <span>{selectedBlog.readTime || "5 min read"}</span>
               </div>
 
-              <div className="flex items-center gap-1.5 font-semibold text-[#012442]">
-                <User size={15} className="text-blue-600 shrink-0" />
+              <div className="flex items-center gap-1.5 font-medium text-[#012442]">
+                <User size={14} className="text-[#0FA8D6] shrink-0" />
                 <span>
                   By {doctorName}{" "}
                   <span className="text-slate-500 font-normal">
@@ -134,15 +134,9 @@ const BlogDetails = () => {
           </div>
         </div>
 
-        {/* Decorative Right Hero Image (Medical Visual on Desktop) */}
+        {/* Decorative Right Hero Overlay */}
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[42%] pointer-events-none select-none">
           <div className="relative w-full h-full">
-            {/* <img
-              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=80"
-              alt="Medical Care Guide"
-              className="w-full h-full object-cover object-center opacity-80"
-            /> */}
-            {/* Smooth Left Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#eef8fd] via-[#eef8fd]/70 to-transparent"></div>
           </div>
         </div>
@@ -163,14 +157,14 @@ const BlogDetails = () => {
             <div className="flex items-center justify-between pb-2">
               <Link
                 to="/blog"
-                className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition font-bold text-xs uppercase tracking-wider no-underline"
+                className="inline-flex items-center gap-2 text-[#024363] hover:text-[#0FA8D6] transition font-medium text-xs uppercase tracking-wider no-underline"
               >
                 <ArrowLeft size={14} /> Back to All Articles
               </Link>
             </div>
 
             {/* Featured Image */}
-            <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 aspect-[16/9] w-full">
+            <div className="rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 aspect-[16/9] w-full">
               <img
                 src={selectedBlog.image}
                 alt={selectedBlog.title}
@@ -179,12 +173,12 @@ const BlogDetails = () => {
             </div>
 
             {/* Rich TipTap Content Body */}
-            <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-10 shadow-2xs">
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-2xs">
               <BlogContentRenderer content={selectedBlog.content} />
             </div>
 
             {/* Medical Callout / Note Banner */}
-            <div className="bg-[#eef8fc] border border-[#cbe6f5] rounded-2xl p-5 sm:p-6 flex items-start gap-4 shadow-2xs">
+            <div className="bg-[#0FA8D6]/10 border border-[#0FA8D6]/25 rounded-2xl p-5 sm:p-6 flex items-start gap-4 shadow-2xs">
               <div className="w-10 h-10 rounded-xl bg-[#0FA8D6] text-white flex items-center justify-center shrink-0 shadow-xs">
                 <ShieldCheck size={22} />
               </div>
@@ -203,39 +197,39 @@ const BlogDetails = () => {
           <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
             
             {/* Widget 1: Article Details */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-bold text-base">
-                <FileText size={18} className="text-blue-600" />
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <FileText size={18} className="text-[#0FA8D6]" />
                 <span>Article Details</span>
               </div>
 
               <div className="space-y-3 text-xs sm:text-sm">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-slate-500 font-semibold">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
                     <Folder size={15} className="text-slate-400" />
                     <span>Category</span>
                   </div>
-                  <span className="px-3 py-1 bg-sky-50 text-sky-700 border border-sky-200 text-xs font-bold rounded-full">
+                  <span className="px-3 py-1 bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30 text-xs font-medium rounded-full">
                     {selectedBlog.category || "General"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-slate-500 font-semibold">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
                     <Clock size={15} className="text-slate-400" />
                     <span>Read Time</span>
                   </div>
-                  <span className="font-bold text-slate-700">
+                  <span className="font-medium text-slate-700">
                     {selectedBlog.readTime || "5 min read"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-slate-500 font-semibold">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
                     <User size={15} className="text-slate-400" />
                     <span>Author Type</span>
                   </div>
-                  <span className="font-bold text-slate-700">
+                  <span className="font-medium text-slate-700">
                     {authorBadge}
                   </span>
                 </div>
@@ -243,9 +237,9 @@ const BlogDetails = () => {
             </div>
 
             {/* Widget 2: Author Profile */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-bold text-base">
-                <UserCheck size={18} className="text-blue-600" />
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <UserCheck size={18} className="text-[#0FA8D6]" />
                 <span>Author</span>
               </div>
 
@@ -256,16 +250,16 @@ const BlogDetails = () => {
                     "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80"
                   }
                   alt={doctorName}
-                  className="w-14 h-14 rounded-full border-2 border-sky-100 object-cover shrink-0 shadow-xs"
+                  className="w-14 h-14 rounded-full border-2 border-[#0FA8D6]/30 object-cover shrink-0 shadow-xs"
                 />
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-extrabold text-sm text-[#012442] truncate">
+                  <h4 className="font-medium text-sm text-[#012442] truncate">
                     {doctorName}
                   </h4>
                   <p className="text-xs text-slate-500 truncate">
                     {selectedBlog.doctorAuthor?.specialization || "Urologist & Stone Specialist"}
                   </p>
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200">
+                  <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-medium bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30">
                     {authorBadge}
                   </span>
                 </div>
@@ -287,7 +281,7 @@ const BlogDetails = () => {
                       ? `/doctors/${selectedBlog.doctorAuthor._id}`
                       : "/doctors"
                   }
-                  className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition no-underline"
+                  className="inline-flex items-center gap-1 text-xs font-medium text-[#024363] hover:text-[#0FA8D6] transition no-underline"
                 >
                   <span>View Profile</span>
                   <ArrowRight size={13} />
@@ -295,11 +289,10 @@ const BlogDetails = () => {
               </div>
             </div>
 
-
-            {/* Widget 4: Related Articles */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-bold text-base">
-                <BookOpen size={18} className="text-blue-600" />
+            {/* Widget 3: Related Articles */}
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <BookOpen size={18} className="text-[#0FA8D6]" />
                 <span>Related Articles</span>
               </div>
 
@@ -309,9 +302,9 @@ const BlogDetails = () => {
                     <Link
                       key={article._id}
                       to={`/blog/${article._id}`}
-                      className="flex items-center gap-3 group no-underline p-1.5 rounded-xl hover:bg-slate-50 transition-colors"
+                      className="flex items-center gap-3 group no-underline p-1.5 rounded-2xl hover:bg-slate-50 transition-colors"
                     >
-                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100 shadow-2xs">
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100 shadow-2xs">
                         <img
                           src={article.image}
                           alt={article.title}
@@ -319,7 +312,7 @@ const BlogDetails = () => {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h5 className="font-bold text-xs text-[#012442] group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">
+                        <h5 className="font-medium text-xs text-[#012442] group-hover:text-[#0FA8D6] transition-colors line-clamp-2 leading-snug">
                           {article.title}
                         </h5>
                         <p className="text-[11px] text-slate-400 font-medium mt-1">
