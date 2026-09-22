@@ -1,70 +1,44 @@
 import { useEffect, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllDepartments } from '../../redux/features/department/departmentThunk';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import * as LucideIcons from "lucide-react";
+import {
+  Sparkles,
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  Clock,
+  ShieldCheck,
+  Stethoscope,
+  Building2,
+  PhoneCall,
+  Calendar,
+  Zap,
+  Activity,
+  CreditCard,
+  ChevronRight
+} from "lucide-react";
 import { getDepartmentIcon } from '../../Helper/departmentIcon';
 import { DepartmentCardSkeleton } from '../common/Skeletons';
-
-const getCardConfig = (index) => {
-  switch (index) {
-    case 0:
-      return {
-        className: "md:col-span-2 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
-        iconBg: "bg-[#0FA8D6]/15",
-        iconColor: "text-[#024363]",
-        descColor: "text-slate-600",
-        showTags: true,
-      };
-    case 1:
-      return {
-        className: "md:col-span-1 bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white shadow-md border border-[#0FA8D6]/30",
-        iconBg: "bg-[#0FA8D6]/20",
-        iconColor: "text-[#0FA8D6]",
-        descColor: "text-slate-200",
-        showLink: true,
-      };
-    case 2:
-      return {
-        className: "md:col-span-1 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
-        iconBg: "bg-[#0FA8D6]/15",
-        iconColor: "text-[#024363]",
-        descColor: "text-slate-600",
-      };
-    case 3:
-      return {
-        className: "md:col-span-1 bg-white text-[#012442] border border-slate-200/90 shadow-xs hover:border-[#0FA8D6]/40",
-        iconBg: "bg-[#0FA8D6]/15",
-        iconColor: "text-[#024363]",
-        descColor: "text-slate-600",
-      };
-    default:
-      return {
-        className: "bg-white text-[#012442] border border-slate-200/90 hover:border-[#0FA8D6]/40",
-        iconBg: "bg-[#0FA8D6]/15",
-        iconColor: "text-[#024363]",
-        descColor: "text-slate-600",
-      };
-  }
-};
+import { openAppointmentModal } from '../../redux/features/patient/patientSlice';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12
+      staggerChildren: 0.08
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.4, ease: "easeOut" }
   }
 };
 
@@ -73,32 +47,51 @@ const fallbackDepartments = [
     _id: "urology-kidney-care",
     slug: "urology-kidney-care",
     name: "Urology & Kidney Care",
-    description: "Advanced stone removal, laser lithotripsy, and comprehensive renal care.",
+    description: "Advanced stone removal, laser lithotripsy, and comprehensive renal care for all age groups.",
+    tags: ["Laser Lithotripsy", "Stone Removal", "Renal Care"],
+    opdTime: "Daily 9:00 AM - 7:00 PM",
   },
   {
     _id: "laser-surgery-endourology",
     slug: "laser-surgery-endourology",
     name: "Laser Surgery & Endourology",
-    description: "Minimally invasive Thulium laser stone and prostate enucleation procedures.",
+    description: "Minimally invasive Thulium fiber laser procedures for stones and enlarged prostate (BPH) with same-day discharge.",
+    tags: ["Thulium Laser", "BPH Enucleation", "Daycare Surgery"],
+    opdTime: "Daily 9:00 AM - 6:00 PM",
   },
   {
     _id: "laparoscopic-urology",
     slug: "laparoscopic-urology",
     name: "Laparoscopic Urology",
-    description: "Precision keyhole surgery for reconstructive urology and nephrectomy.",
+    description: "Precision keyhole surgery for reconstructive urology, pyeloplasty, and kidney interventions.",
+    tags: ["3D HD Keyhole", "Pyeloplasty", "Minimal Scarring"],
+    opdTime: "Mon - Sat 10:00 AM - 5:00 PM",
   },
   {
     _id: "andrology-male-health",
     slug: "andrology-male-health",
     name: "Andrology & Men's Health",
-    description: "Specialized clinic for male fertility, erectile health, and micro-surgery.",
+    description: "Specialized clinical clinic for male fertility, microsurgery, hormonal health, and wellness.",
+    tags: ["Male Infertility", "Microsurgery", "Confidential Care"],
+    opdTime: "Mon - Sat 11:00 AM - 6:00 PM",
   },
+];
+
+const subSpecialtyPills = [
+  { name: "Pediatric Urology", slug: "pediatric-urology" },
+  { name: "Uro-Oncology & Bladder", slug: "uro-oncology" },
+  { name: "Female Urology & Incontinence", slug: "female-urology" },
+  { name: "Reconstructive Urethra", slug: "reconstructive-urology" },
+  { name: "Prostate Health (BPH)", slug: "prostate-bph" },
+  { name: "Endourology & Lithotripsy", slug: "laser-surgery-endourology" },
 ];
 
 const HomeDepartments = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { departments = [] } = useSelector((state) => state.department || {});
+  const { departments = [], loading } = useSelector((state) => state.department || {});
+  const { settings } = useSelector((state) => state.setting || {});
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   useEffect(() => {
     dispatch(fetchAllDepartments());
@@ -108,112 +101,98 @@ const HomeDepartments = memo(() => {
   const displayDepartments = displayList.slice(0, 4);
 
   return (
-    <section className="py-16 sm:py-24 bg-slate-50/60 relative overflow-hidden ">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-50/70 via-white to-slate-50/50 relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0FA8D6]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#00875a]/5 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Header section */}
-        <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
-            <LucideIcons.Sparkles size={12} className="text-[#0FA8D6]" />
-            Comprehensive Clinical Wings
-          </span>
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] mb-4 tracking-tight"
+        {/* ── HEADER SECTION ── */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
+              
+              Super-Specialty Clinical Wings
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
+              Specialized Clinical Departments
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              From high-power laser stone surgeries to advanced laparoscopic interventions and pediatric urology, our specialized wings provide gold-standard healthcare in Sambalpur.
+            </p>
+          </div>
+
+          <Link
+            to="/urology-services"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#024363] hover:text-[#0FA8D6] transition-colors group cursor-pointer no-underline shrink-0"
           >
-            Specialized Clinical Departments
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-600 text-xs sm:text-sm sm:leading-relaxed"
-          >
-            From high-power laser stone surgeries to advanced nephrology and pediatric urology, our specialized wings provide gold-standard healthcare in Sambalpur.
-          </motion.p>
+            <span>View All {departments.length > 0 ? departments.length : 12}+ Clinical Wings</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* Bento Grid */}
-        {displayDepartments.length === 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Array.from({ length: 3 }).map((_, idx) => (
+        {/* ── DEPARTMENT CARDS (Exact match to Reference UI) ── */}
+        {loading && (!departments || departments.length === 0) ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 4 }).map((_, idx) => (
               <DepartmentCardSkeleton key={idx} />
             ))}
           </div>
         ) : (
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
           >
             {displayDepartments.map((dept, index) => {
-              const config = getCardConfig(index);
-
               return (
                 <motion.div
                   key={dept._id || index}
                   variants={itemVariants}
                   onClick={() => navigate(`/urology-services/${dept.slug || dept._id}`)}
-                  className={`rounded-3xl p-7 md:p-8 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl group relative overflow-hidden flex flex-col justify-between ${config.className}`}
+                  className="bg-white border border-slate-200/80 hover:border-[#0FA8D6]/50 rounded-2xl sm:rounded-3xl p-6 sm:p-7 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col items-center text-center justify-between min-h-[260px] relative overflow-hidden"
                 >
-                  <div>
-                    <div className={`w-13 h-13 rounded-2xl flex items-center justify-center mb-5 ${config.iconBg} ${config.iconColor} group-hover:scale-108 transition-transform duration-300 text-2xl`}>
+                  {/* Subtle top indicator on hover */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0FA8D6] via-[#024363] to-[#0FA8D6] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  <div className="flex flex-col items-center w-full">
+                    {/* Outline Icon Box (Matching Reference Design) */}
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border-1.5 border-[#024363]/30 group-hover:border-[#0FA8D6] group-hover:bg-[#024363] text-[#024363] group-hover:text-white flex items-center justify-center mb-5 transition-all duration-300 shadow-2xs text-2xl sm:text-3xl bg-slate-50/50">
                       {getDepartmentIcon(dept.name, { size: 28 })}
                     </div>
 
-                    <h3 className="text-xl font-medium mb-3 group-hover:text-[#0FA8D6] transition-colors">{dept.name}</h3>
-                    <p className={`${config.descColor} text-xs leading-relaxed line-clamp-3 mb-6`}>
+                    {/* Department Title */}
+                    <h3 className="text-base sm:text-lg font-medium text-[#012442] group-hover:text-[#0FA8D6] transition-colors leading-snug mb-2.5 px-1">
+                      {dept.name}
+                    </h3>
+
+                    {/* Centered Description */}
+                    <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed line-clamp-3">
                       {dept.description}
                     </p>
                   </div>
 
-                  {config.showTags && (
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      <span className="px-3 py-1 bg-slate-100 text-slate-700 text-[11px] font-bold rounded-full">Laser Surgery</span>
-                      <span className="px-3 py-1 bg-slate-100 text-slate-700 text-[11px] font-bold rounded-full">Daycare Procedures</span>
-                    </div>
-                  )}
-
-                  {config.showLink && (
-                    <div className="mt-auto flex items-center text-xs font-medium text-[#0FA8D6] group-hover:text-white transition-colors">
-                      Explore Department <LucideIcons.ArrowRight size={14} className="ml-1.5 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  )}
-
-                  {index === 0 && (
-                    <div className="absolute top-7 right-7 text-slate-400 group-hover:text-[#0FA8D6] transition-colors">
-                      <LucideIcons.ArrowUpRight size={22} />
-                    </div>
-                  )}
+                  {/* Bottom subtle text & arrow */}
+                  <div className="mt-4 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs font-medium text-[#024363] group-hover:text-[#0FA8D6] transition-colors">
+                    <span>Learn More</span>
+                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </motion.div>
               );
             })}
-
-            {/* View All Card - 5th slot */}
-            <motion.div
-              variants={itemVariants}
-              onClick={() => navigate('/urology-services')}
-              className="md:col-span-1 bg-white border border-slate-200/90 rounded-3xl p-7 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:border-[#0FA8D6]/60 hover:shadow-md group"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-[#0FA8D6]/15 flex items-center justify-center text-[#024363] mb-3 group-hover:scale-110 transition-transform">
-                <LucideIcons.LayoutGrid size={24} className="text-[#0FA8D6]" />
-              </div>
-              <span className="text-[#012442] font-medium text-sm text-center group-hover:text-[#0FA8D6] transition-colors">
-                View All {departments.length > 0 ? departments.length : 12}+ Clinical Wings →
-              </span>
-            </motion.div>
-
           </motion.div>
         )}
+
+        
+
       </div>
-    </section >
+    </section>
   );
 });
 
 HomeDepartments.displayName = "HomeDepartments";
 export default HomeDepartments;
+

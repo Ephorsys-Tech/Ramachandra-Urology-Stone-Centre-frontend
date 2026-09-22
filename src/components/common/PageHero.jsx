@@ -80,7 +80,7 @@ const PageHero = ({
                     : "border-emerald-200 text-emerald-800"
                 }`}
               >
-                {/* <Sparkles size={13} className={isBlue ? "text-[#0FA8D6]" : "text-emerald-600"} /> */}
+               
                 <span>{badge}</span>
               </motion.div>
             )}

@@ -220,7 +220,7 @@ const DepartmentGrid = () => {
       <div className="mt-14 bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#0FA8D6]/20">
         <div className="space-y-1 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0FA8D6]/20 text-cyan-200 text-[11px] font-extrabold uppercase tracking-wider mb-1 border border-[#0FA8D6]/30">
-            <Sparkles size={12} />
+            
             Fast-Track Clinical OPD
           </div>
           <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">

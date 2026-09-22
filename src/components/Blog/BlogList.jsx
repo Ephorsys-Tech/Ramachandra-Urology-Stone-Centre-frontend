@@ -113,7 +113,7 @@ const BlogList = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200/80">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#024363] uppercase tracking-wider mb-1">
-            <Sparkles size={13} className="text-[#0FA8D6]" />
+            
             <span>Physician-Reviewed Library</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#012442] tracking-tight">

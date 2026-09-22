@@ -224,7 +224,7 @@ const DepartmentDetails = () => {
                           className="bg-slate-50/80 border border-slate-200/80 p-4 rounded-xl hover:border-[#0FA8D6]/40 transition-colors shadow-2xs"
                         >
                           <h4 className="text-xs sm:text-sm font-bold text-[#012442] mb-1 flex items-center gap-1.5">
-                            <Sparkles size={12} className="text-[#0FA8D6]" />
+                            
                             {dName}
                           </h4>
                           <p className="text-[11px] text-slate-500 leading-relaxed">{dDesc}</p>
