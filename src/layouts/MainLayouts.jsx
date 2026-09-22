@@ -8,7 +8,7 @@ import MobileNavigationDock from "../components/MobileNavigationDock"
 
 const MainLayouts = () => {
   return (
-    <div className="pb-16 lg:pb-0 min-h-screen overflow-x-hidden w-full max-w-[100vw] relative">
+    <div className="pb-16 lg:pb-0 min-h-screen overflow-x-clip w-full relative">
       <ScrollFeatures />
       <Navbar />
       <AppointmentModal />
