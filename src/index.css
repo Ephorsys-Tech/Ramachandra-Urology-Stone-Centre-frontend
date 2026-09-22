@@ -22,7 +22,7 @@
   --color-primary-container: #005031;
   --color-on-primary-container: #a3f7d4;
   --color-inverse-primary: #7df5be;
-  
+
   --color-secondary: #007a87;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #9ef4ff;
@@ -65,7 +65,7 @@
   /* Typography overrides */
   --: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display-lg: "Manrope", sans-serif;
-  
+
   --text-display-lg: 48px;
   --text-display-lg--line-height: 56px;
   --text-display-lg--letter-spacing: -0.02em;
@@ -116,13 +116,27 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .animate-float {
@@ -159,14 +173,17 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f0fbf7;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #00875a;
+  background: #007a87;
   border-radius: 5px;
   border: 2px solid #f0fbf7;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #007a87;
 }
@@ -176,10 +193,13 @@ html {
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(7, 167, 165, 0.5);
     transform: scale(1);
   }
+
   50% {
     box-shadow: 0 0 10px 4px rgba(7, 167, 165, 0.3);
     transform: scale(1.03);
@@ -191,10 +211,13 @@ html {
 }
 
 @keyframes siren-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 8px 3px rgba(239, 68, 68, 0.6);
     border-color: rgba(239, 68, 68, 0.8);
   }
+
   50% {
     box-shadow: 0 0 8px 3px rgba(59, 130, 246, 0.6);
     border-color: rgba(59, 130, 246, 0.8);
@@ -210,6 +233,7 @@ html {
   0% {
     stroke-dashoffset: 600;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
@@ -221,8 +245,13 @@ html {
 }
 
 @keyframes shimmer-sweep {
-  0% { transform: translateX(-100%) rotate(25deg); }
-  100% { transform: translateX(250%) rotate(25deg); }
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
 }
 
 .animate-shimmer {

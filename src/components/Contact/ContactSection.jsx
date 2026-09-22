@@ -141,10 +141,7 @@ const ContactSection = memo(() => {
 
             {/* Header pill */}
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-2 shadow-2xs">
-                <Sparkles size={12} className="text-[#0FA8D6]" />
-                Direct Communication Hub
-              </span>
+             
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
                 Get in Touch with Our Team
               </h2>
