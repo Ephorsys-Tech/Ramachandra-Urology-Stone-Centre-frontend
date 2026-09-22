@@ -153,9 +153,8 @@ const QuickSearch = memo(() => {
                 setIsSpecialtyOpen(false);
                 setIsDoctorOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
-                isHospitalOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
-              }`}
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${isHospitalOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
+                }`}
             >
               <div className="w-10 h-10 rounded-xl bg-[#0FA8D6]/10 border border-[#0FA8D6]/20 flex items-center justify-center text-[#024363] shrink-0 group-hover:scale-105 transition-transform">
                 <Landmark className="w-5 h-5 text-[#0FA8D6]" />
@@ -171,9 +170,8 @@ const QuickSearch = memo(() => {
                       : selectedHospital}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${
-                      isHospitalOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${isHospitalOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
+                      }`}
                   />
                 </div>
               </div>
@@ -195,11 +193,10 @@ const QuickSearch = memo(() => {
                         setSelectedHospital("Ramachandra Urology & Stone Centre");
                         setIsHospitalOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                        selectedHospital === "Ramachandra Urology & Stone Centre"
+                      className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${selectedHospital === "Ramachandra Urology & Stone Centre"
                           ? "text-[#024363] bg-[#0FA8D6]/10"
                           : "text-slate-700"
-                      }`}
+                        }`}
                     >
                       <span className="truncate">Ramachandra Urology & Stone Centre, Sambalpur</span>
                       {selectedHospital === "Ramachandra Urology & Stone Centre" && (
@@ -222,9 +219,8 @@ const QuickSearch = memo(() => {
                 setIsHospitalOpen(false);
                 setIsDoctorOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
-                isSpecialtyOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
-              }`}
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${isSpecialtyOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
+                }`}
             >
               <div className="w-10 h-10 rounded-xl bg-[#0FA8D6]/10 border border-[#0FA8D6]/20 flex items-center justify-center text-[#024363] shrink-0 group-hover:scale-105 transition-transform">
                 <Activity className="w-5 h-5 text-[#0FA8D6]" />
@@ -238,9 +234,8 @@ const QuickSearch = memo(() => {
                     {selectedSpecialty === "All" ? "All Specialties" : selectedSpecialty}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${
-                      isSpecialtyOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${isSpecialtyOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
+                      }`}
                   />
                 </div>
               </div>
@@ -264,9 +259,8 @@ const QuickSearch = memo(() => {
                           setSelectedDoctor("All");
                           setIsSpecialtyOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                          selectedSpecialty === "All" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
-                        }`}
+                        className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${selectedSpecialty === "All" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
+                          }`}
                       >
                         <span>All Specialties</span>
                         {selectedSpecialty === "All" && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
@@ -280,9 +274,8 @@ const QuickSearch = memo(() => {
                             setSelectedDoctor("All");
                             setIsSpecialtyOpen(false);
                           }}
-                          className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                            selectedSpecialty === dept.name ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
-                          }`}
+                          className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${selectedSpecialty === dept.name ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
+                            }`}
                         >
                           <span className="truncate">{dept.name}</span>
                           {selectedSpecialty === dept.name && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
@@ -305,9 +298,8 @@ const QuickSearch = memo(() => {
                 setIsHospitalOpen(false);
                 setIsSpecialtyOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
-                isDoctorOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
-              }`}
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${isDoctorOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
+                }`}
             >
               <div className="w-10 h-10 rounded-xl bg-[#0FA8D6]/10 border border-[#0FA8D6]/20 flex items-center justify-center text-[#024363] shrink-0 group-hover:scale-105 transition-transform">
                 <UserRound className="w-5 h-5 text-[#0FA8D6]" />
@@ -321,9 +313,8 @@ const QuickSearch = memo(() => {
                     {selectedDoctor === "All" ? "All Doctors" : `Dr. ${selectedDoctor}`}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${
-                      isDoctorOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
-                    }`}
+                    className={`w-4 h-4 text-slate-400 transition-all duration-200 shrink-0 ml-1 sm:ml-2 ${isDoctorOpen ? "rotate-180 text-[#0FA8D6]" : "group-hover:text-[#0FA8D6]"
+                      }`}
                   />
                 </div>
               </div>
@@ -346,9 +337,8 @@ const QuickSearch = memo(() => {
                           setSelectedDoctor("All");
                           setIsDoctorOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                          selectedDoctor === "All" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
-                        }`}
+                        className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${selectedDoctor === "All" ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
+                          }`}
                       >
                         <span>All Doctors ({doctors.length})</span>
                         {selectedDoctor === "All" && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
@@ -361,9 +351,8 @@ const QuickSearch = memo(() => {
                             setSelectedDoctor(doc.name);
                             setIsDoctorOpen(false);
                           }}
-                          className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${
-                            selectedDoctor === doc.name ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
-                          }`}
+                          className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between transition-colors hover:bg-slate-50 cursor-pointer border-none bg-transparent ${selectedDoctor === doc.name ? "text-[#024363] bg-[#0FA8D6]/10" : "text-slate-700"
+                            }`}
                         >
                           <span className="truncate">{doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}</span>
                           {selectedDoctor === doc.name && <Check className="w-4 h-4 text-[#0FA8D6] shrink-0" />}
@@ -397,7 +386,7 @@ const QuickSearch = memo(() => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.96 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-20 lg:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-4xl"
+            className="hidden md:block fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-4xl"
           >
             <form
               onSubmit={handleSubmit}
@@ -425,9 +414,8 @@ const QuickSearch = memo(() => {
                   </div>
                 </div>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${
-                    isStickyHospitalOpen ? "rotate-180 text-cyan-300" : ""
-                  }`}
+                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${isStickyHospitalOpen ? "rotate-180 text-cyan-300" : ""
+                    }`}
                 />
 
                 {/* Dropdown Opening UPWARD */}
@@ -481,9 +469,8 @@ const QuickSearch = memo(() => {
                   </div>
                 </div>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${
-                    isStickySpecialtyOpen ? "rotate-180 text-cyan-300" : ""
-                  }`}
+                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${isStickySpecialtyOpen ? "rotate-180 text-cyan-300" : ""
+                    }`}
                 />
 
                 {/* Dropdown Opening UPWARD */}
@@ -504,11 +491,10 @@ const QuickSearch = memo(() => {
                           setSelectedDoctor("All");
                           setIsStickySpecialtyOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${
-                          selectedSpecialty === "All"
+                        className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${selectedSpecialty === "All"
                             ? "bg-[#0FA8D6]/20 text-cyan-300"
                             : "hover:bg-[#024363] text-slate-200 bg-transparent"
-                        }`}
+                          }`}
                       >
                         <span>All Specialties</span>
                         {selectedSpecialty === "All" && <Check className="w-4 h-4 text-[#0FA8D6]" />}
@@ -522,11 +508,10 @@ const QuickSearch = memo(() => {
                             setSelectedDoctor("All");
                             setIsStickySpecialtyOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${
-                            selectedSpecialty === dept.name
+                          className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${selectedSpecialty === dept.name
                               ? "bg-[#0FA8D6]/20 text-cyan-300"
                               : "hover:bg-[#024363] text-slate-200 bg-transparent"
-                          }`}
+                            }`}
                         >
                           <span className="truncate">{dept.name}</span>
                           {selectedSpecialty === dept.name && <Check className="w-4 h-4 text-[#0FA8D6]" />}
@@ -561,9 +546,8 @@ const QuickSearch = memo(() => {
                   </div>
                 </div>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${
-                    isStickyDoctorOpen ? "rotate-180 text-cyan-300" : ""
-                  }`}
+                  className={`w-3.5 h-3.5 text-cyan-200/70 shrink-0 ml-1 transition-transform ${isStickyDoctorOpen ? "rotate-180 text-cyan-300" : ""
+                    }`}
                 />
 
                 {/* Dropdown Opening UPWARD */}
@@ -583,11 +567,10 @@ const QuickSearch = memo(() => {
                           setSelectedDoctor("All");
                           setIsStickyDoctorOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${
-                          selectedDoctor === "All"
+                        className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${selectedDoctor === "All"
                             ? "bg-[#0FA8D6]/20 text-cyan-300"
                             : "hover:bg-[#024363] text-slate-200 bg-transparent"
-                        }`}
+                          }`}
                       >
                         <span>All Doctors ({doctors.length})</span>
                         {selectedDoctor === "All" && <Check className="w-3.5 h-3.5 text-[#0FA8D6]" />}
@@ -600,11 +583,10 @@ const QuickSearch = memo(() => {
                             setSelectedDoctor(doc.name);
                             setIsStickyDoctorOpen(false);
                           }}
-                          className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${
-                            selectedDoctor === doc.name
+                          className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center justify-between rounded-xl cursor-pointer border-none ${selectedDoctor === doc.name
                               ? "bg-[#0FA8D6]/20 text-cyan-300"
                               : "hover:bg-[#024363] text-slate-200 bg-transparent"
-                          }`}
+                            }`}
                         >
                           <span className="truncate">{doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}</span>
                           {selectedDoctor === doc.name && <Check className="w-3.5 h-3.5 text-[#0FA8D6]" />}

@@ -32,14 +32,14 @@ const AccreditationPartners = () => {
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
-        
+
             <span>UNIVERSAL ACCESS & CERTIFICATIONS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl font-medium text-[#012442] tracking-tight leading-tight m-0">
             Accreditations & Government Schemes
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium mt-3 leading-relaxed">

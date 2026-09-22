@@ -65,7 +65,7 @@ const DoctorGrid = memo(() => {
         {/* Toolbar */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
           <div>
-            <h2 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#012442] tracking-tight">
               Medical Specialists &amp; Surgeons
             </h2>
             <p className="text-xs text-slate-500 font-medium mt-0.5">
@@ -89,11 +89,10 @@ const DoctorGrid = memo(() => {
             <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${
-                  viewMode === "grid"
-                    ? "bg-white text-[#024363] shadow-xs font-bold"
-                    : "bg-transparent text-slate-500 hover:text-slate-900"
-                }`}
+                className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${viewMode === "grid"
+                  ? "bg-white text-[#024363] shadow-xs font-bold"
+                  : "bg-transparent text-slate-500 hover:text-slate-900"
+                  }`}
                 title="Grid View"
                 aria-label="Grid View"
               >
@@ -101,11 +100,10 @@ const DoctorGrid = memo(() => {
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${
-                  viewMode === "list"
-                    ? "bg-white text-[#024363] shadow-xs font-bold"
-                    : "bg-transparent text-slate-500 hover:text-slate-900"
-                }`}
+                className={`p-1.5 rounded-lg transition-all cursor-pointer border-none ${viewMode === "list"
+                  ? "bg-white text-[#024363] shadow-xs font-bold"
+                  : "bg-transparent text-slate-500 hover:text-slate-900"
+                  }`}
                 title="List View"
                 aria-label="List View"
               >
@@ -161,9 +159,9 @@ const DoctorGrid = memo(() => {
 
                         <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/60 via-transparent to-transparent opacity-80" />
 
-                   
 
-             
+
+
 
                         <div className="absolute bottom-2 left-2 right-2">
                           <span className="bg-[#024363]/90 backdrop-blur-md text-[10px] font-bold px-2.5 py-0.5 rounded-lg shadow-xs truncate max-w-[80%] text-white border border-[#0FA8D6]/30 inline-block">
@@ -348,11 +346,10 @@ const DoctorGrid = memo(() => {
               <button
                 key={idx + 1}
                 onClick={() => paginate(idx + 1)}
-                className={`w-9 h-9 font-extrabold text-xs rounded-xl transition-all cursor-pointer border ${
-                  currentPage === idx + 1
-                    ? "bg-[#024363] text-white border-transparent shadow-sm"
-                    : "bg-white border-slate-200 text-slate-700 hover:bg-[#0FA8D6]/10 hover:text-[#024363]"
-                }`}
+                className={`w-9 h-9 font-extrabold text-xs rounded-xl transition-all cursor-pointer border ${currentPage === idx + 1
+                  ? "bg-[#024363] text-white border-transparent shadow-sm"
+                  : "bg-white border-slate-200 text-slate-700 hover:bg-[#0FA8D6]/10 hover:text-[#024363]"
+                  }`}
               >
                 {idx + 1}
               </button>
