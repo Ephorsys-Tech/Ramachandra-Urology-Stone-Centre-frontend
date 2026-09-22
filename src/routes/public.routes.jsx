@@ -12,6 +12,7 @@ const Blog = lazy(() => import("../pages/Blog"));
 const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 const Department = lazy(() => import("../pages/Department"));
 const DepartmentDetails = lazy(() => import("../pages/DepartmentDetails"));
+const ServiceDetails = lazy(() => import("../pages/ServiceDetails"));
 
 const PublicRoutes = (
   <Route path="/" element={<MainLayouts />}>
@@ -70,6 +71,9 @@ const PublicRoutes = (
     <Route path="blog/:id" element={<BlogDetails />} />
     <Route path="blogs" element={<Navigate to="/blog" replace />} />
     <Route path="blogs/:id" element={<BlogDetails />} />
+
+    {/* Direct Feature & Service Root Slug Route (e.g. http://localhost:5173/:slug) */}
+    <Route path=":slug" element={<ServiceDetails />} />
 
     {/* Fallback for any unknown / old indexed URL */}
     <Route path="*" element={<Navigate to="/" replace />} />

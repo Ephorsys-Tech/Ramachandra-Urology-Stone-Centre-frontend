@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { openAppointmentModal } from "../redux/features/patient/patientSlice";
 import { fetchAllDepartments } from "../redux/features/department/departmentThunk";
+import { fetchAllFeatures } from "../redux/features/feature/featureThunk";
 import { fetchSettings } from "../redux/features/setting/settingThunk";
 import { motion, AnimatePresence } from "framer-motion";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
@@ -25,7 +26,9 @@ import { NavbarDropdownSkeleton } from "../components/common/Skeletons";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { departments = [], loading } = useSelector((state) => state.department || { departments: [] });
+
+  // ── CHANGED: use features from state.feature instead of departments ──
+  const { features } = useSelector((state) => state.feature || { features: [] });
 
   // Navigation states
   const [isOpen, setIsOpen] = useState(false);
@@ -35,13 +38,11 @@ const Navbar = () => {
   const location = useLocation();
   const deptRef = useRef(null);
 
+  // ── CHANGED: fetch features (fixed thunk), keep settings fetch ──
   useEffect(() => {
-    dispatch(fetchAllDepartments());
+    if (!features || features.length === 0) dispatch(fetchAllFeatures());
     dispatch(fetchSettings());
-  }, [dispatch]);
-
-  const displayDepartments =
-    departments && departments.length > 0 ? departments : fallbackDepartments;
+  }, [dispatch, features?.length]);
 
   // Original nav links
   const navLinks = [
@@ -231,7 +232,7 @@ const Navbar = () => {
 
             <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
 
-            {/* 4. Departments / Specialities Dropdown */}
+            {/* 4. Urology Services Dropdown — CHANGED: now iterates features */}
             <div
               className="relative"
               ref={deptRef}
@@ -279,9 +280,52 @@ const Navbar = () => {
                           </div>
                         </div>
                       </div>
+                      {/* CHANGED: count from features */}
                       <span className="text-[11px] font-medium text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-0.5 rounded-full border border-[#0FA8D6]/30">
-                        {displayDepartments.length} Specialities
+                        {features?.length || 0} Specialities
                       </span>
+                    </div>
+
+                    {/* CHANGED: map over features, link uses direct slug /:slug */}
+                    {features && features.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
+                        {features.map((feature) => (
+                          <Link
+                            key={feature._id || feature.name}
+                            to={`/${feature.slug || feature._id}`}
+                            onClick={() => setDepartmentsOpen(false)}
+                            className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
+                          >
+                            <div className="text-[#024363] w-8 h-8 rounded-lg bg-white group-hover:bg-[#024363] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs border border-slate-200/60 mt-0.5">
+                              {getDepartmentIcon(feature.name, { size: 15 })}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs font-medium text-[#012442] group-hover:text-[#0FA8D6] transition-colors truncate">
+                                {feature.name}
+                              </div>
+                              <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
+                                {feature.description || "Expert medical care & OPD"}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8 text-sm text-slate-400">
+                        No specialities found
+                      </div>
+                    )}
+
+                    <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
+                      <Link
+                        to="/urology-services"
+                        onClick={() => setDepartmentsOpen(false)}
+                        className="text-xs font-medium text-[#024363] hover:text-[#0FA8D6] flex items-center gap-1.5 no-underline"
+                      >
+                        <span>Explore all specialities</span>
+                        <ArrowRight size={13} />
+                        {displayDepartments.length} Specialities
+                      </Link>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
@@ -470,7 +514,7 @@ const Navbar = () => {
                 );
               })}
 
-              {/* Mobile Departments Collapsible */}
+              {/* Mobile Urology Services Collapsible — CHANGED: now iterates features */}
               <div className="pt-1 border-t border-slate-100 mt-2">
                 <button
                   onClick={() => setMobileDepartmentsOpen(!mobileDepartmentsOpen)}
@@ -488,22 +532,27 @@ const Navbar = () => {
 
                 {mobileDepartmentsOpen && (
                   <div className="pl-4 mt-1 space-y-1 border-l-2 border-[#0FA8D6] ml-3">
-                    {displayDepartments.map((dept) => (
-                      <Link
-                        key={dept._id || dept.name}
-                        to={`/urology-services/${dept.slug || dept._id}`}
-                        onClick={() => {
-                          setMobileDepartmentsOpen(false);
-                          setIsOpen(false);
-                        }}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
-                      >
-                        <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
-                          {getDepartmentIcon(dept.name, { size: 14 })}
-                        </div>
-                        <span className="truncate">{dept.name}</span>
-                      </Link>
-                    ))}
+                    {/* CHANGED: map over features with direct slug link /:slug */}
+                    {features && features.length > 0 ? (
+                      features.map((feature) => (
+                        <Link
+                          key={feature._id || feature.name}
+                          to={`/${feature.slug || feature._id}`}
+                          onClick={() => {
+                            setMobileDepartmentsOpen(false);
+                            setIsOpen(false);
+                          }}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
+                        >
+                          <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
+                            {getDepartmentIcon(feature.name, { size: 14 })}
+                          </div>
+                          <span className="truncate">{feature.name}</span>
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="text-xs text-slate-400 py-2">Loading services...</div>
+                    )}
                     <Link
                       to="/urology-services"
                       onClick={() => {

@@ -15,6 +15,7 @@ const Blogs = lazy(() => import("../admin/pages/Blogs"));
 const Settings = lazy(() => import("../admin/pages/Settings"));
 const Features = lazy(() => import("../admin/pages/Features"));
 const Diseases = lazy(() => import("../admin/pages/Diseases"));
+const Services = lazy(() => import("../admin/pages/Services"));
 
 
 const AdminRoutes = (
@@ -38,6 +39,8 @@ const AdminRoutes = (
           <Route path="doctors" element={<Doctors />} />
           {/* Departments */}
           <Route path="departments" element={<Departments />} />
+          {/* Services */}
+          <Route path="services" element={<Services />} />
           {/* Features */}
           <Route path="features" element={<Features />} />
           {/* Diseases */}
