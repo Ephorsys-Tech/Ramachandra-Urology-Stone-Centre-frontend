@@ -46,7 +46,7 @@ const HomeTechnology = memo(() => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
-              <Zap size={13} className="text-[#0FA8D6]" />
+         
               Modular OT with High End Laparoscopy & Laser Instruments
             </span>
             <h2 className="text-3xl sm:text-4xl font-medium text-[#012442] tracking-tight">
@@ -98,7 +98,7 @@ const HomeTechnology = memo(() => {
 
               <div className="pt-4 border-t border-slate-100 group-hover:border-white/30 flex items-center justify-between text-xs transition-colors duration-300">
                 <span className="font-extrabold text-[#024363] group-hover:text-white flex items-center gap-1.5 transition-colors duration-300">
-                  <Sparkles size={13} className="text-[#0FA8D6] group-hover:text-white transition-colors duration-300" />
+            
                   {tech.highlight}
                 </span>
               </div>

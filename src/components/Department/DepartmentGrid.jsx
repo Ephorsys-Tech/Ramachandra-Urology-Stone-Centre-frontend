@@ -18,18 +18,57 @@ import { openAppointmentModal } from "../../redux/features/patient/patientSlice"
 import { getDepartmentIcon } from "../../Helper/departmentIcon";
 import { DepartmentCardSkeleton } from "../common/Skeletons";
 
+const fallbackDepartments = [
+  {
+    _id: "urology-kidney-care",
+    slug: "urology-kidney-care",
+    name: "Urology & Kidney Care",
+    description: "Advanced stone removal, laser lithotripsy, and renal care.",
+  },
+  {
+    _id: "laser-surgery-endourology",
+    slug: "laser-surgery-endourology",
+    name: "Laser Surgery & Endourology",
+    description: "Minimally invasive Thulium laser stone & prostate procedures.",
+  },
+  {
+    _id: "laparoscopic-urology",
+    slug: "laparoscopic-urology",
+    name: "Laparoscopic Urology",
+    description: "Precision keyhole surgery for reconstructive urology.",
+  },
+  {
+    _id: "andrology-male-health",
+    slug: "andrology-male-health",
+    name: "Andrology & Men's Health",
+    description: "Specialized male fertility and sexual health clinic.",
+  },
+  {
+    _id: "pediatric-urology",
+    slug: "pediatric-urology",
+    name: "Pediatric Urology",
+    description: "Dedicated congenital urinary tract care for children.",
+  },
+  {
+    _id: "uro-oncology",
+    slug: "uro-oncology",
+    name: "Uro-Oncology & Reconstructive",
+    description: "Comprehensive management for bladder, kidney & prostate health.",
+  },
+];
+
 const DepartmentGrid = () => {
   const dispatch = useDispatch();
-  const { departments, loading } = useSelector((state) => state.department || { departments: [], loading: false });
+  const { departments = [], loading } = useSelector((state) => state.department || { departments: [], loading: false });
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (!departments || departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [dispatch, departments?.length]);
+    dispatch(fetchAllDepartments());
+  }, [dispatch]);
 
-  const filteredDepartments = (departments || []).filter((dept) => {
+  const displayList = departments && departments.length > 0 ? departments : fallbackDepartments;
+
+  const filteredDepartments = displayList.filter((dept) => {
     return (
       (dept.name || "").toLowerCase().includes(search.toLowerCase()) ||
       (dept.description || "").toLowerCase().includes(search.toLowerCase())
@@ -181,7 +220,7 @@ const DepartmentGrid = () => {
       <div className="mt-14 bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#0FA8D6]/20">
         <div className="space-y-1 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0FA8D6]/20 text-cyan-200 text-[11px] font-extrabold uppercase tracking-wider mb-1 border border-[#0FA8D6]/30">
-            <Sparkles size={12} />
+            
             Fast-Track Clinical OPD
           </div>
           <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">

@@ -224,7 +224,7 @@ const GalleryGrid = memo(() => {
                   {/* Top Badge: Category */}
                   <div className="absolute top-3.5 left-3.5 z-10">
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-white/90 text-[#012442] border border-white/40 shadow-xs backdrop-blur-md">
-                      <Sparkles size={11} className="text-[#0FA8D6]" />
+                
                       {itemCat}
                     </span>
                   </div>

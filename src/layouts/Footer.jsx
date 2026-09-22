@@ -26,16 +26,25 @@ import { openAppointmentModal } from "../redux/features/patient/patientSlice";
 import { fetchAllDepartments } from "../redux/features/department/departmentThunk";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 
+const fallbackDepartments = [
+  { _id: "urology-kidney-care", slug: "urology-kidney-care", name: "Urology & Kidney Care" },
+  { _id: "laser-surgery-endourology", slug: "laser-surgery-endourology", name: "Laser Surgery & Endourology" },
+  { _id: "laparoscopic-urology", slug: "laparoscopic-urology", name: "Laparoscopic Urology" },
+  { _id: "andrology-male-health", slug: "andrology-male-health", name: "Andrology & Men's Health" },
+  { _id: "pediatric-urology", slug: "pediatric-urology", name: "Pediatric Urology" },
+  { _id: "uro-oncology", slug: "uro-oncology", name: "Uro-Oncology & Reconstructive" },
+];
+
 const Footer = memo(() => {
   const dispatch = useDispatch();
   const { settings } = useSelector((state) => state.setting || {});
-  const { departments } = useSelector((state) => state.department || {});
+  const { departments = [] } = useSelector((state) => state.department || {});
 
   useEffect(() => {
-    if (!departments || departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [dispatch, departments?.length]);
+    dispatch(fetchAllDepartments());
+  }, [dispatch]);
+
+  const displayDepartments = departments && departments.length > 0 ? departments : fallbackDepartments;
 
   const hospitalName = "Ramachandra Urology & Stone Centre";
   const primaryPhone = "+91 88950 62072";
@@ -161,43 +170,29 @@ const Footer = memo(() => {
               Urology Services
             </h4>
 
-            {departments && departments.length > 0 ? (
-              <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
-                {departments.map((dept) => (
-                  <li key={dept._id || dept.name}>
-                    <Link
-                      to={`/urology-services/${dept.slug || dept._id}`}
-                      className="flex items-center gap-1.5 text-[#334155] hover:text-[#0FA8D6] transition-colors no-underline font-medium leading-normal group"
-                    >
-                      <span className="text-[#0FA8D6] shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
-                        {getDepartmentIcon(dept.name, { size: 12 })}
-                      </span>
-                      {dept.name}
-                    </Link>
-                  </li>
-                ))}
-                <li className="pt-1">
+            <ul className="space-y-2 m-0 p-0 list-none text-xs sm:text-sm">
+              {displayDepartments.map((dept) => (
+                <li key={dept._id || dept.name}>
                   <Link
-                    to="/urology-services"
-                    className="inline-flex items-center gap-1 text-[#024363] hover:text-[#0FA8D6] font-semibold text-xs transition-colors no-underline"
+                    to={`/urology-services/${dept.slug || dept._id}`}
+                    className="flex items-center gap-1.5 text-[#334155] hover:text-[#0FA8D6] transition-colors no-underline font-medium leading-normal group"
                   >
-                    View all services <ArrowRight className="w-3 h-3" />
+                    <span className="text-[#0FA8D6] shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
+                      {getDepartmentIcon(dept.name, { size: 12 })}
+                    </span>
+                    {dept.name}
                   </Link>
                 </li>
-              </ul>
-            ) : (
-              <ul className="space-y-2.5 m-0 p-0 list-none">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-slate-200 animate-pulse shrink-0" />
-                    <div
-                      className="h-3 bg-slate-200 animate-pulse rounded"
-                      style={{ width: `${55 + (i % 4) * 12}%` }}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
+              ))}
+              <li className="pt-1">
+                <Link
+                  to="/urology-services"
+                  className="inline-flex items-center gap-1 text-[#024363] hover:text-[#0FA8D6] font-semibold text-xs transition-colors no-underline"
+                >
+                  View all services <ArrowRight className="w-3 h-3" />
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* ── COLUMN 3: GOVT. SCHEMES & IN-HOUSE LABS ── */}

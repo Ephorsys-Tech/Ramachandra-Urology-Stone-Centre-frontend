@@ -19,31 +19,82 @@ import { fetchAllDepartments, fetchDoctorsByDepartmentId } from "../redux/featur
 import { getDoctorSlug } from "../Helper/slugify";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 
+const fallbackDepartments = [
+  {
+    _id: "urology-kidney-care",
+    slug: "urology-kidney-care",
+    name: "Urology & Kidney Care",
+    description: "Advanced stone removal, laser lithotripsy, and renal care.",
+    content: "Comprehensive tertiary care for renal stones, ureteric calculi, urinary infections, and acute renal colics. Equipped with high-power laser lithotripsy and modern diagnostic ultrasonography.",
+    features: ["Thulium Laser Lithotripsy", "RIRS & Mini-PCNL", "Emergency Stone Management"],
+  },
+  {
+    _id: "laser-surgery-endourology",
+    slug: "laser-surgery-endourology",
+    name: "Laser Surgery & Endourology",
+    description: "Minimally invasive Thulium laser stone & prostate procedures.",
+    content: "Daycare and stitchless endoscopic laser surgeries offering rapid recovery, zero incision, and immediate relief for complex stones and benign prostatic hyperplasia (BPH).",
+    features: ["Daycare Laser Surgery", "BPH Prostate Enucleation", "Rigid & Flexible Ureteroscopy"],
+  },
+  {
+    _id: "laparoscopic-urology",
+    slug: "laparoscopic-urology",
+    name: "Laparoscopic Urology",
+    description: "Precision keyhole surgery for reconstructive urology.",
+    content: "Advanced minimally invasive keyhole surgical techniques for pyeloplasty, ureteric reimplantation, nephrectomy, and adrenal interventions.",
+    features: ["3D HD Laparoscopy", "Minimal Blood Loss", "Fast Post-op Discharge"],
+  },
+  {
+    _id: "andrology-male-health",
+    slug: "andrology-male-health",
+    name: "Andrology & Men's Health",
+    description: "Specialized male fertility and sexual health clinic.",
+    content: "Confidential and specialized clinical assessments for male infertility, erectile dysfunction, varicocele microsurgery, and hormonal health.",
+    features: ["Microscopic Varicocelectomy", "Male Infertility Workup", "Penile Doppler"],
+  },
+  {
+    _id: "pediatric-urology",
+    slug: "pediatric-urology",
+    name: "Pediatric Urology",
+    description: "Dedicated congenital urinary tract care for children.",
+    content: "Gentle and specialized pediatric surgical care for PUJ obstruction, undescended testis, hypospadias, and vesicoureteral reflux (VUR).",
+    features: ["Pediatric Cystoscopy", "Hypospadias Repair", "Child-friendly Care"],
+  },
+  {
+    _id: "uro-oncology",
+    slug: "uro-oncology",
+    name: "Uro-Oncology & Reconstructive",
+    description: "Comprehensive management for bladder, kidney & prostate health.",
+    content: "Evidence-based oncological and reconstructive management for urological tumors, urethral stricture disease (BMG urethroplasty), and bladder dysfunctions.",
+    features: ["TURBT & Radical Surgeries", "BMG Urethroplasty", "Multidisciplinary Care"],
+  },
+];
+
 const DepartmentDetails = () => {
   const dispatch = useDispatch();
   const { slug } = useParams();
 
-  const { departments, departmentDoctors, loading } = useSelector((state) => state.department || { departments: [], departmentDoctors: [], loading: false });
+  const { departments = [], departmentDoctors = [], loading } = useSelector((state) => state.department || { departments: [], departmentDoctors: [], loading: false });
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   useEffect(() => {
-    if (!departments || departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [dispatch, departments?.length]);
+    dispatch(fetchAllDepartments());
+  }, [dispatch]);
 
-  const department = (departments || []).find(
+  const allDepts = departments && departments.length > 0 ? departments : fallbackDepartments;
+
+  const department = allDepts.find(
     (dept) => (dept.slug && dept.slug.toLowerCase() === (slug || "").toLowerCase()) || dept._id === slug
   );
 
   useEffect(() => {
-    if (department?._id) {
+    if (department?._id && !department._id.startsWith("urology-") && !department._id.startsWith("laser-") && !department._id.startsWith("laparoscopic-") && !department._id.startsWith("andrology-") && !department._id.startsWith("pediatric-") && !department._id.startsWith("uro-")) {
       dispatch(fetchDoctorsByDepartmentId(department._id));
     }
   }, [dispatch, department?._id]);
 
-  if (loading || (departments.length === 0 && !loading)) {
+  if (loading && (!departments || departments.length === 0)) {
     return (
       <main className="bg-slate-50/50 min-h-screen pb-24 text-[#012442] flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0FA8D6] mb-4"></div>
@@ -173,7 +224,7 @@ const DepartmentDetails = () => {
                           className="bg-slate-50/80 border border-slate-200/80 p-4 rounded-xl hover:border-[#0FA8D6]/40 transition-colors shadow-2xs"
                         >
                           <h4 className="text-xs sm:text-sm font-bold text-[#012442] mb-1 flex items-center gap-1.5">
-                            <Sparkles size={12} className="text-[#0FA8D6]" />
+                            
                             {dName}
                           </h4>
                           <p className="text-[11px] text-slate-500 leading-relaxed">{dDesc}</p>

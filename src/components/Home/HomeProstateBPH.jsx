@@ -55,7 +55,7 @@ const HomeProstateBPH = memo(() => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
-            <Sparkles size={12} className="text-[#0FA8D6]" />
+           
             Comprehensive Prostate Care & Laser Enucleation
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight mb-3">

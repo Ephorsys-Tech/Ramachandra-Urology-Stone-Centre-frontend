@@ -51,7 +51,7 @@ const LeadershipTeam = () => {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
-              {/* <Sparkles size={14} className="text-[#0FA8D6]" /> */}
+           
               <span>CLINICAL & SURGICAL FACULTY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
