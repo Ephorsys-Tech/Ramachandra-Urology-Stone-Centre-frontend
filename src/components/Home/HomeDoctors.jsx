@@ -102,11 +102,11 @@ const HomeDoctors = memo(() => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl text-left">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
-             
+
               SUPER-SPECIALIST CLINICAL FACULTY
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl  text-[#012442] ">
-              Experienced Urologists &amp; Specialists
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-medium text-[#012442] ">
+              Experienced Urologists & Specialists
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed max-w-xl">
               Our surgical faculty brings decades of high-volume laser lithotripsy, laparoscopic, and kidney stone management expertise to Sambalpur.
@@ -314,11 +314,10 @@ const HomeDoctors = memo(() => {
               <button
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
-                className={`h-2 rounded-full transition-all cursor-pointer border-none ${
-                  currentIndex === dotIdx
+                className={`h-2 rounded-full transition-all cursor-pointer border-none ${currentIndex === dotIdx
                     ? 'w-7 bg-[#00B4EA]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
             ))}

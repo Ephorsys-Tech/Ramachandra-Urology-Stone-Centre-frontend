@@ -58,8 +58,8 @@ const HomeDepartments = memo(() => {
     features && features.length > 0
       ? features.filter((f) => f.isActive !== false)
       : departments && departments.length > 0
-      ? departments
-      : [];
+        ? departments
+        : [];
 
   const maxIndex = Math.max(0, displayItems.length - visibleCount);
 
@@ -80,20 +80,20 @@ const HomeDepartments = memo(() => {
   const totalWings = displayItems.length || 4;
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 relative overflow-hidden">
+    <section className="py-10 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#00B4EA]/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-sky-100/40 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ── HEADER SECTION ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl text-left">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
               SUPER-SPECIALTY CLINICAL WINGS
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl  text-[#012442]">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-medium  text-[#012442]">
               Specialized Urology Treatments
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed max-w-xl">
@@ -212,11 +212,10 @@ const HomeDepartments = memo(() => {
               <button
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer border-none ${
-                  currentIndex === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer border-none ${currentIndex === dotIdx
                     ? 'w-7 bg-[#00B4EA]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
             ))}

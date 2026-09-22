@@ -46,7 +46,7 @@ const HomeProstateBPH = memo(() => {
   const dispatch = useDispatch();
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden  border-t border-slate-100">
+    <section className="py-10 bg-white relative overflow-hidden  border-t border-slate-100">
       {/* Ambient background blur */}
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#0FA8D6]/5 rounded-full blur-[90px] pointer-events-none" />
 
