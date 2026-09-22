@@ -1,5 +1,6 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -21,7 +22,10 @@ import toast from "react-hot-toast";
 
 const ContactSection = memo(() => {
   const dispatch = useDispatch();
-  const { departments = [] } = useSelector((state) => state.department || {});
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const { departments = [], loading: deptsLoading } = useSelector((state) => state.department || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
   const generalPhone = settings?.phone || "8895062072";
@@ -29,11 +33,20 @@ const ContactSection = memo(() => {
   const emailAddress = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
+  // Filter published/active departments from Redux store dynamically
+  const activeDepartments = useMemo(() => {
+    return (departments || []).filter(
+      (dept) => dept && dept.published !== false && dept.name
+    );
+  }, [departments]);
+
+  const queryDept = searchParams.get("department") || searchParams.get("service") || location.state?.department || "";
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    department: "",
+    department: queryDept,
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,7 +55,13 @@ const ContactSection = memo(() => {
     if (!departments || departments.length === 0) {
       dispatch(fetchAllDepartments());
     }
-  }, [dispatch, departments.length]);
+  }, [dispatch, departments?.length]);
+
+  useEffect(() => {
+    if (queryDept) {
+      setFormData((prev) => ({ ...prev, department: queryDept }));
+    }
+  }, [queryDept]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -241,7 +260,7 @@ const ContactSection = memo(() => {
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 md:p-10 shadow-xs relative overflow-hidden">
 
               {/* Subtle top ambient bar */}
-             
+
 
               <div className="flex items-center gap-3 mb-6 sm:mb-8">
                 <div className="w-11 h-11 rounded-2xl bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 flex items-center justify-center text-[#024363] shadow-xs">
@@ -249,7 +268,7 @@ const ContactSection = memo(() => {
                 </div>
                 <div>
                   <h3 className="text-xl sm:text-2xl font-medium text-[#012442] tracking-tight">
-                    Send Us a Message
+                    Start a Conversation
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Our patient relations coordinators in Sambalpur typically respond within a few hours.
@@ -308,10 +327,10 @@ const ContactSection = memo(() => {
                     />
                   </div>
 
-                  {/* Department select */}
+                  {/* Department / Urology Service select */}
                   <div className="space-y-1.5">
                     <label className="text-[11px] font-bold text-[#012442] uppercase tracking-wider block">
-                      Specialty Wing (Optional)
+                      Choose a Department / Service (Optional)
                     </label>
                     <select
                       name="department"
@@ -319,21 +338,16 @@ const ContactSection = memo(() => {
                       onChange={handleChange}
                       className="w-full bg-slate-50 border border-slate-200 hover:border-slate-300 focus:border-[#0FA8D6] focus:bg-white text-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm outline-none transition-all cursor-pointer shadow-xs focus:ring-2 focus:ring-[#0FA8D6]/15 font-medium"
                     >
-                      <option value="">Select Specialty / Department</option>
-                      {departments && departments.length > 0 ? (
-                        departments.map((dept, idx) => (
-                          <option key={dept._id || idx} value={dept.name}>
+                      <option value="">Select Urology Service / Department</option>
+                      {activeDepartments.length > 0 ? (
+                        activeDepartments.map((dept) => (
+                          <option key={dept._id || dept.name} value={dept.name}>
                             {dept.name}
                           </option>
                         ))
-                      ) : (
-                        <>
-                          <option value="Urology & Stone Care">Urology & Stone Care</option>
-                          <option value="Laser Surgery">Laser Surgery</option>
-                          <option value="Nephrology">Nephrology</option>
-                          <option value="General Consultation">General Consultation</option>
-                        </>
-                      )}
+                      ) : deptsLoading ? (
+                        <option value="" disabled>Loading Urology Services...</option>
+                      ) : null}
                     </select>
                   </div>
                 </div>
