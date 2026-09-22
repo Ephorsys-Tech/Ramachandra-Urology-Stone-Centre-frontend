@@ -131,7 +131,7 @@ const NABHAccreditationSection = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 

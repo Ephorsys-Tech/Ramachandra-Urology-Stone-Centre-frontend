@@ -39,35 +39,7 @@ const HomeDoctors = memo(() => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const fallbackDoctors = [
-    {
-      _id: "dr-sanjay-mahapatra",
-      name: "Dr. Sanjay Kumar Mahapatra",
-      degrees: "M.S. (Surgery), M.Ch. (Urology, AIIMS New Delhi)",
-      specialization: "Consultant Senior Urologist, Andrologist & Endo-Lap Surgeon",
-      department: { name: "Urology & Kidney Care" },
-      image: "",
-      /* TODO: confirm with client — registration number and years of experience */
-    },
-    {
-      _id: "dr-sovan-hota",
-      name: "Dr. Sovan Hota",
-      degrees: "M.S., M.Ch. (Urology)",
-      specialization: "Consultant Urologist",
-      department: { name: "Urology & Endourology" },
-      image: "",
-      /* TODO: confirm with client — full degrees and registration number */
-    },
-    {
-      _id: "dr-kiran-negi",
-      name: "Dr. Kiran Negi",
-      degrees: "M.S., D.N.B. / M.Ch. (Urology)",
-      specialization: "Urologist",
-      department: { name: "Urology" },
-      image: "",
-      /* TODO: confirm with client — full qualifications and registration number */
-    },
-  ];
+ 
 
   const displayDoctors =
     homeDoctors && homeDoctors.length > 0
@@ -259,7 +231,7 @@ const HomeDoctors = memo(() => {
           </div>
         )}
       </div>
-    </section >
+    </section>
   );
 });
 

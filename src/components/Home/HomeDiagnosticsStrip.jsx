@@ -114,7 +114,7 @@ const HomeDiagnosticsStrip = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 

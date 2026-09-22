@@ -101,7 +101,7 @@ const HomeWhyChooseUs = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 

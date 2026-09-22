@@ -183,7 +183,7 @@ const HomeAbout = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 
