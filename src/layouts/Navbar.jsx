@@ -221,7 +221,7 @@ const Navbar = () => {
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
               }`}
             >
-              Doctors
+            Our  Doctors
             </Link>
 
             <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
@@ -236,14 +236,14 @@ const Navbar = () => {
               <button
                 onClick={() => setDepartmentsOpen(!departmentsOpen)}
                 className={`flex items-center gap-1 text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors cursor-pointer border-none bg-transparent ${
-                  departmentsOpen || location.pathname.startsWith("/departments")
+                  departmentsOpen || location.pathname.startsWith("/urology-services")
                     ? "text-[#0FA8D6]"
                     : "text-[#012442]/90 hover:text-[#0FA8D6]"
                 }`}
               >
-                <span>Departments</span>
+                <span>Urology Services</span>
                 <ChevronDown
-                  size={14}
+                  size={14} 
                   className={`text-slate-500 transition-transform duration-200 ${
                     departmentsOpen ? "rotate-180 text-[#0FA8D6]" : ""
                   }`}
@@ -284,7 +284,7 @@ const Navbar = () => {
                         {departments.map((dept) => (
                           <Link
                             key={dept._id || dept.name}
-                            to={`/departments/${dept.slug || dept._id}`}
+                            to={`/urology-services/${dept.slug || dept._id}`}
                             onClick={() => setDepartmentsOpen(false)}
                             className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
                           >
@@ -312,7 +312,7 @@ const Navbar = () => {
                         <span>Same-day clinical appointments available</span>
                       </div>
                       <Link
-                        to="/departments"
+                        to="/urology-services"
                         onClick={() => setDepartmentsOpen(false)}
                         className="flex items-center gap-1 text-[#024363] font-medium text-xs hover:text-[#0FA8D6] no-underline bg-[#0FA8D6]/15 hover:bg-[#0FA8D6]/25 px-3 py-1 rounded-full transition-colors"
                       >
@@ -477,7 +477,7 @@ const Navbar = () => {
                 >
                   <span className="flex items-center gap-2">
                     <Building2 size={16} className="text-[#0FA8D6]" />
-                    Departments
+                    Urology Services
                   </span>
                   <ChevronDown
                     size={16}
@@ -491,7 +491,7 @@ const Navbar = () => {
                       departments.map((dept) => (
                         <Link
                           key={dept._id || dept.name}
-                          to={`/departments/${dept.slug || dept._id}`}
+                          to={`/urology-services/${dept.slug || dept._id}`}
                           onClick={() => {
                             setMobileDepartmentsOpen(false);
                             setIsOpen(false);
@@ -508,14 +508,14 @@ const Navbar = () => {
                       <div className="text-xs text-slate-400 py-2">Loading departments...</div>
                     )}
                     <Link
-                      to="/departments"
+                      to="/urology-services"
                       onClick={() => {
                         setMobileDepartmentsOpen(false);
                         setIsOpen(false);
                       }}
                       className="flex items-center gap-1 px-3 py-2 text-[#024363] hover:text-[#0FA8D6] text-xs font-medium no-underline"
                     >
-                      <span>Explore All Departments →</span>
+                      <span>Explore All Urology Services →</span>
                     </Link>
                   </div>
                 )}

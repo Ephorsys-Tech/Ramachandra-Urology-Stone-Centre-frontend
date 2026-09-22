@@ -58,7 +58,7 @@ const DepartmentDetails = () => {
         <h1 className="text-3xl font-extrabold mb-3 ">Department Not Found</h1>
         <p className="text-slate-500 text-sm mb-6">The clinical specialty wing you requested is currently unavailable.</p>
         <Link
-          to="/departments"
+          to="/urology-services"
           className="bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] px-6 py-2.5 rounded-full font-bold flex items-center gap-2 text-xs uppercase tracking-wider no-underline transition-colors"
         >
           <ArrowLeft size={14} /> Back to All Departments
@@ -283,7 +283,7 @@ const DepartmentDetails = () => {
       {/* Back Link */}
       <div className="mt-8 flex justify-center">
         <Link
-          to="/departments"
+          to="/urology-services"
           className="text-slate-600 hover:text-[#0FA8D6] flex items-center gap-2 font-bold text-xs uppercase tracking-wider transition-colors no-underline bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-2xs"
         >
           <ArrowLeft size={14} /> Back to All Clinical Wings

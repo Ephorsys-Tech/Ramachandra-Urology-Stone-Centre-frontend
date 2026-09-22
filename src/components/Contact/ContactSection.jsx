@@ -361,7 +361,7 @@ const ContactSection = memo(() => {
                   className="w-full flex items-center justify-center gap-2 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-medium py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 active:scale-98 disabled:opacity-60 cursor-pointer uppercase tracking-wider text-xs sm:text-sm border-none"
                 >
                   <Send size={15} />
-                  <span>{isSubmitting ? "Sending Inquiry..." : "Submit Inquiry to Sambalpur Desk"}</span>
+                  <span>{isSubmitting ? "Sending Inquiry..." : "Submit "}</span>
                 </button>
               </form>
 

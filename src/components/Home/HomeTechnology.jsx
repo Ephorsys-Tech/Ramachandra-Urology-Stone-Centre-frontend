@@ -75,33 +75,30 @@ const HomeTechnology = memo(() => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: idx * 0.08 }}
-              className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs hover:shadow-xl hover:border-[#0FA8D6]/50 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+              className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs hover:shadow-xl hover:border-[#00B4EA] hover:bg-[#00B4EA] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
             >
-              {/* Subtle top indicator bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-[#00B4EA] opacity-0 group-hover:opacity-100 transition-opacity" />
-
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10.5px] font-medium uppercase tracking-wider text-[#0FA8D6] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-full">
+                  <span className="text-[10.5px] font-medium uppercase tracking-wider text-[#0FA8D6] bg-[#0FA8D6]/10 group-hover:text-white group-hover:bg-white/20 px-2.5 py-1 rounded-full transition-colors duration-300">
                     {tech.category}
                   </span>
-                  <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold text-slate-500 bg-slate-100 group-hover:text-white group-hover:bg-white/20 px-2 py-0.5 rounded-md transition-colors duration-300">
                     {tech.badge}
                   </span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-medium text-[#012442] mb-2.5 group-hover:text-[#024363] transition-colors leading-snug">
+                <h3 className="text-base sm:text-lg font-medium text-[#012442] mb-2.5 group-hover:text-white transition-colors duration-300 leading-snug">
                   {tech.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                <p className="text-xs text-slate-600 leading-relaxed mb-6 group-hover:text-white/85 transition-colors duration-300">
                   {tech.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="font-extrabold text-[#024363] flex items-center gap-1.5">
-                  <Sparkles size={13} className="text-[#0FA8D6]" />
+              <div className="pt-4 border-t border-slate-100 group-hover:border-white/30 flex items-center justify-between text-xs transition-colors duration-300">
+                <span className="font-extrabold text-[#024363] group-hover:text-white flex items-center gap-1.5 transition-colors duration-300">
+                  <Sparkles size={13} className="text-[#0FA8D6] group-hover:text-white transition-colors duration-300" />
                   {tech.highlight}
                 </span>
               </div>

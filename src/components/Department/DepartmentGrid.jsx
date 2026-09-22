@@ -136,7 +136,7 @@ const DepartmentGrid = () => {
                   {/* Action Buttons */}
                   <div className="mt-auto pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5">
                     <Link
-                      to={`/departments/${dept.slug || dept._id}`}
+                      to={`/urology-services/${dept.slug || dept._id}`}
                       className="flex-1 text-center inline-flex items-center justify-center gap-1.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-bold text-xs py-3 rounded-xl transition-all shadow-xs hover:shadow-md no-underline tracking-wide uppercase"
                     >
                       <span>Explore Wing</span>

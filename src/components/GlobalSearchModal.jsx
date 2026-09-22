@@ -93,7 +93,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
             title: dept.name,
             subtitle: dept.description || "Specialized clinical department",
             photo: dept.image || dept.icon,
-            link: `/departments/${dept.slug || dept._id}`,
+            link: `/urology-services/${dept.slug || dept._id}`,
             icon: Building2,
             tagColor: "bg-emerald-100/80 text-emerald-800",
             iconBg: "bg-emerald-50 text-emerald-600",
@@ -196,7 +196,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
     } else if (action === "doctors") {
       navigate("/doctors");
     } else if (action === "departments") {
-      navigate("/departments");
+      navigate("/urology-services");
     } else if (action === "emergency") {
       window.location.href = "tel:8895062072";
     }

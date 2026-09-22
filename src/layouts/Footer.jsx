@@ -46,22 +46,22 @@ const Footer = memo(() => {
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us & Leadership" },
     { to: "/doctors", label: "Our Doctors & Specialists" },
-    { to: "/departments", label: "Clinical Specialties" },
+    { to: "/urology-services", label: "Clinical Specialties" },
     { to: "/gallery", label: "Hospital Infrastructure" },
     { to: "/blog", label: "Health Library & Insights" },
     { to: "/contact", label: "Contact & Location" },
   ];
 
   const inhouseServices = [
-    { label: "Renal Stone (RIRS / PCNL / Laser)", to: "/departments" },
-    { label: "Thulium Fiber LASER Lithotripsy", to: "/departments" },
-    { label: "Prostate Surgery (THUFLEP / Laser)", to: "/departments" },
-    { label: "Urologic Cancer Surgery", to: "/departments" },
-    { label: "Andrology & Male Infertility", to: "/departments" },
-    { label: "Reconstructive Urology & Urethroplasty", to: "/departments" },
-    { label: "Laparoscopic & Endo-Lap Surgery", to: "/departments" },
-    { label: "Uro-Dynamics & Uroflowmetry", to: "/departments" },
-    { label: "In-House Pathology, USG, X-Ray & Pharmacy", to: "/departments" },
+    { label: "Renal Stone (RIRS / PCNL / Laser)", to: "/urology-services" },
+    { label: "Thulium Fiber LASER Lithotripsy", to: "/urology-services" },
+    { label: "Prostate Surgery (THUFLEP / Laser)", to: "/urology-services" },
+    { label: "Urologic Cancer Surgery", to: "/urology-services" },
+    { label: "Andrology & Male Infertility", to: "/urology-services" },
+    { label: "Reconstructive Urology & Urethroplasty", to: "/urology-services" },
+    { label: "Laparoscopic & Endo-Lap Surgery", to: "/urology-services" },
+    { label: "Uro-Dynamics & Uroflowmetry", to: "/urology-services" },
+    { label: "In-House Pathology, USG, X-Ray & Pharmacy", to: "/urology-services" },
   ];
 
   const govtSchemes = [

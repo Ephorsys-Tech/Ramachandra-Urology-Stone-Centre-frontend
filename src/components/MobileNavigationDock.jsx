@@ -36,9 +36,9 @@ const MobileNavigationDock = memo(() => {
     {
       id: "departments",
       label: "Depts",
-      to: "/departments",
+      to: "/urology-services",
       icon: Building2,
-      isActive: currentPath.startsWith("/departments"),
+      isActive: currentPath.startsWith("/urology-services"),
     },
     {
       id: "contact",
