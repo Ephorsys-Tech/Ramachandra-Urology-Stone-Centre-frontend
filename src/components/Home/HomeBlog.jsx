@@ -7,11 +7,11 @@ import { fetchBlogs } from "../../redux/features/blog/blogThunk";
 
 const categoryColorMap = {
   Urology: "text-[#024363] bg-[#0FA8D6]/15 border-[#0FA8D6]/30",
-  "Kidney Stones": "text-cyan-700 bg-cyan-50 border-cyan-200",
-  "Laser Surgery": "text-indigo-700 bg-indigo-50 border-indigo-200",
-  Nephrology: "text-blue-700 bg-blue-50 border-blue-200",
-  "Prostate Care": "text-sky-700 bg-sky-50 border-sky-200",
-  General: "text-[#024363] bg-slate-100 border-slate-200",
+  "Kidney Stones": "text-[#024363] bg-teal-50 border-teal-200/80",
+  "Laser Surgery": "text-[#024363] bg-[#0FA8D6]/15 border-[#0FA8D6]/30",
+  Nephrology: "text-[#024363] bg-emerald-50 border-emerald-200/80",
+  "Prostate Care": "text-[#024363] bg-cyan-50 border-cyan-200/80",
+  General: "text-[#024363] bg-[#0FA8D6]/15 border-[#0FA8D6]/30",
 };
 
 const HomeBlog = memo(() => {
@@ -29,7 +29,7 @@ const HomeBlog = memo(() => {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-white ">
+    <section className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -50,7 +50,7 @@ const HomeBlog = memo(() => {
           </div>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-[#024363] hover:text-[#0FA8D6] transition-colors group cursor-pointer no-underline"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#024363] hover:text-[#0FA8D6] transition-colors group cursor-pointer no-underline"
           >
             <span>View All Health Guides</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -90,11 +90,11 @@ const HomeBlog = memo(() => {
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-[#012442] font-medium text-base leading-snug mb-2.5 group-hover:text-[#0FA8D6] transition-colors line-clamp-2">
+                    <h3 className="text-[#012442] font-medium text-base sm:text-lg leading-snug mb-2.5 group-hover:text-[#0FA8D6] transition-colors line-clamp-2">
                       {post.title}
                     </h3>
 
-                    <p className="text-slate-600 text-xs leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-4 line-clamp-2">
                       {post.description}
                     </p>
                   </div>
@@ -123,8 +123,8 @@ const HomeBlog = memo(() => {
             );
           })}
         </div>
-      </div >
-    </section >
+      </div>
+    </section>
   );
 });
 

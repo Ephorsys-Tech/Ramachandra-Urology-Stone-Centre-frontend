@@ -63,7 +63,7 @@
   --color-on-success-container: #065f46;
 
   /* Typography overrides */
-  --: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display-lg: "Manrope", sans-serif;
 
   --text-display-lg: 48px;
@@ -278,37 +278,39 @@ html {
 /* Blog Content & TipTap Shared Typography */
 .blog-rich-content,
 .tiptap {
-  color: #334155;
+  color: #475569;
   line-height: 1.8;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .blog-rich-content h1,
 .tiptap h1 {
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 1.875rem;
+  font-weight: 600;
   color: #012442;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
   line-height: 1.25;
+  letter-spacing: -0.015em;
 }
 
 .blog-rich-content h2,
 .tiptap h2 {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #012442;
-  margin-top: 1.75rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .blog-rich-content h3,
 .tiptap h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #024363;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
 }
@@ -318,8 +320,8 @@ html {
   font-size: 1.1rem;
   font-weight: 600;
   color: #024363;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
 }
 
 .blog-rich-content p,
@@ -355,10 +357,10 @@ html {
 .blog-rich-content blockquote,
 .tiptap blockquote {
   border-left: 4px solid #0FA8D6;
-  background-color: rgba(15, 168, 214, 0.05);
+  background-color: rgba(15, 168, 214, 0.08);
   padding: 1rem 1.25rem;
   margin: 1.25rem 0;
-  border-radius: 0 0.75rem 0.75rem 0;
+  border-radius: 0 1rem 1rem 0;
   font-style: italic;
   color: #024363;
 }
@@ -368,7 +370,7 @@ html {
   color: #0FA8D6;
   text-decoration: underline;
   text-underline-offset: 3px;
-  font-weight: 600;
+  font-weight: 500;
   transition: color 0.2s;
 }
 
@@ -419,6 +421,4 @@ html {
   margin: 1.5rem auto;
   display: block;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
 }
