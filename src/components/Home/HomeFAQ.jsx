@@ -70,28 +70,6 @@ const HomeFAQ = memo(() => {
               
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/90 via-[#012442]/20 to-transparent pointer-events-none" />
-    <section className="py-16 sm:py-24 bg-slate-50/70 ">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] font-medium text-xs uppercase tracking-wider mb-3 shadow-2xs">
-            
-            Patient Help & Clarity
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-slate-600 max-w-xl mx-auto text-xs sm:text-sm mt-2 leading-relaxed">
-            Have questions regarding stone treatments, laser surgery, or cashless admissions? Find clear answers below.
-          </p>
-        </motion.div>
-
               {/* Floating Bottom Card */}
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 md:bottom-4 md:left-4 md:right-4 lg:bottom-5 lg:left-5 lg:right-5 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/60 shadow-md flex items-center justify-between gap-3">
                 <div className="min-w-0">
