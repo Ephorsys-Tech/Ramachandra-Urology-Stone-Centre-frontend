@@ -38,7 +38,7 @@ const InfrastructureShowcase = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-slate-200/80  select-none">
+    <section className="py- sm:py- bg-white border-b border-slate-200/80  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

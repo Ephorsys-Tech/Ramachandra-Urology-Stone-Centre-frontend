@@ -153,7 +153,7 @@ const QuickSearch = memo(() => {
                 setIsSpecialtyOpen(false);
                 setIsDoctorOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer select-none bg-slate-50/60 lg:bg-transparent ${
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
                 isHospitalOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
               }`}
             >
@@ -186,7 +186,7 @@ const QuickSearch = memo(() => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-[calc(100%+8px)] left-0 w-full min-w-[280px] bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
+                    className="absolute top-[calc(100%+8px)] left-0 right-0 w-full min-w-0 sm:min-w-[280px] max-w-full bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <button
@@ -222,7 +222,7 @@ const QuickSearch = memo(() => {
                 setIsHospitalOpen(false);
                 setIsDoctorOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer select-none bg-slate-50/60 lg:bg-transparent ${
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
                 isSpecialtyOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
               }`}
             >
@@ -253,7 +253,7 @@ const QuickSearch = memo(() => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-[calc(100%+8px)] left-0 w-full min-w-[260px] bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
+                    className="absolute top-[calc(100%+8px)] left-0 right-0 w-full min-w-0 sm:min-w-[260px] max-w-full bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="max-h-[220px] overflow-y-auto scrollbar-thin">
@@ -305,7 +305,7 @@ const QuickSearch = memo(() => {
                 setIsHospitalOpen(false);
                 setIsSpecialtyOpen(false);
               }}
-              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer select-none bg-slate-50/60 lg:bg-transparent ${
+              className={`flex-1 min-w-0 flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 lg:py-2 relative group rounded-xl lg:rounded-full hover:bg-slate-50 transition-colors cursor-pointer  bg-slate-50/60 lg:bg-transparent ${
                 isDoctorOpen ? "z-30 bg-slate-100/80 lg:bg-slate-50" : "z-10"
               }`}
             >
@@ -336,7 +336,7 @@ const QuickSearch = memo(() => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-[calc(100%+8px)] left-0 w-full min-w-[260px] bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
+                    className="absolute top-[calc(100%+8px)] left-0 right-0 w-full min-w-0 sm:min-w-[260px] max-w-full bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden py-1.5"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="max-h-[220px] overflow-y-auto scrollbar-thin">
@@ -401,7 +401,7 @@ const QuickSearch = memo(() => {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] text-white rounded-full shadow-[0_20px_50px_rgba(1,36,66,0.45)] p-1.5 sm:p-2 flex items-center justify-between border border-[#0FA8D6]/40 gap-1 sm:gap-2 w-full select-none ring-1 ring-white/10"
+              className="bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] text-white rounded-full shadow-[0_20px_50px_rgba(1,36,66,0.45)] p-1.5 sm:p-2 flex items-center justify-between border border-[#0FA8D6]/40 gap-1 sm:gap-2 w-full  ring-1 ring-white/10"
             >
               {/* Sticky Hospital (Hidden on small screens for compact fit) */}
               <div
@@ -438,7 +438,7 @@ const QuickSearch = memo(() => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute bottom-[calc(100%+10px)] left-0 w-full min-w-[280px] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 text-white"
+                      className="absolute bottom-[calc(100%+10px)] left-0 w-full min-w-0 sm:min-w-[280px] max-w-[calc(100vw-32px)] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 text-white"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button
@@ -494,7 +494,7 @@ const QuickSearch = memo(() => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute bottom-[calc(100%+10px)] left-0 w-full min-w-[260px] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 max-h-[220px] overflow-y-auto no-scrollbar text-white"
+                      className="absolute bottom-[calc(100%+10px)] left-0 w-full min-w-0 sm:min-w-[260px] max-w-[calc(100vw-32px)] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 max-h-[220px] overflow-y-auto no-scrollbar text-white"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button
@@ -511,7 +511,7 @@ const QuickSearch = memo(() => {
                         }`}
                       >
                         <span>All Specialties</span>
-                        {selectedSpecialty === "All" && <Check className="w-3.5 h-3.5 text-[#0FA8D6]" />}
+                        {selectedSpecialty === "All" && <Check className="w-4 h-4 text-[#0FA8D6]" />}
                       </button>
                       {(departments || []).map((dept) => (
                         <button
@@ -529,7 +529,7 @@ const QuickSearch = memo(() => {
                           }`}
                         >
                           <span className="truncate">{dept.name}</span>
-                          {selectedSpecialty === dept.name && <Check className="w-3.5 h-3.5 text-[#0FA8D6]" />}
+                          {selectedSpecialty === dept.name && <Check className="w-4 h-4 text-[#0FA8D6]" />}
                         </button>
                       ))}
                     </motion.div>
@@ -574,7 +574,7 @@ const QuickSearch = memo(() => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute bottom-[calc(100%+10px)] right-0 sm:left-0 w-full min-w-[260px] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 max-h-[220px] overflow-y-auto no-scrollbar text-white"
+                      className="absolute bottom-[calc(100%+10px)] right-0 sm:left-0 w-full min-w-0 sm:min-w-[260px] max-w-[calc(100vw-32px)] bg-[#012442] border border-[#0FA8D6]/40 rounded-2xl shadow-2xl p-1.5 z-50 max-h-[220px] overflow-y-auto no-scrollbar text-white"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button

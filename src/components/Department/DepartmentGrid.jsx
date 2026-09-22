@@ -29,7 +29,7 @@ const DepartmentGrid = () => {
     dispatch(fetchAllDepartments());
   }, [dispatch]);
 
-  const displayList = departments && departments.length > 0 ? departments : fallbackDepartments;
+  const displayList = departments && departments.length > 0 ? departments : [];
 
   const filteredDepartments = displayList.filter((dept) => {
     return (

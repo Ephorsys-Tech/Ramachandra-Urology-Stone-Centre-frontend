@@ -79,12 +79,12 @@ const HeroSection = memo(() => {
 
   return (
     <section
-      className="w-full  select-none overflow-hidden"
+      className="w-full   overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ── FULL-WIDTH HERO BANNER WITH NATURAL BG PHOTOS + LIGHT BLACKISH OVERLAY ── */}
-      <div className="relative w-full bg-slate-950 min-h-[320px] sm:min-h-[360px] md:min-h-[390px] lg:min-h-[420px] flex flex-col justify-between py-8 sm:py-10 md:py-12 px-6 sm:px-12 lg:px-20 text-white shadow-sm overflow-hidden">
+      <div className="relative w-full bg-slate-950 min-h-[320px] sm:min-h-[360px] md:min-h-[390px] lg:min-h-[420px] flex flex-col justify-between py-8 sm:py-10 md:py-12 px-4 sm:px-10 lg:px-16 text-white shadow-sm overflow-hidden">
 
         {/* ── BACKGROUND IMAGE SLIDER WITH NATURAL COLORS ── */}
         <div className="absolute inset-0 z-0">
@@ -106,7 +106,7 @@ const HeroSection = memo(() => {
         </div>
 
         {/* ── MAIN CONTENT (CLEAN, SHARP & LEFT-ALIGNED) ── */}
-        <div className="relative z-20 max-w-6xl mr-auto ml-0 sm:ml-4 lg:ml-6 w-full flex flex-col justify-center my-auto py-2">
+        <div className="relative z-20 max-w-6xl mr-auto ml-0 w-full flex flex-col justify-center my-auto py-2 pr-6 sm:pr-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
@@ -114,35 +114,33 @@ const HeroSection = memo(() => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="text-left space-y-2.5 sm:space-y-3"
+              className="text-left space-y-2 sm:space-y-2.5 max-w-full"
             >
               {/* Main Headline Lines with Crisp Shadow */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-medium text-white leading-[1.16] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-[44px] font-medium text-white leading-[1.2] sm:leading-[1.16] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] break-words">
                 {active.headlineLine1}
                 <span className="block mt-0.5 sm:mt-1 text-white">
                   {active.headlineLine2}
                 </span>
               </h1>
 
- 
-
               {/* Highlight Tagline ("Now in Sambalpur!") */}
-              <div className="text-xl sm:text-2xl md:text-3xl font-medium text-cyan-300 tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
+              <div className="text-lg sm:text-2xl md:text-3xl font-medium text-cyan-300 tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
                 {active.tagline}
               </div>
 
               {/* Brief Description */}
-              <p className="text-slate-100 text-xs sm:text-sm md:text-base font-medium max-w-2xl leading-relaxed pt-0.5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+              <p className="text-slate-100 text-xs sm:text-sm md:text-base font-medium max-w-2xl leading-relaxed pt-0.5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] break-words">
                 {active.description}
               </p>
             </motion.div>
           </AnimatePresence>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-4 sm:pt-5">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-5 w-full">
             <button
               onClick={() => dispatch(openAppointmentModal())}
-              className="inline-flex items-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white text-xs sm:text-sm font-medium  cursor-pointer uppercase tracking-wider border border-white/20"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#0284c7] hover:from-[#00bbf0] hover:to-[#0396e3] text-white text-xs sm:text-sm font-medium cursor-pointer uppercase tracking-wider border border-white/20 shadow-sm shrink-0"
             >
               <Calendar size={15} />
               <span>Book Appointment</span>
@@ -151,32 +149,28 @@ const HeroSection = memo(() => {
 
             <a
               href={`tel:${primaryPhone.replace(/\s+/g, "")}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold backdrop-blur-md border border-white/25 transition-all hover:scale-[1.02] active:scale-[0.98] no-underline shadow-md"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold backdrop-blur-md border border-white/25 transition-all hover:scale-[1.02] active:scale-[0.98] no-underline shadow-md shrink-0"
             >
               <Phone size={14} className="text-[#0FA8D6]" />
               <span>Call: {primaryPhone}</span>
             </a>
-
-
           </div>
         </div>
-
-
 
         {/* Subtle Next / Prev Carousel Arrows on Sides */}
         <button
           onClick={handlePrevSlide}
           aria-label="Previous Slide"
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer z-20 shadow-md"
+          className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 w-7 sm:w-9 h-7 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer z-20 shadow-md"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={16} />
         </button>
         <button
           onClick={handleNextSlide}
           aria-label="Next Slide"
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer z-20 shadow-md"
+          className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 w-7 sm:w-9 h-7 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer z-20 shadow-md"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={16} />
         </button>
 
       </div>

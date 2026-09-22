@@ -135,7 +135,7 @@ const BlogDetails = () => {
         </div>
 
         {/* Decorative Right Hero Overlay */}
-        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[42%] pointer-events-none select-none">
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[42%] pointer-events-none ">
           <div className="relative w-full h-full">
             <div className="absolute inset-0 bg-gradient-to-r from-[#eef8fd] via-[#eef8fd]/70 to-transparent"></div>
           </div>

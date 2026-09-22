@@ -17,7 +17,7 @@ const PageHero = ({
   const isBlue = theme === "blue";
 
   return (
-    <div className={`relative w-full text-slate-900 pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none border-b ${
+    <div className={`relative w-full text-slate-900 pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden  border-b ${
       isBlue
         ? "bg-gradient-to-br from-[#0FA8D6]/10 via-[#024363]/5 to-slate-50 border-slate-200/80"
         : "bg-gradient-to-br from-emerald-50/70 via-teal-50/40 to-slate-50 border-slate-200/80"

@@ -504,7 +504,7 @@ const Settings = () => {
                   <p className="text-xs text-slate-400">Show a top notice strip on the patient homepage.</p>
                 </div>
 
-                <label className="relative inline-flex items-center cursor-pointer select-none">
+                <label className="relative inline-flex items-center cursor-pointer ">
                   <input
                     type="checkbox"
                     name="announcementActive"
@@ -545,7 +545,7 @@ const Settings = () => {
                   <p className="text-xs text-slate-400">Show this modal to visitors upon loading the homepage.</p>
                 </div>
 
-                <label className="relative inline-flex items-center cursor-pointer select-none">
+                <label className="relative inline-flex items-center cursor-pointer ">
                   <input
                     type="checkbox"
                     name="popupPublished"

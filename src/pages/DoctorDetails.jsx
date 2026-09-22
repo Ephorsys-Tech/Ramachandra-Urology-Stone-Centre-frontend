@@ -36,7 +36,7 @@ const DoctorDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { doctors, selectedDoctor, loading, error } = useSelector((state) => state.doctor);
+  const { doctors = [], selectedDoctor = null, loading = false, error = null } = useSelector((state) => state.doctor || {});
   const [notFound, setNotFound] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [quickFormOpen, setQuickFormOpen] = useState(false);
@@ -148,7 +148,7 @@ const DoctorDetails = () => {
     : [];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-20 select-none">
+    <div className="min-h-screen bg-[#f8fafc] pb-20 ">
 
       {/* ── HEADER CARD ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-8">

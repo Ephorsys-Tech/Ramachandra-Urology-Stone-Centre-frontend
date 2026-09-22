@@ -42,7 +42,10 @@ const Navbar = () => {
   useEffect(() => {
     if (!features || features.length === 0) dispatch(fetchAllFeatures());
     dispatch(fetchSettings());
-  }, [dispatch, features?.length]);
+  }, [dispatch]);
+
+  const displayDepartments =
+    departments && departments.length > 0 ? departments : [];
 
   // Original nav links
   const navLinks = [
@@ -88,7 +91,7 @@ const Navbar = () => {
   const emergencyNumber = "+91 99375 66625";
 
   return (
-    <header className="sticky top-0 z-50 bg-white select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+    <header className="sticky top-0 z-50 bg-white  border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
       {/* ── TOP RIGHT INFORMATION & ACCREDITATION STRIP (SLEEK & TIGHT) ── */}
       <div className="hidden lg:block bg-slate-50/70 border-b border-slate-100 py-1 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex items-center justify-end gap-5 text-[11.5px]">
@@ -178,12 +181,12 @@ const Navbar = () => {
           {/* Big Brand Logo - Fully Visible, Prominent & High-Definition */}
           <Link
             to="/"
-            className="flex items-center self-center no-underline shrink-0 relative w-[230px] sm:w-[280px] md:w-[340px] lg:w-[380px] xl:w-[420px] h-15 sm:h-17 md:h-18 z-10"
+            className="flex items-center self-center no-underline shrink relative w-[180px] min-[380px]:w-[210px] sm:w-[260px] md:w-[340px] lg:w-[380px] xl:w-[420px] h-13 sm:h-17 md:h-18 z-10"
           >
             <img
               src="/logo.png"
               alt="Ramachandra Urology & Stone Centre"
-              className="h-38 sm:h-46 md:h-52 lg:h-58 xl:h-64 w-auto max-w-none absolute left-0 top-1/2 -translate-y-1/2 object-contain pointer-events-auto"
+              className="h-28 min-[380px]:h-34 sm:h-44 md:h-52 lg:h-58 xl:h-64 w-auto max-w-none absolute left-0 top-1/2 -translate-y-1/2 object-contain pointer-events-auto"
             />
           </Link>
 

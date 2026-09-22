@@ -132,7 +132,7 @@ const BlogEditor = ({ value = "", onChange, placeholder = "Write your blog post 
   return (
     <div className="w-full border border-slate-200 rounded-xl overflow-hidden bg-white shadow-xs focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/15 transition-all">
       {/* ── TipTap Toolbar ── */}
-      <div className="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border-b border-slate-200 text-slate-700 select-none">
+      <div className="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border-b border-slate-200 text-slate-700 ">
         {/* Undo / Redo */}
         <div className="flex items-center gap-0.5 pr-1.5 border-r border-slate-200">
           <ToolbarButton

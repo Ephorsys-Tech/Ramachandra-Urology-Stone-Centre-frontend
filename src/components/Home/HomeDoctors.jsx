@@ -46,7 +46,7 @@ const HomeDoctors = memo(() => {
       ? homeDoctors
       : doctors && doctors.length > 0
         ? doctors
-        : fallbackDoctors;
+        : [];
 
   const handlePrev = () => {
     if (displayDoctors.length === 0) return;
@@ -71,6 +71,10 @@ const HomeDoctors = memo(() => {
     navigator.clipboard.writeText(`${window.location.origin}/doctors/${getDoctorSlug(doctorName)}`);
     toast.success(`Link copied! Shared profile of ${doctorName}.`);
   };
+
+  if (!loading && displayDoctors.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden ">
@@ -160,7 +164,7 @@ const HomeDoctors = memo(() => {
                             draggable={false}
                           />
                         ) : (
-                          <div className="w-full h-full flex flex-col items-center justify-center select-none bg-slate-100 text-slate-400">
+                          <div className="w-full h-full flex flex-col items-center justify-center  bg-slate-100 text-slate-400">
                             <Stethoscope size={36} className="text-[#024363]/40 mb-1" />
                             <span className="text-[10px] font-bold text-slate-400">Specialist</span>
                           </div>
@@ -172,7 +176,7 @@ const HomeDoctors = memo(() => {
                           e.stopPropagation();
                           dispatch(openAppointmentModal(doc.department?.name || "", doc.name));
                         }}
-                        className="w-full py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0 select-none border-none outline-none"
+                        className="w-full py-2.5 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center justify-center gap-1 cursor-pointer transition-colors shrink-0  border-none outline-none"
                       >
                         Book Visit ↗
                       </button>
