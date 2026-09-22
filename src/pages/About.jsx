@@ -69,15 +69,7 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
             className="w-full h-60 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs font-semibold">
-            <span className="bg-white/95 text-[#012442] px-3.5 py-1.5 rounded-xl font-medium shadow-xs flex items-center gap-1.5 border border-[#0FA8D6]/30">
-              <ShieldCheck size={14} className="text-[#0FA8D6]" />
-              <span>{chapter.badge}</span>
-            </span>
-            <span className="text-slate-200  text-xs bg-[#012442]/80 px-3 py-1.5 rounded-xl backdrop-blur-md">
-              Sambalpur, Western Odisha
-            </span>
-          </div>
+
         </div>
       )}
 
@@ -162,8 +154,8 @@ const About = () => {
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const { settings } = useSelector((state) => state.setting || {});
 
-  const emergencyPhone = settings?.emergencyPhone || "+91 99375 66625";
-  const generalPhone = settings?.phone || "+91 88950 62072";
+  const emergencyPhone = settings?.emergencyPhone || "99375 66625";
+  const generalPhone = settings?.phone || "88950 62072";
   const hospitalEmail = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
@@ -421,7 +413,6 @@ const About = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-[#0FA8D6]/30 shadow-xl relative overflow-hidden">
           
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0FA8D6] via-[#024363] to-[#0FA8D6]" />
           <div className="absolute top-0 right-1/4 w-80 h-full bg-white/5 blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -437,16 +428,25 @@ const About = () => {
                 {hospitalAddress}
               </p>
               
-              <div className="flex flex-wrap gap-2.5 text-xs  text-white pt-2">
-                <span className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20">
+              <div className="flex flex-wrap gap-2.5 text-xs text-white pt-2">
+                <a
+                  href={`tel:+91${emergencyPhone.replace(/\s/g, '')}`}
+                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                >
                   📞 24x7 SOS: +91 {emergencyPhone}
-                </span>
-                <span className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20">
+                </a>
+                <a
+                  href={`tel:+91${generalPhone.replace(/[^\d]/g, '')}`}
+                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                >
                   📞 OPD: +91 {generalPhone}
-                </span>
-                <span className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20">
+                </a>
+                <a
+                  href={`mailto:${hospitalEmail}`}
+                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                >
                   ✉️ {hospitalEmail}
-                </span>
+                </a>
               </div>
             </div>
 

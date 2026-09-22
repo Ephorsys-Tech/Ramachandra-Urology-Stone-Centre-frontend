@@ -22,7 +22,7 @@
   --color-primary-container: #005031;
   --color-on-primary-container: #a3f7d4;
   --color-inverse-primary: #7df5be;
-  
+
   --color-secondary: #007a87;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #9ef4ff;
@@ -63,9 +63,9 @@
   --color-on-success-container: #065f46;
 
   /* Typography overrides */
-  --: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display-lg: "Manrope", sans-serif;
-  
+
   --text-display-lg: 48px;
   --text-display-lg--line-height: 56px;
   --text-display-lg--letter-spacing: -0.02em;
@@ -116,13 +116,27 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .animate-float {
@@ -159,14 +173,17 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f0fbf7;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #00875a;
+  background: #007a87;
   border-radius: 5px;
   border: 2px solid #f0fbf7;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #007a87;
 }
@@ -176,10 +193,13 @@ html {
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(7, 167, 165, 0.5);
     transform: scale(1);
   }
+
   50% {
     box-shadow: 0 0 10px 4px rgba(7, 167, 165, 0.3);
     transform: scale(1.03);
@@ -191,10 +211,13 @@ html {
 }
 
 @keyframes siren-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 8px 3px rgba(239, 68, 68, 0.6);
     border-color: rgba(239, 68, 68, 0.8);
   }
+
   50% {
     box-shadow: 0 0 8px 3px rgba(59, 130, 246, 0.6);
     border-color: rgba(59, 130, 246, 0.8);
@@ -210,6 +233,7 @@ html {
   0% {
     stroke-dashoffset: 600;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
@@ -221,10 +245,180 @@ html {
 }
 
 @keyframes shimmer-sweep {
-  0% { transform: translateX(-100%) rotate(25deg); }
-  100% { transform: translateX(250%) rotate(25deg); }
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
 }
 
 .animate-shimmer {
   animation: shimmer-sweep 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   TipTap Rich Text Editor & Blog Rich Content Typography
+   ========================================================================== */
+
+.tiptap {
+  outline: none;
+  min-height: 220px;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #94a3b8;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Blog Content & TipTap Shared Typography */
+.blog-rich-content,
+.tiptap {
+  color: #475569;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.blog-rich-content h1,
+.tiptap h1 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #012442;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.blog-rich-content h2,
+.tiptap h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #012442;
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.blog-rich-content h3,
+.tiptap h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #024363;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-rich-content h4,
+.tiptap h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #024363;
+  margin-top: 1.1rem;
+  margin-bottom: 0.45rem;
+}
+
+.blog-rich-content p,
+.tiptap p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-rich-content ul,
+.tiptap ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.blog-rich-content ol,
+.tiptap ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.blog-rich-content li,
+.tiptap li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.blog-rich-content blockquote,
+.tiptap blockquote {
+  border-left: 4px solid #0FA8D6;
+  background-color: rgba(15, 168, 214, 0.08);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 1rem 1rem 0;
+  font-style: italic;
+  color: #024363;
+}
+
+.blog-rich-content a,
+.tiptap a {
+  color: #0FA8D6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.blog-rich-content a:hover,
+.tiptap a:hover {
+  color: #024363;
+}
+
+.blog-rich-content hr,
+.tiptap hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+.blog-rich-content code,
+.tiptap code {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  font-family: monospace;
+}
+
+.blog-rich-content pre,
+.tiptap pre {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+
+.blog-rich-content pre code,
+.tiptap pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.blog-rich-content img,
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+  display: block;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }

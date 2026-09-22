@@ -243,27 +243,26 @@ const HomeContact = memo(() => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider pl-1 block">Department (Optional)</label>
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider pl-1 block">Choose a Department / Service (Optional)</label>
                     <select
                       name="department"
                       value={formData.department}
                       onChange={handleChange}
                       className="w-full bg-slate-50/80 border border-slate-200 hover:border-slate-300 focus:border-[#07a7a5] focus:bg-white text-slate-800 rounded-xl px-4 py-3 text-sm outline-none transition-all cursor-pointer shadow-xs focus:shadow-[0_0_0_3px_rgba(7,167,165,0.15)]"
                     >
-                      <option value="" className="bg-white text-slate-800">Select Department</option>
+                      <option value="" className="bg-white text-slate-800">Select Urology Service / Department</option>
                       {departments && departments.length > 0 ? (
-                        departments.map((dept, index) => (
-                          <option key={dept._id || index} value={dept.name} className="bg-white text-slate-800">
-                            {index + 1}. {dept.name}
-                          </option>
-                        ))
+                        departments
+                          .filter((dept) => dept && dept.published !== false && dept.name)
+                          .map((dept) => (
+                            <option key={dept._id || dept.name} value={dept.name} className="bg-white text-slate-800">
+                              {dept.name}
+                            </option>
+                          ))
                       ) : (
-                        <>
-                          <option value="Cardiology" className="bg-white text-slate-800">1. Cardiology</option>
-                          <option value="Neurology" className="bg-white text-slate-800">2. Neurology</option>
-                          <option value="Orthopedics" className="bg-white text-slate-800">3. Orthopedics</option>
-                          <option value="General" className="bg-white text-slate-800">4. General Consultation</option>
-                        </>
+                        <option value="" disabled className="bg-white text-slate-800">
+                          Loading services...
+                        </option>
                       )}
                     </select>
                   </div>

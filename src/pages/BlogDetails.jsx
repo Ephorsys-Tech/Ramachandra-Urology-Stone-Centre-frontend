@@ -1,42 +1,52 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  User,
   Clock,
+  User,
   ArrowLeft,
-  Tag,
+  ArrowRight,
   ShieldCheck,
-  CheckCircle2,
+  FileText,
+  UserCheck,
+  LayoutGrid,
+  BookOpen,
+  Folder,
+  HeartPulse,
   Share2,
-  CalendarCheck,
-  Phone
 } from "lucide-react";
-import PageHero from "../components/common/PageHero";
-import { fetchBlogById } from "../redux/features/blog/blogThunk";
+import BlogContentRenderer from "../components/Blog/BlogContentRenderer";
+import { fetchBlogById, fetchBlogs } from "../redux/features/blog/blogThunk";
 import { clearSelectedBlog } from "../redux/features/blog/blogSlice";
-import { openAppointmentModal } from "../redux/features/patient/patientSlice";
+
+
 
 const BlogDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { selectedBlog, loading, error } = useSelector(
-    (state) => state.blog || { selectedBlog: null, loading: false, error: null }
+  const { selectedBlog, blogs = [], loading, error } = useSelector(
+    (state) => state.blog || { selectedBlog: null, blogs: [], loading: false, error: null }
   );
-  const { settings } = useSelector((state) => state.setting || { settings: null });
-  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   useEffect(() => {
     dispatch(fetchBlogById(id));
+    // Also fetch other blogs to populate Related Articles dynamically
+    dispatch(fetchBlogs({ limit: 6 }));
     return () => {
       dispatch(clearSelectedBlog());
     };
   }, [dispatch, id]);
 
-  if (loading) {
+  // Filter out current blog to get true related articles
+  const relatedArticles = useMemo(() => {
+    if (!blogs || blogs.length === 0) return [];
+    return blogs.filter((b) => b._id !== selectedBlog?._id).slice(0, 4);
+  }, [blogs, selectedBlog]);
+
+  if (loading && !selectedBlog) {
     return (
       <div className="bg-slate-50 min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0FA8D6]"></div>
@@ -48,7 +58,7 @@ const BlogDetails = () => {
     return (
       <div className="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-4 text-center">
         <h2 className="text-2xl font-bold text-[#012442] mb-2">Failed to load blog post</h2>
-        <p className="text-slate-500 text-sm mb-6">{error || "The post you are trying to view does not exist."}</p>
+        <p className="text-slate-500 text-sm mb-6">{error || "The article you are trying to view does not exist."}</p>
         <Link
           to="/blog"
           className="flex items-center gap-2 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] px-6 py-2.5 rounded-full font-bold transition no-underline text-xs tracking-wide uppercase"
@@ -59,142 +69,266 @@ const BlogDetails = () => {
     );
   }
 
+  const doctorName = selectedBlog.doctorAuthor?.name
+    ? `Dr. ${selectedBlog.doctorAuthor.name}`
+    : selectedBlog.authorName || "Dr. Ramachandra Pradhan";
+
+  const authorBadge =
+    selectedBlog.authorType === "Doctor" ? "Doctor (On Behalf Of)" : "Admin";
+
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-24 text-slate-900 ">
-      <PageHero
-        breadcrumb={`Blog / ${selectedBlog.category || "Article"}`}
-        badge={selectedBlog.category || "Urology Insight"}
-        title={selectedBlog.title}
-        image={selectedBlog.image}
-        imageAlt={selectedBlog.title}
-        imageTag="Physician-Verified Guide"
-        theme="blue"
-      >
-        <div className="flex flex-wrap items-center gap-3 text-slate-300 text-xs font-semibold pt-1">
-          <span className="flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/15 backdrop-blur-md">
-            <User size={14} className="text-[#0FA8D6]" />
-            <span>{selectedBlog.authorName || "Specialist Doctor"}</span>
-          </span>
-          <span className="flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/15 backdrop-blur-md">
-            <Calendar size={14} className="text-[#0FA8D6]" />
-            <span>
-              {selectedBlog.date ||
-                (selectedBlog.createdAt
-                  ? new Date(selectedBlog.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric"
-                    })
-                  : "Recent")}
-            </span>
-          </span>
-          {selectedBlog.readTime && (
-            <span className="flex items-center gap-1.5 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/15 backdrop-blur-md">
-              <Clock size={14} className="text-[#0FA8D6]" />
-              <span>{selectedBlog.readTime}</span>
-            </span>
-          )}
-          <span className="flex items-center gap-1.5 bg-[#0FA8D6]/20 text-cyan-200 px-3 py-1.5 rounded-xl border border-[#0FA8D6]/30 backdrop-blur-md">
-            <ShieldCheck size={14} className="text-[#0FA8D6]" />
-            <span>Clinically Verified</span>
-          </span>
-        </div>
-      </PageHero>
-
-      {/* Article Body Content */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="space-y-8"
-        >
-          {/* Top navigation actions */}
-          <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#0FA8D6] transition font-bold text-xs uppercase tracking-wider no-underline"
-            >
-              <ArrowLeft size={14} /> Back to All Articles
-            </Link>
-
-            <span className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
-              <CheckCircle2 size={13} className="text-[#0FA8D6]" />
-              Published by Ramachandra Urology & Stone Centre
-            </span>
-          </div>
-
-          {/* Key Takeaway / Excerpt Box */}
-          {selectedBlog.description && (
-            <div className="border-l-4 border-[#0FA8D6] bg-white p-6 rounded-r-2xl shadow-xs border border-slate-200/60 font-medium text-base sm:text-lg text-[#012442] leading-relaxed italic">
-              "{selectedBlog.description}"
+    <main className="bg-[#f8fbfa] min-h-screen pb-20 text-slate-900">
+      {/* ── TOP HERO HEADER SECTION ── */}
+      <section className="relative bg-gradient-to-r from-[#e7f5fb] via-[#eef8fd] to-[#f4faff] border-b border-slate-200/80 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
+          <div className="max-w-3xl">
+            {/* Health Blog Category Pill */}
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30 font-medium text-xs mb-4 shadow-2xs">
+              <HeartPulse size={13} className="text-[#0FA8D6]" />
+              <span>{selectedBlog.category || "Health Blog"}</span>
             </div>
-          )}
 
-          {/* Full content body */}
-          <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xs text-slate-700 leading-relaxed text-base sm:text-[17px] space-y-6 whitespace-pre-line">
-            {selectedBlog.content}
+            {/* Main Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#012442] tracking-tight leading-[1.18] mb-4">
+              {selectedBlog.title}
+            </h1>
+
+            {/* Subtitle / Excerpt */}
+            {selectedBlog.description && (
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                {selectedBlog.description}
+              </p>
+            )}
+
+            {/* Meta Row: Date, Read Time, Author */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-600 pt-3 border-t border-[#0FA8D6]/20">
+              <div className="flex items-center gap-1.5 font-medium">
+                <Calendar size={14} className="text-[#0FA8D6] shrink-0" />
+                <span>
+                  {selectedBlog.date ||
+                    (selectedBlog.createdAt
+                      ? new Date(selectedBlog.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })
+                      : "Recent")}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1.5 font-medium">
+                <Clock size={14} className="text-[#0FA8D6] shrink-0" />
+                <span>{selectedBlog.readTime || "5 min read"}</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 font-medium text-[#012442]">
+                <User size={14} className="text-[#0FA8D6] shrink-0" />
+                <span>
+                  By {doctorName}{" "}
+                  <span className="text-slate-500 font-normal">
+                    ({selectedBlog.authorType === "Doctor" ? "Doctor - On Behalf Of" : "Admin"})
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Author signature & credentials */}
-          <div className="bg-gradient-to-r from-[#012442] to-[#024363] text-white rounded-3xl p-6 sm:p-8 shadow-md border border-[#0FA8D6]/20 flex flex-col sm:flex-row items-center gap-6">
-            <div className="w-18 h-18 rounded-2xl overflow-hidden border-2 border-[#0FA8D6]/40 shrink-0 shadow-md">
+        {/* Decorative Right Hero Overlay */}
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[42%] pointer-events-none select-none">
+          <div className="relative w-full h-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#eef8fd] via-[#eef8fd]/70 to-transparent"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MAIN CONTENT CONTAINER (2 COLUMNS) ── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          {/* ──── LEFT / MAIN ARTICLE COLUMN (8 Cols) ──── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-8 space-y-8"
+          >
+            {/* Top Navigation Back link */}
+            <div className="flex items-center justify-between pb-2">
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 text-[#024363] hover:text-[#0FA8D6] transition font-medium text-xs uppercase tracking-wider no-underline"
+              >
+                <ArrowLeft size={14} /> Back to All Articles
+              </Link>
+            </div>
+
+            {/* Featured Image */}
+            <div className="rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 aspect-[16/9] w-full">
               <img
-                src={
-                  selectedBlog.doctorAuthor?.photo ||
-                  "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80"
-                }
-                alt={selectedBlog.doctorAuthor?.name || selectedBlog.authorName}
+                src={selectedBlog.image}
+                alt={selectedBlog.title}
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="text-center sm:text-left flex-1">
-              <div className="text-[11px] text-[#0FA8D6] font-bold uppercase tracking-wider mb-1">
-                Medical Author & Reviewer
-              </div>
-              <h4 className="font-extrabold text-white text-lg tracking-tight">
-                {selectedBlog.doctorAuthor?.name
-                  ? `Dr. ${selectedBlog.doctorAuthor.name}`
-                  : selectedBlog.authorName || "Clinical Specialist"}
-              </h4>
-              <p className="text-slate-300 text-xs mt-1">
-                {selectedBlog.doctorAuthor?.specialization || "Senior Consultant Urologist & Laser Surgeon"} • Ramachandra Urology & Stone Centre, Sambalpur
-              </p>
-            </div>
-            <button
-              onClick={() => dispatch(openAppointmentModal())}
-              className="shrink-0 bg-[#0FA8D6] hover:bg-[#00b4ea] text-[#012442] font-medium text-xs px-5 py-3 rounded-full no-underline transition-colors shadow-xs uppercase tracking-wide cursor-pointer border-none"
-            >
-              Consult Specialist
-            </button>
-          </div>
 
-          {/* Quick Consultation CTA Banner */}
-          <div className="bg-slate-100/90 border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <h4 className="text-base font-bold text-[#012442]">Have Questions or Facing Urological Symptoms?</h4>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Our care coordinators are available 24/7 to assist with OPD appointments and inquiries.
+            {/* Rich TipTap Content Body */}
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-2xs">
+              <BlogContentRenderer content={selectedBlog.content} />
+            </div>
+
+            {/* Medical Callout / Note Banner */}
+            <div className="bg-[#0FA8D6]/10 border border-[#0FA8D6]/25 rounded-2xl p-5 sm:p-6 flex items-start gap-4 shadow-2xs">
+              <div className="w-10 h-10 rounded-xl bg-[#0FA8D6] text-white flex items-center justify-center shrink-0 shadow-xs">
+                <ShieldCheck size={22} />
+              </div>
+              <p className="text-[#024363] italic font-medium text-xs sm:text-sm leading-relaxed pt-1">
+                If you have concerns about your health or have risk factors for diseases, consult a qualified healthcare professional for personalized medical advice.
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <a
-                href={`tel:${emergencyPhone}`}
-                className="inline-flex items-center gap-1.5 bg-white border border-slate-200 text-[#024363] hover:text-[#0FA8D6] font-bold text-xs px-4 py-2.5 rounded-xl no-underline transition-colors shadow-2xs"
-              >
-                <Phone size={13} className="text-[#0FA8D6]" />
-                <span>+91 {emergencyPhone}</span>
-              </a>
-              <button
-                onClick={() => dispatch(openAppointmentModal())}
-                className="inline-flex items-center gap-1.5 bg-[#024363] hover:bg-[#012442] text-white font-bold text-xs px-4 py-2.5 rounded-xl border-none cursor-pointer transition-colors shadow-xs"
-              >
-                <CalendarCheck size={13} className="text-[#0FA8D6]" />
-                <span>Book Visit</span>
-              </button>
+
+            {/* Medical Disclaimer */}
+            <p className="text-slate-400 italic text-xs leading-relaxed border-t border-slate-200/70 pt-4">
+              This article is intended for general educational purposes and should not replace professional medical advice, diagnosis, or treatment.
+            </p>
+          </motion.div>
+
+          {/* ──── RIGHT / SIDEBAR COLUMN (4 Cols) ──── */}
+          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+            
+            {/* Widget 1: Article Details */}
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <FileText size={18} className="text-[#0FA8D6]" />
+                <span>Article Details</span>
+              </div>
+
+              <div className="space-y-3 text-xs sm:text-sm">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
+                    <Folder size={15} className="text-slate-400" />
+                    <span>Category</span>
+                  </div>
+                  <span className="px-3 py-1 bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30 text-xs font-medium rounded-full">
+                    {selectedBlog.category || "General"}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
+                    <Clock size={15} className="text-slate-400" />
+                    <span>Read Time</span>
+                  </div>
+                  <span className="font-medium text-slate-700">
+                    {selectedBlog.readTime || "5 min read"}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-slate-500 font-medium">
+                    <User size={15} className="text-slate-400" />
+                    <span>Author Type</span>
+                  </div>
+                  <span className="font-medium text-slate-700">
+                    {authorBadge}
+                  </span>
+                </div>
+              </div>
             </div>
+
+            {/* Widget 2: Author Profile */}
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <UserCheck size={18} className="text-[#0FA8D6]" />
+                <span>Author</span>
+              </div>
+
+              <div className="flex items-center gap-3.5">
+                <img
+                  src={
+                    selectedBlog.doctorAuthor?.photo ||
+                    "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80"
+                  }
+                  alt={doctorName}
+                  className="w-14 h-14 rounded-full border-2 border-[#0FA8D6]/30 object-cover shrink-0 shadow-xs"
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-sm text-[#012442] truncate">
+                    {doctorName}
+                  </h4>
+                  <p className="text-xs text-slate-500 truncate">
+                    {selectedBlog.doctorAuthor?.specialization || "Urologist & Stone Specialist"}
+                  </p>
+                  <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10.5px] font-medium bg-[#0FA8D6]/15 text-[#024363] border border-[#0FA8D6]/30">
+                    {authorBadge}
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-slate-600 text-xs leading-relaxed">
+                {selectedBlog.doctorAuthor?.description ||
+                  selectedBlog.doctorAuthor?.bio ||
+                  selectedBlog.doctorAuthor?.about ||
+                  (selectedBlog.authorType === "Doctor"
+                    ? `${doctorName} is a renowned specialist with extensive clinical experience in treating urological disorders, surgical interventions, and preventive care.`
+                    : "Published by the editorial and clinical specialist team at Ramachandra Urology & Stone Centre, ensuring evidence-based and physician-verified health insights.")}
+              </p>
+
+              <div>
+                <Link
+                  to={
+                    selectedBlog.doctorAuthor?._id
+                      ? `/doctors/${selectedBlog.doctorAuthor._id}`
+                      : "/doctors"
+                  }
+                  className="inline-flex items-center gap-1 text-xs font-medium text-[#024363] hover:text-[#0FA8D6] transition no-underline"
+                >
+                  <span>View Profile</span>
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </div>
+
+            {/* Widget 3: Related Articles */}
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-2xs space-y-4">
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-100 text-[#012442] font-medium text-sm sm:text-base">
+                <BookOpen size={18} className="text-[#0FA8D6]" />
+                <span>Related Articles</span>
+              </div>
+
+              <div className="space-y-3.5">
+                {relatedArticles.length > 0 ? (
+                  relatedArticles.map((article) => (
+                    <Link
+                      key={article._id}
+                      to={`/blog/${article._id}`}
+                      className="flex items-center gap-3 group no-underline p-1.5 rounded-2xl hover:bg-slate-50 transition-colors"
+                    >
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-100 shadow-2xs">
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h5 className="font-medium text-xs text-[#012442] group-hover:text-[#0FA8D6] transition-colors line-clamp-2 leading-snug">
+                          {article.title}
+                        </h5>
+                        <p className="text-[11px] text-slate-400 font-medium mt-1">
+                          {article.date || "Recent"} • {article.readTime || "4 min read"}
+                        </p>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-xs text-slate-400">No other articles found.</p>
+                )}
+              </div>
+            </div>
+
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   );
