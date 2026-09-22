@@ -10,10 +10,8 @@ const Gallery = () => {
   const { galleries, loading } = useSelector((state) => state.gallery);
 
   useEffect(() => {
-    if (galleries.length === 0) {
-      dispatch(fetchAllGalleries());
-    }
-  }, [dispatch, galleries.length]);
+    dispatch(fetchAllGalleries());
+  }, [dispatch]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);

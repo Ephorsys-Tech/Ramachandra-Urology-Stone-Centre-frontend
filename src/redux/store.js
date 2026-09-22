@@ -10,7 +10,19 @@ import rootReducer from "./rootReducer";
 const persistConfig = {
   key: "root",
   storage: storage.default || storage,
-  blacklist: ["auth"], // Never store auth tokens in localStorage
+  blacklist: [
+    "auth",
+    "gallery",
+    "blog",
+    "doctor",
+    "department",
+    "service",
+    "appointmentRequest",
+    "message",
+    "patient",
+    "feature",
+    "disease",
+  ],
 };
 
 // =============================================

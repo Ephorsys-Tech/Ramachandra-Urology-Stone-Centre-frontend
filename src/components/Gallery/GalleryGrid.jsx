@@ -109,10 +109,8 @@ const GalleryGrid = memo(() => {
   const [activeLightboxIndex, setActiveLightboxIndex] = useState(null);
 
   useEffect(() => {
-    if (galleries.length === 0) {
-      dispatch(fetchAllGalleries());
-    }
-  }, [dispatch, galleries.length]);
+    dispatch(fetchAllGalleries());
+  }, [dispatch]);
 
   const categories = [
     "All",
