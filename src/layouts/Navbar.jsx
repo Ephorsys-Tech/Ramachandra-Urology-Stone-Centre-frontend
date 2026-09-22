@@ -15,19 +15,15 @@ import {
   HeartPulse,
 } from "lucide-react";
 import { openAppointmentModal } from "../redux/features/patient/patientSlice";
-import { fetchAllDepartments } from "../redux/features/department/departmentThunk";
 import { fetchAllFeatures } from "../redux/features/feature/featureThunk";
 import { fetchSettings } from "../redux/features/setting/settingThunk";
 import { motion, AnimatePresence } from "framer-motion";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
-import { NavbarDropdownSkeleton } from "../components/common/Skeletons";
-
-
 
 const Navbar = () => {
   const dispatch = useDispatch();
 
-  // ── CHANGED: use features from state.feature instead of departments ──
+  // Features from state.feature
   const { features } = useSelector((state) => state.feature || { features: [] });
 
   // Navigation states
@@ -38,14 +34,11 @@ const Navbar = () => {
   const location = useLocation();
   const deptRef = useRef(null);
 
-  // ── CHANGED: fetch features (fixed thunk), keep settings fetch ──
+  // Fetch features & settings
   useEffect(() => {
     if (!features || features.length === 0) dispatch(fetchAllFeatures());
     dispatch(fetchSettings());
   }, [dispatch]);
-
-  const displayDepartments =
-    departments && departments.length > 0 ? departments : [];
 
   // Original nav links
   const navLinks = [
