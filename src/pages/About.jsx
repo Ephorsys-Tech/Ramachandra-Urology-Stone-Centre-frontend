@@ -312,7 +312,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start">
           
           {/* LEFT COLUMN: Sticky Anchor Card */}
-          <div className="md:col-span-5 md:sticky md:top-24 space-y-6">
+          <div className="md:col-span-5 md:sticky md:top-24 self-start space-y-6">
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#0FA8D6]/30 shadow-md space-y-6">
               
               <div>
