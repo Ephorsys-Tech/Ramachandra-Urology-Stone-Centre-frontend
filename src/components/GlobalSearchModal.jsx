@@ -39,9 +39,9 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
   const resultsContainerRef = useRef(null);
 
   // Redux state
-  const { departments } = useSelector((state) => state.department || { departments: [] });
-  const { doctors } = useSelector((state) => state.doctor || { doctors: [] });
-  const { blogs } = useSelector((state) => state.blog || { blogs: [] });
+  const { departments = [] } = useSelector((state) => state.department || {});
+  const { doctors = [] } = useSelector((state) => state.doctor || {});
+  const { blogs = [] } = useSelector((state) => state.blog || {});
 
   // Search local states
   const [query, setQuery] = useState("");

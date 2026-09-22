@@ -33,7 +33,7 @@ const DepartmentDetails = () => {
     dispatch(fetchAllDepartments());
   }, [dispatch]);
 
-  const allDepts = departments && departments.length > 0 ? departments : fallbackDepartments;
+  const allDepts = departments && departments.length > 0 ? departments : [];
 
   const department = allDepts.find(
     (dept) => (dept.slug && dept.slug.toLowerCase() === (slug || "").toLowerCase()) || dept._id === slug

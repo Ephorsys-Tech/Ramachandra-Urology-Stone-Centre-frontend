@@ -64,8 +64,12 @@ const HomeDepartments = memo(() => {
     dispatch(fetchAllDepartments());
   }, [dispatch]);
 
-  const displayList = departments && departments.length > 0 ? departments : fallbackDepartments;
+  const displayList = departments && departments.length > 0 ? departments : [];
   const displayDepartments = displayList.slice(0, 4);
+
+  if (!loading && displayDepartments.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-50/70 via-white to-slate-50/50 relative overflow-hidden">

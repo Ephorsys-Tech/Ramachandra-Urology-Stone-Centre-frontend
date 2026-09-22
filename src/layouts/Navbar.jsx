@@ -41,7 +41,7 @@ const Navbar = () => {
   }, [dispatch]);
 
   const displayDepartments =
-    departments && departments.length > 0 ? departments : fallbackDepartments;
+    departments && departments.length > 0 ? departments : [];
 
   // Original nav links
   const navLinks = [

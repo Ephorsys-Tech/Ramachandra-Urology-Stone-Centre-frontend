@@ -46,7 +46,7 @@ const HomeDoctors = memo(() => {
       ? homeDoctors
       : doctors && doctors.length > 0
         ? doctors
-        : fallbackDoctors;
+        : [];
 
   const handlePrev = () => {
     if (displayDoctors.length === 0) return;
@@ -71,6 +71,10 @@ const HomeDoctors = memo(() => {
     navigator.clipboard.writeText(`${window.location.origin}/doctors/${getDoctorSlug(doctorName)}`);
     toast.success(`Link copied! Shared profile of ${doctorName}.`);
   };
+
+  if (!loading && displayDoctors.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden ">

@@ -36,7 +36,7 @@ const DoctorDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { doctors, selectedDoctor, loading, error } = useSelector((state) => state.doctor);
+  const { doctors = [], selectedDoctor = null, loading = false, error = null } = useSelector((state) => state.doctor || {});
   const [notFound, setNotFound] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [quickFormOpen, setQuickFormOpen] = useState(false);

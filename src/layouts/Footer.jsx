@@ -26,15 +26,6 @@ import { openAppointmentModal } from "../redux/features/patient/patientSlice";
 import { fetchAllDepartments } from "../redux/features/department/departmentThunk";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 
-const fallbackDepartments = [
-  { _id: "urology-kidney-care", slug: "urology-kidney-care", name: "Urology & Kidney Care" },
-  { _id: "laser-surgery-endourology", slug: "laser-surgery-endourology", name: "Laser Surgery & Endourology" },
-  { _id: "laparoscopic-urology", slug: "laparoscopic-urology", name: "Laparoscopic Urology" },
-  { _id: "andrology-male-health", slug: "andrology-male-health", name: "Andrology & Men's Health" },
-  { _id: "pediatric-urology", slug: "pediatric-urology", name: "Pediatric Urology" },
-  { _id: "uro-oncology", slug: "uro-oncology", name: "Uro-Oncology & Reconstructive" },
-];
-
 const Footer = memo(() => {
   const dispatch = useDispatch();
   const { settings } = useSelector((state) => state.setting || {});
@@ -44,7 +35,7 @@ const Footer = memo(() => {
     dispatch(fetchAllDepartments());
   }, [dispatch]);
 
-  const displayDepartments = departments && departments.length > 0 ? departments : fallbackDepartments;
+  const displayDepartments = departments && departments.length > 0 ? departments : [];
 
   const hospitalName = "Ramachandra Urology & Stone Centre";
   const primaryPhone = "+91 88950 62072";
