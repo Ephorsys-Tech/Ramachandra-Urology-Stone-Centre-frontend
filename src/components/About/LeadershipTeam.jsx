@@ -96,25 +96,6 @@ const LeadershipTeam = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent opacity-80" />
 
-                  {/* Verified Badge */}
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/30">
-                    <ShieldCheck size={13} className="text-[#0FA8D6]" />
-                    <span className="text-[10px] font-extrabold text-[#012442] tracking-wider uppercase">
-                      Senior Faculty
-                    </span>
-                  </div>
-
-                  {/* Experience Badge */}
-                  <div className="absolute top-3 right-3 bg-[#012442]/90 backdrop-blur-md text-[#0FA8D6] px-2.5 py-1 rounded-full text-[10px] font-extrabold tracking-wide uppercase border border-[#0FA8D6]/40">
-                    {doc.experience}
-                  </div>
-
-                  {/* Specialty Tag */}
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <span className="bg-[#024363]/90 text-white text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs truncate block max-w-fit border border-[#0FA8D6]/30 backdrop-blur-md">
-                      {doc.specialty}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Details Content */}
