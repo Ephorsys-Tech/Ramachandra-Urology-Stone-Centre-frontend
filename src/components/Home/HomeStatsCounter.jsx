@@ -85,7 +85,7 @@ const HomeStatsCounter = memo(() => {
   const infiniteStats = [...hospitalStats, ...hospitalStats, ...hospitalStats];
 
   return (
-    <section className="bg-white py-12 sm:py-16  select-none overflow-hidden border-b border-slate-100">
+    <section className="bg-white py-12 sm:py-16   overflow-hidden border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── HEADER TITLE & SUBTITLE ── */}

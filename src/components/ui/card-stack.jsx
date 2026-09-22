@@ -213,7 +213,7 @@ export function CardStack({
                   key={item.id}
                   className={cn(
                     "absolute bottom-0 rounded-2xl border-4 border-black/10 dark:border-white/10 overflow-hidden shadow-xl",
-                    "will-change-transform select-none",
+                    "will-change-transform ",
                     isActive
                       ? "cursor-grab active:cursor-grabbing"
                       : "cursor-pointer",

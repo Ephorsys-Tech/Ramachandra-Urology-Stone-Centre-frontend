@@ -284,7 +284,7 @@ const GalleryGrid = memo(() => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 bg-[#012442]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 select-none"
+            className="fixed inset-0 z-50 bg-[#012442]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 "
             onClick={() => setActiveLightboxIndex(null)}
           >
             {/* Close Button */}

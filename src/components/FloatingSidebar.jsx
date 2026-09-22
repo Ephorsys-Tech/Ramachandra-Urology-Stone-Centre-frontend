@@ -26,7 +26,7 @@ const FloatingSidebar = memo(() => {
       {/* 1. Book Appointment Tab */}
       <div className="group relative flex items-center">
         {/* Tooltip */}
-        <div className="absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
+        <div className="hidden md:block absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
           Book Appointment
         </div>
         <button
@@ -41,7 +41,7 @@ const FloatingSidebar = memo(() => {
       {/* 2. Direct Emergency Call Tab */}
       <div className="group relative flex items-center">
         {/* Tooltip */}
-        <div className="absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
+        <div className="hidden md:block absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
           Call Helpline (+91 {emergencyPhone})
         </div>
         <a
@@ -56,7 +56,7 @@ const FloatingSidebar = memo(() => {
       {/* 3. WhatsApp Direct Chat Tab */}
       <div className="group relative flex items-center">
         {/* Tooltip */}
-        <div className="absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
+        <div className="hidden md:block absolute right-full mr-3 px-2.5 py-1.5 md:px-3 md:py-2 bg-slate-900 text-white text-[11px] md:text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:mr-2.5 transition-all duration-200 whitespace-nowrap shadow-md">
           Chat on WhatsApp
         </div>
         <a

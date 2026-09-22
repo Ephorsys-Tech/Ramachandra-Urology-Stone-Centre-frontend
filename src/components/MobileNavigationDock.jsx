@@ -35,7 +35,7 @@ const MobileNavigationDock = memo(() => {
     },
     {
       id: "departments",
-      label: "Depts",
+      label: "Services",
       to: "/urology-services",
       icon: Building2,
       isActive: currentPath.startsWith("/urology-services"),
@@ -50,7 +50,7 @@ const MobileNavigationDock = memo(() => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 w-full flex justify-center lg:hidden pointer-events-none select-none">
+    <div className="fixed bottom-0 left-0 right-0 z-50 w-full flex justify-center lg:hidden pointer-events-none ">
       <motion.nav
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

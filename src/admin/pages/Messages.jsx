@@ -474,7 +474,7 @@ const Messages = () => {
                     {/* Sender Avatar & Name */}
                     <div className="w-24 sm:w-44 flex items-center gap-2.5 shrink-0 min-w-0">
                       <div
-                        className={`w-7.5 h-7.5 rounded-full font-bold flex items-center justify-center text-xs shrink-0 select-none shadow-sm ${getAvatarColor(
+                        className={`w-7.5 h-7.5 rounded-full font-bold flex items-center justify-center text-xs shrink-0  shadow-sm ${getAvatarColor(
                           msg.name
                         )}`}
                       >

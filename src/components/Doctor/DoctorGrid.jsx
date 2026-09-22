@@ -59,7 +59,7 @@ const DoctorGrid = memo(() => {
   const emergencyPhone = settings?.emergencyPhone || "+91 99375 66625";
 
   return (
-    <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8 select-none min-h-screen">
+    <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8  min-h-screen">
       <div className="max-w-7xl mx-auto space-y-6">
 
         {/* Toolbar */}

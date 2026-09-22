@@ -62,7 +62,7 @@ const Footer = memo(() => {
   ];
 
   return (
-    <footer className="bg-[#eaf4f9] text-[#1e293b] select-none border-t border-[#0FA8D6]/20 overflow-x-hidden">
+    <footer className="bg-[#eaf4f9] text-[#1e293b]  border-t border-[#0FA8D6]/20 overflow-x-hidden">
 
       {/* ── 1. TOP HEADER ROW: LOGO + ACCREDITATION BADGES + SOCIAL ICONS ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-1">

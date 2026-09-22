@@ -364,7 +364,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
             {/* ── Modal Body Content ── */}
             <div
               ref={resultsContainerRef}
-              className="overflow-y-auto flex-1 px-4 sm:px-5 py-2 space-y-3 select-none"
+              className="overflow-y-auto flex-1 px-4 sm:px-5 py-2 space-y-3 "
             >
               {/* Zero State: Quick Actions & Trending Searches */}
               {!query.trim() ? (
@@ -582,7 +582,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* ── Footer Bar Styled with Pill Badges ── */}
-            <div className="border-t border-slate-100 px-5 py-3 bg-white flex items-center justify-between text-xs text-slate-500 font-medium select-none">
+            <div className="border-t border-slate-100 px-5 py-3 bg-white flex items-center justify-between text-xs text-slate-500 font-medium ">
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-100/80 rounded-full border border-slate-200/60 text-[11px] text-slate-600 font-semibold">
                   <span className="font-bold">↑↓</span>

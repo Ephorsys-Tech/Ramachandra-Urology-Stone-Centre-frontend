@@ -124,7 +124,7 @@ const AdminLogin = () => {
             <img
               src="3d-dc.png"
               alt="3D Doctor illustration pointing right"
-              className="h-[100%] object-contain object-bottom max-w-full select-none"
+              className="h-[100%] object-contain object-bottom max-w-full "
               onError={(e) => {
                 // Fallback icon/shape in case the image is not copied yet
                 e.target.style.display = "none";
