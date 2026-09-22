@@ -49,13 +49,18 @@ api.interceptors.response.use(
       originalRequest.url?.includes("/admin/refresh-token") ||
       originalRequest.url?.includes("/admin/register");
 
-    if (error.response?.status === 401 && !originalRequest._retry && !isAuthRoute) {
+    const status = error.response?.status;
+    const isUnauthorizedOrExpired = status === 401 || status === 409;
+
+    if (isUnauthorizedOrExpired && !originalRequest._retry && !isAuthRoute) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
+            if (token) {
+              originalRequest.headers.Authorization = `Bearer ${token}`;
+            }
             return api(originalRequest);
           })
           .catch((err) => Promise.reject(err));
@@ -72,16 +77,15 @@ api.interceptors.response.use(
           { withCredentials: true }
         );
 
-        const newAccessToken = res.data?.data?.accessToken;
+        const newAccessToken = res.data?.data?.accessToken || null;
 
         if (newAccessToken) {
           setAuthToken(newAccessToken);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          processQueue(null, newAccessToken);
-          return api(originalRequest);
-        } else {
-          throw new Error("Failed to receive new access token");
         }
+
+        processQueue(null, newAccessToken);
+        return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
         clearAuthToken();

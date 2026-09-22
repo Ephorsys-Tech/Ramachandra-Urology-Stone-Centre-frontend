@@ -3,26 +3,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
 
-import { fetchAllDepartments, addNewDepartment, updateDepartmentById, deleteDepartmentById } from "../../redux/features/department/departmentThunk";
+import {
+  fetchAllDepartments,
+  addNewDepartment,
+  updateDepartmentById,
+  deleteDepartmentById,
+} from "../../redux/features/department/departmentThunk";
 import DepartmentTable from "../components/departments/DepartmentTable";
 import DepartmentFormModal from "../components/departments/DepartmentFormModal";
 import DepartmentDeleteModal from "../components/departments/DepartmentDeleteModal";
 import { fetchAllDoctors } from "../../redux/features/doctor/doctorThunk";
+import { fetchAllFeatures } from "../../redux/features/feature/featureThunk";
+import { fetchAllDiseases } from "../../redux/features/disease/diseaseThunk";
 import toast from "react-hot-toast";
 
 const Departments = () => {
   const dispatch = useDispatch();
   const { departments, loading } = useSelector((state) => state.department);
   const { doctors } = useSelector((state) => state.doctor);
+  const { features } = useSelector((state) => state.feature || { features: [] });
+  const { diseases } = useSelector((state) => state.disease || { diseases: [] });
 
   useEffect(() => {
-    if (departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-    if (doctors.length === 0) {
-      dispatch(fetchAllDoctors());
-    }
-  }, [dispatch, departments.length, doctors.length]);
+    dispatch(fetchAllDepartments());
+    dispatch(fetchAllDoctors());
+    dispatch(fetchAllFeatures());
+    dispatch(fetchAllDiseases());
+  }, [dispatch]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,44 +46,42 @@ const Departments = () => {
 
   const [formData, setFormData] = useState({
     name: "",
+    slug: "",
     description: "",
     content: "",
-    image: "",
-    icon: "",
-    color: "#007bff",
-    features: "",
-    diseases: "",
+    features: [],
+    diseases: [],
+    doctors: [],
     emergencyAvailable: false,
     opdTime: "",
     published: true,
     category: "General",
     showInHomePage: false,
     showInServicesPage: false,
-    orderIndex: 0
+    orderIndex: 0,
   });
 
   const resetForm = () => {
     setFormData({
       name: "",
+      slug: "",
       description: "",
       content: "",
-      image: "",
-      icon: "",
-      color: "#007bff",
-      features: "",
-      diseases: "",
+      features: [],
+      diseases: [],
+      doctors: [],
       emergencyAvailable: false,
       opdTime: "",
       published: true,
       category: "General",
       showInHomePage: false,
       showInServicesPage: false,
-      orderIndex: 0
+      orderIndex: 0,
     });
     setFormTab("basic");
   };
 
-  const filteredDepts = departments.filter((dept) => {
+  const filteredDepts = (departments || []).filter((dept) => {
     const searchLow = searchTerm.toLowerCase();
     return (
       dept.name?.toLowerCase().includes(searchLow) ||
@@ -96,51 +101,43 @@ const Departments = () => {
     }
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setFormData({ ...formData, image: reader.result });
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleIconUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setFormData({ ...formData, icon: reader.result });
-      reader.readAsDataURL(file);
-    }
-  };
-
   const preparePayload = () => {
     return {
-      ...formData,
-      features: formData.features ? formData.features.split(",").map(f => f.trim()).filter(Boolean) : [],
-      diseases: formData.diseases ? formData.diseases.split(",").map(d => d.trim()).filter(Boolean) : [],
-      orderIndex: Number(formData.orderIndex) || 0
+      name: formData.name.trim(),
+      ...(formData.slug ? { slug: formData.slug.trim() } : {}),
+      description: formData.description.trim(),
+      content: formData.content.trim(),
+      features: Array.isArray(formData.features) ? formData.features : [],
+      diseases: Array.isArray(formData.diseases) ? formData.diseases : [],
+      doctors: Array.isArray(formData.doctors) ? formData.doctors : [],
+      emergencyAvailable: Boolean(formData.emergencyAvailable),
+      opdTime: formData.opdTime || "",
+      published: Boolean(formData.published),
+      category: formData.category || "General",
+      showInHomePage: Boolean(formData.showInHomePage),
+      showInServicesPage: Boolean(formData.showInServicesPage),
+      orderIndex: Number(formData.orderIndex) || 0,
     };
   };
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.description || !formData.content || !formData.image) {
-      toast.error("Please fill all required fields in all tabs.");
+    if (!formData.name.trim() || !formData.description.trim() || !formData.content.trim()) {
+      toast.error("Department name, description, and full content are required.");
       return;
     }
 
     try {
       const result = await dispatch(addNewDepartment(preparePayload()));
       if (addNewDepartment.fulfilled.match(result)) {
-        toast.success("Department added successfully");
+        toast.success("Department created successfully");
         setIsAddModalOpen(false);
         resetForm();
       } else {
         toast.error(result.payload || "Failed to add department");
       }
     } catch (err) {
-      toast.error(err || "An unexpected error occurred");
+      toast.error(err.message || "An error occurred");
     }
   };
 
@@ -148,20 +145,25 @@ const Departments = () => {
     setSelectedDept(dept);
     setFormData({
       name: dept.name || "",
+      slug: dept.slug || "",
       description: dept.description || "",
       content: dept.content || "",
-      image: dept.image || "",
-      icon: dept.icon || "",
-      color: dept.color || "#007bff",
-      features: Array.isArray(dept.features) ? dept.features.join(", ") : "",
-      diseases: Array.isArray(dept.diseases) ? dept.diseases.map(d => d.name || d).join(", ") : "",
+      features: Array.isArray(dept.features)
+        ? dept.features.map((f) => f._id || f)
+        : [],
+      diseases: Array.isArray(dept.diseases)
+        ? dept.diseases.map((d) => d._id || d)
+        : [],
+      doctors: Array.isArray(dept.doctors)
+        ? dept.doctors.map((doc) => doc._id || doc)
+        : [],
       emergencyAvailable: dept.emergencyAvailable || false,
       opdTime: dept.opdTime || "",
       published: dept.published !== undefined ? dept.published : true,
       category: dept.category || "General",
       showInHomePage: dept.showInHomePage || false,
       showInServicesPage: dept.showInServicesPage || false,
-      orderIndex: dept.orderIndex || 0
+      orderIndex: dept.orderIndex || 0,
     });
     setFormTab("basic");
     setIsEditModalOpen(true);
@@ -169,15 +171,17 @@ const Departments = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.description || !formData.content || !formData.image) {
-      toast.error("Please fill all required fields in all tabs.");
+    if (!formData.name.trim() || !formData.description.trim() || !formData.content.trim()) {
+      toast.error("Department name, description, and full content are required.");
       return;
     }
 
     try {
-      const result = await dispatch(updateDepartmentById({ id: selectedDept._id, departmentData: preparePayload() }));
+      const result = await dispatch(
+        updateDepartmentById({ id: selectedDept._id, departmentData: preparePayload() })
+      );
       if (updateDepartmentById.fulfilled.match(result)) {
-        toast.success("Department details updated");
+        toast.success("Department updated successfully");
         setIsEditModalOpen(false);
         setSelectedDept(null);
         resetForm();
@@ -185,7 +189,7 @@ const Departments = () => {
         toast.error(result.payload || "Failed to update department");
       }
     } catch (err) {
-      toast.error(err || "An unexpected error occurred");
+      toast.error(err.message || "An error occurred");
     }
   };
 
@@ -203,7 +207,7 @@ const Departments = () => {
     try {
       const result = await dispatch(deleteDepartmentById(selectedDept._id));
       if (deleteDepartmentById.fulfilled.match(result)) {
-        toast.success("Department deleted");
+        toast.success("Department deleted successfully");
         setIsDeleteModalOpen(false);
         setSelectedDept(null);
         if (currentItems.length === 1 && currentPage > 1) {
@@ -213,53 +217,83 @@ const Departments = () => {
         toast.error(result.payload || "Failed to delete department");
       }
     } catch (err) {
-      toast.error(err || "An unexpected error occurred");
+      toast.error(err.message || "An error occurred");
     }
   };
 
   return (
     <>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-slate-800">Departments</h2>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Departments</h2>
+          <p className="text-sm text-slate-500">Manage hospital departments, services, and assignments.</p>
+        </div>
+        {/* <div className="flex items-center gap-3 w-full sm:w-auto">
           <input
             type="text"
             placeholder="Search departments..."
             value={searchTerm}
-            onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-            className="px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-blue-500 transition w-full sm:w-64"
           />
-          <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+          <button
+            onClick={() => {
+              resetForm();
+              setIsAddModalOpen(true);
+            }}
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-500 shadow-md shadow-blue-500/20 transition shrink-0 cursor-pointer"
+          >
             <Plus size={18} /> Add Department
           </button>
-        </div>
+        </div> */}
       </div>
-<DepartmentTable loading={loading} currentItems={currentItems} doctors={doctors} openEditModal={openEditModal} openDeleteModal={openDeleteModal} openViewModal={openViewModal} indexOfFirstItem={indexOfFirstItem} indexOfLastItem={indexOfLastItem} filteredDeptsLength={filteredDepts.length} totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
+
+      <DepartmentTable
+        loading={loading}
+        currentItems={currentItems}
+        doctors={doctors}
+        openEditModal={openEditModal}
+        openDeleteModal={openDeleteModal}
+        openViewModal={openViewModal}
+        indexOfFirstItem={indexOfFirstItem}
+        indexOfLastItem={indexOfLastItem}
+        filteredDeptsLength={filteredDepts.length}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+      />
 
       {/* ADD / EDIT MODAL */}
       <AnimatePresence>
-  {(isAddModalOpen || isEditModalOpen) && (
-    <DepartmentFormModal
-      isEditModalOpen={isEditModalOpen}
-      closeModal={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
-      formTab={formTab}
-      setFormTab={setFormTab}
-      formData={formData}
-      setFormData={setFormData}
-      handleImageUpload={handleImageUpload}
-      handleIconUpload={handleIconUpload}
-      handleSubmit={isEditModalOpen ? handleEditSubmit : handleAddSubmit}
-      loading={loading}
-    />
-  )}
-  {isDeleteModalOpen && selectedDept && (
-    <DepartmentDeleteModal
-      selectedDept={selectedDept}
-      closeModal={() => setIsDeleteModalOpen(false)}
-      handleDeleteConfirm={handleDeleteConfirm}
-      loading={loading}
-    />
-  )}
+        {(isAddModalOpen || isEditModalOpen) && (
+          <DepartmentFormModal
+            isEditModalOpen={isEditModalOpen}
+            closeModal={() => {
+              setIsAddModalOpen(false);
+              setIsEditModalOpen(false);
+            }}
+            formTab={formTab}
+            setFormTab={setFormTab}
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={isEditModalOpen ? handleEditSubmit : handleAddSubmit}
+            loading={loading}
+            allFeatures={features || []}
+            allDiseases={diseases || []}
+            allDoctors={doctors || []}
+          />
+        )}
+        {isDeleteModalOpen && selectedDept && (
+          <DepartmentDeleteModal
+            selectedDept={selectedDept}
+            closeModal={() => setIsDeleteModalOpen(false)}
+            handleDeleteConfirm={handleDeleteConfirm}
+            loading={loading}
+          />
+        )}
 
   {/* DEPARTMENT VIEW DETAILS MODAL */}
   {isViewModalOpen && viewingDept && (
@@ -320,8 +354,8 @@ const Departments = () => {
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Key Features / Services</span>
               <div className="flex flex-wrap gap-1.5">
                 {(Array.isArray(viewingDept.features)
-                  ? viewingDept.features
-                  : viewingDept.features ? viewingDept.features.split(",").map(f => f.trim()) : []
+                  ? viewingDept.features.map(f => (typeof f === 'object' && f !== null ? f.name || f.title || "" : String(f)))
+                  : viewingDept.features ? String(viewingDept.features).split(",").map(f => f.trim()) : []
                 ).filter(Boolean).map((feat, i) => (
                   <span key={i} className="text-xs px-2.5 py-1 bg-blue-50/50 text-blue-700 rounded-lg border border-blue-100 font-medium">
                     {feat}
@@ -334,8 +368,8 @@ const Departments = () => {
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Treated Diseases</span>
               <div className="flex flex-wrap gap-1.5">
                 {(Array.isArray(viewingDept.diseases)
-                  ? viewingDept.diseases.map(d => d.name || d)
-                  : viewingDept.diseases ? viewingDept.diseases.split(",").map(d => d.trim()) : []
+                  ? viewingDept.diseases.map(d => (typeof d === 'object' && d !== null ? d.name || d.title || "" : String(d)))
+                  : viewingDept.diseases ? String(viewingDept.diseases).split(",").map(d => d.trim()) : []
                 ).filter(Boolean).map((disease, i) => (
                   <span key={i} className="text-xs px-2.5 py-1 bg-purple-50/50 text-purple-700 rounded-lg border border-purple-100 font-medium">
                     {disease}

@@ -41,14 +41,27 @@ const AdminLogin = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, isCheckingAuth } = useSelector((state) => state.auth);
 
   // Redirect if already logged in
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isCheckingAuth && isAuthenticated) {
       navigate("/admin/dashboard");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, isCheckingAuth, navigate]);
+
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-blue-500 border-t-transparent rounded-full animate-spin" />
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+            Verifying Session...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
