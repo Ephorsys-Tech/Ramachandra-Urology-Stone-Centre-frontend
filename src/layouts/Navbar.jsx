@@ -21,9 +21,48 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 import { NavbarDropdownSkeleton } from "../components/common/Skeletons";
 
+const fallbackDepartments = [
+  {
+    _id: "urology-kidney-care",
+    slug: "urology-kidney-care",
+    name: "Urology & Kidney Care",
+    description: "Advanced stone removal, laser lithotripsy, and renal care.",
+  },
+  {
+    _id: "laser-surgery-endourology",
+    slug: "laser-surgery-endourology",
+    name: "Laser Surgery & Endourology",
+    description: "Minimally invasive Thulium laser stone & prostate procedures.",
+  },
+  {
+    _id: "laparoscopic-urology",
+    slug: "laparoscopic-urology",
+    name: "Laparoscopic Urology",
+    description: "Precision keyhole surgery for reconstructive urology.",
+  },
+  {
+    _id: "andrology-male-health",
+    slug: "andrology-male-health",
+    name: "Andrology & Men's Health",
+    description: "Specialized male fertility and sexual health clinic.",
+  },
+  {
+    _id: "pediatric-urology",
+    slug: "pediatric-urology",
+    name: "Pediatric Urology",
+    description: "Dedicated congenital urinary tract care for children.",
+  },
+  {
+    _id: "uro-oncology",
+    slug: "uro-oncology",
+    name: "Uro-Oncology & Reconstructive",
+    description: "Comprehensive management for bladder, kidney & prostate health.",
+  },
+];
+
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { departments } = useSelector((state) => state.department || { departments: [] });
+  const { departments = [], loading } = useSelector((state) => state.department || { departments: [] });
 
   // Navigation states
   const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +73,12 @@ const Navbar = () => {
   const deptRef = useRef(null);
 
   useEffect(() => {
-    if (!departments || departments.length === 0) dispatch(fetchAllDepartments());
+    dispatch(fetchAllDepartments());
     dispatch(fetchSettings());
-  }, [dispatch, departments?.length]);
+  }, [dispatch]);
+
+  const displayDepartments =
+    departments && departments.length > 0 ? departments : fallbackDepartments;
 
   // Original nav links
   const navLinks = [
@@ -82,7 +124,7 @@ const Navbar = () => {
   const emergencyNumber = "+91 99375 66625";
 
   return (
-    <header className="sticky top-0 z-50 bg-white  select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+    <header className="sticky top-0 z-50 bg-white select-none border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
       {/* ── TOP RIGHT INFORMATION & ACCREDITATION STRIP (SLEEK & TIGHT) ── */}
       <div className="hidden lg:block bg-slate-50/70 border-b border-slate-100 py-1 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto flex items-center justify-end gap-5 text-[11.5px]">
@@ -221,7 +263,7 @@ const Navbar = () => {
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
               }`}
             >
-            Our  Doctors
+              Our Doctors
             </Link>
 
             <span className="h-4 w-px bg-slate-300 shrink-0" aria-hidden="true" />
@@ -266,7 +308,7 @@ const Navbar = () => {
                           <Stethoscope size={16} />
                         </div>
                         <div>
-                          <div className="text-xs font-extramedium text-[#012442] tracking-wide uppercase">
+                          <div className="text-xs font-semibold text-[#012442] tracking-wide uppercase">
                             Clinical Specialities & Care Wings
                           </div>
                           <div className="text-[11px] text-slate-500">
@@ -275,39 +317,35 @@ const Navbar = () => {
                         </div>
                       </div>
                       <span className="text-[11px] font-medium text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-0.5 rounded-full border border-[#0FA8D6]/30">
-                        {departments?.length || 0} Specialities
+                        {displayDepartments.length} Specialities
                       </span>
                     </div>
 
-                    {departments && departments.length > 0 ? (
-                      <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
-                        {departments.map((dept) => (
-                          <Link
-                            key={dept._id || dept.name}
-                            to={`/urology-services/${dept.slug || dept._id}`}
-                            onClick={() => setDepartmentsOpen(false)}
-                            className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
-                          >
-                            <div className="text-[#024363] w-8 h-8 rounded-lg bg-white group-hover:bg-[#024363] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs border border-slate-200/60 mt-0.5">
-                              {getDepartmentIcon(dept.name, { size: 15 })}
+                    <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
+                      {displayDepartments.map((dept) => (
+                        <Link
+                          key={dept._id || dept.name}
+                          to={`/urology-services/${dept.slug || dept._id}`}
+                          onClick={() => setDepartmentsOpen(false)}
+                          className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
+                        >
+                          <div className="text-[#024363] w-8 h-8 rounded-lg bg-white group-hover:bg-[#024363] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs border border-slate-200/60 mt-0.5">
+                            {getDepartmentIcon(dept.name, { size: 15 })}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-medium text-[#012442] group-hover:text-[#0FA8D6] transition-colors truncate">
+                              {dept.name}
                             </div>
-                            <div className="min-w-0">
-                              <div className="text-xs font-medium text-[#012442] group-hover:text-[#0FA8D6] transition-colors truncate">
-                                {dept.name}
-                              </div>
-                              <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
-                                {dept.description || "Expert medical care & OPD"}
-                              </div>
+                            <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
+                              {dept.description || "Expert medical care & OPD"}
                             </div>
-                          </Link>
-                        ))}
-                      </div>
-                    ) : (
-                      <NavbarDropdownSkeleton />
-                    )}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
 
                     <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
-                      <div className="flex items-center gap-1.5 text-[11px] text-slate-600 font-semimedium">
+                      <div className="flex items-center gap-1.5 text-[11px] text-slate-600 font-medium">
                         <HeartPulse size={14} className="text-[#0FA8D6] animate-pulse" />
                         <span>Same-day clinical appointments available</span>
                       </div>
@@ -417,7 +455,7 @@ const Navbar = () => {
                   <div className="text-[10px] text-[#0FA8D6] font-medium uppercase tracking-wider">
                     24/7 Helpline & OPD
                   </div>
-                  <div className="text-sm font-extramedium mt-0.5">
+                  <div className="text-sm font-semibold mt-0.5">
                     {primaryNumber}
                   </div>
                   <div className="text-[11px] text-slate-300 font-medium">
@@ -434,16 +472,16 @@ const Navbar = () => {
               </div>
 
               {/* Accreditations Bar */}
-              <div className="flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2 text-xs text-slate-600 font-semimedium mb-2">
+              <div className="flex items-center justify-between bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2 text-xs text-slate-600 font-medium mb-2">
                 <span>Accreditations:</span>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-extramedium text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
+                  <span className="text-[10px] font-semibold text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">
                     NABH SHCO
                   </span>
-                  <span className="text-[10px] font-extramedium text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
+                  <span className="text-[10px] font-semibold text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
                     Ayushman / GJAY
                   </span>
-                  <span className="text-[10px] font-extramedium text-cyan-900 bg-cyan-100 px-2 py-0.5 rounded border border-cyan-300">
+                  <span className="text-[10px] font-semibold text-cyan-900 bg-cyan-100 px-2 py-0.5 rounded border border-cyan-300">
                     Thulium Laser
                   </span>
                 </div>
@@ -487,26 +525,22 @@ const Navbar = () => {
 
                 {mobileDepartmentsOpen && (
                   <div className="pl-4 mt-1 space-y-1 border-l-2 border-[#0FA8D6] ml-3">
-                    {departments && departments.length > 0 ? (
-                      departments.map((dept) => (
-                        <Link
-                          key={dept._id || dept.name}
-                          to={`/urology-services/${dept.slug || dept._id}`}
-                          onClick={() => {
-                            setMobileDepartmentsOpen(false);
-                            setIsOpen(false);
-                          }}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
-                        >
-                          <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
-                            {getDepartmentIcon(dept.name, { size: 14 })}
-                          </div>
-                          <span className="truncate">{dept.name}</span>
-                        </Link>
-                      ))
-                    ) : (
-                      <div className="text-xs text-slate-400 py-2">Loading departments...</div>
-                    )}
+                    {displayDepartments.map((dept) => (
+                      <Link
+                        key={dept._id || dept.name}
+                        to={`/urology-services/${dept.slug || dept._id}`}
+                        onClick={() => {
+                          setMobileDepartmentsOpen(false);
+                          setIsOpen(false);
+                        }}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#0FA8D6]/10 text-slate-700 text-xs font-medium no-underline transition-colors"
+                      >
+                        <div className="text-[#0FA8D6] w-5 h-5 flex items-center justify-center shrink-0">
+                          {getDepartmentIcon(dept.name, { size: 14 })}
+                        </div>
+                        <span className="truncate">{dept.name}</span>
+                      </Link>
+                    ))}
                     <Link
                       to="/urology-services"
                       onClick={() => {

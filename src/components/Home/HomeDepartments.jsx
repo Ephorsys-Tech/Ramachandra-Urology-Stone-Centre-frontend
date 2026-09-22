@@ -68,18 +68,44 @@ const itemVariants = {
   }
 };
 
+const fallbackDepartments = [
+  {
+    _id: "urology-kidney-care",
+    slug: "urology-kidney-care",
+    name: "Urology & Kidney Care",
+    description: "Advanced stone removal, laser lithotripsy, and comprehensive renal care.",
+  },
+  {
+    _id: "laser-surgery-endourology",
+    slug: "laser-surgery-endourology",
+    name: "Laser Surgery & Endourology",
+    description: "Minimally invasive Thulium laser stone and prostate enucleation procedures.",
+  },
+  {
+    _id: "laparoscopic-urology",
+    slug: "laparoscopic-urology",
+    name: "Laparoscopic Urology",
+    description: "Precision keyhole surgery for reconstructive urology and nephrectomy.",
+  },
+  {
+    _id: "andrology-male-health",
+    slug: "andrology-male-health",
+    name: "Andrology & Men's Health",
+    description: "Specialized clinic for male fertility, erectile health, and micro-surgery.",
+  },
+];
+
 const HomeDepartments = memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { departments = [] } = useSelector((state) => state.department || {});
 
   useEffect(() => {
-    if (departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [dispatch, departments.length]);
+    dispatch(fetchAllDepartments());
+  }, [dispatch]);
 
-  const displayDepartments = departments.slice(0, 4);
+  const displayList = departments && departments.length > 0 ? departments : fallbackDepartments;
+  const displayDepartments = displayList.slice(0, 4);
 
   return (
     <section className="py-16 sm:py-24 bg-slate-50/60 relative overflow-hidden ">

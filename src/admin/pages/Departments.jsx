@@ -114,12 +114,37 @@ const Departments = () => {
     }
   };
 
+  const isValidObjectId = (id) => typeof id === "string" && /^[0-9a-fA-F]{24}$/.test(id);
+
   const preparePayload = () => {
+    const rawFeatures = Array.isArray(formData.features)
+      ? formData.features
+      : formData.features
+      ? formData.features.split(",").map((f) => f.trim()).filter(Boolean)
+      : [];
+
+    const rawDiseases = Array.isArray(formData.diseases)
+      ? formData.diseases
+      : formData.diseases
+      ? formData.diseases.split(",").map((d) => (d.name || d).toString().trim()).filter(Boolean)
+      : [];
+
     return {
-      ...formData,
-      features: formData.features ? formData.features.split(",").map(f => f.trim()).filter(Boolean) : [],
-      diseases: formData.diseases ? formData.diseases.split(",").map(d => d.trim()).filter(Boolean) : [],
-      orderIndex: Number(formData.orderIndex) || 0
+      name: formData.name.trim(),
+      description: formData.description.trim(),
+      content: formData.content.trim(),
+      image: formData.image,
+      icon: formData.icon,
+      color: formData.color || "#007bff",
+      features: rawFeatures.filter(isValidObjectId),
+      diseases: rawDiseases.filter(isValidObjectId),
+      emergencyAvailable: Boolean(formData.emergencyAvailable),
+      opdTime: formData.opdTime || "",
+      published: formData.published !== undefined ? Boolean(formData.published) : true,
+      category: formData.category || "General",
+      showInHomePage: Boolean(formData.showInHomePage),
+      showInServicesPage: Boolean(formData.showInServicesPage),
+      orderIndex: Number(formData.orderIndex) || 0,
     };
   };
 
