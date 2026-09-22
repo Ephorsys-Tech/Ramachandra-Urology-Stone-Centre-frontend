@@ -4,17 +4,20 @@ import AdminRoutes from "./admin.routes";
 import PublicRoutes from "./public.routes";
 import ScrollToTop from "../Helper/ScrollToTop";
 import LoadingScreen from "../components/LoadingScreen";
+import SmoothScroll from "../components/SmoothScroll";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Suspense fallback={<LoadingScreen />}>
-        <Routes>
-          {AdminRoutes}
-          {PublicRoutes}
-        </Routes>
-      </Suspense>
+      <SmoothScroll>
+        <ScrollToTop />
+        <Suspense fallback={<LoadingScreen />}>
+          <Routes>
+            {AdminRoutes}
+            {PublicRoutes}
+          </Routes>
+        </Suspense>
+      </SmoothScroll>
     </BrowserRouter>
   );
 };

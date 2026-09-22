@@ -51,7 +51,7 @@ const LeadershipTeam = () => {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0FA8D6]/10 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3">
-              {/* <Sparkles size={14} className="text-[#0FA8D6]" /> */}
+           
               <span>CLINICAL & SURGICAL FACULTY</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#012442] tracking-tight leading-tight m-0">
@@ -96,25 +96,6 @@ const LeadershipTeam = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent opacity-80" />
 
-                  {/* Verified Badge */}
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-[#0FA8D6]/30">
-                    <ShieldCheck size={13} className="text-[#0FA8D6]" />
-                    <span className="text-[10px] font-extrabold text-[#012442] tracking-wider uppercase">
-                      Senior Faculty
-                    </span>
-                  </div>
-
-                  {/* Experience Badge */}
-                  <div className="absolute top-3 right-3 bg-[#012442]/90 backdrop-blur-md text-[#0FA8D6] px-2.5 py-1 rounded-full text-[10px] font-extrabold tracking-wide uppercase border border-[#0FA8D6]/40">
-                    {doc.experience}
-                  </div>
-
-                  {/* Specialty Tag */}
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <span className="bg-[#024363]/90 text-white text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs truncate block max-w-fit border border-[#0FA8D6]/30 backdrop-blur-md">
-                      {doc.specialty}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Details Content */}

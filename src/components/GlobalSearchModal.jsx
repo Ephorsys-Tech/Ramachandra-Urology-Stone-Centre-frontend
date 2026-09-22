@@ -372,7 +372,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                   {/* Quick Shortcut Tiles */}
                   <div>
                     <div className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5 px-1">
-                      <Sparkles className="w-3.5 h-3.5 text-secondary" /> Quick Access
+                      Quick Access
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       <button

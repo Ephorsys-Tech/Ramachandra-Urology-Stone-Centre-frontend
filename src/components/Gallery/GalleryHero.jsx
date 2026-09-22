@@ -24,7 +24,7 @@ const GalleryHero = () => {
           <span>NABH Standard Modular OTs</span>
         </div>
         <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
-          <Sparkles size={14} className="text-[#024363]" />
+        
           <span>Advanced Thulium Laser Center</span>
         </div>
       </div>

@@ -183,7 +183,7 @@ const Features = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
-            <Sparkles className="text-blue-600" size={24} />
+            
             Department Features
           </h2>
           <p className="text-sm text-slate-500">

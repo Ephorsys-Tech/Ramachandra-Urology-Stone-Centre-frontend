@@ -268,7 +268,7 @@ const DepartmentFormModal = ({
                 {/* Features (`features`) */}
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
-                    <Sparkles size={14} className="text-blue-600" />
+                    
                     `features` ({formData.features?.length || 0} selected)
                   </label>
                   {allFeatures.length > 0 ? (

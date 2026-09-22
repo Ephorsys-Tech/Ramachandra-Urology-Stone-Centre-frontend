@@ -109,30 +109,30 @@ const VisionMissionValues = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-[#0FA8D6] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:bg-[#0FA8D6] hover:border-[#0FA8D6] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className=" text-xs font-extrabold text-[#024363] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-lg border border-[#0FA8D6]/30">
+                      <span className="w-10 h-10 rounded-xl bg-slate-50 group-hover:bg-white/20 text-[#024363] group-hover:text-white transition-all duration-300 flex items-center justify-center border border-slate-200 group-hover:border-white/30">
                         {item.num}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-slate-50 text-[#024363] group-hover:bg-[#024363] group-hover:text-white transition-colors duration-300 flex items-center justify-center border border-slate-200">
+                      <div className="w-10 h-10 rounded-xl bg-slate-50 group-hover:bg-white/20 text-[#024363] group-hover:text-white transition-all duration-300 flex items-center justify-center border border-slate-200 group-hover:border-white/30">
                         <IconComp size={18} />
                       </div>
                     </div>
 
-                    <h4 className="text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors m-0">
+                    <h4 className="text-lg font-medium text-[#012442] group-hover:text-white transition-colors duration-300 m-0">
                       {item.title}
                     </h4>
 
-                    <p className="text-slate-600 text-xs leading-relaxed font-medium m-0">
+                    <p className="text-slate-600 group-hover:text-white/85 text-xs leading-relaxed font-medium m-0 transition-colors duration-300">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[10px]  font-bold text-slate-400 uppercase">
+                  <div className="pt-4 mt-4 border-t border-slate-100 group-hover:border-white/20 flex items-center justify-between text-[10px] font-bold text-slate-400 group-hover:text-white/70 uppercase transition-all duration-300">
                     <span>Verified Ethos</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0FA8D6]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0FA8D6] group-hover:bg-white transition-colors duration-300" />
                   </div>
                 </motion.div>
               );

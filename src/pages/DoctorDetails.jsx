@@ -133,32 +133,19 @@ const DoctorDetails = () => {
   const hasValidImage = docImage && !docImage.includes('👨‍⚕️') && !docImage.includes('👩‍⚕️');
   const docSpec = doctor?.specialization || doctor?.specialty || doctor?.department?.name || 'Specialist';
   const doctorDisplayName = doctor.name.startsWith('Dr') ? doctor.name : `Dr. ${doctor.name}`;
-  const bioText = doctor.description || doctor.bio ||
-    `${doctorDisplayName} is a highly accomplished ${docSpec} with ${doctor.experience || '10'}+ years of extensive clinical experience at Ramachandra Urology & Stone Centre, Sambalpur. Renowned for a compassionate approach and commitment to excellence, they have successfully treated numerous complex urological cases.`;
+  const bioText = doctor.about || doctor.description || doctor.bio || '';
 
-  const expertiseItems = doctor.expertise || [
-    'Advanced Laser Stone Surgery (RIRS / PCNL)',
-    'Thulium Fiber Laser Lithotripsy',
-    'Prostate & BPH Management (THUFLEP)',
-    'Urologic Oncology & Cancer Surgery',
-    'Andrology & Male Infertility',
-    'Reconstructive Urology & Urethroplasty',
-    'Laparoscopic & Endo-Lap Procedures',
-    'Uro-Dynamics & Uroflowmetry',
-  ];
+  const expertiseItems = Array.isArray(doctor.expertise)
+    ? doctor.expertise.filter(Boolean)
+    : [];
 
-  const publications = doctor.publications || [
-    'Comparative Study of RIRS vs PCNL in Complex Renal Calculi — Journal of Urology, 2022',
-    'Thulium Fiber Laser vs Holmium Laser in Stone Fragmentation — Indian J Urology, 2023',
-    'Outcomes of THUFLEP in Large Volume BPH — BJUI, 2021',
-  ];
+  const publications = Array.isArray(doctor.publications)
+    ? doctor.publications.filter(Boolean)
+    : [];
 
-  const certifications = doctor.certifications || [
-    'MCh (Urology) — Diplomate of National Board',
-    'Member, Urological Society of India (USI)',
-    'Member, Indian Medical Association (IMA)',
-    'NABH Certified Clinical Practitioner',
-  ];
+  const certifications = Array.isArray(doctor.certifications)
+    ? doctor.certifications.filter(Boolean)
+    : [];
 
   return (
     <div className="min-h-screen bg-[#f8fafc] pb-20 select-none">
@@ -241,16 +228,16 @@ const DoctorDetails = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div className="bg-white border border-slate-200/80 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] overflow-hidden">
 
-          {/* Tab Bar — all 4 equal-width, no scroll */}
-          <div className="grid grid-cols-4 border-b border-slate-200">
+          {/* Tab Bar — all 4 equal-width, matching reference UI */}
+          <div className="grid grid-cols-4 border-b border-slate-200 bg-slate-50/50">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`w-full py-3 text-[10px] xs:text-[11px] sm:text-sm font-semibold transition-all cursor-pointer border-none border-b-2 -mb-px text-center leading-tight px-1 ${
+                className={`w-full py-3.5 text-[10px] xs:text-[11px] sm:text-sm font-bold transition-all cursor-pointer border-none text-center leading-tight px-1.5 ${
                   activeTab === tab.id
-                    ? 'text-white bg-[#012442] border-[#012442]'
-                    : 'text-slate-500 bg-white border-transparent hover:text-[#0FA8D6] hover:bg-slate-50'
+                    ? 'text-white bg-[#00B4EA] shadow-xs'
+                    : 'text-slate-600 bg-transparent hover:text-[#00B4EA] hover:bg-slate-100/60'
                 }`}
               >
                 <span className="sm:hidden block">{tab.shortLabel}</span>
@@ -267,30 +254,40 @@ const DoctorDetails = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
-              className="p-6 sm:p-8"
+              className="p-6 sm:p-8 min-h-[220px]"
             >
               {/* ABOUT */}
               {activeTab === 'about' && (
-                <div>
-                  <h3 className="text-sm font-bold text-[#012442] mb-3">About {doctorDisplayName}</h3>
-                  <div className="text-slate-600 text-[13.5px] leading-relaxed space-y-3">
-                    {bioText.split('\n').filter(Boolean).map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
+                <div className="space-y-4 w-full">
+                  <h3 className="text-base font-bold text-[#1e293b]">About {doctorDisplayName}</h3>
+                  <div className="text-slate-700 text-xs sm:text-[14px] leading-relaxed sm:leading-loose space-y-3 w-full">
+                    {bioText ? (
+                      bioText
+                        .split(/\n\s*\n/)
+                        .map((p) => p.replace(/\r?\n/g, ' ').trim())
+                        .filter(Boolean)
+                        .map((para, i) => (
+                          <p key={i} className="w-full text-slate-650">
+                            {para}
+                          </p>
+                        ))
+                    ) : (
+                      <p className="text-slate-400 italic text-xs">No biography details listed yet.</p>
+                    )}
                   </div>
-                  <div className="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="mt-6 pt-2 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 w-full">
                     {[
                       { icon: Award, label: 'Experience', value: `${doctor.experience || '10'}+ Years` },
-                      { icon: GraduationCap, label: 'Qualification', value: doctor.qualifications || 'MCh (Urology)' },
+                     
                       { icon: MapPin, label: 'Location', value: 'Burla, Sambalpur' },
                     ].map(({ icon: Icon, label, value }) => (
-                      <div key={label} className="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100">
-                        <div className="w-9 h-9 rounded-lg bg-[#0FA8D6]/10 text-[#024363] flex items-center justify-center shrink-0">
+                      <div key={label} className="flex items-center gap-3 bg-slate-50 hover:bg-sky-50/40 rounded-xl p-3.5 border border-slate-200/70 hover:border-sky-200 transition-all shadow-2xs">
+                        <div className="w-9 h-9 rounded-lg bg-[#00B4EA]/10 text-[#00B4EA] flex items-center justify-center shrink-0">
                           <Icon size={16} />
                         </div>
-                        <div>
-                          <div className="text-[10px] text-slate-400 uppercase font-semibold tracking-wide">{label}</div>
-                          <div className="text-xs font-bold text-[#012442]">{value}</div>
+                        <div className="min-w-0">
+                          <div className="text-[10px] text-slate-400 uppercase font-semibold tracking-wide truncate">{label}</div>
+                          <div className="text-xs sm:text-sm font-bold text-[#012442] truncate">{value}</div>
                         </div>
                       </div>
                     ))}
@@ -300,54 +297,100 @@ const DoctorDetails = () => {
 
               {/* FIELD OF EXPERTISE */}
               {activeTab === 'expertise' && (
-                <div>
-                  <h3 className="text-sm font-bold text-[#012442] mb-4 flex items-center gap-2">
-                    <Stethoscope size={15} className="text-[#0FA8D6]" /> Clinical Areas of Expertise
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {expertiseItems.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <CheckCircle2 size={15} className="text-[#0FA8D6] shrink-0 mt-0.5" />
-                        <span className="text-[13px] text-slate-700 font-medium">{item}</span>
-                      </div>
-                    ))}
+                <div className="space-y-4 w-full">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-[#1e293b]">Field Of Expertise</h3>
+                    {expertiseItems.length > 0 && (
+                      <span className="text-[11px] font-semibold text-[#00B4EA] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-100">
+                        {expertiseItems.length} Specializations
+                      </span>
+                    )}
                   </div>
+                  {expertiseItems.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                      {expertiseItems.map((item, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-sky-50/50 border border-slate-200/70 hover:border-sky-200 transition-all group"
+                        >
+                          <div className="w-6 h-6 rounded-full bg-[#00B4EA]/10 text-[#00B4EA] flex items-center justify-center shrink-0 group-hover:bg-[#00B4EA] group-hover:text-white transition-colors">
+                            <CheckCircle2 size={13} />
+                          </div>
+                          <span className="text-xs sm:text-[13.5px] font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-slate-400 italic text-xs">No expertise details listed yet.</p>
+                  )}
                 </div>
               )}
 
               {/* RESEARCH & PUBLICATIONS */}
               {activeTab === 'research' && (
-                <div>
-                  <h3 className="text-sm font-bold text-[#012442] mb-4 flex items-center gap-2">
-                    <BookOpen size={15} className="text-[#0FA8D6]" /> Research & Publications
-                  </h3>
-                  <div className="space-y-3">
-                    {publications.map((pub, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3.5 bg-slate-50 rounded-xl border border-slate-100">
-                        <div className="w-7 h-7 rounded-lg bg-[#0FA8D6]/10 text-[#024363] flex items-center justify-center shrink-0 font-bold text-xs">
-                          {i + 1}
-                        </div>
-                        <p className="text-[13px] text-slate-700 leading-relaxed font-medium">{pub}</p>
-                      </div>
-                    ))}
+                <div className="space-y-4 w-full">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-[#1e293b]">Research & Publications</h3>
+                    {publications.length > 0 && (
+                      <span className="text-[11px] font-semibold text-[#00B4EA] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-100">
+                        {publications.length} Papers & Studies
+                      </span>
+                    )}
                   </div>
+                  {publications.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full">
+                      {publications.map((pub, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50/80 hover:bg-sky-50/50 border border-slate-200/70 hover:border-sky-200 transition-all group"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-[#00B4EA]/10 text-[#00B4EA] flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#00B4EA] group-hover:text-white transition-colors">
+                            <BookOpen size={14} />
+                          </div>
+                          <span className="text-xs sm:text-[13px] font-medium text-slate-700 leading-relaxed group-hover:text-slate-900 transition-colors">
+                            {pub}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-slate-400 italic text-xs">No publications listed yet.</p>
+                  )}
                 </div>
               )}
 
               {/* CERTIFICATIONS & MEMBERSHIPS */}
               {activeTab === 'certifications' && (
-                <div>
-                  <h3 className="text-sm font-bold text-[#012442] mb-4 flex items-center gap-2">
-                    <Award size={15} className="text-[#0FA8D6]" /> Certifications & Memberships
-                  </h3>
-                  <div className="space-y-2.5">
-                    {certifications.map((cert, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <Award size={14} className="text-amber-500 shrink-0" />
-                        <span className="text-[13px] text-slate-700 font-medium">{cert}</span>
-                      </div>
-                    ))}
+                <div className="space-y-4 w-full">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-[#1e293b]">Certification & Memberships</h3>
+                    {certifications.length > 0 && (
+                      <span className="text-[11px] font-semibold text-[#00B4EA] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-100">
+                        {certifications.length} Accreditations
+                      </span>
+                    )}
                   </div>
+                  {certifications.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                      {certifications.map((cert, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-sky-50/50 border border-slate-200/70 hover:border-sky-200 transition-all group"
+                        >
+                          <div className="w-6 h-6 rounded-full bg-[#00B4EA]/10 text-[#00B4EA] flex items-center justify-center shrink-0 group-hover:bg-[#00B4EA] group-hover:text-white transition-colors">
+                            <Award size={13} />
+                          </div>
+                          <span className="text-xs sm:text-[13.5px] font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
+                            {cert}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-slate-400 italic text-xs">No certifications listed yet.</p>
+                  )}
                 </div>
               )}
             </motion.div>

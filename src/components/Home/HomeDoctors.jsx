@@ -111,7 +111,7 @@ const HomeDoctors = memo(() => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0FA8D6]/15 border border-[#0FA8D6]/30 text-[#024363] text-xs font-medium uppercase tracking-wider mb-3 shadow-2xs">
-              <Sparkles size={12} className="text-[#0FA8D6]" />
+              
               Super-Specialist Clinical Faculty
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#012442] leading-tight">

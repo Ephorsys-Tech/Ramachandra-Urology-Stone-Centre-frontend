@@ -49,11 +49,18 @@ const departmentSlice = createSlice({
       })
       .addCase(fetchAllDepartments.fulfilled, (state, action) => {
         state.loading = false;
-        state.departments = action.payload.data;
+        state.departments = Array.isArray(action.payload?.data)
+          ? action.payload.data
+          : Array.isArray(action.payload)
+          ? action.payload
+          : [];
       })
       .addCase(fetchAllDepartments.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        if (!state.departments) {
+          state.departments = [];
+        }
       })
 
       // -----------------------------------------
@@ -65,7 +72,10 @@ const departmentSlice = createSlice({
       })
       .addCase(addNewDepartment.fulfilled, (state, action) => {
         state.loading = false;
-        state.departments.push(action.payload.data);
+        const newDept = action.payload?.data || action.payload;
+        if (newDept && newDept._id) {
+          state.departments.unshift(newDept);
+        }
       })
       .addCase(addNewDepartment.rejected, (state, action) => {
         state.loading = false;
