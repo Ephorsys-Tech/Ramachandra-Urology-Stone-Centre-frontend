@@ -317,41 +317,6 @@ const Navbar = () => {
                     )}
 
                     <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
-                      <Link
-                        to="/urology-services"
-                        onClick={() => setDepartmentsOpen(false)}
-                        className="text-xs font-medium text-[#024363] hover:text-[#0FA8D6] flex items-center gap-1.5 no-underline"
-                      >
-                        <span>Explore all specialities</span>
-                        <ArrowRight size={13} />
-                        {displayDepartments.length} Specialities
-                      </Link>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto no-scrollbar p-1">
-                      {displayDepartments.map((dept) => (
-                        <Link
-                          key={dept._id || dept.name}
-                          to={`/urology-services/${dept.slug || dept._id}`}
-                          onClick={() => setDepartmentsOpen(false)}
-                          className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50/60 hover:bg-[#0FA8D6]/10 border border-slate-100 hover:border-[#0FA8D6]/30 transition-all group no-underline"
-                        >
-                          <div className="text-[#024363] w-8 h-8 rounded-lg bg-white group-hover:bg-[#024363] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs border border-slate-200/60 mt-0.5">
-                            {getDepartmentIcon(dept.name, { size: 15 })}
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-xs font-medium text-[#012442] group-hover:text-[#0FA8D6] transition-colors truncate">
-                              {dept.name}
-                            </div>
-                            <div className="text-[10.5px] text-slate-400 group-hover:text-slate-600 line-clamp-1 font-normal">
-                              {dept.description || "Expert medical care & OPD"}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-
-                    <div className="border-t border-slate-100 mt-3 pt-3 flex items-center justify-between bg-slate-50/80 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
                       <div className="flex items-center gap-1.5 text-[11px] text-slate-600 font-medium">
                         <HeartPulse size={14} className="text-[#0FA8D6] animate-pulse" />
                         <span>Same-day clinical appointments available</span>
