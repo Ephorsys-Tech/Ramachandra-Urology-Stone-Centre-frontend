@@ -78,12 +78,11 @@ const ServiceDetails = () => {
 
   const feature = currentFeature;
   const service = currentService;
-  const servicesList =
-    featureServices && featureServices.length > 0
-      ? featureServices
-      : currentService
-      ? [currentService]
-      : services || [];
+  const servicesList = currentFeature
+    ? featureServices || []
+    : currentService
+    ? [currentService]
+    : services || [];
 
   const loading = featureLoading || serviceLoading;
 
