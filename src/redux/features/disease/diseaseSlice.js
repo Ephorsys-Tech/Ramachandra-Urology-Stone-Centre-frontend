@@ -10,6 +10,10 @@ import {
 
 const initialState = {
   diseases: [],
+  totalDiseases: 0,
+  totalPages: 1,
+  currentPage: 1,
+  activeCount: 0,
   loading: false,
   error: null,
 };
@@ -31,7 +35,18 @@ const diseaseSlice = createSlice({
       })
       .addCase(fetchAllDiseases.fulfilled, (state, action) => {
         state.loading = false;
-        state.diseases = action.payload.data || [];
+        const data = action.payload.data;
+        if (Array.isArray(data)) {
+          state.diseases = data;
+          state.totalDiseases = data.length;
+          state.totalPages = 1;
+        } else if (data && typeof data === "object") {
+          state.diseases = data.diseases || [];
+          state.totalDiseases = data.total || 0;
+          state.totalPages = data.totalPages || 1;
+          state.currentPage = data.page || 1;
+          state.activeCount = data.activeCount || 0;
+        }
       })
       .addCase(fetchAllDiseases.rejected, (state, action) => {
         state.loading = false;

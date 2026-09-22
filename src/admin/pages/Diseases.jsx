@@ -12,6 +12,8 @@ import {
   Building,
   CheckCircle2,
   XCircle,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import {
   fetchAllDiseases,
@@ -25,11 +27,13 @@ import toast from "react-hot-toast";
 
 const Diseases = () => {
   const dispatch = useDispatch();
-  const { diseases, loading } = useSelector((state) => state.disease);
-  const { departments } = useSelector((state) => state.department);
+  const { diseases, totalDiseases, totalPages, activeCount, loading } = useSelector((state) => state.disease || {});
+  const { departments } = useSelector((state) => state.department || {});
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDeptFilter, setSelectedDeptFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -45,17 +49,43 @@ const Diseases = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchAllDiseases());
-    if (departments.length === 0) {
-      dispatch(fetchAllDepartments());
+    dispatch(
+      fetchAllDiseases({
+        page: currentPage,
+        limit: itemsPerPage,
+        search: searchTerm,
+        department: selectedDeptFilter,
+      })
+    );
+  }, [dispatch, currentPage, searchTerm, selectedDeptFilter]);
+
+  useEffect(() => {
+    if (!departments || departments.length === 0) {
+      dispatch(fetchAllDepartments({ limit: 1000 }));
     }
-  }, [dispatch, departments.length]);
+  }, [dispatch, departments]);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= (totalPages || 1)) {
+      setCurrentPage(page);
+    }
+  };
+
+  const handleSearchChange = (val) => {
+    setSearchTerm(val);
+    setCurrentPage(1);
+  };
+
+  const handleDeptFilterChange = (val) => {
+    setSelectedDeptFilter(val);
+    setCurrentPage(1);
+  };
 
   const resetForm = () => {
     setFormData({
       name: "",
       description: "",
-      department: departments[0]?._id || "",
+      department: departments?.[0]?._id || "",
       orderIndex: 0,
       isActive: true,
     });
@@ -96,6 +126,14 @@ const Diseases = () => {
         toast.success("Disease added successfully");
         setIsAddModalOpen(false);
         resetForm();
+        dispatch(
+          fetchAllDiseases({
+            page: currentPage,
+            limit: itemsPerPage,
+            search: searchTerm,
+            department: selectedDeptFilter,
+          })
+        );
       } else {
         toast.error(result.payload || "Failed to add disease");
       }
@@ -120,6 +158,14 @@ const Diseases = () => {
         setIsEditModalOpen(false);
         setSelectedDisease(null);
         resetForm();
+        dispatch(
+          fetchAllDiseases({
+            page: currentPage,
+            limit: itemsPerPage,
+            search: searchTerm,
+            department: selectedDeptFilter,
+          })
+        );
       } else {
         toast.error(result.payload || "Failed to update disease");
       }
@@ -136,6 +182,16 @@ const Diseases = () => {
         toast.success("Disease deleted successfully");
         setIsDeleteModalOpen(false);
         setSelectedDisease(null);
+        const nextPage = diseases.length === 1 && currentPage > 1 ? currentPage - 1 : currentPage;
+        setCurrentPage(nextPage);
+        dispatch(
+          fetchAllDiseases({
+            page: nextPage,
+            limit: itemsPerPage,
+            search: searchTerm,
+            department: selectedDeptFilter,
+          })
+        );
       } else {
         toast.error(result.payload || "Failed to delete disease");
       }
@@ -157,18 +213,7 @@ const Diseases = () => {
     }
   };
 
-  // Filtering
-  const filteredDiseases = (diseases || []).filter((d) => {
-    const matchesSearch =
-      d.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      d.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    const deptId = d.department?._id || d.department;
-    const matchesDept =
-      selectedDeptFilter === "all" || deptId === selectedDeptFilter;
-    return matchesSearch && matchesDept;
-  });
-
-  const activeCount = (diseases || []).filter((d) => d.isActive).length;
+  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
 
   return (
     <motion.div
@@ -202,7 +247,7 @@ const Diseases = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
-            {diseases?.length || 0}
+            {totalDiseases || 0}
           </div>
           <div>
             <p className="text-xs text-slate-400 font-medium">Total Diseases</p>
@@ -211,7 +256,7 @@ const Diseases = () => {
         </div>
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-            {activeCount}
+            {activeCount || 0}
           </div>
           <div>
             <p className="text-xs text-slate-400 font-medium">Active Diseases</p>
@@ -237,7 +282,7 @@ const Diseases = () => {
             type="text"
             placeholder="Search diseases..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
           />
         </div>
@@ -246,11 +291,11 @@ const Diseases = () => {
           <Building size={16} className="text-slate-400 shrink-0" />
           <select
             value={selectedDeptFilter}
-            onChange={(e) => setSelectedDeptFilter(e.target.value)}
+            onChange={(e) => handleDeptFilterChange(e.target.value)}
             className="w-full sm:w-56 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-blue-500 transition text-slate-700"
           >
             <option value="all">All Departments</option>
-            {departments.map((d) => (
+            {departments?.map((d) => (
               <option key={d._id} value={d._id}>
                 {d.name}
               </option>
@@ -279,8 +324,8 @@ const Diseases = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm text-slate-650">
-              {filteredDiseases.length > 0 ? (
-                filteredDiseases.map((disease) => (
+              {diseases && diseases.length > 0 ? (
+                diseases.map((disease) => (
                   <tr key={disease._id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-slate-800">
                       {disease.name}
@@ -347,6 +392,44 @@ const Diseases = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Backend Pagination Footer */}
+        {totalPages > 1 && (
+          <div className="px-6 py-4 border-t border-slate-200 flex items-center justify-between">
+            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
+              Showing {indexOfFirstItem + 1} to {Math.min(indexOfFirstItem + diseases.length, totalDiseases)} of {totalDiseases}
+            </span>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="p-1.5 border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 transition cursor-pointer"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`w-8 h-8 rounded-lg text-xs font-semibold transition ${
+                    currentPage === page
+                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                      : "border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  } cursor-pointer`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="p-1.5 border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 disabled:opacity-40 transition cursor-pointer"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Add / Edit Modal */}

@@ -15,17 +15,22 @@ import { fetchAllFeatures } from "../../redux/features/feature/featureThunk";
 
 const Services = () => {
   const dispatch = useDispatch();
-  const { services, loading } = useSelector((state) => state.service || { services: [] });
+  const { services, totalServices, totalPages: backendTotalPages, loading } = useSelector((state) => state.service || {});
   const { features } = useSelector((state) => state.feature || { features: [] });
-
-  useEffect(() => {
-    dispatch(fetchAllServices());
-    dispatch(fetchAllFeatures());
-  }, [dispatch]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    dispatch(fetchAllServices({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
+  }, [dispatch, currentPage, searchTerm]);
+
+  useEffect(() => {
+    if (!features || features.length === 0) {
+      dispatch(fetchAllFeatures({ limit: 1000 }));
+    }
+  }, [dispatch, features]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -93,19 +98,9 @@ const Services = () => {
     setFormTab("basic");
   };
 
-  const filteredServices = (services || []).filter((srv) => {
-    const searchLow = searchTerm.toLowerCase();
-    return (
-      srv.name?.toLowerCase().includes(searchLow) ||
-      srv.shortDescription?.toLowerCase().includes(searchLow) ||
-      srv.description?.toLowerCase().includes(searchLow)
-    );
-  });
-
-  const totalPages = Math.max(1, Math.ceil(filteredServices.length / itemsPerPage));
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredServices.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = backendTotalPages || 1;
+  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+  const currentItems = services || [];
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -330,7 +325,7 @@ const Services = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold text-slate-450 uppercase tracking-wider">
+              <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-400 uppercase tracking-wider">
                 <th className="px-6 py-4">Service Info</th>
                 <th className="px-6 py-4">Clinical Tags</th>
                 <th className="px-6 py-4">Linked Features</th>
@@ -338,7 +333,7 @@ const Services = () => {
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-150 text-sm text-slate-650">
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
               {currentItems.length > 0 ? (
                 currentItems.map((srv) => (
                   <tr
@@ -454,7 +449,7 @@ const Services = () => {
         {totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-200 flex items-center justify-between">
             <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-              Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredServices.length)} of {filteredServices.length}
+              Showing {indexOfFirstItem + 1} to {Math.min(indexOfFirstItem + currentItems.length, totalServices || currentItems.length)} of {totalServices || currentItems.length}
             </span>
             <div className="flex items-center gap-1.5">
               <button

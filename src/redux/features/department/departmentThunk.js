@@ -8,17 +8,9 @@ import api from "../../services/api";
 
 export const fetchAllDepartments = createAsyncThunk(
   "department/fetchAllDepartments",
-  async (_, { rejectWithValue }) => {
+  async (params = {}, { rejectWithValue }) => {
     try {
-      try {
-        const pubRes = await api.get("/department/getPublished");
-        if (pubRes.data?.data && Array.isArray(pubRes.data.data) && pubRes.data.data.length > 0) {
-          return pubRes.data;
-        }
-      } catch {
-        // Continue to /department/getAll
-      }
-      const response = await api.get("/department/getAll");
+      const response = await api.get("/department/getAll", { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(

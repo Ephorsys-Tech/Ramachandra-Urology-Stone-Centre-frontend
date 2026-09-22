@@ -11,6 +11,9 @@ import {
 const initialState = {
   departments: [],
   departmentDoctors: [],
+  totalDepartments: 0,
+  totalPages: 1,
+  currentPage: 1,
   loading: false,
   error: null,
 };
@@ -49,11 +52,23 @@ const departmentSlice = createSlice({
       })
       .addCase(fetchAllDepartments.fulfilled, (state, action) => {
         state.loading = false;
-        state.departments = Array.isArray(action.payload?.data)
-          ? action.payload.data
-          : Array.isArray(action.payload)
-          ? action.payload
-          : [];
+        const data = action.payload?.data;
+        if (Array.isArray(data)) {
+          state.departments = data;
+          state.totalDepartments = data.length;
+          state.totalPages = 1;
+        } else if (data && typeof data === "object") {
+          state.departments = data.departments || [];
+          state.totalDepartments = data.total || 0;
+          state.totalPages = data.totalPages || 1;
+          state.currentPage = data.page || 1;
+        } else if (Array.isArray(action.payload)) {
+          state.departments = action.payload;
+          state.totalDepartments = action.payload.length;
+          state.totalPages = 1;
+        } else {
+          state.departments = [];
+        }
       })
       .addCase(fetchAllDepartments.rejected, (state, action) => {
         state.loading = false;

@@ -8,10 +8,9 @@ import api from "../../services/api";
 
 export const fetchAllPatients = createAsyncThunk(
   "patient/fetchAllPatients",
-  async ({ page = 1, limit = "" } = {}, { rejectWithValue }) => {
+  async (params = {}, { rejectWithValue }) => {
     try {
-      const url = limit ? `/patient/getAll?page=${page}&limit=${limit}` : "/patient/getAll";
-      const response = await api.get(url);
+      const response = await api.get("/patient/getAll", { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(

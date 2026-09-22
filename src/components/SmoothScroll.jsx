@@ -11,6 +11,15 @@ const SmoothScroll = ({ children }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Disable Lenis on admin portal routes so nested mouse wheel scrolling works natively
+    if (pathname.startsWith("/admin")) {
+      if (window.lenis) {
+        window.lenis.destroy();
+        window.lenis = null;
+      }
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2, // Smooth ease duration
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential deceleration
@@ -38,7 +47,7 @@ const SmoothScroll = ({ children }) => {
       lenis.destroy();
       window.lenis = null;
     };
-  }, []);
+  }, [pathname]);
 
   // Scroll to top cleanly on route navigation
   useEffect(() => {
