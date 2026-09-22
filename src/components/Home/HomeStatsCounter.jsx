@@ -91,7 +91,7 @@ const HomeStatsCounter = memo(() => {
         {/* ── HEADER TITLE & SUBTITLE ── */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-[#012442] mb-2.5">
-            Ramachandra At A Glance
+            A Legacy of Exceptional Care
           </h2>
           <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto m-0 font-normal">
             Specialised healthcare for urology and kidney care, delivered through advanced laser technology and multidisciplinary clinical teams.

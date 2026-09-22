@@ -55,7 +55,7 @@ const BlogList = () => {
   const listRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const urlCategory = searchParams.get("category");
-  
+
   const { blogs = [], loading, currentPage = 1, totalPages = 1, total = 0, categoryCounts = {} } = useSelector(
     (state) => state.blog || { blogs: [], loading: false, currentPage: 1, totalPages: 1, total: 0, categoryCounts: {} }
   );
@@ -108,15 +108,15 @@ const BlogList = () => {
 
   return (
     <section ref={listRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      
+
       {/* ── SECTION HEADER & SEARCH ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200/80">
         <div>
           <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#024363] uppercase tracking-wider mb-1">
-            
+
             <span>Physician-Reviewed Library</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#012442] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-3xl font-medium text-[#012442] tracking-tight">
             Latest Health Guides & Clinical Articles
           </h2>
         </div>
@@ -158,7 +158,7 @@ const BlogList = () => {
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-600 ease-out"
                       />
-                      
+
                       {/* Category Floating Pill */}
                       {post.category && (
                         <div className="absolute top-3.5 left-3.5">
@@ -182,10 +182,10 @@ const BlogList = () => {
                             {post.date ||
                               (post.createdAt
                                 ? new Date(post.createdAt).toLocaleDateString("en-US", {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric"
-                                  })
+                                  year: "numeric",
+                                  month: "short",
+                                  day: "numeric"
+                                })
                                 : "Recent")}
                           </span>
                           <span className="text-slate-300">•</span>
@@ -281,11 +281,10 @@ const BlogList = () => {
                 <button
                   key={p}
                   onClick={() => handlePageChange(p)}
-                  className={`w-9 h-9 rounded-full text-xs font-medium transition-all cursor-pointer border ${
-                    isCurrent
-                      ? "bg-[#024363] text-white border-[#024363] shadow-xs"
-                      : "bg-white text-slate-700 border-slate-200 hover:border-[#0FA8D6] hover:text-[#024363]"
-                  }`}
+                  className={`w-9 h-9 rounded-full text-xs font-medium transition-all cursor-pointer border ${isCurrent
+                    ? "bg-[#024363] text-white border-[#024363] shadow-xs"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-[#0FA8D6] hover:text-[#024363]"
+                    }`}
                 >
                   {p}
                 </button>
