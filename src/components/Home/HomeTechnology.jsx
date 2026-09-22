@@ -107,7 +107,7 @@ const HomeTechnology = memo(() => {
         </div>
 
       </div>
-    </section >
+    </section>
   );
 });
 

@@ -21,44 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
 import { NavbarDropdownSkeleton } from "../components/common/Skeletons";
 
-const fallbackDepartments = [
-  {
-    _id: "urology-kidney-care",
-    slug: "urology-kidney-care",
-    name: "Urology & Kidney Care",
-    description: "Advanced stone removal, laser lithotripsy, and renal care.",
-  },
-  {
-    _id: "laser-surgery-endourology",
-    slug: "laser-surgery-endourology",
-    name: "Laser Surgery & Endourology",
-    description: "Minimally invasive Thulium laser stone & prostate procedures.",
-  },
-  {
-    _id: "laparoscopic-urology",
-    slug: "laparoscopic-urology",
-    name: "Laparoscopic Urology",
-    description: "Precision keyhole surgery for reconstructive urology.",
-  },
-  {
-    _id: "andrology-male-health",
-    slug: "andrology-male-health",
-    name: "Andrology & Men's Health",
-    description: "Specialized male fertility and sexual health clinic.",
-  },
-  {
-    _id: "pediatric-urology",
-    slug: "pediatric-urology",
-    name: "Pediatric Urology",
-    description: "Dedicated congenital urinary tract care for children.",
-  },
-  {
-    _id: "uro-oncology",
-    slug: "uro-oncology",
-    name: "Uro-Oncology & Reconstructive",
-    description: "Comprehensive management for bladder, kidney & prostate health.",
-  },
-];
+
 
 const Navbar = () => {
   const dispatch = useDispatch();
