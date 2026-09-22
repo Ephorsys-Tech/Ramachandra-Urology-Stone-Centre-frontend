@@ -274,19 +274,7 @@ const BlogDetails = () => {
                     : "Published by the editorial and clinical specialist team at Ramachandra Urology & Stone Centre, ensuring evidence-based and physician-verified health insights.")}
               </p>
 
-              <div>
-                <Link
-                  to={
-                    selectedBlog.doctorAuthor?._id
-                      ? `/doctors/${selectedBlog.doctorAuthor._id}`
-                      : "/doctors"
-                  }
-                  className="inline-flex items-center gap-1 text-xs font-medium text-[#024363] hover:text-[#0FA8D6] transition no-underline"
-                >
-                  <span>View Profile</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
+           
             </div>
 
             {/* Widget 3: Related Articles */}
