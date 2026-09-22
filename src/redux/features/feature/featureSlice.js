@@ -6,10 +6,12 @@ import {
   updateFeatureById,
   deleteFeatureById,
   toggleFeatureStatus,
+  fetchFeatureBySlug,
 } from "./featureThunk";
 
 const initialState = {
   features: [],
+  currentFeature: null,
   loading: false,
   error: null,
 };
@@ -34,6 +36,21 @@ const featureSlice = createSlice({
         state.features = action.payload.data || [];
       })
       .addCase(fetchAllFeatures.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Fetch Feature By Slug
+      .addCase(fetchFeatureBySlug.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.currentFeature = null;
+      })
+      .addCase(fetchFeatureBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentFeature = action.payload.data || null;
+      })
+      .addCase(fetchFeatureBySlug.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

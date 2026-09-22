@@ -108,3 +108,21 @@ export const toggleFeatureStatus = createAsyncThunk(
     }
   }
 );
+
+// =============================================
+// Fetch Feature By Slug or ID
+// GET -> /feature/getBySlug/:slug
+// =============================================
+export const fetchFeatureBySlug = createAsyncThunk(
+  "feature/fetchFeatureBySlug",
+  async (slug, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/feature/getBySlug/${slug}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch feature"
+      );
+    }
+  }
+);

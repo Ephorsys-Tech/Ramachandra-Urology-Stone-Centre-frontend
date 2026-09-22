@@ -38,6 +38,7 @@ const Features = () => {
 
   const [formData, setFormData] = useState({
     name: "",
+    slug: "",
     description: "",
     department: "",
     orderIndex: 0,
@@ -54,6 +55,7 @@ const Features = () => {
   const resetForm = () => {
     setFormData({
       name: "",
+      slug: "",
       description: "",
       department: departments[0]?._id || "",
       orderIndex: 0,
@@ -70,6 +72,7 @@ const Features = () => {
     setSelectedFeature(feature);
     setFormData({
       name: feature.name || "",
+      slug: feature.slug || "",
       description: feature.description || "",
       department: feature.department?._id || feature.department || "",
       orderIndex: feature.orderIndex ?? 0,
@@ -283,7 +286,12 @@ const Features = () => {
                 filteredFeatures.map((feature) => (
                   <tr key={feature._id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-slate-800">
-                      {feature.name}
+                      <div>{feature.name}</div>
+                      {feature.slug && (
+                        <div className="text-[11px] text-[#0FA8D6] font-mono font-normal mt-0.5">
+                          /{feature.slug}
+                        </div>
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-medium border border-slate-200">
@@ -395,6 +403,19 @@ const Features = () => {
                     placeholder="e.g. 24/7 Laser Stone Removal"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
+                    Custom Slug (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. laser-stone-removal (auto-generated if empty)"
+                    value={formData.slug}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>

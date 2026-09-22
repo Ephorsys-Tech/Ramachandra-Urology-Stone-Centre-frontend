@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LayoutDashboard, Users, UserCog, Settings, LogOut, X, Building, Image, FileText, Sparkles, Activity } from "lucide-react";
+import { LayoutDashboard, Users, UserCog, Settings, LogOut, X, Building, Image, FileText, Sparkles, Activity, Stethoscope } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { path: "/admin/patients", label: "Patients", icon: Users },
   { path: "/admin/doctors", label: "Doctors", icon: UserCog },
   { path: "/admin/departments", label: "Departments", icon: Building },
+  { path: "/admin/services", label: "Services", icon: Stethoscope },
   { path: "/admin/features", label: "Features", icon: Sparkles },
   { path: "/admin/diseases", label: "Diseases", icon: Activity },
   { path: "/admin/gallery", label: "Gallery", icon: Image },
