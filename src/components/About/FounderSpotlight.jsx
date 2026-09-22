@@ -33,7 +33,7 @@ const FounderSpotlight = () => {
           >
             <div className="relative">
               {/* Photo — no wrapper, clean rounded card */}
-              <div className="rounded-[28px] overflow-hidden aspect-[4/5] bg-slate-200 relative shadow-lg">
+              <div className="rounded-[28px] overflow-hidden aspect-[3/3] bg-slate-200 relative shadow-lg">
                 <img
                   src="https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555588/1I5A4339_1_kx1liu.webp"
                   alt="Dr. Sanjay Kumar Mahapatra - Founder & Surgical Director"

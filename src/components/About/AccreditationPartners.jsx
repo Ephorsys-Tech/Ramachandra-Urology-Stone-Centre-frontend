@@ -56,30 +56,25 @@ const AccreditationPartners = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 sm:p-7 rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:border-[#0FA8D6] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+              className="p-6 sm:p-7 rounded-3xl bg-[#f8fafc] border border-slate-200/90 hover:bg-[#0FA8D6] hover:border-[#0FA8D6] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
             >
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#0FA8D6] bg-[#0FA8D6]/10 px-2.5 py-1 rounded-full border border-[#0FA8D6]/30">
-                    {item.category}
-                  </span>
-                  <ShieldCheck size={18} className="text-[#0FA8D6]" />
-                </div>
 
-                <h3 className="text-base sm:text-lg font-medium text-[#012442] group-hover:text-[#024363] transition-colors leading-snug m-0">
+
+                <h3 className="text-base sm:text-lg font-medium text-[#012442] group-hover:text-white transition-colors duration-300 leading-snug m-0">
                   {item.title}
                 </h3>
 
-                <p className="text-slate-600 text-xs leading-relaxed font-medium m-0">
+                <p className="text-slate-600 group-hover:text-white/85 text-xs leading-relaxed font-medium m-0 transition-colors duration-300">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-200/80 flex items-center justify-between">
-                <span className="text-[11px] font-bold text-[#024363]">
+              <div className="pt-4 mt-4 border-t border-slate-200/80 group-hover:border-white/20 flex items-center justify-between transition-all duration-300">
+                <span className="text-[11px] font-bold text-[#024363] group-hover:text-white transition-colors duration-300">
                   {item.badge}
                 </span>
-                <CheckCircle2 size={15} className="text-emerald-600" />
+                <CheckCircle2 size={15} className="text-emerald-600 group-hover:text-white transition-colors duration-300" />
               </div>
             </motion.div>
           ))}

@@ -75,16 +75,6 @@ const InfrastructureShowcase = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent opacity-80" />
 
-                    {/* Tag Badge */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-                      <span className="bg-[#024363]/90 backdrop-blur-md text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs border border-[#0FA8D6]/30">
-                        {fac.tag}
-                      </span>
-                    </div>
-
-                    <div className="w-10 h-10 rounded-2xl bg-white/95 text-[#024363] border border-[#0FA8D6]/40 flex items-center justify-center absolute top-3 right-3 shadow-md">
-                      <IconComp size={20} className="text-[#0FA8D6]" />
-                    </div>
                   </div>
 
                   {/* Card Content */}
