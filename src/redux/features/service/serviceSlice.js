@@ -14,6 +14,9 @@ const initialState = {
   services: [],
   currentService: null,
   featureServices: [],
+  totalServices: 0,
+  totalPages: 1,
+  currentPage: 1,
   loading: false,
   error: null,
 };
@@ -35,7 +38,17 @@ const serviceSlice = createSlice({
       })
       .addCase(fetchAllServices.fulfilled, (state, action) => {
         state.loading = false;
-        state.services = action.payload.data || [];
+        const data = action.payload.data;
+        if (Array.isArray(data)) {
+          state.services = data;
+          state.totalServices = data.length;
+          state.totalPages = 1;
+        } else if (data && typeof data === "object") {
+          state.services = data.services || [];
+          state.totalServices = data.total || 0;
+          state.totalPages = data.totalPages || 1;
+          state.currentPage = data.page || 1;
+        }
       })
       .addCase(fetchAllServices.rejected, (state, action) => {
         state.loading = false;

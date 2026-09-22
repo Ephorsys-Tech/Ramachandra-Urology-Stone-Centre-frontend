@@ -45,15 +45,24 @@ const Patients = () => {
   const [statusFilter, setStatusFilter] = useState("All");
   const [requestStatusFilter, setRequestStatusFilter] = useState("Pending");
 
-  // Fetch paginated patients on current page change
+  // Fetch paginated patients on current page change, search or status change
   useEffect(() => {
-    dispatch(fetchAllPatients({ page: currentPage, limit: itemsPerPage }));
-  }, [dispatch, currentPage, itemsPerPage]);
+    if (activeTab === "patients") {
+      dispatch(
+        fetchAllPatients({
+          page: currentPage,
+          limit: itemsPerPage,
+          search: searchTerm,
+          status: statusFilter !== "All" ? statusFilter : undefined,
+        })
+      );
+    }
+  }, [dispatch, currentPage, itemsPerPage, searchTerm, statusFilter, activeTab]);
 
   // Fetch departments and appointment requests on mount if not already loaded
   useEffect(() => {
     if (departments.length === 0) {
-      dispatch(fetchAllDepartments());
+      dispatch(fetchAllDepartments({ limit: 1000 }));
     }
     if (requests.length === 0) {
       dispatch(fetchAllAppointmentRequests());
@@ -228,7 +237,7 @@ const Patients = () => {
   });
 
   const activeItems = activeTab === "patients" 
-    ? filteredPatients 
+    ? patients 
     : (activeTab === "appointments" ? filteredTodayAppointments : filteredRequests);
     
   const isPatientsTab = activeTab === "patients";
@@ -783,7 +792,7 @@ const Patients = () => {
             // PATIENTS TABLE
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold text-slate-450 uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-400 uppercase tracking-wider">
                   <th className="px-6 py-4">ID</th>
                   <th className="px-6 py-4">Patient Name</th>
                   <th className="px-6 py-4">Age / Gender</th>
@@ -795,7 +804,7 @@ const Patients = () => {
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-150 text-sm text-slate-650">
+              <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
                 {currentItems.length > 0 ? (
                   currentItems.map((patient) => (
                     <tr 
@@ -854,7 +863,7 @@ const Patients = () => {
             // TODAY'S APPOINTMENTS TABLE
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold text-slate-450 uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-400 uppercase tracking-wider">
                   <th className="px-6 py-4">Patient Name</th>
                   <th className="px-6 py-4">Contact Phone</th>
                   <th className="px-6 py-4">Scheduled Slot</th>
@@ -864,7 +873,7 @@ const Patients = () => {
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-150 text-sm text-slate-650">
+              <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
                 {currentItems.length > 0 ? (
                   currentItems.map((patient) => (
                     <tr 
@@ -942,7 +951,7 @@ const Patients = () => {
             // APPOINTMENT REQUESTS TABLE
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold text-slate-450 uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-400 uppercase tracking-wider">
                   <th className="px-6 py-4">Date Submitted</th>
                   <th className="px-6 py-4">Patient Name</th>
                   <th className="px-6 py-4">Contact</th>
@@ -952,7 +961,7 @@ const Patients = () => {
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-150 text-sm text-slate-650">
+              <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
                 {currentItems.length > 0 ? (
                   currentItems.map((req) => (
                     <tr 

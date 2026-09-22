@@ -101,15 +101,11 @@ const AdminLayout = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen overflow-hidden bg-slate-50">
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         <TopBar setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1 p-4 md:p-6 overflow-y-auto"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}>
+        <main className="flex-1 min-h-0 p-4 md:p-6 overflow-y-auto" data-lenis-prevent>
           <Outlet />
         </main>
       </div>

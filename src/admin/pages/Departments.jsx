@@ -19,21 +19,24 @@ import toast from "react-hot-toast";
 
 const Departments = () => {
   const dispatch = useDispatch();
-  const { departments, loading } = useSelector((state) => state.department);
-  const { doctors } = useSelector((state) => state.doctor);
+  const { departments, totalDepartments, totalPages: backendTotalPages, loading } = useSelector((state) => state.department || {});
+  const { doctors } = useSelector((state) => state.doctor || {});
   const { features } = useSelector((state) => state.feature || { features: [] });
   const { diseases } = useSelector((state) => state.disease || { diseases: [] });
-
-  useEffect(() => {
-    dispatch(fetchAllDepartments());
-    dispatch(fetchAllDoctors());
-    dispatch(fetchAllFeatures());
-    dispatch(fetchAllDiseases());
-  }, [dispatch]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  useEffect(() => {
+    dispatch(fetchAllDepartments({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
+  }, [dispatch, currentPage, searchTerm]);
+
+  useEffect(() => {
+    if (!doctors || doctors.length === 0) dispatch(fetchAllDoctors({ limit: 1000 }));
+    if (!features || features.length === 0) dispatch(fetchAllFeatures({ limit: 1000 }));
+    if (!diseases || diseases.length === 0) dispatch(fetchAllDiseases({ limit: 1000 }));
+  }, [dispatch, doctors, features, diseases]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -81,19 +84,9 @@ const Departments = () => {
     setFormTab("basic");
   };
 
-  const filteredDepts = (departments || []).filter((dept) => {
-    const searchLow = searchTerm.toLowerCase();
-    return (
-      dept.name?.toLowerCase().includes(searchLow) ||
-      dept.description?.toLowerCase().includes(searchLow) ||
-      dept.category?.toLowerCase().includes(searchLow)
-    );
-  });
-
-  const totalPages = Math.max(1, Math.ceil(filteredDepts.length / itemsPerPage));
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredDepts.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = backendTotalPages || 1;
+  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+  const currentItems = departments || [];
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -261,7 +254,7 @@ const Departments = () => {
           <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Departments</h2>
           <p className="text-sm text-slate-500">Manage hospital departments, services, and assignments.</p>
         </div>
-        {/* <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
           <input
             type="text"
             placeholder="Search departments..."
@@ -281,7 +274,7 @@ const Departments = () => {
           >
             <Plus size={18} /> Add Department
           </button>
-        </div> */}
+        </div>
       </div>
 
       <DepartmentTable
@@ -292,8 +285,8 @@ const Departments = () => {
         openDeleteModal={openDeleteModal}
         openViewModal={openViewModal}
         indexOfFirstItem={indexOfFirstItem}
-        indexOfLastItem={indexOfLastItem}
-        filteredDeptsLength={filteredDepts.length}
+        indexOfLastItem={indexOfFirstItem + currentItems.length}
+        filteredDeptsLength={totalDepartments || currentItems.length}
         totalPages={totalPages}
         currentPage={currentPage}
         handlePageChange={handlePageChange}

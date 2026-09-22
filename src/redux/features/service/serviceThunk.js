@@ -7,9 +7,9 @@ import api from "../../services/api";
 // =============================================
 export const fetchAllServices = createAsyncThunk(
   "service/fetchAllServices",
-  async (_, { rejectWithValue }) => {
+  async (params = {}, { rejectWithValue }) => {
     try {
-      const response = await api.get("/service/all");
+      const response = await api.get("/service/all", { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(

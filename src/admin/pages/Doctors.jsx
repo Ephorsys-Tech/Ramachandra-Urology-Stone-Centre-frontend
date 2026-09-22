@@ -63,21 +63,22 @@ const INITIAL_FORM_DATA = {
 
 const Doctors = () => {
   const dispatch = useDispatch();
-  const { doctors, loading } = useSelector((state) => state.doctor);
-  const { departments } = useSelector((state) => state.department);
-
-  useEffect(() => {
-    if (doctors.length === 0) {
-      dispatch(fetchAllDoctors({ limit: 100 }));
-    }
-    if (departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [dispatch, doctors.length, departments.length]);
+  const { doctors, pagination, loading } = useSelector((state) => state.doctor || {});
+  const { departments } = useSelector((state) => state.department || {});
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    dispatch(fetchAllDoctors({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
+  }, [dispatch, currentPage, searchTerm]);
+
+  useEffect(() => {
+    if (!departments || departments.length === 0) {
+      dispatch(fetchAllDepartments({ limit: 1000 }));
+    }
+  }, [dispatch, departments]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -99,20 +100,10 @@ const Doctors = () => {
     setFormActiveTab("basic");
   };
 
-  const filteredDoctors = doctors.filter((doc) => {
-    const searchLow = searchTerm.toLowerCase();
-    return (
-      doc.name?.toLowerCase().includes(searchLow) ||
-      doc.email?.toLowerCase().includes(searchLow) ||
-      doc.specialization?.toLowerCase().includes(searchLow) ||
-      doc.department?.name?.toLowerCase().includes(searchLow)
-    );
-  });
-
-  const totalPages = Math.max(1, Math.ceil(filteredDoctors.length / itemsPerPage));
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredDoctors.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = pagination?.totalPages || 1;
+  const totalDoctors = pagination?.total || 0;
+  const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+  const currentItems = doctors || [];
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -320,7 +311,7 @@ const Doctors = () => {
           />
         </div>
         <div className="text-xs text-slate-500 font-medium">
-          Showing <span className="font-bold text-slate-800">{filteredDoctors.length}</span> doctors
+          Showing <span className="font-bold text-slate-800">{totalDoctors}</span> doctors
         </div>
       </div>
 
@@ -345,7 +336,7 @@ const Doctors = () => {
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-150 text-sm text-slate-650">
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
               {currentItems.length > 0 ? (
                 currentItems.map((doc) => (
                   <tr
@@ -434,7 +425,7 @@ const Doctors = () => {
         {totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-200/80 flex items-center justify-between">
             <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-              Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredDoctors.length)} of {filteredDoctors.length}
+              Showing {totalDoctors === 0 ? 0 : indexOfFirstItem + 1} to {indexOfFirstItem + currentItems.length} of {totalDoctors}
             </span>
             <div className="flex items-center gap-1.5">
               <button
