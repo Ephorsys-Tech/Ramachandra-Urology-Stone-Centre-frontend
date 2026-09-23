@@ -9,6 +9,7 @@ import LeadershipTeam from "../components/About/LeadershipTeam";
 import InfrastructureShowcase from "../components/About/InfrastructureShowcase";
 import VisionMissionValues from "../components/About/VisionMissionValues";
 import AccreditationPartners from "../components/About/AccreditationPartners";
+import SEO from "../components/common/SEO";
 import { 
   ArrowUpRight, 
   ShieldCheck, 
@@ -252,8 +253,56 @@ const About = () => {
     }
   ];
 
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://ramachandraurology.com/about#webpage",
+        "url": "https://ramachandraurology.com/about",
+        "name": "About Ramachandra Urology & Stone Centre | Burla, Sambalpur",
+        "description": "Learn about Ramachandra Urology & Stone Centre, Western Odisha’s premier NABH-accredited kidney care hospital founded by Dr. Sanjay Kumar Mahapatra (M.Ch AIIMS New Delhi).",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://ramachandraurology.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About Us",
+              "item": "https://ramachandraurology.com/about"
+            }
+          ]
+        },
+        "mainEntity": {
+          "@type": "Hospital",
+          "name": "Ramachandra Urology & Stone Centre",
+          "founder": {
+            "@type": "Person",
+            "name": "Dr. Sanjay Kumar Mahapatra",
+            "jobTitle": "Founder & Chief Urologist",
+            "alumniOf": "AIIMS New Delhi (M.Ch Urology)"
+          },
+          "award": "NABH Entry Level SHCO Accreditation (PESHCO-0306-13433)"
+        }
+      }
+    ]
+  };
+
   return (
-    <main className="min-h-screen bg-[#f8fafc] text-slate-800  selection:bg-[#0FA8D6] selection:text-white">
+    <>
+      <SEO
+        title="About Us | Leading Urology & Kidney Stone Centre in Sambalpur"
+        description="Discover Ramachandra Urology & Stone Centre in Burla, Sambalpur. Led by Dr. Sanjay Kumar Mahapatra (M.Ch AIIMS New Delhi), offering state-of-the-art Thulium Fiber Laser surgery, modular OTs, and NABH-accredited care."
+        canonical="/about"
+        structuredData={aboutStructuredData}
+      />
+      <main className="min-h-screen bg-[#f8fafc] text-slate-800  selection:bg-[#0FA8D6] selection:text-white">
       
       {/* ── 1. UNIFIED PAGE HERO (BLUE THEME) ── */}
       <PageHero
@@ -474,6 +523,7 @@ const About = () => {
       </section>
 
     </main>
+    </>
   );
 };
 

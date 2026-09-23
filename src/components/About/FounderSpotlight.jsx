@@ -37,6 +37,8 @@ const FounderSpotlight = () => {
                 <img
                   src="https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555588/1I5A4339_1_kx1liu.webp"
                   alt="Dr. Sanjay Kumar Mahapatra - Founder & Surgical Director"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top"
                 />
                 {/* Gradient overlay at bottom for LinkedIn bar */}

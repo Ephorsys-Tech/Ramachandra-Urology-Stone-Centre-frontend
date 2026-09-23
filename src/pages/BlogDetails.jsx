@@ -20,6 +20,7 @@ import {
 import BlogContentRenderer from "../components/Blog/BlogContentRenderer";
 import { fetchBlogById, fetchBlogs } from "../redux/features/blog/blogThunk";
 import { clearSelectedBlog } from "../redux/features/blog/blogSlice";
+import SEO from "../components/common/SEO";
 
 
 
@@ -73,11 +74,68 @@ const BlogDetails = () => {
     ? `Dr. ${selectedBlog.doctorAuthor.name}`
     : selectedBlog.authorName || "Dr. Ramachandra Pradhan";
 
-  const authorBadge =
-    selectedBlog.authorType === "Doctor" ? "Doctor (On Behalf Of)" : "Admin";
+  const blogPostStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `https://ramachandraurology.com/blog/${id}#article`,
+        "headline": selectedBlog.title,
+        "description": selectedBlog.description || selectedBlog.title,
+        "image": selectedBlog.image || "https://ramachandraurology.com/logo.png",
+        "datePublished": selectedBlog.createdAt || new Date().toISOString(),
+        "dateModified": selectedBlog.updatedAt || selectedBlog.createdAt || new Date().toISOString(),
+        "author": {
+          "@type": "Person",
+          "name": doctorName
+        },
+        "publisher": {
+          "@type": "Hospital",
+          "name": "Ramachandra Urology & Stone Centre",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ramachandraurology.com/logo.png"
+          }
+        },
+        "mainEntityOfPage": `https://ramachandraurology.com/blog/${id}`
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ramachandraurology.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://ramachandraurology.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": selectedBlog.title,
+            "item": `https://ramachandraurology.com/blog/${id}`
+          }
+        ]
+      }
+    ]
+  };
 
   return (
-    <main className="bg-[#f8fbfa] min-h-screen pb-20 text-slate-900">
+    <>
+      <SEO
+        title={selectedBlog.title}
+        description={selectedBlog.description || `${selectedBlog.title} - Medical insights and health guides from Ramachandra Urology & Stone Centre, Sambalpur.`}
+        canonical={`/blog/${id}`}
+        ogType="article"
+        ogImage={selectedBlog.image || undefined}
+        structuredData={blogPostStructuredData}
+      />
+      <main className="bg-[#f8fbfa] min-h-screen pb-20 text-slate-900">
       {/* ── TOP HERO HEADER SECTION ── */}
       <section className="relative bg-gradient-to-r from-[#e7f5fb] via-[#eef8fd] to-[#f4faff] border-b border-slate-200/80 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
@@ -319,6 +377,7 @@ const BlogDetails = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 
