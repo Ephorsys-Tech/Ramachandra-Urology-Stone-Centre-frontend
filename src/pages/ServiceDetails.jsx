@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/common/PageHero";
 import { openAppointmentModal } from "../redux/features/patient/patientSlice";
+import SEO from "../components/common/SEO";
 import { fetchFeatureBySlug } from "../redux/features/feature/featureThunk";
 import {
   fetchServiceBySlug,
@@ -103,8 +104,54 @@ const ServiceDetails = () => {
     "Advanced clinical procedures and specialized treatment care.";
   const departmentName = feature?.department?.name || "Urology & Stone Centre";
 
+  const serviceStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MedicalProcedure",
+        "@id": `https://ramachandraurology.com/${slug}#procedure`,
+        "name": title,
+        "description": description,
+        "procedureType": "SurgicalProcedure",
+        "bodyLocation": "Urinary Tract / Kidney / Prostate",
+        "howPerformed": "Minimally Invasive Laser / Laparoscopic Surgery",
+        "url": `https://ramachandraurology.com/${slug}`
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ramachandraurology.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Urology Services",
+            "item": "https://ramachandraurology.com/urology-services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": title,
+            "item": `https://ramachandraurology.com/${slug}`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-24">
+    <>
+      <SEO
+        title={`${title} in Burla, Sambalpur`}
+        description={`${title} at Ramachandra Urology & Stone Centre, Sambalpur. ${description ? description.substring(0, 150) : 'Advanced laser stone surgery and clinical care with experienced urologists.'}`}
+        canonical={`/${slug}`}
+        structuredData={serviceStructuredData}
+      />
+      <main className="bg-slate-50/50 min-h-screen pb-24">
       {/* Page Hero */}
       <PageHero
         breadcrumb={`Urology Services / ${title}`}
@@ -430,6 +477,7 @@ const ServiceDetails = () => {
         </div>
       </div>
     </main>
+    </>
   );
 };
 

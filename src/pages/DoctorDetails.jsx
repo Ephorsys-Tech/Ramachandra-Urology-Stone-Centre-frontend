@@ -23,6 +23,7 @@ import {
   Share2,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import SEO from '../components/common/SEO';
 
 const TABS = [
   { id: 'about', label: 'About', shortLabel: 'About' },
@@ -147,8 +148,59 @@ const DoctorDetails = () => {
     ? doctor.certifications.filter(Boolean)
     : [];
 
+  const docStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Physician",
+        "@id": `https://ramachandraurology.com/doctors/${slug}#physician`,
+        "name": doctorDisplayName,
+        "jobTitle": doctor?.designation || docSpec,
+        "medicalSpecialty": docSpec,
+        "description": bioText ? bioText.substring(0, 200) : `Consult ${doctorDisplayName} at Ramachandra Urology & Stone Centre, Sambalpur.`,
+        "image": hasValidImage ? docImage : "https://ramachandraurology.com/logo.png",
+        "worksFor": {
+          "@type": "Hospital",
+          "name": "Ramachandra Urology & Stone Centre",
+          "url": "https://ramachandraurology.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ramachandraurology.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Our Doctors",
+            "item": "https://ramachandraurology.com/doctors"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": doctorDisplayName,
+            "item": `https://ramachandraurology.com/doctors/${slug}`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-20 ">
+    <>
+      <SEO
+        title={`${doctorDisplayName} - ${docSpec} in Burla, Sambalpur`}
+        description={`Book appointment with ${doctorDisplayName} (${docSpec}) at Ramachandra Urology & Stone Centre, Burla, Sambalpur. Expert urology, laser stone surgery, and comprehensive clinical care.`}
+        canonical={`/doctors/${slug}`}
+        ogImage={hasValidImage ? docImage : undefined}
+        structuredData={docStructuredData}
+      />
+      <div className="min-h-screen bg-[#f8fafc] pb-20 ">
 
       {/* ── HEADER CARD ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-8">
@@ -519,6 +571,7 @@ const DoctorDetails = () => {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 };
 

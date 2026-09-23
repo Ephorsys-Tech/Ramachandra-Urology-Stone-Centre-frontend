@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Sidebar from "../admin/components/Sidebar";
 import TopBar from "../admin/components/TopBar";
+import SEO from "../components/common/SEO";
 import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 import { addMessageLocally, deleteMessageLocally } from "../redux/features/message/messageSlice";
@@ -102,6 +103,7 @@ const AdminLayout = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50">
+      <SEO title="Hospital Management Console" noindex={true} />
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         <TopBar setSidebarOpen={setSidebarOpen} />

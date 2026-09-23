@@ -90,7 +90,9 @@ const LeadershipTeam = () => {
                 <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
                   <img
                     src={doc.image}
-                    alt={doc.name}
+                    alt={`${doc.name} - ${doc.title}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#012442]/80 via-transparent to-transparent opacity-80" />

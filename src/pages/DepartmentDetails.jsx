@@ -18,6 +18,7 @@ import { openAppointmentModal } from "../redux/features/patient/patientSlice";
 import { fetchAllDepartments, fetchDoctorsByDepartmentId } from "../redux/features/department/departmentThunk";
 import { getDoctorSlug } from "../Helper/slugify";
 import { getDepartmentIcon } from "../Helper/departmentIcon";
+import SEO from "../components/common/SEO";
 
 
 
@@ -69,8 +70,56 @@ const DepartmentDetails = () => {
     );
   }
 
+  const deptStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MedicalSpecialty",
+        "@id": `https://ramachandraurology.com/urology-services/${slug}#specialty`,
+        "name": department.name,
+        "description": department.description,
+        "url": `https://ramachandraurology.com/urology-services/${slug}`,
+        "relevantSpecialty": {
+          "@type": "MedicalSpecialty",
+          "name": department.name
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ramachandraurology.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Urology Services",
+            "item": "https://ramachandraurology.com/urology-services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": department.name,
+            "item": `https://ramachandraurology.com/urology-services/${slug}`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-24 ">
+    <>
+      <SEO
+        title={`${department.name} in Burla, Sambalpur`}
+        description={`${department.name} at Ramachandra Urology & Stone Centre, Sambalpur. ${department.description ? department.description.substring(0, 150) : 'Comprehensive clinical care with cutting-edge laser technologies and specialist urologists.'}`}
+        canonical={`/urology-services/${slug}`}
+        ogImage={department.image || undefined}
+        structuredData={deptStructuredData}
+      />
+      <main className="bg-slate-50/50 min-h-screen pb-24 ">
       <PageHero
         breadcrumb={`Specialties / ${department.name}`}
         badge="Clinical Specialty Wing"
@@ -292,7 +341,8 @@ const DepartmentDetails = () => {
         </Link>
       </div>
     </section>
-    </main >
+    </main>
+    </>
   );
 };
 

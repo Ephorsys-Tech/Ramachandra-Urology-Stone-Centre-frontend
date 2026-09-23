@@ -13,6 +13,7 @@ const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 const Department = lazy(() => import("../pages/Department"));
 const DepartmentDetails = lazy(() => import("../pages/DepartmentDetails"));
 const ServiceDetails = lazy(() => import("../pages/ServiceDetails"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const PublicRoutes = (
   <Route path="/" element={<MainLayouts />}>
@@ -76,7 +77,7 @@ const PublicRoutes = (
     <Route path=":slug" element={<ServiceDetails />} />
 
     {/* Fallback for any unknown / old indexed URL */}
-    <Route path="*" element={<Navigate to="/" replace />} />
+    <Route path="*" element={<NotFound />} />
   </Route>
 );
 

@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { loginAdmin } from "../../redux/features/auth/authThunk";
 import toast from "react-hot-toast";
 import ForgotPasswordForm from "../components/ForgotPasswordForm";
+import SEO from "../../components/common/SEO";
 
 // 3D Flip Card Animation Variants
 const flipVariants = {
@@ -90,7 +91,9 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#dfebff] to-[#bdcfff] p-4 sm:p-6 md:p-8 ">
+    <>
+      <SEO title="Hospital Management Admin Login" noindex={true} />
+      <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#dfebff] to-[#bdcfff] p-4 sm:p-6 md:p-8 ">
       {/* Main Container Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -283,6 +286,7 @@ const AdminLogin = () => {
 
       </motion.div>
     </div>
+    </>
   );
 };
 
