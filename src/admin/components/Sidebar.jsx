@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LayoutDashboard, Users, UserCog, Settings, LogOut, X, Building, Image, FileText, Sparkles, Activity, Stethoscope } from "lucide-react";
+import { LayoutDashboard, Users, UserCog, LogOut, X, Building, Image, FileText, Sparkles, Activity, Stethoscope } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,6 @@ const NAV_ITEMS = [
   { path: "/admin/diseases", label: "Diseases", icon: Activity },
   { path: "/admin/gallery", label: "Gallery", icon: Image },
   { path: "/admin/blogs", label: "Blogs", icon: FileText },
-  { path: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
