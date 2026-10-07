@@ -59,7 +59,7 @@ const HomeFAQ = memo(() => {
             <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg border border-slate-200/80 bg-white">
               <img
                 className="w-full h-[260px] sm:h-[300px] md:h-[360px] lg:h-[430px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                src="https://cdn.21st.dev/assets/mirror/65/65dc784c8e67e24c04b277e285a1463bd4e0aca0c55bd11bf1ed1e71c32b1030.jpg"
+                src="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368815/img_6648_1024.png"
                 alt="Ramachandra Urology & Stone Centre FAQ Support"
                 loading="lazy"
                 onError={(e) => {

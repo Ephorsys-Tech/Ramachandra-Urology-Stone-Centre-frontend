@@ -9,7 +9,7 @@ const GalleryHero = () => {
       title="A Visual Tour of Our"
       highlightTitle="Modern Hospital"
       subtitle="Take a look inside Ramachandra Urology & Stone Centre in Sambalpur — from our sterile modular operation suites and advanced Thulium laser units to comfortable patient recovery rooms."
-      image="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80"
+      image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368783/img_6651_1024.png"
       imageAlt="Hospital Infrastructure & Campus"
       imageTag="Modern OT & Infrastructure"
       theme="blue"

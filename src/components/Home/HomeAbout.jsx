@@ -78,7 +78,7 @@ const HomeAbout = memo(() => {
             {/* Main Visual Container */}
             <div className="relative rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80"
+                src="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368711/img_6653_1024.png"
                 alt="Ramachandra Urology & Stone Centre Campus in Burla Sambalpur"
                 loading="lazy"
                 decoding="async"

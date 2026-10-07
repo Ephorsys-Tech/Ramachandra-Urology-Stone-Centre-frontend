@@ -8,7 +8,7 @@ const InfrastructureShowcase = () => {
       tag: "Advanced Laser Lithotripsy",
       desc: "Next-generation ultra-precise laser technology for dust-free vaporization of kidney, ureteric, and bladder stones, as well as bloodless ThuFLEP prostate enucleation.",
       features: ["Dust-free stone fragmentation", "Minimal bleeding & tissue trauma", "Day-care discharge capability"],
-      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368771/img_6652_1024.png",
       icon: Zap,
     },
     {
@@ -24,7 +24,7 @@ const InfrastructureShowcase = () => {
       tag: "Rapid Precision Diagnostics",
       desc: "Fully automated biochemistry and hematology analyzers, digital X-ray, high-frequency ultrasonography (USG), and specialized computer uroflowmetry.",
       features: ["Instant emergency lab reports", "High-resolution Doppler USG", "Urodynamic pressure studies"],
-      image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368703/img_6654_1024.png",
       icon: Microscope,
     },
     {

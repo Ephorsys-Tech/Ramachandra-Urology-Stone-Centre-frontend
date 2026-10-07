@@ -158,7 +158,7 @@ const ServiceDetails = () => {
         badge="Specialized Clinical Capability"
         title={title}
         subtitle={description}
-        image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80"
+        image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
         imageAlt={title}
         imageTag={departmentName}
         theme="blue"
