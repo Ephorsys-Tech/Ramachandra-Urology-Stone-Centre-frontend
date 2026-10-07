@@ -18,7 +18,8 @@ const heroSlides = [
     headlineLine2: "For Urology & Kidney Stone Care",
     tagline: "Now in Sambalpur!",
     description: "Advanced Thulium Fiber Laser Surgery (RIRS & Mini-PCNL) with same-day daycare discharge.",
-    image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555588/1I5A4339_1_kx1liu.webp",
+    // image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555588/1I5A4339_1_kx1liu.webp",
+    image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368825/img_6647_1024.png",
     imageAlt: "Advanced Laser Operation Theatre",
   },
   {
@@ -27,7 +28,7 @@ const heroSlides = [
     headlineLine2: "For Painless Kidney Stone Removal",
     tagline: "100% Stitch-Free RIRS!",
     description: "World-class laser lithotripsy for complete kidney stone dusting with 99.8% clinical success.",
-    image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555590/1I5A4502_1_wxjyz5.webp",
+    image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png",
     imageAlt: "AIIMS Specialist Consultation",
   },
   {
@@ -36,7 +37,7 @@ const heroSlides = [
     headlineLine2: "Modern Laser THUFLEP & Men’s Health",
     tagline: "Ultra-Fast 24-Hour Recovery!",
     description: "Minimally invasive laser enucleation for enlarged prostate (BPH) & comprehensive male fertility care.",
-    image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1787555589/1I5A4435_1_mbsm4v.webp",
+    image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368771/img_6652_1024.png",
     imageAlt: "Hospital Reception and Diagnostics",
   },
   {
@@ -45,7 +46,7 @@ const heroSlides = [
     headlineLine2: "Instant Relief & Emergency DJ Stenting",
     tagline: "100% Cashless Ayushman & GJAY!",
     description: "Immediate emergency triage, diagnostic ultrasonography, and instant cashless desk approvals in Burla, Sambalpur.",
-    image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783148317/PXL_20260701_144557189.jpg_i7iqlz.jpg",
+    image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368805/img_6649_1024.png",
     imageAlt: "Sambalpur Hospital Campus",
   },
 ];

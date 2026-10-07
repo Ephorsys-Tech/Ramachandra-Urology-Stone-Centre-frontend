@@ -176,7 +176,7 @@ const About = () => {
       title: "Western Odisha's Premier Laser Urology Destination",
       body: "Ramachandra Urology & Stone Centre is the largest dedicated super-specialty urology, stone management, and laparoscopic surgical hospital in Western Odisha. Built on a foundation of surgical precision, state-of-the-art lasers, and compassionate care, our hospital brings world-class renal and surgical innovations under one unified roof. We are proudly NABH Accredited, reflecting our strict adherence to highest patient safety and clinical quality benchmarks.",
       quote: "Quality healthcare is not a privilege—it is a rigorous, protocol-driven commitment to every patient who walks through our doors.",
-      image: "https://res.cloudinary.com/drqb4p2a2/image/upload/v1783339988/WhatsApp_Image_2026-07-06_at_5.40.57_PM_1_vjgpse.jpg",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368825/img_6647_1024.png",
       badge: "NABH Accredited Hospital"
     },
     {
@@ -231,7 +231,7 @@ const About = () => {
           desc: "Round-the-clock emergency urological care, acute stone colic relief, and dedicated ICU monitoring."
         }
       ],
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368771/img_6652_1024.png",
       badge: "Thulium Fiber Laser & Modular OT"
     },
     {
@@ -311,7 +311,7 @@ const About = () => {
         title="Super-Specialty Care."
         highlightTitle="World-Class Precision."
         subtitle="Ramachandra Urology & Stone Centre is Western Odisha's premier destination for advanced laser urology, RIRS stone removal, laparoscopic surgeries, and comprehensive renal healthcare — founded and directed by AIIMS New Delhi alumnus Dr. Sanjay Kumar Mahapatra."
-        image="https://res.cloudinary.com/drqb4p2a2/image/upload/v1783339988/WhatsApp_Image_2026-07-06_at_5.40.57_PM_1_vjgpse.jpg"
+        image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
         imageAlt="Ramachandra Urology & Stone Centre Building, Sambalpur"
         imageTag="NABH Accredited Hospital"
         theme="blue"

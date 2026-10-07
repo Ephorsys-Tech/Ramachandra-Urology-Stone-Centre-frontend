@@ -9,7 +9,7 @@ const BlogHero = () => {
       title="Urological Knowledge &"
       highlightTitle="Health Guides"
       subtitle="Discover essential kidney stone prevention tips, minimally invasive laser surgery breakthroughs, prostate wellness guides, and recovery advice curated by our specialist surgeons in Sambalpur."
-      image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80"
+      image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368825/img_6647_1024.png"
       imageAlt="Urology Health Library and Medical Insights"
       imageTag="Physician-Verified Guides"
       theme="blue"

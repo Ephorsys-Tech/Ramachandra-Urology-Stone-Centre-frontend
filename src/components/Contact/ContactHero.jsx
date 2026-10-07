@@ -9,7 +9,7 @@ const ContactHero = () => {
       title="Connect with Our"
       highlightTitle="Clinical Team"
       subtitle="Have questions about stone treatments, laser surgery, or OPD doctor availability? Reach out to our dedicated care coordinators in Sambalpur for swift medical assistance."
-      image="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=80"
+      image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368793/img_6650_1024.png"
       imageAlt="Hospital Helpdesk and Care Team"
       imageTag="24/7 Clinical Helpdesk"
       theme="blue"

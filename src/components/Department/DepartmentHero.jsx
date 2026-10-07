@@ -9,7 +9,7 @@ const DepartmentHero = () => {
       title="Urology Services & Specialized"
       highlightTitle="Clinical Wings"
       subtitle="Discover world-class urological care in Sambalpur — from high-precision Thulium Fiber Laser (TFL) stone surgery, RIRS, and PCNL to advanced prostate therapy, reconstructive urology, and pediatric care."
-      image="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80"
+      image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
       imageAlt="Ramachandra Urology & Stone Centre OT & Clinical Wings"
       imageTag="Thulium Laser & HD Endo-Lap"
       theme="blue"
