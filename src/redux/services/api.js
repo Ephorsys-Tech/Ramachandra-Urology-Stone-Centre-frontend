@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthToken, setAuthToken, clearAuthToken } from "./tokenService";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8800/api/v1",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://ramachandra-urology-stone-centre-backend.onrender.com",
   withCredentials: true,
 });
 
