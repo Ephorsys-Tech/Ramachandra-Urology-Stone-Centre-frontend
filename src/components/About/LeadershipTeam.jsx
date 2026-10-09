@@ -16,19 +16,8 @@ const LeadershipTeam = () => {
       specialty: "AIIMS Alumnus & Surgical Director",
       experience: "20+ Years Experience",
       timing: "Mon – Sat: 10:00 AM – 4:00 PM",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538200/img_6670_1024.webp",
       featured: true,
-    },
-    {
-      name: "Dr. Sovan Hota",
-      title: "Senior Consultant Urologist",
-      qualifications: "M.S. (Surgery), M.Ch (Urology)",
-      designation: "Specialist in Laser Stone Care, RIRS & Endourology",
-      specialty: "Endourology & Lithotripsy Specialist",
-      experience: "14+ Years Experience",
-      timing: "Mon – Sat: 9:00 AM – 2:00 PM",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=80",
-      featured: false,
     },
     {
       name: "Dr. Kiran Negi",
@@ -38,9 +27,32 @@ const LeadershipTeam = () => {
       specialty: "Laparoscopy & Reconstructive Surgery",
       experience: "12+ Years Experience",
       timing: "Mon – Sat: 2:00 PM – 7:00 PM",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538209/img_6669_1024.webp",
       featured: false,
     },
+    {
+      name: "Dr. Tapan Nayak",
+      title: "Senior Consultant Urologist",
+      qualifications: "M.S. (Surgery), M.Ch (Urology)",
+      designation: "Specialist in Laser Stone Care, RIRS & Endourology",
+      specialty: "Endourology & Lithotripsy Specialist",
+      experience: "14+ Years Experience",
+      timing: "Mon – Sat: 9:00 AM – 2:00 PM",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791540039/doct-Tapan.jpg",
+      featured: false,
+    },
+    {
+      name: "Dr. Suraj Sahu",
+      title: "Senior Consultant Urologist",
+      qualifications: "M.S. (Surgery), M.Ch (Urology)",
+      designation: "Specialist in Laser Stone Care, RIRS & Endourology",
+      specialty: "Endourology & Lithotripsy Specialist",
+      experience: "14+ Years Experience",
+      timing: "Mon – Sat: 9:00 AM – 2:00 PM",
+      image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538189/img_6671_1024.webp",
+      featured: false,
+    }
+
   ];
 
   return (
