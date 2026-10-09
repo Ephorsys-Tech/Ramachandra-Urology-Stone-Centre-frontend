@@ -183,29 +183,37 @@ const About = () => {
       id: "02",
       tag: "SURGICAL LEADERSHIP",
       title: "Renowned Medical & Surgical Directors",
-      body: "Our clinical team is led by Dr. Sanjay Kumar Mahapatra [M.S. (Surgery), M.Ch (Urology, AIIMS, New Delhi)], Senior Consultant Urologist, Andrologist, and Endo-Lap Surgeon. Supported by expert consultant urologists Dr. Sovan Hota and Dr. Kiran Negi, our surgical team delivers cutting-edge, evidence-based treatments ranging from complex renal stone extractions to intricate reconstructive and uro-oncology surgeries.",
+      body: "Our clinical team is led by Dr. Sanjay Kumar Mahapatra [M.S. (Surgery), M.Ch (Urology, AIIMS, New Delhi)], Senior Consultant Urologist, Andrologist, and Endo-Lap Surgeon. Supported by expert consultant urologists Dr. Tapan Nayak and Dr. Kiran Negi, our surgical team delivers cutting-edge, evidence-based treatments ranging from complex renal stone extractions to intricate reconstructive and uro-oncology surgeries.",
       leaders: [
         {
           name: "Dr. Sanjay Kumar Mahapatra",
           qualifications: "M.S. (Surgery), M.Ch (Urology, AIIMS, New Delhi)",
           role: "Consultant Urologist, Andrologist & Endo-Lap Surgeon",
           specialty: "AIIMS Alumnus & Surgical Lead",
-          image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80"
-        },
-        {
-          name: "Dr. Sovan Hota",
-          qualifications: "M.S., M.Ch (Urology)",
-          role: "Specialist Consultant Urologist",
-          specialty: "Endourology & Laser Stone Care",
-          image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80"
+          image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538200/img_6670_1024.webp"
         },
         {
           name: "Dr. Kiran Negi",
           qualifications: "M.S., M.Ch (Urology)",
           role: "Specialist Consultant Urologist",
           specialty: "Laparoscopy & Reconstruction",
-          image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
-        }
+          image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538209/img_6669_1024.webp"
+        },
+        {
+          name: "Dr. Tapan Nayak",
+          qualifications: "M.S., M.Ch (Urology)",
+          role: "Specialist Consultant Urologist",
+          specialty: "Endourology & Laser Stone Care",
+          image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791540039/doct-Tapan.jpg"
+        },
+        {
+          name: "Dr. Suraj Sahu",
+          qualifications: "M.S., M.Ch (Urology)",
+          role: "Specialist Consultant Urologist",
+          specialty: "Endourology & Laser Stone Care",
+          image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538189/img_6671_1024.webp"
+        },
+
       ]
     },
     {
