@@ -1,0 +1,29 @@
+# Robots.txt for Ramachandra Urology & Stone Centre
+# Website: https://ramachandraurology.com
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /doctors
+Allow: /doctors/*
+Allow: /urology-services
+Allow: /urology-services/*
+Allow: /contact
+Allow: /gallery
+Allow: /blog
+Allow: /blog/*
+
+# Disallow Private & Admin Sections
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/
+Disallow: /api/*
+
+# Prevent crawling parameterized duplicates
+Disallow: /*?*
+Disallow: /*&*
+
+# Host & XML Sitemap
+Host: https://ramachandraurology.com
+Sitemap: https://ramachandraurology.com/sitemap.xml
