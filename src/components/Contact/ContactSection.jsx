@@ -192,7 +192,7 @@ const ContactSection = memo(() => {
 
               <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-cyan-200">
                 <ShieldCheck size={14} className="text-[#0FA8D6]" />
-                <span>NABH SHCO Certified • Ayushman & GJAY Cashless</span>
+                <span>NABH SHCO Certified • Ayushman • GJAY Cashless & CT Scan</span>
               </div>
             </div>
 
