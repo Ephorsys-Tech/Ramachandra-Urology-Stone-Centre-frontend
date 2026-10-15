@@ -224,15 +224,15 @@ const Navbar = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
           <div className="flex items-center justify-between gap-4 min-h-[68px] sm:min-h-[76px] lg:min-h-[84px]">
 
-            {/* Big Brand Logo - Fully Visible, Prominent & High-Definition */}
+            {/* Big Brand Logo - Clean, Prominent & High-Definition */}
             <Link
               to="/"
-              className="flex items-center self-center no-underline shrink relative w-[180px] min-[380px]:w-[210px] sm:w-[260px] md:w-[340px] lg:w-[80px] xl:w-[420px] h-13 sm:h-17 md:h-18 z-10"
+              className="flex items-center self-center shrink-0 no-underline z-10"
             >
               <img
                 src="/logo.png"
                 alt="Ramachandra Urology & Stone Centre"
-                className="h-28 min-[380px]:h-34 sm:h-44 md:h-52 lg:h-58 xl:h-64 w-auto max-w-none absolute left-0 top-1/2 -translate-y-1/2 object-contain pointer-events-auto"
+                className="h-11 min-[380px]:h-12 sm:h-13 md:h-14 lg:h-15 xl:h-16 w-auto object-contain transition-transform hover:scale-[1.02]"
               />
             </Link>
 
