@@ -56,7 +56,7 @@ const DoctorGrid = memo(() => {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const emergencyPhone = settings?.emergencyPhone || "+91 99375 66625";
+  const emergencyPhone = settings?.emergencyPhone || "+91 9937566625";
 
   return (
     <div id="doctors-directory-section" className="w-full bg-[#f8fafc] py-10 px-4 sm:px-6 lg:px-8  min-h-screen">
@@ -66,7 +66,7 @@ const DoctorGrid = memo(() => {
         <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#012442] tracking-tight">
-              Medical Specialists &amp; Surgeons
+              Medical Specialists & Surgeons
             </h2>
             <p className="text-xs text-slate-500 font-medium mt-0.5">
               Showing {currentDoctors.length} of {sortedDoctors.length} certified medical doctors
@@ -177,7 +177,7 @@ const DoctorGrid = memo(() => {
                             {doc.name.startsWith("Dr") ? doc.name : `Dr. ${doc.name}`}
                           </h3>
                           <p className="text-[11px] font-bold text-[#024363] mt-0.5 line-clamp-1">
-                            Senior Consultant &amp; Surgeon
+                            Senior Consultant & Surgeon
                           </p>
                         </div>
 

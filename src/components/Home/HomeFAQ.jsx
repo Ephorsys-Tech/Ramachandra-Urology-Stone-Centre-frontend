@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "How do I book an appointment with Dr. Sanjay Kumar Mahapatra?",
     answer:
-      "You can book an appointment 24/7 directly through our website, call our Burla helpline at +91 88950 62072 / +91 99375 66625 / +91 76538 99199 / 0663-4075199, or visit our Sourav Vihar, Burla, Sambalpur clinic.",
+      "You can book an appointment 24/7 directly through our website, call our Burla helpline at +91 9937566625 / +91 9937566625 / +91 76538 99199 / 0663-4075199, or visit our Sourav Vihar, Burla, Sambalpur clinic.",
   },
   {
     question: "Are Ayushman Bharat (PM-JAY) and GJAY schemes accepted?",
@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "What emergency support is available for acute renal colic / stone pain?",
     answer:
-      "Our emergency triage unit in Sourav Vihar, Burla, Sambalpur operates 24/7 with immediate pain management, emergency ultrasound (USG), DJ stenting, and rapid laser stone clearance. Emergency hotline: +91 99375 66625.",
+      "Our emergency triage unit in Sourav Vihar, Burla, Sambalpur operates 24/7 with immediate pain management, emergency ultrasound (USG), DJ stenting, and rapid laser stone clearance. Emergency hotline: +91 9937566625.",
   },
   {
     question: "What in-house diagnostic facilities are available?",
@@ -82,7 +82,7 @@ const HomeFAQ = memo(() => {
                   </p>
                 </div>
                 <a
-                  href="tel:+918895062072"
+                  href="tel:+919937566625"
                   className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#0FA8D6] hover:bg-[#024363] text-white flex items-center justify-center transition-colors shadow-sm"
                   aria-label="Call Helpline"
                 >

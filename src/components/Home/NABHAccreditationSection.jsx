@@ -51,7 +51,7 @@ const NABHAccreditationSection = memo(() => {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight mb-4 leading-tight">
-                NABH Entry Level SHCO Accredited
+                NABH SHCO Accredited
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6">

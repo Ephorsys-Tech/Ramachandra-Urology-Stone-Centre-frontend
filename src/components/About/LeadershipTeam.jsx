@@ -20,7 +20,7 @@ const LeadershipTeam = () => {
       featured: true,
     },
     {
-      name: "Dr. Kiran Negi",
+      name: "Dr. Kiran Kumar Negi",
       title: "Specialist Consultant Urologist",
       qualifications: "M.S. (Gen Surgery), M.Ch (Urology)",
       designation: "Specialist in 3D Laparoscopy & Reconstructive Urology",

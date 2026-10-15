@@ -33,7 +33,7 @@ const Contact = () => {
         "mainEntity": {
           "@type": "Hospital",
           "name": "Ramachandra Urology & Stone Centre",
-          "telephone": ["+918895062072", "+919937566625", "+917653899199", "0663-4075199"],
+          "telephone": ["+919937566625", "+919937566625", "+917653899199", "0663-4075199"],
           "email": "ruasc.burla@gmail.com",
           "address": {
             "@type": "PostalAddress",
@@ -58,7 +58,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact Us & Emergency Helpline in Burla, Sambalpur"
-        description="Contact Ramachandra Urology & Stone Centre in Burla, Sambalpur. Call +91 88950 62072 or 0663-4075199 for 24/7 laser kidney stone emergencies, OPD bookings, and hospital location."
+        description="Contact Ramachandra Urology & Stone Centre in Burla, Sambalpur. Call +91 9937566625 or 0663-4075199 for 24/7 laser kidney stone emergencies, OPD bookings, and hospital location."
         canonical="/contact"
         structuredData={contactStructuredData}
       />

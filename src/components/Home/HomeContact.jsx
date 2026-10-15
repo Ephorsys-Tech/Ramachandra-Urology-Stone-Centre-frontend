@@ -138,16 +138,16 @@ const HomeContact = memo(() => {
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-primary font-bold text-lg mb-1">Call Us 24/7</h4>
-                  
+
                   <div>
                     <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Primary Appointment Helpline</span>
-                    <a href="tel:+918895062072" className="text-slate-700 font-bold hover:text-secondary transition-colors inline-block mr-3">+91 88950 62072</a>
+                    <a href="tel:+919937566625" className="text-slate-700 font-bold hover:text-secondary transition-colors inline-block mr-3">+91 9937566625</a>
                   </div>
 
                   <div className="pt-1">
                     <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Emergency & OPD Helplines</span>
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      <a href="tel:+919937566625" className="text-slate-700 hover:text-secondary font-medium transition-colors">+91 99375 66625</a>
+                      <a href="tel:+919937566625" className="text-slate-700 hover:text-secondary font-medium transition-colors">+91 9937566625</a>
                       <a href="tel:+917653899199" className="text-slate-700 hover:text-secondary font-medium transition-colors">+91 76538 99199</a>
                       <a href="tel:06634075199" className="text-slate-700 hover:text-secondary font-medium transition-colors">0663-4075199</a>
                     </div>
