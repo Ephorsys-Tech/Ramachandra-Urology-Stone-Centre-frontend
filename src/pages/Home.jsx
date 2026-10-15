@@ -26,7 +26,7 @@ const homeStructuredData = {
         "Pediatric Urology",
         "Laparoscopic Surgery"
       ],
-      "telephone": ["+918895062072", "+919937566625", "+917653899199", "0663-4075199"],
+      "telephone": ["+919937566625", "+919937566625", "+917653899199", "0663-4075199"],
       "email": "ruasc.burla@gmail.com",
       "priceRange": "$$",
       "address": {
@@ -155,29 +155,29 @@ const Home = () => {
         <QuickSearch />
         <HomeStatsCounter />
 
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center py-20 bg-white">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0FA8D6]" />
-          </div>
-        }
-      >
-        <HomeDepartments />
-        <HomeDoctors />
-        <HomeAbout />
-        <HomeTechnology />
-        <HomeProstateBPH />
-        <HomeDiagnosticsStrip />
-        <NABHAccreditationSection />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center py-20 bg-white">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0FA8D6]" />
+            </div>
+          }
+        >
+          <HomeDepartments />
+          <HomeDoctors />
+          <HomeAbout />
+          <HomeTechnology />
+          <HomeProstateBPH />
+          <HomeDiagnosticsStrip />
+          <NABHAccreditationSection />
 
-        <HomeWhyChooseUs />
-        <HomeTestimonials />
+          <HomeWhyChooseUs />
+          <HomeTestimonials />
 
-        <HomeBlog />
-        <HomeFAQ />
-        <ContactSection />
-      </Suspense>
-    </main>
+          <HomeBlog />
+          <HomeFAQ />
+          <ContactSection />
+        </Suspense>
+      </main>
     </>
   );
 };

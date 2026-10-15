@@ -384,7 +384,7 @@ const Settings = () => {
                     name="emergencyPhone"
                     value={formData.emergencyPhone}
                     onChange={handleInputChange}
-                    placeholder="9090963722"
+                    placeholder="9937566625"
                     className="w-full px-3 py-2.5 border border-slate-200 focus:border-blue-500 rounded-xl text-sm outline-none transition"
                   />
                 </div>

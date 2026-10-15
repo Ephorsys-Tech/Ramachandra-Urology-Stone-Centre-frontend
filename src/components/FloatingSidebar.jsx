@@ -19,7 +19,7 @@ const FloatingSidebar = memo(() => {
   const dispatch = useDispatch();
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
-  const whatsappNumber = (settings?.whatsapp || settings?.phone || "8895062072").replace(/\D/g, "");
+  const whatsappNumber = (settings?.whatsapp || settings?.phone || "9937566625").replace(/\D/g, "");
 
   return (
     <div className="flex fixed right-0 top-1/2 -translate-y-1/2 z-[90] flex-col shadow-lg rounded-l-xl md:rounded-l-2xl overflow-hidden">

@@ -198,7 +198,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
     } else if (action === "departments") {
       navigate("/urology-services");
     } else if (action === "emergency") {
-      window.location.href = "tel:8895062072";
+      window.location.href = "tel:9937566625";
     }
   };
 
@@ -313,19 +313,17 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                           setActiveTab(tab.id);
                           setSelectedIndex(0);
                         }}
-                        className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer border ${
-                          isActive
-                            ? "bg-[#004649] text-white border-[#004649] shadow-sm"
-                            : "bg-white text-slate-600 border-slate-200/80 hover:border-slate-300 hover:bg-slate-50"
-                        }`}
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer border ${isActive
+                          ? "bg-[#004649] text-white border-[#004649] shadow-sm"
+                          : "bg-white text-slate-600 border-slate-200/80 hover:border-slate-300 hover:bg-slate-50"
+                          }`}
                       >
                         <span>{tab.label}</span>
                         <span
-                          className={`text-[11px] px-1.5 py-0.2 rounded-full font-bold ${
-                            isActive
-                              ? "bg-white/20 text-white"
-                              : "bg-slate-100 text-slate-500"
-                          }`}
+                          className={`text-[11px] px-1.5 py-0.2 rounded-full font-bold ${isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-slate-100 text-slate-500"
+                            }`}
                         >
                           {tab.count}
                         </span>
@@ -441,7 +439,7 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                             24/7 Emergency Line
                           </h4>
                           <p className="text-[11px] text-slate-500 mt-0.5">
-                            Call +91 88950 62072 instantly
+                            Call +91 9937566625 instantly
                           </p>
                         </div>
                         <ChevronRight className="w-4 h-4 text-slate-400 ml-auto group-hover:translate-x-0.5 group-hover:text-rose-600 transition-all" />
@@ -488,11 +486,10 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.18, delay: idx * 0.03 }}
-                        className={`relative flex items-center justify-between p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all duration-200 border ${
-                          isSelected
-                            ? "bg-emerald-50/20 border-emerald-500 shadow-xs ring-1 ring-emerald-500/20"
-                            : "bg-white border-slate-200/85 hover:border-slate-300 hover:shadow-xs"
-                        }`}
+                        className={`relative flex items-center justify-between p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all duration-200 border ${isSelected
+                          ? "bg-emerald-50/20 border-emerald-500 shadow-xs ring-1 ring-emerald-500/20"
+                          : "bg-white border-slate-200/85 hover:border-slate-300 hover:shadow-xs"
+                          }`}
                       >
                         <div className="flex items-center gap-3.5 min-w-0 pr-3">
                           {/* Circular Left Image/Avatar */}
@@ -539,11 +536,10 @@ const GlobalSearchModal = ({ isOpen, onClose }) => {
                             aria-label="Bookmark"
                           >
                             <Bookmark
-                              className={`w-4 h-4 ${
-                                isBookmarked
-                                  ? "fill-emerald-600 text-emerald-600"
-                                  : "text-slate-400"
-                              }`}
+                              className={`w-4 h-4 ${isBookmarked
+                                ? "fill-emerald-600 text-emerald-600"
+                                : "text-slate-400"
+                                }`}
                             />
                           </button>
                         </div>

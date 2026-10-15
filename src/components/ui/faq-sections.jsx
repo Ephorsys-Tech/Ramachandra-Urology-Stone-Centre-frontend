@@ -15,7 +15,7 @@ const defaultFaqs = [
   {
     question: "How do I book an appointment with Dr. Sanjay Kumar Mahapatra?",
     answer:
-      "You can book an appointment 24/7 directly through our website, call our Burla helpline at +91 88950 62072 / +91 99375 66625, or visit our Sourav Vihar clinic in Burla, Sambalpur.",
+      "You can book an appointment 24/7 directly through our website, call our Burla helpline at +91 9937566625 / +91 9937566625, or visit our Sourav Vihar clinic in Burla, Sambalpur.",
   },
   {
     question: "Are Ayushman Bharat (PM-JAY) and GJAY schemes accepted?",
@@ -25,7 +25,7 @@ const defaultFaqs = [
   {
     question: "What emergency support is available for acute renal colic / stone pain?",
     answer:
-      "Our emergency triage unit in Sourav Vihar, Burla operates 24/7 with immediate pain management, emergency ultrasound (USG), DJ stenting, and rapid laser stone clearance. Emergency hotline: +91 99375 66625.",
+      "Our emergency triage unit in Sourav Vihar, Burla operates 24/7 with immediate pain management, emergency ultrasound (USG), DJ stenting, and rapid laser stone clearance. Emergency hotline: +91 9937566625.",
   },
   {
     question: "What in-house diagnostic facilities are available?",

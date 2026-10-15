@@ -21,7 +21,7 @@ const DepartmentHero = () => {
         </div>
         <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
           <ShieldCheck size={14} className="text-emerald-600" />
-          <span>Ayushman Bharat &amp; GJAY Cashless</span>
+          <span>Ayushman Bharat & GJAY Cashless</span>
         </div>
         <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
           <Sparkles size={14} className="text-[#00B4EA]" />
@@ -29,7 +29,7 @@ const DepartmentHero = () => {
         </div>
         <div className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200/90 shadow-2xs">
           <Phone size={14} className="text-rose-500" />
-          <span>24/7 Emergency &amp; OPD Desk</span>
+          <span>24/7 Emergency & OPD Desk</span>
         </div>
       </div>
     </PageHero>

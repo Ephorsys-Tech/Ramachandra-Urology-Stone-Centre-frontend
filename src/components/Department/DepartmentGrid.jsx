@@ -32,7 +32,7 @@ const DepartmentGrid = () => {
     (state) => state.department || { departments: [], loading: false }
   );
   const { settings } = useSelector((state) => state.setting || {});
-  const emergencyPhone = settings?.emergencyPhone || "+91 99375 66625";
+  const emergencyPhone = settings?.emergencyPhone || "+91 9937566625";
 
   const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -103,20 +103,20 @@ const DepartmentGrid = () => {
 
   return (
     <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      
+
       {/* ── SEARCH & FILTER TOOLBAR ── */}
       <div className="rounded-3xl p-5 sm:p-7 shadow-[0_4px_24px_rgba(0,0,0,0.03)] mb-10 text-left">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-[#00B4EA] text-[11px] font-bold uppercase tracking-wider mb-2 border border-sky-100">
-              
+
               CLINICAL SPECIALITIES DIRECTORY
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#012442] tracking-tight">
-              Specialized Care Wings &amp; Divisions
+              Specialized Care Wings & Divisions
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-xl">
-              Showing {filteredWings.length} of {allWings.length} dedicated urological care wings with high-precision laser &amp; daycare procedures in Sambalpur.
+              Showing {filteredWings.length} of {allWings.length} dedicated urological care wings with high-precision laser & daycare procedures in Sambalpur.
             </p>
           </div>
 
@@ -208,7 +208,7 @@ const DepartmentGrid = () => {
                       <div className="space-y-2 mb-6 pt-4 border-t border-slate-100 w-full">
                         <div className="flex items-center justify-center gap-2 text-[11px] font-semibold text-slate-700">
                           <CheckCircle2 size={13} className="text-[#00B4EA] shrink-0" />
-                          <span>Thulium Fiber Laser &amp; Endo-Lap Interventions</span>
+                          <span>Thulium Fiber Laser & Endo-Lap Interventions</span>
                         </div>
                         <div className="flex items-center justify-center gap-2 text-[11px] font-semibold text-slate-700">
                           <ShieldCheck size={13} className="text-emerald-600 shrink-0" />
@@ -259,8 +259,8 @@ const DepartmentGrid = () => {
       <div className="mt-14 bg-gradient-to-r from-[#012442] via-[#024363] to-[#012442] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#00B4EA]/20 text-left">
         <div className="space-y-1 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00B4EA]/20 text-cyan-200 text-[11px] font-bold uppercase tracking-wider mb-1 border border-[#00B4EA]/30">
-            
-            Same-Day Clinical OPD &amp; Emergency
+
+            Same-Day Clinical OPD & Emergency
           </div>
           <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
             Need Expert Urology Consultation in Sambalpur?

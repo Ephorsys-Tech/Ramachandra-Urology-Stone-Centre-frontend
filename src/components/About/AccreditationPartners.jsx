@@ -4,7 +4,7 @@ import { Award, ShieldCheck, CheckCircle2, Sparkles, Building2, CreditCard } fro
 const AccreditationPartners = () => {
   const schemes = [
     {
-      title: "NABH Entry Level SHCO Accreditation",
+      title: "NABH SHCO Accreditation",
       category: "Certificate: PESHCO-0306-13433",
       desc: "National Accreditation Board for Hospitals & Healthcare Providers certified (Valid 30 June 2025 – 29 June 2028) for Urology, Diagnostics, Pathology & Pharmacy.",
       badge: "NABH Accredited",

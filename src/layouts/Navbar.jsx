@@ -117,8 +117,8 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  const primaryNumber = "+91 88950 62072";
-  const emergencyNumber = "+91 99375 66625";
+  const primaryNumber = "+91 9937566625";
+  const emergencyNumber = "+91 9937566625";
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
@@ -134,14 +134,14 @@ const Navbar = () => {
               {/* Badge 1: NABH SHCO Accreditation */}
               <div
                 className="group relative flex items-center justify-center cursor-pointer"
-                title="NABH Entry Level SHCO Accredited (PESHCO-0306-13433)"
+                title="NABH SHCO Accredited (PESHCO-0306-13433)"
               >
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-300 text-amber-900 shadow-2xs transition-transform group-hover:scale-105">
                   <Award size={12} className="text-amber-600 shrink-0" />
                   <span className="text-[9.5px] font-medium tracking-tight">NABH SHCO</span>
                 </div>
                 <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
-                  NABH Entry Level SHCO (Valid 2025–2028)
+                  NABH SHCO (Valid 2025–2028)
                 </div>
               </div>
 
@@ -170,6 +170,19 @@ const Navbar = () => {
                 </div>
                 <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
                   Advanced Laser Kidney Stone & Prostate Care
+                </div>
+              </div>
+              <div
+                className="group relative flex items-center justify-center cursor-pointer"
+                title=""
+              >
+                <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-violet-50 border border-violet-300/60 text-violet-800 shadow-2xs transition-transform group-hover:scale-105">
+                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse shrink-0" />
+                  <span className="text-[9.5px] font-medium tracking-tight">CT Scan</span>
+                </div>
+
+                <div className="absolute top-full mt-2 hidden group-hover:block bg-[#012442] text-white text-[10px] px-2.5 py-1 rounded shadow-md whitespace-nowrap z-50 pointer-events-none">
+                  Advanced CT Imaging & Accurate Diagnostic Scanning
                 </div>
               </div>
             </div>
@@ -214,7 +227,7 @@ const Navbar = () => {
             {/* Big Brand Logo - Fully Visible, Prominent & High-Definition */}
             <Link
               to="/"
-              className="flex items-center self-center no-underline shrink relative w-[180px] min-[380px]:w-[210px] sm:w-[260px] md:w-[340px] lg:w-[380px] xl:w-[420px] h-13 sm:h-17 md:h-18 z-10"
+              className="flex items-center self-center no-underline shrink relative w-[180px] min-[380px]:w-[210px] sm:w-[260px] md:w-[340px] lg:w-[80px] xl:w-[420px] h-13 sm:h-17 md:h-18 z-10"
             >
               <img
                 src="/logo.png"
@@ -229,11 +242,10 @@ const Navbar = () => {
               {/* 1. Home */}
               <Link
                 to="/"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname === "/"
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname === "/"
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 Home
               </Link>
@@ -243,11 +255,10 @@ const Navbar = () => {
               {/* 2. About Us */}
               <Link
                 to="/about"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname.startsWith("/about")
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/about")
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 About Us
               </Link>
@@ -257,11 +268,10 @@ const Navbar = () => {
               {/* 3. Doctors */}
               <Link
                 to="/doctors"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname.startsWith("/doctors")
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/doctors")
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 Our Doctors
               </Link>
@@ -277,18 +287,16 @@ const Navbar = () => {
               >
                 <button
                   onClick={() => setDepartmentsOpen(!departmentsOpen)}
-                  className={`flex items-center gap-1 text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors cursor-pointer border-none bg-transparent ${
-                    departmentsOpen || location.pathname.startsWith("/urology-services")
-                      ? "text-[#0FA8D6]"
-                      : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                  }`}
+                  className={`flex items-center gap-1 text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors cursor-pointer border-none bg-transparent ${departmentsOpen || location.pathname.startsWith("/urology-services")
+                    ? "text-[#0FA8D6]"
+                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                    }`}
                 >
                   <span>Urology Services</span>
                   <ChevronDown
                     size={14}
-                    className={`text-slate-500 transition-transform duration-200 ${
-                      departmentsOpen ? "rotate-180 text-[#0FA8D6]" : ""
-                    }`}
+                    className={`text-slate-500 transition-transform duration-200 ${departmentsOpen ? "rotate-180 text-[#0FA8D6]" : ""
+                      }`}
                   />
                 </button>
 
@@ -374,11 +382,10 @@ const Navbar = () => {
               {/* 5. Gallery */}
               <Link
                 to="/gallery"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname.startsWith("/gallery")
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/gallery")
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 Gallery
               </Link>
@@ -388,11 +395,10 @@ const Navbar = () => {
               {/* 6. Blog */}
               <Link
                 to="/blog"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname.startsWith("/blog")
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/blog")
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 Blog
               </Link>
@@ -402,11 +408,10 @@ const Navbar = () => {
               {/* 7. Contact Us */}
               <Link
                 to="/contact"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${
-                  location.pathname.startsWith("/contact")
-                    ? "text-[#0FA8D6]"
-                    : "text-[#012442]/90 hover:text-[#0FA8D6]"
-                }`}
+                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/contact")
+                  ? "text-[#0FA8D6]"
+                  : "text-[#012442]/90 hover:text-[#0FA8D6]"
+                  }`}
               >
                 Contact Us
               </Link>
@@ -512,11 +517,10 @@ const Navbar = () => {
                     key={to}
                     to={to}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between text-sm font-medium px-3.5 py-3 rounded-xl no-underline transition-all ${
-                      isActive
-                        ? "text-[#024363] bg-[#0FA8D6]/10 border border-[#0FA8D6]/30"
-                        : "text-[#012442] hover:bg-slate-50"
-                    }`}
+                    className={`flex items-center justify-between text-sm font-medium px-3.5 py-3 rounded-xl no-underline transition-all ${isActive
+                      ? "text-[#024363] bg-[#0FA8D6]/10 border border-[#0FA8D6]/30"
+                      : "text-[#012442] hover:bg-slate-50"
+                      }`}
                   >
                     <span>{label}</span>
                     <ArrowRight size={15} className={isActive ? "text-[#0FA8D6]" : "text-slate-400"} />
