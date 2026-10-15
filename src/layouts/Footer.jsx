@@ -38,8 +38,8 @@ const Footer = memo(() => {
   const displayDepartments = departments && departments.length > 0 ? departments : [];
 
   const hospitalName = "Ramachandra Urology & Stone Centre";
-  const primaryPhone = "+91 88950 62072";
-  const altPhones = ["+91 99375 66625", "+91 76538 99199", "0663-4075199"];
+  const primaryPhone = "+91 9937566625";
+  const altPhones = ["+91 9937566625", "+91 76538 99199", "0663-4075199"];
   const hospitalEmail = "ruasc.burla@gmail.com";
   const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
@@ -95,7 +95,7 @@ const Footer = memo(() => {
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 w-full md:w-auto md:justify-start">
             <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[10px] sm:text-xs font-bold text-[#012442] text-center">
               <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
-              <span className="whitespace-nowrap sm:whitespace-normal">NABH Entry Level SHCO (PESHCO-0306-13433)</span>
+              <span className="whitespace-nowrap sm:whitespace-normal">NABH SHCO (PESHCO-0306-13433)</span>
             </div>
             <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[10px] sm:text-xs font-bold text-[#012442]">
               <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
@@ -110,10 +110,10 @@ const Footer = memo(() => {
           {/* Right: Circular White Social Icons */}
           <div className="flex items-center justify-center gap-2 w-full md:w-auto md:justify-end md:shrink-0">
             {[
-        
+
               { icon: FaFacebook, href: "https://www.facebook.com/ramachandra.urology.stone.centre/", label: "Facebook" },
               { icon: FaInstagram, href: "https://www.instagram.com/ruasc_?stkn=MTd3dG56Zm16enBtcg==", label: "Instagram" },
-        
+
             ].map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -297,7 +297,7 @@ const Footer = memo(() => {
           <p className="m-0 text-xs text-[#012442] order-1 md:order-none">
             © {new Date().getFullYear()} {hospitalName}. All rights reserved.
           </p>
-    
+
           <p className="flex flex-wrap items-center justify-center gap-1 m-0 text-xs text-[#024363] order-3 md:order-none">
             Designed & Developed  by{" "}
             <a

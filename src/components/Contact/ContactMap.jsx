@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const ContactMap = () => {
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
-  const emergencyPhone = settings?.emergencyPhone || "8895062072";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
 
   // Google Maps directions search query for Ramachandra Urology, Sambalpur
   const googleMapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Ramachandra Urology and Stone Centre Sourav Vihar Burla Sambalpur Odisha")}`;

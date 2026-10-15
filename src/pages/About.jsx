@@ -10,10 +10,10 @@ import InfrastructureShowcase from "../components/About/InfrastructureShowcase";
 import VisionMissionValues from "../components/About/VisionMissionValues";
 import AccreditationPartners from "../components/About/AccreditationPartners";
 import SEO from "../components/common/SEO";
-import { 
-  ArrowUpRight, 
-  ShieldCheck, 
-  Sparkles, 
+import {
+  ArrowUpRight,
+  ShieldCheck,
+  Sparkles,
   CheckCircle2,
   Award,
   Stethoscope,
@@ -64,8 +64,8 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
       {/* Chapter Image Frame */}
       {chapter.image && (
         <div className="relative my-6 rounded-3xl overflow-hidden border border-[#0FA8D6]/30 shadow-md group">
-          <img 
-            src={chapter.image} 
+          <img
+            src={chapter.image}
             alt={chapter.title}
             className="w-full h-60 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
           />
@@ -90,8 +90,8 @@ const NarrativeChapter = ({ chapter, index, isActive, onViewportEnter }) => {
             >
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden bg-slate-100 border border-[#0FA8D6]/30 shrink-0 relative">
-                  <img 
-                    src={leader.image} 
+                  <img
+                    src={leader.image}
                     alt={leader.name}
                     className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                   />
@@ -155,8 +155,8 @@ const About = () => {
   const [activeChapterIndex, setActiveChapterIndex] = useState(0);
   const { settings } = useSelector((state) => state.setting || {});
 
-  const emergencyPhone = settings?.emergencyPhone || "99375 66625";
-  const generalPhone = settings?.phone || "88950 62072";
+  const emergencyPhone = settings?.emergencyPhone || "9937566625";
+  const generalPhone = settings?.phone || "9937566625";
   const hospitalEmail = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
@@ -193,7 +193,7 @@ const About = () => {
           image: "https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538200/img_6670_1024.webp"
         },
         {
-          name: "Dr. Kiran Negi",
+          name: "Dr. Kiran Kumar Negi",
           qualifications: "M.S., M.Ch (Urology)",
           role: "Specialist Consultant Urologist",
           specialty: "Laparoscopy & Reconstruction",
@@ -296,7 +296,7 @@ const About = () => {
             "jobTitle": "Founder & Chief Urologist",
             "alumniOf": "AIIMS New Delhi (M.Ch Urology)"
           },
-          "award": "NABH Entry Level SHCO Accreditation (PESHCO-0306-13433)"
+          "award": "NABH SHCO Accreditation (PESHCO-0306-13433)"
         }
       }
     ]
@@ -311,226 +311,226 @@ const About = () => {
         structuredData={aboutStructuredData}
       />
       <main className="min-h-screen bg-[#f8fafc] text-slate-800  selection:bg-[#0FA8D6] selection:text-white">
-      
-      {/* ── 1. UNIFIED PAGE HERO (BLUE THEME) ── */}
-      <PageHero
-        badge="Ramachandra Urology & Stone Centre • Sambalpur"
-        breadcrumb="About Hospital"
-        title="Super-Specialty Care."
-        highlightTitle="World-Class Precision."
-        subtitle="Ramachandra Urology & Stone Centre is Western Odisha's premier destination for advanced laser urology, RIRS stone removal, laparoscopic surgeries, and comprehensive renal healthcare — founded and directed by AIIMS New Delhi alumnus Dr. Sanjay Kumar Mahapatra."
-        image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
-        imageAlt="Ramachandra Urology & Stone Centre Building, Sambalpur"
-        imageTag="NABH Accredited Hospital"
-        theme="blue"
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
-          {[
-            { title: "NABH Accredited", desc: "Certified Hospital" },
-            { title: "AIIMS Lead Director", desc: "Dr. S.K. Mahapatra" },
-            { title: "TFL Laser Center", desc: "Dust-Free Lithotripsy" }
-          ].map((spec, idx) => (
-            <div key={idx} className="p-2.5 rounded-2xl bg-white border border-[#0FA8D6]/30 shadow-2xs">
-              <p className="text-xs font-bold text-[#024363] uppercase  m-0">{spec.title}</p>
-              <p className="text-[11px] text-slate-500 font-medium m-0 mt-0.5">{spec.desc}</p>
-            </div>
-          ))}
-        </div>
-      </PageHero>
 
-      {/* ── 2. HAIRLINE METRIC LEDGER ── */}
-      <section className="border-b border-slate-200 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-200">
-            {metrics.map((m, idx) => (
-              <div key={idx} className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
-                <span className=" text-[11px] text-[#0FA8D6] uppercase tracking-widest block mb-3 font-bold">
-                  METRIC N° 0{idx + 1}
-                </span>
-                <div>
-                  <div className=" text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#012442] mb-1">
-                    {m.value}
-                  </div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#024363] mb-1">
-                    {m.label}
-                  </div>
-                  <div className="text-xs  text-slate-400">
-                    {m.note}
-                  </div>
-                </div>
+        {/* ── 1. UNIFIED PAGE HERO (BLUE THEME) ── */}
+        <PageHero
+          badge="Ramachandra Urology & Stone Centre • Sambalpur"
+          breadcrumb="About Hospital"
+          title="Super-Specialty Care."
+          highlightTitle="World-Class Precision."
+          subtitle="Ramachandra Urology & Stone Centre is Western Odisha's premier destination for advanced laser urology, RIRS stone removal, laparoscopic surgeries, and comprehensive renal healthcare — founded and directed by AIIMS New Delhi alumnus Dr. Sanjay Kumar Mahapatra."
+          image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
+          imageAlt="Ramachandra Urology & Stone Centre Building, Sambalpur"
+          imageTag="NABH Accredited Hospital"
+          theme="blue"
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+            {[
+              { title: "NABH Accredited", desc: "Certified Hospital" },
+              { title: "AIIMS Lead Director", desc: "Dr. S.K. Mahapatra" },
+              { title: "TFL Laser Center", desc: "Dust-Free Lithotripsy" }
+            ].map((spec, idx) => (
+              <div key={idx} className="p-2.5 rounded-2xl bg-white border border-[#0FA8D6]/30 shadow-2xs">
+                <p className="text-xs font-bold text-[#024363] uppercase  m-0">{spec.title}</p>
+                <p className="text-[11px] text-slate-500 font-medium m-0 mt-0.5">{spec.desc}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </PageHero>
 
-      {/* ── 3. PRESERVED INTERACTIVE SPLIT-SCROLL NARRATIVE CHAPTERS ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-slate-200">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start">
-          
-          {/* LEFT COLUMN: Sticky Anchor Card */}
-          <div className="md:col-span-5 md:sticky md:top-24 self-start space-y-6">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#0FA8D6]/30 shadow-md space-y-6">
-              
-              <div>
-                <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0FA8D6]  block mb-1">
-                  Institutional Profile
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-tight m-0">
-                  Ramachandra Urology & Stone Centre
-                </h2>
-              </div>
-
-              {/* Active Milestone Progress Bar */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2.5">
-                <div className="flex items-center justify-between  text-xs text-slate-500">
-                  <span>ACTIVE CHAPTER</span>
-                  <span className="text-[#024363] font-bold">
-                    0{activeChapterIndex + 1} / 0{chapters.length}
+        {/* ── 2. HAIRLINE METRIC LEDGER ── */}
+        <section className="border-b border-slate-200 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-slate-200">
+              {metrics.map((m, idx) => (
+                <div key={idx} className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+                  <span className=" text-[11px] text-[#0FA8D6] uppercase tracking-widest block mb-3 font-bold">
+                    METRIC N° 0{idx + 1}
                   </span>
+                  <div>
+                    <div className=" text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#012442] mb-1">
+                      {m.value}
+                    </div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#024363] mb-1">
+                      {m.label}
+                    </div>
+                    <div className="text-xs  text-slate-400">
+                      {m.note}
+                    </div>
+                  </div>
                 </div>
-                <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-[#00B4EA] transition-all duration-500 ease-out"
-                    style={{ width: `${((activeChapterIndex + 1) / chapters.length) * 100}%` }}
-                  />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 3. PRESERVED INTERACTIVE SPLIT-SCROLL NARRATIVE CHAPTERS ── */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-slate-200">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start">
+
+            {/* LEFT COLUMN: Sticky Anchor Card */}
+            <div className="md:col-span-5 md:sticky md:top-24 self-start space-y-6">
+              <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#0FA8D6]/30 shadow-md space-y-6">
+
+                <div>
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0FA8D6]  block mb-1">
+                    Institutional Profile
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight leading-tight m-0">
+                    Ramachandra Urology & Stone Centre
+                  </h2>
                 </div>
-                <p className="text-xs font-bold text-[#012442] truncate pt-1 m-0">
-                  → {chapters[activeChapterIndex]?.title}
+
+                {/* Active Milestone Progress Bar */}
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2.5">
+                  <div className="flex items-center justify-between  text-xs text-slate-500">
+                    <span>ACTIVE CHAPTER</span>
+                    <span className="text-[#024363] font-bold">
+                      0{activeChapterIndex + 1} / 0{chapters.length}
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-[#00B4EA] transition-all duration-500 ease-out"
+                      style={{ width: `${((activeChapterIndex + 1) / chapters.length) * 100}%` }}
+                    />
+                  </div>
+                  <p className="text-xs font-bold text-[#012442] truncate pt-1 m-0">
+                    → {chapters[activeChapterIndex]?.title}
+                  </p>
+                </div>
+
+                {/* Contact & Location Brief */}
+                <div className="space-y-3 pt-2 border-t border-slate-100">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#024363]  m-0">
+                    SAMBALPUR CAMPUS LOCATION
+                  </h4>
+                  <div className="space-y-2 text-xs text-slate-700 font-medium">
+                    <div className="flex items-start gap-2.5">
+                      <MapPin className="w-4 h-4 text-[#0FA8D6] shrink-0 mt-0.5" />
+                      <span>{hospitalAddress}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Phone className="w-4 h-4 text-[#0FA8D6] shrink-0" />
+                      <span>+91 {generalPhone}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Mail className="w-4 h-4 text-[#0FA8D6] shrink-0" />
+                      <span>{hospitalEmail}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="pt-2">
+                  <button
+                    onClick={() => dispatch(openAppointmentModal())}
+                    className="w-full py-3 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
+                  >
+                    <Calendar size={14} />
+                    <span>Book Hospital Visit</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN: Editorial Chapters */}
+            <div className="md:col-span-7 space-y-16 sm:space-y-20">
+              {chapters.map((chapter, index) => (
+                <NarrativeChapter
+                  key={chapter.id}
+                  chapter={chapter}
+                  index={index}
+                  isActive={activeChapterIndex === index}
+                  onViewportEnter={setActiveChapterIndex}
+                />
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* ── 4. FOUNDER & SURGICAL DIRECTOR SPOTLIGHT ── */}
+        <FounderSpotlight />
+
+        {/* ── 5. CLINICAL LEADERSHIP & FACULTY TEAM ── */}
+        <LeadershipTeam />
+
+        {/* ── 6. STATE-OF-THE-ART MEDICAL INFRASTRUCTURE ── */}
+        <InfrastructureShowcase />
+
+        {/* ── 7. GUIDING VISION, MISSION & 4 CORE ETHOS ── */}
+        <VisionMissionValues />
+
+        {/* ── 8. ACCREDITATIONS & CASHLESS SCHEMES ── */}
+        <AccreditationPartners />
+
+        {/* ── 9. 24/7 HOSPITAL REACH & FAST APPOINTMENT CTA ── */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-[#0FA8D6]/30 shadow-xl relative overflow-hidden">
+
+            <div className="absolute top-0 right-1/4 w-80 h-full bg-white/5 blur-3xl pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+
+              <div className="lg:col-span-8 space-y-4">
+                <span className=" text-xs uppercase tracking-widest text-[#0FA8D6] font-extrabold block">
+                  VISIT OUR SAMBALPUR HOSPITAL
+                </span>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight m-0 leading-tight">
+                  Ramachandra Urology & Stone Centre
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed m-0 font-medium">
+                  {hospitalAddress}
                 </p>
-              </div>
 
-              {/* Contact & Location Brief */}
-              <div className="space-y-3 pt-2 border-t border-slate-100">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#024363]  m-0">
-                  SAMBALPUR CAMPUS LOCATION
-                </h4>
-                <div className="space-y-2 text-xs text-slate-700 font-medium">
-                  <div className="flex items-start gap-2.5">
-                    <MapPin className="w-4 h-4 text-[#0FA8D6] shrink-0 mt-0.5" />
-                    <span>{hospitalAddress}</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <Phone className="w-4 h-4 text-[#0FA8D6] shrink-0" />
-                    <span>+91 {emergencyPhone} / {generalPhone}</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <Mail className="w-4 h-4 text-[#0FA8D6] shrink-0" />
-                    <span>{hospitalEmail}</span>
-                  </div>
+                <div className="flex flex-wrap gap-2.5 text-xs text-white pt-2">
+                  <a
+                    href={`tel:+91${emergencyPhone.replace(/\s/g, '')}`}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                  >
+                    📞 24x7 SOS: +91 {emergencyPhone}
+                  </a>
+                  <a
+                    href={`tel:+91${generalPhone.replace(/[^\d]/g, '')}`}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                  >
+                    📞 OPD: +91 {generalPhone}
+                  </a>
+                  <a
+                    href={`mailto:${hospitalEmail}`}
+                    className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
+                  >
+                    ✉️ {hospitalEmail}
+                  </a>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="pt-2">
+              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
                 <button
                   onClick={() => dispatch(openAppointmentModal())}
-                  className="w-full py-3 bg-[#00B4EA] hover:from-[#00b4ea] hover:to-[#013550] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all cursor-pointer border-none flex items-center justify-center gap-2 uppercase tracking-wider"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 text-[#012442] font-medium text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer border-none"
                 >
                   <Calendar size={14} />
-                  <span>Book Hospital Visit</span>
+                  <span>BOOK AN APPOINTMENT</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
+
+                <Link
+                  to="/doctors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-all border border-white/20 no-underline text-center"
+                >
+                  <span>CONSULT OUR SPECIALISTS</span>
+                </Link>
               </div>
 
             </div>
-          </div>
-
-          {/* RIGHT COLUMN: Editorial Chapters */}
-          <div className="md:col-span-7 space-y-16 sm:space-y-20">
-            {chapters.map((chapter, index) => (
-              <NarrativeChapter
-                key={chapter.id}
-                chapter={chapter}
-                index={index}
-                isActive={activeChapterIndex === index}
-                onViewportEnter={setActiveChapterIndex}
-              />
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── 4. FOUNDER & SURGICAL DIRECTOR SPOTLIGHT ── */}
-      <FounderSpotlight />
-
-      {/* ── 5. CLINICAL LEADERSHIP & FACULTY TEAM ── */}
-      <LeadershipTeam />
-
-      {/* ── 6. STATE-OF-THE-ART MEDICAL INFRASTRUCTURE ── */}
-      <InfrastructureShowcase />
-
-      {/* ── 7. GUIDING VISION, MISSION & 4 CORE ETHOS ── */}
-      <VisionMissionValues />
-
-      {/* ── 8. ACCREDITATIONS & CASHLESS SCHEMES ── */}
-      <AccreditationPartners />
-
-      {/* ── 9. 24/7 HOSPITAL REACH & FAST APPOINTMENT CTA ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <div className="bg-gradient-to-br from-[#012442] via-[#024363] to-[#012442] text-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-[#0FA8D6]/30 shadow-xl relative overflow-hidden">
-          
-          <div className="absolute top-0 right-1/4 w-80 h-full bg-white/5 blur-3xl pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            
-            <div className="lg:col-span-8 space-y-4">
-              <span className=" text-xs uppercase tracking-widest text-[#0FA8D6] font-extrabold block">
-                VISIT OUR SAMBALPUR HOSPITAL
-              </span>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-tight m-0 leading-tight">
-                Ramachandra Urology & Stone Centre
-              </h3>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed m-0 font-medium">
-                {hospitalAddress}
-              </p>
-              
-              <div className="flex flex-wrap gap-2.5 text-xs text-white pt-2">
-                <a
-                  href={`tel:+91${emergencyPhone.replace(/\s/g, '')}`}
-                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
-                >
-                  📞 24x7 SOS: +91 {emergencyPhone}
-                </a>
-                <a
-                  href={`tel:+91${generalPhone.replace(/[^\d]/g, '')}`}
-                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
-                >
-                  📞 OPD: +91 {generalPhone}
-                </a>
-                <a
-                  href={`mailto:${hospitalEmail}`}
-                  className="px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors no-underline text-white"
-                >
-                  ✉️ {hospitalEmail}
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
-              <button
-                onClick={() => dispatch(openAppointmentModal())}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0FA8D6] to-[#00b4ea] hover:brightness-110 text-[#012442] font-medium text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer border-none"
-              >
-                <Calendar size={14} />
-                <span>BOOK AN APPOINTMENT</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              
-              <Link
-                to="/doctors"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-all border border-white/20 no-underline text-center"
-              >
-                <span>CONSULT OUR SPECIALISTS</span>
-              </Link>
-            </div>
 
           </div>
+        </section>
 
-        </div>
-      </section>
-
-    </main>
+      </main>
     </>
   );
 };

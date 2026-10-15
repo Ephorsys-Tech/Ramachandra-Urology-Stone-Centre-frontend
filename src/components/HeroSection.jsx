@@ -55,7 +55,7 @@ const HeroSection = memo(() => {
   const dispatch = useDispatch();
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
-  const primaryPhone = settings?.phone || "+91 88950 62072";
+  const primaryPhone = settings?.phone || "+91 9937566625";
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 

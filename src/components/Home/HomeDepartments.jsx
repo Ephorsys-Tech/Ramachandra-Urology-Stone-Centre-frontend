@@ -186,7 +186,7 @@ const HomeDepartments = memo(() => {
                         {/* Clinical Feature Highlight */}
                         <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-600 mb-2">
                           <CheckCircle2 size={12} className="text-[#00B4EA] shrink-0" />
-                          <span className="truncate">Laser &amp; Minimally Invasive</span>
+                          <span className="truncate">Laser & Minimally Invasive</span>
                         </div>
                       </div>
 
@@ -213,8 +213,8 @@ const HomeDepartments = memo(() => {
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer border-none ${currentIndex === dotIdx
-                    ? 'w-7 bg-[#00B4EA]'
-                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  ? 'w-7 bg-[#00B4EA]'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />

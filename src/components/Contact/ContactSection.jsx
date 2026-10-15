@@ -28,8 +28,8 @@ const ContactSection = memo(() => {
   const { departments = [], loading: deptsLoading } = useSelector((state) => state.department || {});
   const { settings } = useSelector((state) => state.setting || { settings: null });
   const emergencyPhone = settings?.emergencyPhone || "9937566625";
-  const generalPhone = settings?.phone || "8895062072";
-  const altPhones = ["7653899199", "0663-4075199"];
+  const generalPhone = settings?.phone || "9937566625";
+
   const emailAddress = settings?.email || "ruasc.burla@gmail.com";
   const hospitalAddress = settings?.address || "Sourav Vihar, Burla, Sambalpur - 768017, Odisha";
 
@@ -141,7 +141,7 @@ const ContactSection = memo(() => {
 
             {/* Header pill */}
             <div>
-             
+
               <h2 className="text-2xl sm:text-3xl font-medium text-[#012442] tracking-tight">
                 Get in Touch with Our Team
               </h2>
@@ -181,20 +181,13 @@ const ContactSection = memo(() => {
                 <div className="flex items-center justify-between">
                   <span className="text-slate-300">24/7 Emergency:</span>
                   <a
-                    href={`tel:${emergencyPhone}`}
+                    href={`tel:${generalPhone}`}
                     className="font-extrabold text-white hover:text-[#0FA8D6] transition-colors no-underline"
                   >
-                    +91 {emergencyPhone}
+                    +91 {generalPhone}
                   </a>
                 </div>
-                <div className="flex items-center justify-between text-xs text-slate-300">
-                  <span>Other Phone Lines:</span>
-                  <div className="flex gap-2 font-bold text-slate-200">
-                    <a href="tel:7653899199" className="hover:text-[#0FA8D6] transition-colors">+91 7653899199</a>
-                    <span>•</span>
-                    <a href="tel:06634075199" className="hover:text-[#0FA8D6] transition-colors">0663-4075199</a>
-                  </div>
-                </div>
+
               </div>
 
               <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-cyan-200">
