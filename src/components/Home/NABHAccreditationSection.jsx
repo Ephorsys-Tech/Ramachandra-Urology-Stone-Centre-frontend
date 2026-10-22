@@ -121,7 +121,7 @@ const NABHAccreditationSection = memo(() => {
               <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-300">
                 <span>Committed to Patient Safety & Clinical Excellence</span>
                 <span className="font-bold text-amber-300 flex items-center gap-1">
-                  <ShieldCheck size={13} /> Entry Level SHCO
+                  <ShieldCheck size={13} /> SHCO
                 </span>
               </div>
             </div>
