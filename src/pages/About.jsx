@@ -162,8 +162,8 @@ const About = () => {
 
   // Hairline Metric Ledger Data
   const metrics = [
-    { value: "NABH", label: "ENTRY LEVEL SHCO", note: "PESHCO-0306-13433 (2025–2028)" },
-    { value: "AIIMS", label: "NEW DELHI LEADERSHIP", note: "Dr. Sanjay Kumar Mahapatra (M.Ch)" },
+    { value: "NABH", label: "SHCO", note: "PESHCO-0306-13433 (2025–2028)" },
+    { value: "AIIMS", label: "NEW DELHI LEADERSHIP", note: "Dr. Debahuti Mahapatra, (M.Ch)" },
     { value: "TFL", label: "THULIUM FIBER LASER", note: "Dust-Free Laser Lithotripsy & THUFLEP" },
     { value: "100%", label: "CASHLESS GOVT. SCHEMES", note: "Ayushman Bharat & GJAY Empanelled" },
   ];
@@ -318,7 +318,7 @@ const About = () => {
           breadcrumb="About Hospital"
           title="Super-Specialty Care."
           highlightTitle="World-Class Precision."
-          subtitle="Ramachandra Urology & Stone Centre is Western Odisha's premier destination for advanced laser urology, RIRS stone removal, laparoscopic surgeries, and comprehensive renal healthcare — founded and directed by AIIMS New Delhi alumnus Dr. Sanjay Kumar Mahapatra."
+          subtitle="Ramachandra Urology & Stone Centre is Western Odisha's premier destination for advanced laser urology, RIRS stone removal, laparoscopic surgeries, and comprehensive renal healthcare — founded and directed by AIIMS New Delhi alumnus Dr. Debahuti Mahapatra."
           image="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791368685/img_6655_1024.png"
           imageAlt="Ramachandra Urology & Stone Centre Building, Sambalpur"
           imageTag="NABH Accredited Hospital"

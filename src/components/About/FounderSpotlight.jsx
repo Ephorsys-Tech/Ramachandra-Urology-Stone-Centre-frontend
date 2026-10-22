@@ -35,8 +35,8 @@ const FounderSpotlight = () => {
               {/* Photo — no wrapper, clean rounded card */}
               <div className="rounded-[28px] overflow-hidden aspect-[3/3] bg-slate-200 relative shadow-lg">
                 <img
-                  src="https://res.cloudinary.com/uvh9ozrt/image/upload/v1791538200/img_6670_1024.webp"
-                  alt="Dr. Sanjay Kumar Mahapatra - Founder & Surgical Director"
+                  src="https://res.cloudinary.com/uvh9ozrt/image/upload/v1792650971/mrs_debahuti_mahapatra.jpg"
+                  alt="Dr. Debahuti Mahapatra - Managing Director"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover object-top"
@@ -47,7 +47,7 @@ const FounderSpotlight = () => {
                 {/* Inline LinkedIn bar at bottom of image */}
                 <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 py-3">
                   <span className="text-xs sm:text-sm text-white font-medium drop-shadow-sm">
-                    Follow Dr. Mahapatra on LinkedIn
+                    Follow Dr. Debahuti Mahapatra on LinkedIn
                   </span>
                   <a
                     href="https://www.linkedin.com"
@@ -74,10 +74,10 @@ const FounderSpotlight = () => {
             {/* Header */}
             <div className="mb-6">
               <h3 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-normal text-[#012442] tracking-tight leading-tight m-0">
-                From Dr. Sanjay Kumar Mahapatra
+                From Dr. Debahuti Mahapatra
               </h3>
               <p className="text-sm sm:text-base font-bold text-[#0FA8D6] mt-1 m-0 tracking-wide">
-                Founder & Surgical Director
+                Managing Director
               </p>
             </div>
 
