@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -10,12 +10,9 @@ import {
   Building,
   Mail,
   ShieldCheck,
-  CheckCircle2,
-  Sparkles,
   CalendarCheck
 } from "lucide-react";
 import { closeAppointmentModal } from "../redux/features/patient/patientSlice";
-import { fetchAllDepartments } from "../redux/features/department/departmentThunk";
 import { submitAppointmentRequest } from "../redux/features/appointmentRequest/appointmentRequestThunk";
 import toast from "react-hot-toast";
 
@@ -27,10 +24,10 @@ const TIME_SLOTS = [
   "06:00 PM - 08:00 PM"
 ];
 
+
 export default function AppointmentModal() {
   const dispatch = useDispatch();
-  const { isAppointmentModalOpen, preselectedDepartment } = useSelector((state) => state.patient);
-  const { departments } = useSelector((state) => state.department || { departments: [] });
+  const { isAppointmentModalOpen } = useSelector((state) => state.patient);
   const { loading } = useSelector((state) => state.appointmentRequest || { loading: false });
   const { settings } = useSelector((state) => state.setting || { settings: null });
 
@@ -42,43 +39,29 @@ export default function AppointmentModal() {
     gender: "Male",
     phone: "",
     email: "",
-    department: "",
+    department: "Urology",
     date: "",
     timeSlot: "09:00 AM - 11:00 AM",
     message: "",
   });
 
-  // Fetch departments if not already loaded
-  useEffect(() => {
-    if (isAppointmentModalOpen && departments.length === 0) {
-      dispatch(fetchAllDepartments());
-    }
-  }, [isAppointmentModalOpen, departments.length, dispatch]);
-
-  // Sync preselected department if modal opens with one
+  // Reset form when modal opens with department set strictly to Urology
   const [prevIsOpen, setPrevIsOpen] = useState(false);
-  const [prevDeptsLength, setPrevDeptsLength] = useState(0);
 
-  if (isAppointmentModalOpen !== prevIsOpen || departments.length !== prevDeptsLength) {
+  if (isAppointmentModalOpen !== prevIsOpen) {
     setPrevIsOpen(isAppointmentModalOpen);
-    setPrevDeptsLength(departments.length);
     if (isAppointmentModalOpen) {
-      setFormData((prev) => ({
-        ...prev,
-        ...(isAppointmentModalOpen !== prevIsOpen
-          ? {
-            name: "",
-            age: "",
-            gender: "Male",
-            phone: "",
-            email: "",
-            date: new Date().toISOString().split("T")[0],
-            timeSlot: TIME_SLOTS[0],
-            message: "",
-          }
-          : {}),
-        department: preselectedDepartment || prev.department || (departments.length > 0 ? departments[0].name : ""),
-      }));
+      setFormData({
+        name: "",
+        age: "",
+        gender: "Male",
+        phone: "",
+        email: "",
+        department: "Urology",
+        date: new Date().toISOString().split("T")[0],
+        timeSlot: TIME_SLOTS[0],
+        message: "",
+      });
     }
   }
 
@@ -282,12 +265,7 @@ export default function AppointmentModal() {
                       required
                       className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 hover:border-slate-300 focus:border-[#0FA8D6] focus:bg-white rounded-xl text-sm outline-none transition-all text-slate-800 cursor-pointer shadow-xs focus:ring-2 focus:ring-[#0FA8D6]/15 font-semibold"
                     >
-                      <option value="">Choose Clinical Department</option>
-                      {departments.map((dept, idx) => (
-                        <option key={dept._id || idx} value={dept.name}>
-                          {dept.name}
-                        </option>
-                      ))}
+                      <option value="Urology">Urology</option>
                     </select>
                   </div>
                 </div>
