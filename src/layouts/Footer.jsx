@@ -17,6 +17,7 @@ import {
   Microscope,
   Pill,
   Zap,
+  Scan,
 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -65,11 +66,11 @@ const Footer = memo(() => {
     <footer className="bg-[#eaf4f9] text-[#1e293b]  border-t border-[#0FA8D6]/20 overflow-x-hidden">
 
       {/* ── 1. TOP HEADER ROW: LOGO + ACCREDITATION BADGES + SOCIAL ICONS ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-1">
-        <div className="flex flex-col items-center gap-5 md:flex-row md:items-center md:justify-between md:gap-6 border-b border-[#0FA8D6]/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-1">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 lg:gap-4 py-3 sm:py-4 border-b border-[#0FA8D6]/20">
 
           {/* Left: Brand Logo */}
-          <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:items-center sm:gap-3 sm:text-left md:shrink-0">
+          <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:items-center sm:gap-3 sm:text-left shrink-0">
             <Link
               to="/"
               className="inline-flex items-center transition-all group"
@@ -78,7 +79,7 @@ const Footer = memo(() => {
               <img
                 src="/logo.png"
                 alt={hospitalName}
-                className="h-12 sm:h-14 md:h-14 lg:h-16 w-auto object-contain group-hover:scale-[1.02] transition-transform"
+                className="h-11 sm:h-12 md:h-13 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform"
               />
             </Link>
             <div className="block">
@@ -91,24 +92,36 @@ const Footer = memo(() => {
             </div>
           </div>
 
-          {/* Center / Badges: NABH & Ayushman / GJAY badges */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 w-full md:w-auto md:justify-start">
-            <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[10px] sm:text-xs font-bold text-[#012442] text-center">
-              <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
-              <span className="whitespace-nowrap sm:whitespace-normal">NABH SHCO (PESHCO-0306-13433)</span>
+          {/* Center / Badges: NABH & Ayushman / GJAY / Thulium Laser / CT Scan */}
+          {/* Mobile: 2 rows of 2 badges (no scrolling). Tablet/Desktop: all 4 in 1 continuous row */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-1.5 md:gap-2 py-1">
+            {/* Row 1 on mobile: Badge 1 & Badge 2 */}
+            <div className="flex items-center justify-center flex-nowrap gap-1 sm:gap-1.5 md:gap-2">
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[9px] sm:text-[10px] md:text-[10.5px] font-bold text-[#012442] whitespace-nowrap shrink-0 hover:border-[#0FA8D6] transition-colors">
+                <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 shrink-0" />
+                <span>NABH SHCO (PESHCO-0306-13433)</span>
+              </div>
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[9px] sm:text-[10px] md:text-[10.5px] font-bold text-[#012442] whitespace-nowrap shrink-0 hover:border-[#0FA8D6] transition-colors">
+                <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-600 shrink-0" />
+                <span>Ayushman Bharat / GJAY</span>
+              </div>
             </div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[10px] sm:text-xs font-bold text-[#012442]">
-              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
-              <span>Ayushman Bharat / GJAY</span>
-            </div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[10px] sm:text-xs font-bold text-[#012442]">
-              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0FA8D6] shrink-0" />
-              <span>Thulium Fiber Laser</span>
+
+            {/* Row 2 on mobile: Badge 3 & Badge 4 */}
+            <div className="flex items-center justify-center flex-nowrap gap-1 sm:gap-1.5 md:gap-2">
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[9px] sm:text-[10px] md:text-[10.5px] font-bold text-[#012442] whitespace-nowrap shrink-0 hover:border-[#0FA8D6] transition-colors">
+                <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0FA8D6] shrink-0" />
+                <span>Thulium Fiber Laser</span>
+              </div>
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl bg-white border border-[#0FA8D6]/30 shadow-2xs text-[9px] sm:text-[10px] md:text-[10.5px] font-bold text-[#012442] whitespace-nowrap shrink-0 hover:border-[#0FA8D6] transition-colors">
+                <Scan className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-violet-600 shrink-0" />
+                <span>CT Scan</span>
+              </div>
             </div>
           </div>
 
           {/* Right: Circular White Social Icons */}
-          <div className="flex items-center justify-center gap-2 w-full md:w-auto md:justify-end md:shrink-0">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 shrink-0">
             {[
 
               { icon: FaFacebook, href: "https://www.facebook.com/ramachandra.urology.stone.centre/", label: "Facebook" },
@@ -121,9 +134,9 @@ const Footer = memo(() => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white text-[#012442] hover:bg-[#0FA8D6] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 border border-[#0FA8D6]/20 shrink-0"
+                className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-white text-[#012442] hover:bg-[#0FA8D6] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 border border-[#0FA8D6]/20 shrink-0"
               >
-                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </a>
             ))}
           </div>
@@ -206,7 +219,7 @@ const Footer = memo(() => {
                 In-House Diagnostics:
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {["Pathology", "Digital X-Ray", "Ultrasound", "Pharmacy", "Uro-Dynamics"].map((tag, i) => (
+                {["Pathology", "Digital X-Ray", "CT Scan", "Ultrasound", "Pharmacy", "Uro-Dynamics"].map((tag, i) => (
                   <span
                     key={i}
                     className="text-[10px] font-semibold bg-white text-[#012442] px-2 py-0.5 rounded-md border border-[#0FA8D6]/20 shadow-2xs"

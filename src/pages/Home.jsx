@@ -15,7 +15,7 @@ const homeStructuredData = {
       "url": "https://ramachandraurology.com/",
       "logo": "https://ramachandraurology.com/logo.png",
       "image": "https://ramachandraurology.com/logo.png",
-      "description": "Centre for Advanced Kidney Care & Laparoscopic Surgeries. NABH Accredited Entry Level SHCO (PESHCO-0306-13433), Reg No. 14/2024.",
+      "description": "Centre for Advanced Kidney Care & Laparoscopic Surgeries. NABH Accredited SHCO (PESHCO-0306-13433), Reg No. 14/2024.",
       "medicalSpecialty": [
         "Urology",
         "Endourology",
