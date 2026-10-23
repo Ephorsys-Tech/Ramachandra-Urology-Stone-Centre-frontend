@@ -79,7 +79,7 @@ const Footer = memo(() => {
               <img
                 src="/logo.png"
                 alt={hospitalName}
-                className="h-11 sm:h-12 md:h-13 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform"
+                className="h-[54px] min-[380px]:h-[60px] sm:h-[68px] md:h-[76px] lg:h-[84px] xl:h-[90px] w-auto object-contain group-hover:scale-[1.02] transition-transform"
               />
             </Link>
             <div className="block">
