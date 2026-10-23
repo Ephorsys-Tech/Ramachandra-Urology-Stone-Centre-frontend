@@ -107,7 +107,7 @@ const HeroSection = memo(() => {
         </div>
 
         {/* ── MAIN CONTENT (CLEAN, SHARP & LEFT-ALIGNED) ── */}
-        <div className="relative z-20 max-w-6xl mr-auto ml-0 w-full flex flex-col justify-center my-auto py-2 pr-6 sm:pr-0">
+        <div className="relative z-20 max-w-6xl mr-auto ml-0 w-full flex flex-col justify-center my-auto py-2 pr-6 sm:pr-0 pl-3 sm:pl-6 md:pl-10 lg:pl-12 xl:pl-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
