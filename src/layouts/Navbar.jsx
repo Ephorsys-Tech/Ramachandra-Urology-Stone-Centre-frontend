@@ -126,7 +126,7 @@ const Navbar = () => {
           measure its real rendered height for the mobile drawer offset */}
       <div ref={headerRef}>
         {/* ── TOP RIGHT INFORMATION & ACCREDITATION STRIP (SLEEK & TIGHT) ── */}
-        <div className="hidden lg:block bg-slate-50/70 border-b border-slate-100 py-1 px-4 sm:px-6 lg:px-8">
+        <div className="hidden lg:block bg-slate-50/70 border-b border-slate-100 py-0.5 px-4 sm:px-6 lg:px-8">
           <div className="max-w-[1400px] mx-auto flex items-center justify-end gap-5 text-[11.5px]">
 
             {/* Accreditation Badges */}
@@ -221,28 +221,33 @@ const Navbar = () => {
         </div>
 
         {/* ── MAIN PROMINENT NAVBAR ROW ── */}
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5">
-          <div className="flex items-center justify-between gap-4 min-h-[68px] sm:min-h-[76px] lg:min-h-[84px]">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-1.5">
+          <div className="flex items-center justify-between gap-3 lg:gap-4">
 
             {/* Big Brand Logo - Clean, Prominent & High-Definition */}
             <Link
               to="/"
-              className="flex items-center self-center shrink-0 no-underline z-10"
+              className="flex items-center self-center shrink-0 no-underline z-10 ml-3 sm:ml-6 md:ml-8 lg:ml-10 xl:ml-12"
             >
               <img
                 src="/logo.png"
                 alt="Ramachandra Urology & Stone Centre"
-                className="h-11 min-[380px]:h-12 sm:h-13 md:h-14 lg:h-15 xl:h-16 w-auto object-contain transition-transform hover:scale-[1.02]"
+                onLoad={() => {
+                  if (headerRef.current) {
+                    setHeaderHeight(headerRef.current.offsetHeight);
+                  }
+                }}
+                className="h-[54px] min-[380px]:h-[62px] sm:h-[72px] md:h-[80px] lg:h-[86px] xl:h-[96px] 2xl:h-[104px] w-auto object-contain transition-all duration-200"
               />
             </Link>
 
             {/* Main Desktop Navigation Items */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 self-center">
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 self-center">
 
               {/* 1. Home */}
               <Link
                 to="/"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname === "/"
+                className={`text-[13.5px] xl:text-[14.5px] font-medium px-2.5 xl:px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname === "/"
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
                   }`}
@@ -255,7 +260,7 @@ const Navbar = () => {
               {/* 2. About Us */}
               <Link
                 to="/about"
-                className={`text-[14px] xl:text-[14.5px] font-medium px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/about")
+                className={`text-[13.5px] xl:text-[14.5px] font-medium px-2.5 xl:px-3 py-2 rounded-lg transition-colors no-underline ${location.pathname.startsWith("/about")
                   ? "text-[#0FA8D6]"
                   : "text-[#012442]/90 hover:text-[#0FA8D6]"
                   }`}
