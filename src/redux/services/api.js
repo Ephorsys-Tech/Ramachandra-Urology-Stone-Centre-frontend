@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthToken, setAuthToken, clearAuthToken } from "./tokenService";
 
 const api = axios.create({
-  baseURL: "http://localhost:8800/api/v1",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://api.ramachandraurology.com/api/v1",
   withCredentials: true,
 });
 
