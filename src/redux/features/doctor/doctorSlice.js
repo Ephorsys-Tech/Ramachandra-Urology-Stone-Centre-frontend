@@ -91,8 +91,13 @@ const doctorSlice = createSlice({
       })
       .addCase(addNewDoctor.fulfilled, (state, action) => {
         state.loading = false;
-        state.doctors.unshift(action.payload.data);
-        state.pagination.total += 1;
+        const newDoctor = action.payload?.data || action.payload;
+        if (newDoctor && newDoctor._id) {
+          state.doctors.unshift(newDoctor);
+          if (state.pagination) {
+            state.pagination.total = (state.pagination.total || 0) + 1;
+          }
+        }
       })
       .addCase(addNewDoctor.rejected, (state, action) => {
         state.loading = false;
@@ -108,13 +113,15 @@ const doctorSlice = createSlice({
       })
       .addCase(updateDoctorById.fulfilled, (state, action) => {
         state.loading = false;
-        const updated = action.payload.data;
-        const index = state.doctors.findIndex((d) => d._id === updated._id);
-        if (index !== -1) {
-          state.doctors[index] = updated;
-        }
-        if (state.selectedDoctor?._id === updated._id) {
-          state.selectedDoctor = updated;
+        const updated = action.payload?.data || action.payload;
+        if (updated && updated._id) {
+          const index = state.doctors.findIndex((d) => d._id === updated._id);
+          if (index !== -1) {
+            state.doctors[index] = updated;
+          }
+          if (state.selectedDoctor?._id === updated._id) {
+            state.selectedDoctor = updated;
+          }
         }
       })
       .addCase(updateDoctorById.rejected, (state, action) => {

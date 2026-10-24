@@ -56,15 +56,21 @@ const DepartmentTable = ({
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-wrap gap-1 max-w-[200px]">
-                      {doctors && doctors.filter(d => (d.department?._id || d.department) === dept._id).length > 0 ? (
-                        doctors.filter(d => (d.department?._id || d.department) === dept._id).map((doc, i) => (
-                          <span key={i} className="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded border border-blue-100 whitespace-nowrap font-medium">
-                            Dr. {doc.name}
-                          </span>
-                        ))
-                      ) : (
-                        <span className="text-xs text-slate-400 italic">No doctors assigned</span>
-                      )}
+                      {(() => {
+                        const deptDocs = (Array.isArray(dept.doctors) && dept.doctors.length > 0)
+                          ? dept.doctors
+                          : (doctors ? doctors.filter(d => (d.department?._id || d.department) === dept._id) : []);
+
+                        return deptDocs.length > 0 ? (
+                          deptDocs.map((doc, i) => (
+                            <span key={doc._id || i} className="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded border border-blue-100 whitespace-nowrap font-medium">
+                              Dr. {typeof doc === "object" ? doc.name : doc}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="text-xs text-slate-400 italic">No doctors assigned</span>
+                        );
+                      })()}
                     </div>
                   </td>
                   <td className="px-6 py-4">

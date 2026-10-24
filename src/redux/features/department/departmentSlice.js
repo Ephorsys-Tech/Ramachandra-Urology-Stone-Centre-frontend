@@ -90,6 +90,7 @@ const departmentSlice = createSlice({
         const newDept = action.payload?.data || action.payload;
         if (newDept && newDept._id) {
           state.departments.unshift(newDept);
+          state.totalDepartments = (state.totalDepartments || 0) + 1;
         }
       })
       .addCase(addNewDepartment.rejected, (state, action) => {
@@ -106,10 +107,12 @@ const departmentSlice = createSlice({
       })
       .addCase(updateDepartmentById.fulfilled, (state, action) => {
         state.loading = false;
-        const updated = action.payload.data;
-        const index = state.departments.findIndex((d) => d._id === updated._id);
-        if (index !== -1) {
-          state.departments[index] = updated;
+        const updated = action.payload?.data || action.payload;
+        if (updated && updated._id) {
+          const index = state.departments.findIndex((d) => d._id === updated._id);
+          if (index !== -1) {
+            state.departments[index] = updated;
+          }
         }
       })
       .addCase(updateDepartmentById.rejected, (state, action) => {
@@ -126,9 +129,12 @@ const departmentSlice = createSlice({
       })
       .addCase(deleteDepartmentById.fulfilled, (state, action) => {
         state.loading = false;
-        state.departments = state.departments.filter(
-          (d) => d._id !== action.payload.deletedId
-        );
+        if (action.payload?.deletedId) {
+          state.departments = state.departments.filter(
+            (d) => d._id !== action.payload.deletedId
+          );
+          state.totalDepartments = Math.max(0, (state.totalDepartments || 1) - 1);
+        }
       })
       .addCase(deleteDepartmentById.rejected, (state, action) => {
         state.loading = false;
