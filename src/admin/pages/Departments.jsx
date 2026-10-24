@@ -127,15 +127,19 @@ const Departments = () => {
         ? formData.diseases.split(",").map((d) => (d.name || d).toString().trim()).filter(Boolean)
         : [];
 
-    return {
+    const rawDoctors = Array.isArray(formData.doctors)
+      ? formData.doctors
+      : formData.doctors
+        ? formData.doctors.split(",").map((d) => (d.name || d).toString().trim()).filter(Boolean)
+        : [];
+
+    const payload = {
       name: formData.name.trim(),
       description: formData.description.trim(),
       content: formData.content.trim(),
-      image: formData.image,
-      icon: formData.icon,
-      color: formData.color || "#007bff",
       features: rawFeatures.filter(isValidObjectId),
       diseases: rawDiseases.filter(isValidObjectId),
+      doctors: rawDoctors.filter(isValidObjectId),
       emergencyAvailable: Boolean(formData.emergencyAvailable),
       opdTime: formData.opdTime || "",
       published: formData.published !== undefined ? Boolean(formData.published) : true,
@@ -144,6 +148,12 @@ const Departments = () => {
       showInServicesPage: Boolean(formData.showInServicesPage),
       orderIndex: Number(formData.orderIndex) || 0,
     };
+
+    if (formData.slug && formData.slug.trim()) {
+      payload.slug = formData.slug.trim();
+    }
+
+    return payload;
   };
 
   const handleAddSubmit = async (e) => {
@@ -159,6 +169,7 @@ const Departments = () => {
         toast.success("Department created successfully");
         setIsAddModalOpen(false);
         resetForm();
+        dispatch(fetchAllDepartments({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
       } else {
         toast.error(result.payload || "Failed to add department");
       }
@@ -211,6 +222,7 @@ const Departments = () => {
         setIsEditModalOpen(false);
         setSelectedDept(null);
         resetForm();
+        dispatch(fetchAllDepartments({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
       } else {
         toast.error(result.payload || "Failed to update department");
       }
@@ -236,8 +248,11 @@ const Departments = () => {
         toast.success("Department deleted successfully");
         setIsDeleteModalOpen(false);
         setSelectedDept(null);
-        if (currentItems.length === 1 && currentPage > 1) {
-          setCurrentPage(currentPage - 1);
+        const nextPage = currentItems.length === 1 && currentPage > 1 ? currentPage - 1 : currentPage;
+        if (nextPage !== currentPage) {
+          setCurrentPage(nextPage);
+        } else {
+          dispatch(fetchAllDepartments({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
         }
       } else {
         toast.error(result.payload || "Failed to delete department");
@@ -266,13 +281,11 @@ const Departments = () => {
             className="px-3.5 py-2 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:border-blue-500 transition w-full sm:w-64"
           />
           <button
-            disabled
             onClick={() => {
               resetForm();
               setIsAddModalOpen(true);
-
             }}
-            className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-500 shadow-md shadow-blue-500/20 transition shrink-0 cursor-pointer disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-500 shadow-md shadow-blue-500/20 transition shrink-0 cursor-pointer"
           >
             <Plus size={18} /> Add Department
           </button>
@@ -412,27 +425,33 @@ const Departments = () => {
                 <div className="space-y-3">
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Assigned Specialists</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {doctors && doctors.filter(doc => (doc.department?._id || doc.department) === viewingDept._id).length > 0 ? (
-                      doctors.filter(doc => (doc.department?._id || doc.department) === viewingDept._id).map((doc, idx) => (
-                        <div key={idx} className="flex items-center gap-3 p-3 bg-slate-50/50 rounded-xl border border-slate-150">
-                          <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
-                            {doc.photo ? (
-                              <img src={doc.photo} alt="Doctor" className="w-full h-full object-cover" />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold text-xs uppercase">
-                                {doc.name?.substring(0, 1)}
-                              </div>
-                            )}
+                    {(() => {
+                      const deptDocs = (Array.isArray(viewingDept.doctors) && viewingDept.doctors.length > 0)
+                        ? viewingDept.doctors
+                        : (doctors ? doctors.filter(doc => (doc.department?._id || doc.department) === viewingDept._id) : []);
+
+                      return deptDocs.length > 0 ? (
+                        deptDocs.map((doc, idx) => (
+                          <div key={doc._id || idx} className="flex items-center gap-3 p-3 bg-slate-50/50 rounded-xl border border-slate-150">
+                            <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+                              {doc.photo ? (
+                                <img src={doc.photo} alt="Doctor" className="w-full h-full object-cover" />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold text-xs uppercase">
+                                  {doc.name?.substring(0, 1)}
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-slate-800">Dr. {doc.name}</p>
+                              <p className="text-[10px] text-slate-500 font-medium">{doc.specialization || "Specialist"}</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-xs font-bold text-slate-800">Dr. {doc.name}</p>
-                            <p className="text-[10px] text-slate-500 font-medium">{doc.specialization || "Specialist"}</p>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-xs text-slate-450 italic col-span-2">No specialist assigned to this department yet.</p>
-                    )}
+                        ))
+                      ) : (
+                        <p className="text-xs text-slate-450 italic col-span-2">No specialist assigned to this department yet.</p>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>
