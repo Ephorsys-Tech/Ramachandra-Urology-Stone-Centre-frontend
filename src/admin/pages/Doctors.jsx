@@ -119,15 +119,35 @@ const Doctors = () => {
     }
   };
 
-  const validateBaseFields = () => {
-    if (!formData.name || !formData.email || !formData.phone || !formData.specialization || !formData.department) {
+  const validateBaseFields = (isEdit = false) => {
+    if (!formData.name?.trim() || !formData.specialization?.trim() || !formData.department) {
       toast.error("Please fill all required basic fields (*)");
       setFormActiveTab("basic");
       return false;
     }
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(formData.phone)) {
-      toast.error("Phone number must be exactly 10 digits");
+    if (formData.experience === undefined || formData.experience === "" || isNaN(formData.experience) || Number(formData.experience) < 0) {
+      toast.error("Please enter a valid experience (years)");
+      setFormActiveTab("basic");
+      return false;
+    }
+    if (formData.phone?.trim()) {
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        toast.error("Phone number must be exactly 10 digits");
+        setFormActiveTab("basic");
+        return false;
+      }
+    }
+    if (formData.email?.trim()) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email.trim())) {
+        toast.error("Please enter a valid email address");
+        setFormActiveTab("basic");
+        return false;
+      }
+    }
+    if (!isEdit && !formData.photo) {
+      toast.error("Please select a doctor photo");
       setFormActiveTab("basic");
       return false;
     }
@@ -137,8 +157,8 @@ const Doctors = () => {
   const buildFormDataPayload = () => {
     const data = new FormData();
     data.append("name", formData.name.trim());
-    data.append("email", formData.email.trim().toLowerCase());
-    data.append("phone", formData.phone.trim());
+    data.append("email", formData.email ? formData.email.trim().toLowerCase() : "");
+    data.append("phone", formData.phone ? formData.phone.trim() : "");
     data.append("specialization", formData.specialization.trim());
     data.append("department", formData.department);
     if (formData.experience !== undefined && formData.experience !== "") {
@@ -168,7 +188,7 @@ const Doctors = () => {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    if (!validateBaseFields()) return;
+    if (!validateBaseFields(false)) return;
 
     const data = buildFormDataPayload();
 
@@ -178,6 +198,7 @@ const Doctors = () => {
         toast.success("Doctor added successfully!");
         setIsAddModalOpen(false);
         resetForm();
+        dispatch(fetchAllDoctors({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
       } else {
         toast.error(result.payload || "Failed to add doctor");
       }
@@ -219,7 +240,7 @@ const Doctors = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    if (!validateBaseFields()) return;
+    if (!validateBaseFields(true)) return;
 
     const data = buildFormDataPayload();
 
@@ -232,6 +253,7 @@ const Doctors = () => {
         setIsEditModalOpen(false);
         setSelectedDoctor(null);
         resetForm();
+        dispatch(fetchAllDoctors({ page: currentPage, limit: itemsPerPage, search: searchTerm }));
       } else {
         toast.error(result.payload || "Failed to update doctor");
       }
@@ -586,11 +608,10 @@ const Doctors = () => {
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-semibold text-slate-600 block">
-                          Email Address <span className="text-rose-500">*</span>
+                          Email Address
                         </label>
                         <input
                           type="email"
-                          required
                           placeholder="doctor@ramachandraurology.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -600,11 +621,10 @@ const Doctors = () => {
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-semibold text-slate-600 block">
-                          Phone Number (10 digits) <span className="text-rose-500">*</span>
+                          Phone Number (10 digits)
                         </label>
                         <input
                           type="tel"
-                          required
                           placeholder="9876543210"
                           value={formData.phone}
                           onChange={(e) =>

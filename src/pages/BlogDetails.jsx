@@ -74,6 +74,13 @@ const BlogDetails = () => {
     ? `Dr. ${selectedBlog.doctorAuthor.name}`
     : selectedBlog.authorName || "Dr. Ramachandra Pradhan";
 
+  const authorBadge =
+    selectedBlog.authorType === "Doctor"
+      ? "Doctor Specialist"
+      : selectedBlog.authorType === "Specialist"
+      ? "Specialist Author"
+      : "Editorial Team";
+
   const blogPostStructuredData = {
     "@context": "https://schema.org",
     "@graph": [

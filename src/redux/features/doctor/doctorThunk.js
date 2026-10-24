@@ -49,13 +49,7 @@ export const addNewDoctor = createAsyncThunk(
   async (doctorData, { rejectWithValue }) => {
     try {
       // If doctorData is FormData (has photo file), send as multipart
-      const isFormData = doctorData instanceof FormData;
-
-      const response = await api.post("/doctor/add", doctorData, {
-        headers: isFormData
-          ? { "Content-Type": "multipart/form-data" }
-          : {},
-      });
+      const response = await api.post("/doctor/add", doctorData);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -74,13 +68,7 @@ export const updateDoctorById = createAsyncThunk(
   "doctor/updateDoctorById",
   async ({ id, doctorData }, { rejectWithValue }) => {
     try {
-      const isFormData = doctorData instanceof FormData;
-
-      const response = await api.put(`/doctor/update/${id}`, doctorData, {
-        headers: isFormData
-          ? { "Content-Type": "multipart/form-data" }
-          : {},
-      });
+      const response = await api.put(`/doctor/update/${id}`, doctorData);
       return response.data;
     } catch (error) {
       return rejectWithValue(

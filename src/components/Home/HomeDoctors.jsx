@@ -315,8 +315,8 @@ const HomeDoctors = memo(() => {
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
                 className={`h-2 rounded-full transition-all cursor-pointer border-none ${currentIndex === dotIdx
-                    ? 'w-7 bg-[#00B4EA]'
-                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  ? 'w-7 bg-[#00B4EA]'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
